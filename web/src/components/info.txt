@@ -1,0 +1,2 @@
+micro-components will be stored
+use class components and no semicolons to maintain uniformity in the code
