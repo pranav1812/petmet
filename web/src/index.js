@@ -13,7 +13,7 @@ import Dashboard from './components/vet/dashboard'
 /* ----------------------------------------- */
 
 
-ReactDOM.render(<Dashboard />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
 
 
 
