@@ -9,11 +9,11 @@ import Navbar from './navbar'
 /* ----- test components -----*/
 import Checkout from './components/checkout/Checkout'
 import Dashboard from './components/vet/dashboard'
-import Select from './components/checkout/select'
+import VetForm from './components/checkout/VetForm'
 /* ----------------------------------------- */
 
 
-ReactDOM.render(<Select />, document.getElementById('root'));
+ReactDOM.render(<Checkout />, document.getElementById('root'));
 
 
 

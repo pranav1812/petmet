@@ -13,13 +13,16 @@ import Typography from '@material-ui/core/Typography';
 import AddressForm from './AddressForm';
 import PaymentForm from './PaymentForm';
 import Review from './Review';
+import Select from './select';
+import Vetform from './VetForm';
+import PetProfile from './PetProfile';
 
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
       {'Copyright © '}
       <Link color="inherit" href="https://material-ui.com/">
-        Your Website
+        PetMet
       </Link>{' '}
       {new Date().getFullYear()}
       {'.'}
@@ -64,16 +67,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Select your Role', 'Payment details', 'Completed'];
+const steps = ['Select your Role', 'Your Profile', 'Pet Profile'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <AddressForm />;
+      return <Select />;
     case 1:
-      return <PaymentForm />;
+      return <AddressForm />;
     case 2:
-      return <Review />;
+      return <PetProfile />;
     default:
       throw new Error('Unknown step');
   }
@@ -117,11 +120,10 @@ export default function Checkout() {
             {activeStep === steps.length ? (
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
-                  Thank you for your order.
+                  Thank you.
                 </Typography>
                 <Typography variant="subtitle1">
-                  Your order number is #2001539. We have emailed your order confirmation, and will
-                  send you an update when your order has shipped.
+                  We have emailed your profile completion. 
                 </Typography>
               </React.Fragment>
             ) : (
@@ -139,7 +141,7 @@ export default function Checkout() {
                     onClick={handleNext}
                     className={classes.button}
                   >
-                    {activeStep === steps.length - 1 ? 'Place order' : 'Next'}
+                    {activeStep === steps.length - 1 ? 'Last Form' : 'Next'}
                   </Button>
                 </div>
               </React.Fragment>
