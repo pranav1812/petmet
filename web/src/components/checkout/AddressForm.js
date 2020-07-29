@@ -69,7 +69,7 @@ export default function AddressForm() {
             required
             id="zip"
             name="zip"
-            label="Zip / Postal code"
+            label="Pin code"
             fullWidth
             autoComplete="shipping postal-code"
           />
@@ -81,7 +81,7 @@ export default function AddressForm() {
             name="country"
             label="Phone Number"
             fullWidth
-            autoComplete="shipping country"
+            autoComplete="number"
           />
         </Grid>
       </Grid>

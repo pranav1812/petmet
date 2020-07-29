@@ -4,16 +4,17 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import Navbar from './navbar'
-
-
+import Checkin from './CheckIn'
+import Profile from './components/checkout/Profile'
 /* ----- test components -----*/
-import Checkout from './components/checkout/Checkout'
+import Checkout from './components/checkout/Checkout';
+import Select from './components/checkout/select';
 import Dashboard from './components/vet/dashboard'
 import VetForm from './components/checkout/VetForm'
 /* ----------------------------------------- */
 
 
-ReactDOM.render(<Checkout />, document.getElementById('root'));
+ReactDOM.render(<Checkin />, document.getElementById('root'));
 
 
 

@@ -2,6 +2,7 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { makeStyles } from '@material-ui/core/styles';
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-export default function Select() {
+export default function Select(props) {
 
   const classes = useStyles();
   const [currency, setCurrency] = React.useState('EUR');
@@ -72,6 +73,13 @@ export default function Select() {
     </form>
       </Grid>
       </Grid>
+      <Grid container spacing={3}>
+        <Grid item xs={12} sm={6}>
+        <Button variant="contained" color="primary" onClick={props.onNavigate}>
+ Profile
+</Button>
+          </Grid>
+        </Grid>
     </React.Fragment>
   );
 }
