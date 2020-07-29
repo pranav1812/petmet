@@ -1,6 +1,11 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import "./App.scss";
 import { Login, Register } from "./components/login/index";
+import Navbar from './navbar'
+
+//ReactDOM.render(<Navbar />, document.getElementById('root'));
+
 
 class App extends React.Component {
   constructor(props) {
@@ -27,14 +32,17 @@ class App extends React.Component {
     }
     this.setState(prevState => ({ isLogginActive: !prevState.isLogginActive }));
   }
-
+  
+  
   render() {
+    
     const { isLogginActive } = this.state;
     const current = isLogginActive ? "Register" : "Login";
     const currentActive = isLogginActive ? "login" : "register";
     return (
-      
+          
       <div className="App">
+              
         <div className="login">
           <div className="container" ref={ref => (this.container = ref)}>
             {isLogginActive && (

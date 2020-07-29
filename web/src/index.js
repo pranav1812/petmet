@@ -3,17 +3,17 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import ResponsiveDrawer from './navbar'
+import Navbar from './navbar'
 
 
 /* ----- test components -----*/
-
+import Checkout from './components/checkout/Checkout'
 import Dashboard from './components/vet/dashboard'
-
+import Select from './components/checkout/select'
 /* ----------------------------------------- */
 
 
-ReactDOM.render(<Dashboard />, document.getElementById('root'));
+ReactDOM.render(<Select />, document.getElementById('root'));
 
 
 
