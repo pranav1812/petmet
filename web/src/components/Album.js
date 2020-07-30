@@ -49,16 +49,7 @@ const useStyles = makeStyles(theme => ({
   heroButtons: {
     marginTop: theme.spacing(4)
   },
-  root: {
-    width: '100%',
-    maxwidth: 5000,
-    height: 400,
-    backgroundColor: theme.palette.background.paper,
-    display: 'flex',
-    alignItems: 'relative',
-    justifyContent: 'center'
-    
-  },
+  
   cardGrid: {
     paddingTop: theme.spacing(8),
     paddingBottom: theme.spacing(8)
@@ -174,54 +165,9 @@ export default function Album() {
           </Grid>
         </Container>
       </main>
-      <div className={classes.root}>
-      
-      <Typography
-              component="h2"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-                 
-      <List component="nav" aria-label="main mailbox folders">
-        <ListItem button>
-          <ListItemText primary="Recent Posts" />
-        </ListItem>
-        <Divider/>
-        
-        
-        <ListItem button>
-          <ListItemText primary="Our Stores" />
-        </ListItem>
-        <Divider/>
-
-        <ListItem button>
-          <ListItemText primary="Privacy Policy" />
-        </ListItem>
-        <Divider/>
-
-        <ListItem button>
-          <ListItemText primary="Returns and Refunds Policy" />
-        </ListItem>
-
+     
       
       
-      <Divider />
-      
-        
-        <ListItem button>
-          <ListItemText primary="Contact Us" />
-        </ListItem>
-        <Divider/>
-
-        <ListItemLink href="#simple-list">
-          <ListItemText primary="Our Sitemap" />
-        </ListItemLink>
-      </List>
-      </Typography>
-      
-    </div>
       {/* Footer */}
       <footer className={classes.footer}>
         <Typography variant="h6" align="center" gutterBottom>
