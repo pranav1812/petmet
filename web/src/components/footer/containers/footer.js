@@ -9,23 +9,22 @@ export function FooterContainer() {
             <Footer.Row>
                 <Footer.Column>
                 <Footer.Title>About Us</Footer.Title>
-                    <Footer.Link href="#">Story</Footer.Link>
-                    <Footer.Link href="#">Clients</Footer.Link>
-                    <Footer.Link href="#">Testimonials</Footer.Link>
+                    <Footer.Link href="#">Recent Posts</Footer.Link>
+                    <Footer.Link href="#">Our Sitemap</Footer.Link>
+                    
                 </Footer.Column>
                 <Footer.Column>
-                <Footer.Title>Services</Footer.Title>
-                    <Footer.Link href="#">Marketing</Footer.Link>
-                    <Footer.Link href="#">Consulting</Footer.Link>
-                    <Footer.Link href="#">Development</Footer.Link>
-                    <Footer.Link href="#">Design</Footer.Link>
+                <Footer.Title>Our Stores</Footer.Title>
+                    <Footer.Link href="#">Patiala</Footer.Link>
+                    <Footer.Link href="#">Delhi</Footer.Link>
+                    
                 </Footer.Column>
                 <Footer.Column>
                 <Footer.Title>Contact Us</Footer.Title>
-                    <Footer.Link href="#">United States</Footer.Link>
-                    <Footer.Link href="#">United Kingdom</Footer.Link>
-                    <Footer.Link href="#">Australia</Footer.Link>
-                    <Footer.Link href="#">Support</Footer.Link>
+                    <Footer.Link href="#">Contact Details</Footer.Link>
+                    <Footer.Link href="#">Privacy Policy</Footer.Link>
+                    <Footer.Link href="#">Return And Refund Policy</Footer.Link>
+                    
                 </Footer.Column>
                 <Footer.Column>
                 <Footer.Title>Social</Footer.Title>
