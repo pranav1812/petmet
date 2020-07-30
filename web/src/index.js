@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App'
 import * as serviceWorker from './serviceWorker';
+
 import Navbar from './navbar'
 import Checkin from './CheckIn'
 import Profile from './components/checkout/Profile'
+import ResponsiveDrawer from './navbar'
+import Album from './components/Album'
+
+
+
 /* ----- test components -----*/
 import Checkout from './components/checkout/Checkout';
 import Select from './components/checkout/select';
@@ -14,7 +20,8 @@ import VetForm from './components/checkout/VetForm'
 /* ----------------------------------------- */
 
 
-ReactDOM.render(<Profile />, document.getElementById('root'));
+
+ReactDOM.render(<Dashboard />, document.getElementById('root'));
 
 
 

@@ -14,7 +14,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import Link from "@material-ui/core/Link";
-import SearchBar from 'material-ui-search-bar';
+// import SearchBar from 'material-ui-search-bar';
 import { render } from "react-dom";
 import InboxIcon from '@material-ui/icons/Inbox';
 import DraftsIcon from '@material-ui/icons/Drafts';
@@ -89,19 +89,9 @@ function ListItemLink(props) {
 export default function Album() {
   const classes = useStyles();
 
-  return (
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <React.Fragment>
+  return (  
+  
+   <React.Fragment>
       <CssBaseline />
       <AppBar position="relative">
       
@@ -253,4 +243,3 @@ export default function Album() {
     
   );
 }
-

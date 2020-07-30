@@ -21,6 +21,7 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
 import MaterialUIPickers from './addSlot'
+import App from '../footer/App'
 
 function Copyright() {
   return (
@@ -182,7 +183,7 @@ export default function Dashboard() {
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
-              
+              <App />
             </Grid>
           </Grid>
           <Box pt={4}>
