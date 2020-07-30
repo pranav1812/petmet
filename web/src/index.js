@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import App from './App'
 import * as serviceWorker from './serviceWorker';
 import ResponsiveDrawer from './navbar'
+import Album from './components/Album'
 
 
 /* ----- test components -----*/
@@ -13,7 +14,7 @@ import Dashboard from './components/vet/dashboard'
 /* ----------------------------------------- */
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<Dashboard />, document.getElementById('root'));
 
 
 
