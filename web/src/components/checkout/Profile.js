@@ -12,11 +12,11 @@ class Profile extends React.Component{
     constructor(){
         super();
         this.state = {
-            screen: Select //App,Select
+            screen: 'Select' //App,Select
         }
     }
 
-    navigate(){
+    navigate=()=>{
         this.setState({
             screen:'Checkout'
         })
@@ -25,6 +25,7 @@ class Profile extends React.Component{
 render(){
     return(
     <div>
+
         {
     this.state.screen === 'Select' && (
                  <div>
