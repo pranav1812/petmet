@@ -34,7 +34,7 @@ render(){
     return(
     <div>
         
-     <Route exact path ='/' component ={Select} />
+  <Route exact path ='/' component ={Select} />
      <Route exact path='/Checkout' component = {Checkout} />
      <Route exact path='/VetForm' component={VetForm} />
    </div>

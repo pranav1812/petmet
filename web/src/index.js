@@ -22,7 +22,11 @@ import VetForm from './components/checkout/VetForm'
 
 
 
+<<<<<<< HEAD
 ReactDOM.render(<BrowserRouter><Profile /></BrowserRouter>, document.getElementById('root'));
+=======
+ReactDOM.render(<Profile />, document.getElementById('root'));
+>>>>>>> c3855a57f9ad6943d41b8d65790a5f911525d2ef
 
 
 
