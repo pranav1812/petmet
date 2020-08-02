@@ -18,17 +18,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function AddSlot(props) {
+export default function Requests(props) {
   const classes = useStyles();
   
   const [state, setState]= useState({
     slots: []
   })
-  const [newSlot, setNewSlot]= useState(null)
-  const [sentSlot, setSentSlot]= useState(null)
+  
 
   useEffect(() => {
-    db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('freeSlots').get()
+    db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('requests').get()
     .then(docs=>{
       console.log(typeof(state.slots))
       var temp=[]
@@ -44,42 +43,14 @@ export default function AddSlot(props) {
     }).catch(err=> {
       console.error(err)
     })
-  },[sentSlot])
-
-  const addSlot=(e)=>{
-    setNewSlot(e.target.value)
-  }
-  const sendSlot=()=>{
-    db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('freeSlots').add({
-      Type: "any",
-      Time: newSlot      
-    })
-    setSentSlot(newSlot)
-  }
+  },[])
 
   
   // console.log(state.slots.length)
   return (
     <div>
-      
-        <form className={classes.container} noValidate>
-
-        <TextField
-           id="datetime-local"
-           label="Next appointment"
-           type="datetime-local"
-           defaultValue="2017-05-24T10:30"
-           className={classes.textField}
-           onBlur={addSlot}
-           InputLabelProps={{
-             shrink: true,
-           }}
-            />
-            <Button size="medium" color="primary" onClick={sendSlot}>
-              Confirm
-            </Button>
-        </form>
-        <h1>Current Slots</h1>
+        
+        <h1>Requests</h1>
         {
           state.slots.map((slot)=>           
              <Tile slt={slot} />

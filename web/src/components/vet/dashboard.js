@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import clsx from 'clsx';
 import { makeStyles } from '@material-ui/core/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -20,8 +20,27 @@ import MenuIcon from '@material-ui/icons/Menu';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import { mainListItems, secondaryListItems } from './listItems';
-import MaterialUIPickers from './addSlot'
-import App from '../footer/App'
+import AddSlot from './addSlot'
+import Footer from '../footer/App'
+import {db, auth} from '../../firebase'
+import Profile from './profile'
+import Appointments from './Appointment'
+import Requests from './requests'
+import Clients from './clients'
+
+var slots=[]
+function getData(){
+db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('freeSlots').get()
+    .then(docs=>{
+      docs.forEach(doc=>{       
+        slots.push(doc.data())
+      })
+      
+    }).catch(err=> {
+      console.log("something went wrong")
+      console.error(err)
+    })
+}
 
 function Copyright() {
   return (
@@ -120,6 +139,12 @@ const useStyles = makeStyles((theme) => ({
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
+  // getData();
+
+  const [state, setState]= useState({
+    slots: []
+  })  
+
   const handleDrawerOpen = () => {
     setOpen(true);
   };
@@ -175,7 +200,7 @@ export default function Dashboard() {
           <Grid container spacing={3}>
             {/* Chart */}
             <Grid item xs={12} md={8} lg={9}>
-                <MaterialUIPickers />
+                <Clients />
             </Grid>
             {/* Recent Deposits */}
             <Grid item xs={12} md={4} lg={3}>
@@ -183,7 +208,7 @@ export default function Dashboard() {
             </Grid>
             {/* Recent Orders */}
             <Grid item xs={12}>
-              <App />
+              
             </Grid>
           </Grid>
           <Box pt={4}>

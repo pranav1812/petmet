@@ -18,7 +18,7 @@ export const mainListItems = (
   <div>
     <ListItem button>
       <ListItemIcon>
-        <DashboardIcon />
+        <AccountCircleIcon />
       </ListItemIcon>
       <ListItemText primary="Profile" />
     </ListItem>
@@ -52,17 +52,6 @@ export const secondaryListItems = (
       </ListItemIcon>
       <ListItemText primary="Clients" />
     </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <MailIcon />
-      </ListItemIcon>
-      <ListItemText primary="Messages" />
-    </ListItem>
-    <ListItem button>
-      <ListItemIcon>
-        <AccountCircleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Update Profile" />
-    </ListItem>
+    
   </div>
 );

@@ -21,7 +21,7 @@ import VetForm from './components/checkout/VetForm'
 
 
 
-ReactDOM.render(<Profile />, document.getElementById('root'));
+ReactDOM.render(<Dashboard />, document.getElementById('root'));
 
 
 

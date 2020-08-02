@@ -28,3 +28,29 @@ we want to be accessed by only authenticated and verified users
 //   }
 
 /* ------------------- snippet ------------------*/
+
+import {db} from '../firebase'
+
+// for users profile -> complete profile
+
+
+
+
+
+
+/* vet profile page */
+
+    // const [state, setState]= useState({})
+
+    // useEffect(()=>{
+    //     db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').get()
+    //         .then((doc)=>{
+    //             setState(doc.data())
+                
+    //         }).catch(err=> {
+    //         console.error(err)
+    //         })
+    //     },[])
+    //     console.log(state)
+    
+/* vet profile page */
