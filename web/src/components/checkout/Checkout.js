@@ -67,12 +67,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const steps = ['Select your Role', 'Your Profile', 'Pet Profile'];
+const steps = ['Your  Profile', 'Your Profile', 'Pet Profile'];
 
 function getStepContent(step) {
   switch (step) {
     case 0:
-      return <Select />;
+      return <PaymentForm />;
     case 1:
       return <AddressForm />;
     case 2:
@@ -121,9 +121,6 @@ export default function Checkout() {
               <React.Fragment>
                 <Typography variant="h5" gutterBottom>
                   Thank you.
-                </Typography>
-                <Typography variant="subtitle1">
-                  We have emailed your profile completion. 
                 </Typography>
               </React.Fragment>
             ) : (

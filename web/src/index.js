@@ -9,7 +9,8 @@ import Checkin from './CheckIn'
 import Profile from './components/checkout/Profile'
 import ResponsiveDrawer from './navbar'
 import Album from './components/Album'
-
+import { BrowserRouter, Route, Link } from "react-router-dom";
+ 
 
 
 /* ----- test components -----*/
@@ -21,7 +22,8 @@ import VetForm from './components/checkout/VetForm'
 
 
 
-ReactDOM.render(<Dashboard />, document.getElementById('root'));
+ReactDOM.render(<BrowserRouter><Profile /></BrowserRouter>, document.getElementById('root'));
+
 
 
 
