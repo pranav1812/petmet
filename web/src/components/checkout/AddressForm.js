@@ -20,6 +20,7 @@ export default function AddressForm() {
             label="Address line 1"
             fullWidth
             autoComplete="shipping address-line1"
+            required
           />
         </Grid>
         <Grid item xs={12}>
