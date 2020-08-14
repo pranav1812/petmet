@@ -1,0 +1,50 @@
+.carouselanddetails {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  margin-top: 10%;
+  justify-content: center;
+  margin-bottom: 40px;
+}
+.details {
+  margin-left: 50px;
+}
+
+.allrelated {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* imagessssss */
+.relatedproducts {
+  height: 200px;
+  max-width: 190px;
+}
+
+.onerelated {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin: 45px;
+}
+
+.relateddetails {
+  text-align: center;
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+}
+
+ul {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  list-style-type: none;
+  justify-content: center;
+}
+
+li {
+  margin-right: 192px;
+  font-weight: 500;
+}

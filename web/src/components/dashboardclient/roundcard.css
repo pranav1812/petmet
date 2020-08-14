@@ -1,0 +1,29 @@
+.dashboardcard {
+  justify-content: center;
+  text-align: center;
+}
+/* -------------------------------------card----------------------------- */
+.MuiPaper-elevation1 {
+  margin: 2%;
+  width: 200px;
+  height: 220px !important;
+  text-align: center;
+  background-color: #fafafa !important;
+  box-shadow: none !important;
+}
+
+/* ---------------------------------------cardimage-------------------------------- */
+.media {
+  height: 140px;
+  border: 4px;
+  width: 140px;
+  border-radius: 75px;
+  justify-content: center;
+  margin-left: 25px;
+  margin-top: 6px;
+}
+
+/* ---------------------card text------------------------------- */
+.MuiTypography-h5 {
+  font-size: 1.2rem !important;
+}
