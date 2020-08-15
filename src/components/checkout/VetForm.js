@@ -24,80 +24,39 @@ export default function VetForm() {
         <Grid item xs={12} sm={6}>
           <TextField
             required
-            id="firstName"
-            name="firstName"
+            id="Name"
+            name="Name"
             label="Name"
             fullWidth
             autoComplete="given-name"
           />
         </Grid>
-        <Grid item xs={12} sm={6}>
+        <Grid item xs={12}>
           <TextField
             required
-            id="lastName"
-            name="lastName"
-            label="last Name"
+            id="phone"
+            name="phone"
+            label="phone"
             fullWidth
-            autoComplete="family-name"
+            autoComplete="phone"
           />
         </Grid>
         <Grid item xs={12}>
           <TextField
-            required
-            id="address1"
-            name="address1"
-            label="Address line 1"
+            id="Achievements"
+            name="Achievements"
+            label="Achievements"
             fullWidth
-            autoComplete="shipping address-line1"
+            autoComplete="Achievements"
           />
         </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="address2"
-            name="address2"
-            label="Address line 2"
-            fullWidth
-            autoComplete="shipping address-line2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
+        <TextField
             required
-            id="city"
-            name="city"
-            label="City"
+            id="Qualification"
+            name="Qualification"
+            label="Qualification"
             fullWidth
-            autoComplete="shipping address-level2"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State/Province/Region" fullWidth />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-
-
-
-
-
-
-
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="country"
-            name="country"
-            label="Phone Number"
-            fullWidth
-            autoComplete="shipping country"
+            autoComplete="Qualification"
           />
         </Grid>
         <Grid item xs={12} sm={6}>
@@ -110,9 +69,45 @@ export default function VetForm() {
             autoComplete="years"
           />
         </Grid>
+        
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="Address"
+            name="Address"
+            label="Address"
+            fullWidth
+            autoComplete="Address"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="city"
+            name="city"
+            label="City"
+            fullWidth
+            autoComplete="city"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField id="state" name="state" label="State" fullWidth />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <TextField
+            required
+            id="zip"
+            name="zip"
+            label="Zip / Postal code"
+            fullWidth
+            autoComplete="shipping postal-code"
+          />
+        </Grid>
+        <Grid item xs={12} sm={6}>
+
         <Grid item xs={12} sm={6}>
         <Button variant="contained" color="primary">
-  Request Verification
+  FINISH
 </Button>
          </Grid>
     
