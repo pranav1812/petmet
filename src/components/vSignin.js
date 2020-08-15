@@ -184,8 +184,7 @@ export default function VetLogin() {
         window.location='http://localhost:3000/dashboard/a'
       }
     })
-
-      
+   
 
     }
   }
