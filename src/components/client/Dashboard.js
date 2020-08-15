@@ -149,7 +149,8 @@ export default function Dashboard() {
       if(user){
         setUid(user.uid)
         setUsr(user)
-        db.collection('Interns').doc(user.uid).get()
+        console.log(user)
+        db.collection('user').doc(user.uid).get()
         .then(doc=>{
           if (doc.exists)
             setName(doc.data().name)
