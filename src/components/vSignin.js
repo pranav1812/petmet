@@ -155,14 +155,6 @@ export default function VetLogin() {
     });
   }
 
-  const phoneSignup=()=>{
-    console.log("ruko zara")
-  }
-
-  const phoneSignin=()=>{
-    console.log("ruko zara")
-  }
-
   const goSimple=()=>{
     window.location='http://localhost:3000/login'
   }
@@ -299,17 +291,6 @@ export default function VetLogin() {
               { newUser? "Sign Up with facebook":"Sign In with facebook"}
             </Button>
 
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}             
-              onClick={newUser? phoneSignup: phoneSignin}
-            >
-              { newUser? "Sign Up with phone no.":"Sign In with phone no."}
-            </Button>
-            
             <Grid container>
             {
                 !newUser? 

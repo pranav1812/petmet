@@ -152,6 +152,7 @@ export default function Dashboard() {
       if(user){
         setUid(user.uid)
         setUsr(user)
+        console.log(user)
         db.collection('user').doc(user.uid).get()
         .then(doc=>{
           if (doc.exists)

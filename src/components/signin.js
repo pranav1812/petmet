@@ -13,6 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import {auth} from '../firebase';
 import * as firebase from 'firebase'
 
+
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -69,15 +71,12 @@ export default function Login() {
   }
 
   useEffect(()=>{
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container",
-    {
-       size:"invisible"
-        // other options
-    });
+
     // alert(auth.currentUser)
     auth.onAuthStateChanged(user=>{
+    if(user) console.log(user)
     if (user && user.emailVerified){
-      window.location='http://localhost:3000/dashboard/a'
+      window.location='http://localhost:3000/home'
     }
   })   
   }, [])
@@ -140,7 +139,7 @@ export default function Login() {
       var user = result.user;
       if(user){
         console.log(user)
-        window.location="http://localhost:3000/checkout"
+        // window.location="http://localhost:3000/checkout"
       }
     }).catch((error)=> {
       var errorMessage = error.message;
@@ -153,7 +152,7 @@ export default function Login() {
     auth.signInWithPopup(provider).then((result)=> {
       var user = result.user;
       if(user){
-        window.location="http://localhost:3000/dashboard/f"
+        window.location="http://localhost:3000/home"
       }
     }).catch((error)=> {
       var errorMessage = error.message;
@@ -162,58 +161,11 @@ export default function Login() {
   }
 
   const phoneSignup=()=>{
-    
-    
-    
-    var appVerifier = window.recaptchaVerifier;
-    firebase.auth().signInWithPhoneNumber('+917009395354', appVerifier)
-    .then(function (confirmationResult) {
-      // SMS sent. Prompt user to type the code from the message, then sign the
-      var code = prompt("enter verification code");
-      if (code==null) return
-      confirmationResult.confirm(code).then(function (result) {
-        // User signed in successfully.
-        var user = result.user;
-        if(user){
-          window.location='http://localhost:3000/checkout'
-        }
-      }).catch(function (error) {
-        // User couldn't sign in (bad verification code?)
-        console.log('wrong otp')
-      });
-
-      // user in with confirmationResult.confirm(code).
-      window.confirmationResult = confirmationResult;
-    }).catch(function (error) {
-      console.error("error")
-    });
-
+    window.location='http://localhost:3000/phone'
   }
 
   const phoneSignin=()=>{
-    auth.languageCode = 'en';
-    
-    var appVerifier = window.recaptchaVerifier;
-    firebase.auth().signInWithPhoneNumber('7009395354', appVerifier)
-    .then(function (confirmationResult) {
-      // SMS sent. Prompt user to type the code from the message, then sign the
-      var code = prompt("enter verification code");
-      if (code==null) return
-      confirmationResult.confirm(code).then(function (result) {
-        // User signed in successfully.
-        var user = result.user;
-        if(user){
-          window.location='http://localhost:3000/checkout'
-        }
-      }).catch(function (error) {
-        // User couldn't sign in (bad verification code?)
-        console.log('wrong otp')
-      });
-
-    }).catch(function (error) {
-      console.error(error)
-    });
-
+    window.location='http://localhost:3000/phone'
   }
 
   const goToVet=()=>{
@@ -234,7 +186,7 @@ export default function Login() {
     
     auth.onAuthStateChanged(user=>{
       if(user){
-        window.location='http://localhost:3000/dashboard/a'
+        window.location='http://localhost:3000/home'
       }
     })
 
@@ -258,7 +210,7 @@ export default function Login() {
             window.location='http://localhost:3000/verifyEmail'
           }
           else{
-            window.location='http://localhost:3000/dashboard/g'
+            window.location='http://localhost:3000/home'
           }
         }
       })
@@ -378,7 +330,7 @@ export default function Login() {
               color="primary"
               className={classes.submit}             
               onClick={newUser? phoneSignup: phoneSignin}
-              id="recaptcha-container"
+              
             >
               { newUser? "Sign Up with phone no.":"Sign In with phone no."}
             </Button>
