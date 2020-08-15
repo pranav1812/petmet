@@ -55,9 +55,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Login() {
+export default function VetLogin() {
   const classes = useStyles();
-  const [phone, setPhone]= useState(null)
+
   const [newUser, togglenewUser]= useState(false)
   const [usr, setUsr]= useState()
   const [mail, setMail]= useState(null)
@@ -69,11 +69,6 @@ export default function Login() {
   }
 
   useEffect(()=>{
-    window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier("recaptcha-container",
-    {
-       size:"invisible"
-        // other options
-    });
     // alert(auth.currentUser)
     auth.onAuthStateChanged(user=>{
     if (user && user.emailVerified){
@@ -139,7 +134,6 @@ export default function Login() {
     auth.signInWithPopup(provider).then((result)=> {
       var user = result.user;
       if(user){
-        console.log(user)
         window.location="http://localhost:3000/checkout"
       }
     }).catch((error)=> {
@@ -162,62 +156,15 @@ export default function Login() {
   }
 
   const phoneSignup=()=>{
-    
-    
-    
-    var appVerifier = window.recaptchaVerifier;
-    firebase.auth().signInWithPhoneNumber('+917009395354', appVerifier)
-    .then(function (confirmationResult) {
-      // SMS sent. Prompt user to type the code from the message, then sign the
-      var code = prompt("enter verification code");
-      if (code==null) return
-      confirmationResult.confirm(code).then(function (result) {
-        // User signed in successfully.
-        var user = result.user;
-        if(user){
-          window.location='http://localhost:3000/checkout'
-        }
-      }).catch(function (error) {
-        // User couldn't sign in (bad verification code?)
-        console.log('wrong otp')
-      });
-
-      // user in with confirmationResult.confirm(code).
-      window.confirmationResult = confirmationResult;
-    }).catch(function (error) {
-      console.error("error")
-    });
-
+    console.log("ruko zara")
   }
 
   const phoneSignin=()=>{
-    auth.languageCode = 'en';
-    
-    var appVerifier = window.recaptchaVerifier;
-    firebase.auth().signInWithPhoneNumber('7009395354', appVerifier)
-    .then(function (confirmationResult) {
-      // SMS sent. Prompt user to type the code from the message, then sign the
-      var code = prompt("enter verification code");
-      if (code==null) return
-      confirmationResult.confirm(code).then(function (result) {
-        // User signed in successfully.
-        var user = result.user;
-        if(user){
-          window.location='http://localhost:3000/checkout'
-        }
-      }).catch(function (error) {
-        // User couldn't sign in (bad verification code?)
-        console.log('wrong otp')
-      });
-
-    }).catch(function (error) {
-      console.error(error)
-    });
-
+    console.log("ruko zara")
   }
 
-  const goToVet=()=>{
-    window.location='http://localhost:3000/vLogin'
+  const goSimple=()=>{
+    window.location='http://localhost:3000/login'
   }
 
   const googleSignin=()=>{
@@ -320,21 +267,6 @@ export default function Login() {
                     
               onBlur={(e)=> {setPass(e.target.value)}}
             />
-            <br />
-            <span>or</span>
-            <br />
-            <TextField
-              variant="outlined"
-              margin="normal"
-              
-              fullWidth
-              name="phone"
-              label="Phone"
-              
-              id="password"   
-                    
-              onBlur={(e)=> {setPhone(e.target.value)}}
-            />
             
             <Button
               type="button"
@@ -357,9 +289,6 @@ export default function Login() {
               { newUser? "Sign Up with Google":"Sign In with Google"}
             </Button>
 
-
-            
-
             <Button
               type="button"
               fullWidth
@@ -378,7 +307,6 @@ export default function Login() {
               color="primary"
               className={classes.submit}             
               onClick={newUser? phoneSignup: phoneSignin}
-              id="recaptcha-container"
             >
               { newUser? "Sign Up with phone no.":"Sign In with phone no."}
             </Button>
@@ -406,9 +334,9 @@ export default function Login() {
               variant="contained"
               color="primary"
               className={classes.submit}             
-              onClick={goToVet}
+              onClick={goSimple}
             >
-              Signin as vet
+              Signin as User
             </Button>
 
             <Box mt={5}>

@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Login from './components/signin'
+import VetLogin from './components/vSignin'
 import Checkout from './components/checkout/Checkout'
 import Dashboard from './components/client/Dashboard'
 import AllLeads from './components/client/allLeads'
@@ -20,8 +21,10 @@ function App() {
   return (
     <div className="kuchh_aur">    
       <Switch>
-        <Route exact path='/dashboard/:componentt' component={Dashboard} />
+        
+        <Route exact path='/:componentt' component={Dashboard} />
         <Route exact path='/login' component={Login} />
+        <Route exact path='/vLogin' component={VetLogin} />
         <Route exact path='/allLeads' component={AllLeads} />
         <Route exact path='/Checkout' component = {Checkout} />
         <Route exact path='/verifyEmail' component = {VerifyEmail} />

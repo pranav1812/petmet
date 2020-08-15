@@ -30,8 +30,10 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import HomeIcon from '@material-ui/icons/Home';
 // import Lead from './lead'
+
+
 import AllLeads from './allLeads'
-import { useReducer } from 'react';
+import MyPets from './MyPets'
 
 
 function Copyright() {
@@ -216,7 +218,7 @@ export default function Dashboard() {
             </ListItem>
           </Link>
 
-          <Link to={'/profile/'+uid}>
+          <Link to={'/myPets/'}>
             <ListItem button>             
                 <ListItemIcon>
                   <PetsIcon />
@@ -288,7 +290,7 @@ export default function Dashboard() {
               <Paper style={{width: '100%'}}>
               
                   
-                  {componentt=='allLead'? (<AllLeads />): null }
+                  {componentt=='allLead'? (<AllLeads />): componentt=='myPets'? (<MyPets />): null }
                  
                   
               
