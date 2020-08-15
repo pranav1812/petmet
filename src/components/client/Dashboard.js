@@ -37,6 +37,7 @@ import MyPets from './MyPets'
 import Cart from './Cart'
 import Wishlist from './Wishlist'
 import Appointment from './Appointment'
+import Home from './Home'
 
 function Copyright() {
   return (
@@ -151,7 +152,7 @@ export default function Dashboard() {
       if(user){
         setUid(user.uid)
         setUsr(user)
-        db.collection('Interns').doc(user.uid).get()
+        db.collection('user').doc(user.uid).get()
         .then(doc=>{
           if (doc.exists)
             setName(doc.data().name)
@@ -291,7 +292,7 @@ export default function Dashboard() {
               <Paper style={{width: '100%'}}>
               
                   
-                  {componentt=='allLead'? (<AllLeads />): componentt=='myPets'? (<MyPets />): null }
+                  {componentt=='Home'? (<Home />): componentt=='myPets'? (<MyPets />): componentt=='Cart'? (<Cart/>) : componentt=='Wishlist'? (<Wishlist />): componentt=='Appointment'? (<Appointment/>):  <Home/> }
                  
                   
               

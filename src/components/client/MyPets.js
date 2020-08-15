@@ -7,7 +7,7 @@ export default function MyPets() {
         auth.onAuthStateChanged(user=>{
             if(!user){
                 alert("login required")
-                window.location='http://localhost:3000/allLead'
+                window.location='http://localhost:3000/Home'
             }
             else{
                 setUsr(user)
