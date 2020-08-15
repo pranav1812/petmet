@@ -22,12 +22,13 @@ function App() {
     <div className="kuchh_aur">    
       <Switch>
         
-        <Route exact path='/:componentt' component={Dashboard} />
+        
         <Route exact path='/login' component={Login} />
         <Route exact path='/vLogin' component={VetLogin} />
         <Route exact path='/allLeads' component={AllLeads} />
         <Route exact path='/Checkout' component = {Checkout} />
         <Route exact path='/verifyEmail' component = {VerifyEmail} />
+        <Route exact path='/:componentt' component={Dashboard} />
       </Switch> 
       
     

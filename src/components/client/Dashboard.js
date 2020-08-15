@@ -34,7 +34,9 @@ import HomeIcon from '@material-ui/icons/Home';
 
 import AllLeads from './allLeads'
 import MyPets from './MyPets'
-
+import Cart from './Cart'
+import Wishlist from './Wishlist'
+import Appointment from './Appointment'
 
 function Copyright() {
   return (
@@ -227,7 +229,7 @@ export default function Dashboard() {
             </ListItem>
             </Link>
 
-            <Link to={'/myLeads/'+ uid}>
+            <Link to={'/Cart/'}>
             <ListItem button>
               <ListItemIcon>
                 <ShoppingCartIcon />
@@ -236,16 +238,15 @@ export default function Dashboard() {
             </ListItem>
             </Link>
             
-            <Link to={'/myLeads/'+ uid}>
+            <Link to={'/Wishlist/'}>
             <ListItem button>
               <ListItemIcon>
                 <StarsIcon />
               </ListItemIcon>
               <ListItemText primary="Wishlist" />
             </ListItem>
-            </Link>
-            
-            <Link to={'/myLeads/'+ uid}>
+            </Link>     
+            <Link to={'/Appointment/'}>
             <ListItem button>
               <ListItemIcon>
                 <AccessTimeIcon />
