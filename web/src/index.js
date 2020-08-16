@@ -6,7 +6,7 @@ import * as serviceWorker from "./serviceWorker";
 
 import Navbar from "./navbar";
 import Checkin from "./CheckIn";
-import Profile from "./components/checkout/Profile";
+// import Profile from "./components/checkout/Profile";
 import ResponsiveDrawer from "./navbar";
 import Album from "./components/Album";
 import ShopPage from "./components/shop/ShopPage";
@@ -22,7 +22,7 @@ import VetForm from "./components/checkout/VetForm";
 
 ReactDOM.render(
   <BrowserRouter>
-    <ShopPage />
+    <Dashboard />
   </BrowserRouter>,
   document.getElementById("root")
 );

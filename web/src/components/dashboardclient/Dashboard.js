@@ -5,6 +5,7 @@ import "./dashboard.css";
 import TopCarousel from "./TopCarousel";
 import BestSellers from "./BestSellers.js";
 import AppBar from "@material-ui/core/AppBar";
+import { FooterContainer } from "../footer/containers/footer";
 
 const Dashboard = () => {
   return (
@@ -17,7 +18,6 @@ const Dashboard = () => {
         <h4 className="topbanner">
           Shop for Rs2000 and get a voucher worth Rs345
         </h4>
-
         <div className="cards">
           <RoundCard
             title="TREATS"
@@ -52,12 +52,10 @@ const Dashboard = () => {
             image="https://backend.petsutra.com/app/uploads/31-05-19/5cf117d1bc675.png"
           />
         </div>
-
         <h2 className="headers">BEST SELLERS</h2>
         <div className="productcards">
           <BestSellers />
         </div>
-
         <h2 className="headers">ACCESSORIES</h2>
         <div className="productcards">
           <BestSellers />
@@ -66,6 +64,7 @@ const Dashboard = () => {
         <div className="productcards">
           <BestSellers />
         </div>
+        <FooterContainer />
       </div>
     </div>
   );
