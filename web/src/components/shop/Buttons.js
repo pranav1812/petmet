@@ -6,9 +6,7 @@ import FavoriteIcon from "@material-ui/icons/Favorite";
 import "./buttons.css";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
-    button: {
-      margin: theme.spacing(1),
-    },
+    button: {},
   })
 );
 
@@ -16,33 +14,26 @@ export default function IconLabelButtons() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div className="buttons">
       <Button
         variant="contained"
         color="secondary"
-        className={classes.button}
+        className="wishlist"
         startIcon={<FavoriteIcon />}
       >
         ADD TO WISHLIST
       </Button>
+      <br />
       {/* This Button uses a Font Icon, see the installation instructions in the Icon component docs. */}
       <Button
         variant="contained"
         color="secondary"
-        className={classes.button}
+        className="cart"
         startIcon={<AddShoppingCartIcon />}
       >
         ADD TO CART
       </Button>
       <br />
-      <Button
-        variant="contained"
-        color="secondary"
-        className={classes.button}
-        className="buy"
-      >
-        BUY NOW!!!
-      </Button>
     </div>
   );
 }

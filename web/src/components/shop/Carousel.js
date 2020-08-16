@@ -8,7 +8,7 @@ import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 import SwipeableViews from "react-swipeable-views";
 import { autoPlay } from "react-swipeable-views-utils";
-
+import "./carousel.css";
 const AutoPlaySwipeableViews = autoPlay(SwipeableViews);
 
 const tutorialSteps = [
@@ -36,22 +36,25 @@ const tutorialSteps = [
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    // maxWidth: 370,
+    maxWidth: 473,
     flexGrow: 1,
   },
   header: {
     display: "flex",
     alignItems: "center",
-    height: 50,
+    height: 0,
     paddingLeft: theme.spacing(4),
     backgroundColor: theme.palette.background.default,
   },
   img: {
-    height: 355,
+    height: 473,
     display: "block",
-    // maxWidth: 370,
+    maxWidth: 473,
     overflow: "hidden",
     width: "100%",
+  },
+  makeStylesHeader2: {
+    height: "0px",
   },
 }));
 
@@ -99,7 +102,7 @@ function SwipeableTextMobileStepper() {
       <MobileStepper
         steps={maxSteps}
         position="static"
-        variant="text"
+        variant="dots"
         activeStep={activeStep}
         nextButton={
           <Button
@@ -107,7 +110,6 @@ function SwipeableTextMobileStepper() {
             onClick={handleNext}
             disabled={activeStep === maxSteps - 1}
           >
-            Next
             {theme.direction === "rtl" ? (
               <KeyboardArrowLeft />
             ) : (
@@ -122,7 +124,6 @@ function SwipeableTextMobileStepper() {
             ) : (
               <KeyboardArrowLeft />
             )}
-            Back
           </Button>
         }
       />

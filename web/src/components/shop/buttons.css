@@ -6,5 +6,35 @@
   }
 }
 .MuiButton-containedSecondary {
-  background-color: yellowgreen !important;
+  width: 365px;
+  height: 46px;
+  left: 25px;
+  /* top: 698px; */
+
+  border-radius: 4px;
+}
+.buttons {
+  margin-top: 35px;
+}
+
+.hey {
+  position: absolute;
+  width: 365px;
+  height: 46px;
+  left: 25px;
+  top: 698px;
+
+  background: #36a9cc;
+  border-radius: 4px;
+}
+
+.wishlist {
+  color: #36a9cc !important;
+  border-block-color: #36a9cc !important ;
+  background-color: transparent !important;
+  margin-bottom: 12px !important;
+}
+
+.cart {
+  background: #36a9cc !important;
 }

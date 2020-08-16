@@ -8,43 +8,44 @@
 }
 .details {
   margin-left: 50px;
+  position: relative;
+  font-size: 14px;
+  line-height: 20px;
+  font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  color: #3d464d;
 }
 
-.allrelated {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
+.openedproductname {
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
 }
 
-/* imagessssss */
-.relatedproducts {
-  height: 200px;
-  max-width: 190px;
-}
-
-.onerelated {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin: 45px;
-}
-
-.relateddetails {
-  text-align: center;
-  margin-block-start: 0.2em;
-  margin-block-end: 0.2em;
-}
-
-ul {
+ul.b {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   list-style-type: none;
   justify-content: center;
+  text-align: center;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
 }
 
-li {
-  margin-right: 192px;
+.listb {
+  margin-right: 14.9%;
   font-weight: 500;
+  font-size: 19px;
+}
+
+ul.a {
+  list-style-type: circle;
+}
+.heading {
+  text-transform: uppercase;
+  color: #3e4152;
+  letter-spacing: 0.15em;
+  font-size: 1.8em;
+  font-weight: 500;
+  font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
 }

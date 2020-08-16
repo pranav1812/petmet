@@ -36,63 +36,63 @@ const BestSellers = () => {
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
         <div>
           <SquareCard
             name="Dryer"
             price="$44"
-            picture="https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcRXrKNRtVk3g5xehLeJqoV-PK1Jzi646XfhnEJvsW6YIpjbBIRvNLtrEdRB5ZutCtefF3SD6oLNhi7nzbirHIhYVSW4VMCK0fOMEdCUYP2vWGtXk7mVntzQbA&usqp=CAE"
+            picture="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRSDfBCDWAxIbWG7ZWGjSwqW569n3hONJ7w7w&usqp=CAU"
           />
         </div>
       </Carousel>
