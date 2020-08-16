@@ -72,7 +72,7 @@ export default function VetLogin() {
     // alert(auth.currentUser)
     auth.onAuthStateChanged(user=>{
     if (user && user.emailVerified){
-      window.location='http://localhost:3000/dashboard/a'
+      window.location='http://localhost:3000/vWaiting'
     }
   })   
   }, [])
@@ -185,18 +185,18 @@ export default function VetLogin() {
     if(mail && pass){
       auth.signInWithEmailAndPassword(mail, pass).catch(function(error) {
         var errorMessage = error.message;
-        console.error("errorMessage")
+        console.error(errorMessage)
       });
       
 
       auth.onAuthStateChanged(user=>{
-        console.log("user")
+        console.log(user)
         if(user){
           if(!user.emailVerified){
-            window.location='http://localhost:3000/verifyEmail'
+            window.location='http://localhost:3000/vVerifyEmail'
           }
           else{
-            window.location='http://localhost:3000/dashboard/g'
+            window.location='http://localhost:3000/vd'
           }
         }
       })
@@ -206,6 +206,13 @@ export default function VetLogin() {
     }   
   }
   
+  const resetPassword=()=>{
+    auth.sendPasswordResetEmail(mail).then(()=> {
+        alert("password change link was sent to your email address ")
+      }).catch((error)=> {
+        console.error(error)
+      });
+  }
   
   return (
     <Grid container component="main" className={classes.root}>
@@ -295,14 +302,14 @@ export default function VetLogin() {
             {
                 !newUser? 
                     <Grid item xs>
-                        <Link href="#" variant="body2">
+                        <Link onClick={resetPassword} variant="body2">
                         Forgot password?
                         </Link>
                     </Grid>: null
             }
               
               <Grid item>
-                <Link href="#" variant="body2" onClick={toggle}>
+                <Link variant="body2" onClick={toggle}>
                   {!newUser? "Don't have an account? Sign Up": "Already a user? Sign In"}
                 </Link>
               </Grid>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
@@ -9,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import ls from 'local-storage';
-import {auth, db} from '../../firebase'
+import {auth, db} from '../firebase'
 
 import {makeStyles} from '@material-ui/core/styles';
 
@@ -31,34 +31,34 @@ export default function VCompleteProfile() {
     
   const classes = useStyles();
     const [uid, setUid]= React.useState(null)
-  React.useEffect(()=>{
+    const [sbt, setSbt]= useState(false)
+  useEffect(()=>{
     auth.onAuthStateChanged(user=>{
         if(user){
             if(user.emailVerified){
+                setUid(user.uid)
                 db.collection('vet').doc(user.uid).get()
                     .then(doc=>{
-                        if(doc.data().profileCompleted){
+                        if(! doc.exists){
                             db.collection('vet').doc(user.uid).set({
-                                Verified: false
+                                profileCompleted: false
                             })
-                            window.location='http://localhost:3000/vDashboard'
+                        }
+                        if(doc.exists && doc.data().profileCompleted){
+                            window.location='http://localhost:3000/vd'
                         }
                         
                     })
                     React.setButton(true)
+            }else{
+                window.location='http://localhost:3000/vVerifyEmail'
             }
         }
         else if(!user){
-        window.location='http://localhost:3000/vSignin'
-      }
-      else if(!user.emailVerified){
-        window.location='http://localhost:3000/vVerifyEmail'
-      }
-      else{
-        setUid(user.uid)
-      }
+        window.location='http://localhost:3000/vLogin'
+        }     
     })
-  },[])
+  },[sbt])
 
 
   const submit=()=>{
@@ -71,9 +71,11 @@ export default function VCompleteProfile() {
       Address: ls.get('Address'),
       city: ls.get('city'),
       state: ls.get('state'),
-      zip: ls.get('zip')
-
+      zip: ls.get('zip'),
+      verified: false,
+      profileCompleted: true
     })
+    setSbt(true)
   }
 
   return (
@@ -181,9 +183,9 @@ export default function VCompleteProfile() {
         
 
         <Grid item xs={12} sm={6}>
-        <Button variant="contained" color="primary">
-  FINISH
-</Button>
+        <Button variant="contained" color="primary" onClick={submit}>
+            FINISH
+        </Button>
          </Grid>
     
       </Grid>

@@ -15,6 +15,11 @@ const useStyles = makeStyles((theme) => ({
 export default function VVerifyEmail() {
     const classes = useStyles();
     const [button, setButton]= useState(false)
+    const logout=()=>{
+        auth.signOut().then(()=>{
+            window.location.reload()
+        })
+    }
     useEffect(()=>{
         auth.onAuthStateChanged(user=>{
             if(user){
@@ -30,12 +35,12 @@ export default function VVerifyEmail() {
                             else if(!doc.data().profileCompleted) 
                                 window.location='http://localhost:3000/vCompleteProfile'
                             else{
-                                window.location= 'http://localhost:3000/vDashboard'
+                                window.location= 'http://localhost:3000/vd'
                             }
                         })
                         setButton(true)
                 }else{
-                    alert("verification required")
+                    alert("verification link was sent to your registered email")
                 }
             }else{
                 window.location='http://localhost:3000/vLogin'
@@ -46,11 +51,18 @@ export default function VVerifyEmail() {
         window.location='http://localhost:3000/vCompleteProfile'
     }
     
+    const sendVerification=()=>{
+        var usr= auth.currentUser
+        usr.sendEmailVerification().then(()=> {
+            window.location.reload()
+          }).catch(function(error) {
+            console.log(error)
+          });
+    }
     return (
         <div>
             <h3>Email verification Link was sent to your registered email.<br /> 
             Verify and refresh this page </h3>
-            
             
             {button? (<div>
                 <Button
@@ -61,7 +73,26 @@ export default function VVerifyEmail() {
                 >
                         Complete Profile
                 </Button>
-            </div>): null}
+            </div>): (
+                <div>
+                <Button
+                variant="contained"
+                color="primary"
+                onClick={logout}
+                className={classes.button}
+                >
+                Logout
+                </Button>
+                <Button
+                variant="contained"
+                color="primary"
+                onClick={sendVerification}
+                className={classes.button}
+                >
+                send verification link again
+                </Button>
+        </div>
+            )}
         </div>
     )
 }

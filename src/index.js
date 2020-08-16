@@ -23,7 +23,7 @@ import SignInSide from './components/signin'
 
 
 
-ReactDOM.render(<Router><VetForm /></Router>, document.getElementById('root'));
+ReactDOM.render(<Router><App /></Router>, document.getElementById('root'));
 
 
 
