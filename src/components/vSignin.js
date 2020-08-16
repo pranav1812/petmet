@@ -111,7 +111,7 @@ export default function VetLogin() {
       var user = result.user;
       // new line
       if(user){
-        window.location= 'http://localhost:3000/checkout'
+        window.location= 'http://localhost:3000/vWaiting'
       }
       }).catch(function(error) {
         var errorMessage = error.message;
@@ -134,7 +134,7 @@ export default function VetLogin() {
     auth.signInWithPopup(provider).then((result)=> {
       var user = result.user;
       if(user){
-        window.location="http://localhost:3000/checkout"
+        window.location="http://localhost:3000/vWaiting"
       }
     }).catch((error)=> {
       var errorMessage = error.message;
@@ -147,7 +147,7 @@ export default function VetLogin() {
     auth.signInWithPopup(provider).then((result)=> {
       var user = result.user;
       if(user){
-        window.location="http://localhost:3000/dashboard/f"
+        window.location="http://localhost:3000/vWaiting"
       }
     }).catch((error)=> {
       var errorMessage = error.message;
@@ -173,7 +173,7 @@ export default function VetLogin() {
     
     auth.onAuthStateChanged(user=>{
       if(user){
-        window.location='http://localhost:3000/dashboard/a'
+        window.location='http://localhost:3000/vWaiting'
       }
     })
    
@@ -196,7 +196,7 @@ export default function VetLogin() {
             window.location='http://localhost:3000/vVerifyEmail'
           }
           else{
-            window.location='http://localhost:3000/vd'
+            window.location='http://localhost:3000/vWaiting'
           }
         }
       })
