@@ -12,7 +12,7 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 
-export default function VerifyEmail() {
+export default function VVerifyEmail() {
     const classes = useStyles();
     const [button, setButton]= useState(false)
     useEffect(()=>{

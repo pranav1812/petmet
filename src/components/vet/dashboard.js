@@ -136,7 +136,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Dashboard() {
+export default function VDashboard() {
   const classes = useStyles();
   const [open, setOpen] = React.useState(true);
   // getData();
