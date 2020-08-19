@@ -5,6 +5,8 @@ import Button from '@material-ui/core/Button';
 import Tile from './Tile'
 import {db, auth} from '../../firebase'
 
+import DateFnsUtils from '@date-io/date-fns'; // choose your lib
+import {DateTimePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -24,7 +26,7 @@ export default function AddSlot(props) {
   const [state, setState]= useState({
     slots: []
   })
-  const [newSlot, setNewSlot]= useState(null)
+  const [newSlot, setNewSlot]= useState(new Date())
   const [sentSlot, setSentSlot]= useState(null)
 
   useEffect(() => {
@@ -58,23 +60,17 @@ export default function AddSlot(props) {
   }
 
   
-  // console.log(state.slots.length)
+  console.log(state.slots)
   return (
     <div>
       
         <form className={classes.container} noValidate>
 
-        <TextField
-           id="datetime-local"
-           label="Next appointment"
-           type="datetime-local"
-           defaultValue="2017-05-24T10:30"
-           className={classes.textField}
-           onBlur={addSlot}
-           InputLabelProps={{
-             shrink: true,
-           }}
-            />
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+        
+        <DateTimePicker value={newSlot} onChange={setNewSlot} />
+        </MuiPickersUtilsProvider>
+
             <Button size="medium" color="primary" onClick={sendSlot}>
               Confirm
             </Button>

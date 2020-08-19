@@ -95,6 +95,15 @@ export default function Checkout() {
       }
       else{
         setUid(user.uid)
+        db.collection('user').doc(user.uid).get()
+          .then(doc=>{
+            if(!doc.exists){
+              db.collection('user').doc(user.uid).set({
+                name: user.displayName
+            })
+            }
+          })
+
       }
     })
   },[])
