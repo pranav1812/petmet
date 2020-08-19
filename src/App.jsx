@@ -31,7 +31,7 @@ function App() {
         <Route exact path='/vWaiting' component={VWaiting} />    
         <Route exact path='/Checkout' component = {Checkout} />
         <Route exact path='/verifyEmail' component = {VerifyEmail} />
-        <Route exact path='/:vd' component={VDashboard} />
+        <Route exact path='/v/:vd' component={VDashboard} />
         <Route exact path='/:componentt' component={Dashboard} />
         
       </Switch> 
