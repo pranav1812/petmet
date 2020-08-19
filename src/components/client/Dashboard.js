@@ -213,7 +213,7 @@ export default function Dashboard() {
         <Divider />
         <List>
           <div>
-          <Link to={'/profile/'+uid}>
+          <Link to={'/home/'}>
             <ListItem button>             
                 <ListItemIcon>
                   <HomeIcon />

@@ -27,6 +27,9 @@ import Appointments from "./Appointment";
 import Requests from "./requests";
 import Clients from "./clients";
 
+
+import {Route, Switch, useParams} from 'react-router-dom'
+
 var slots = [];
 function getData() {
   db.collection("vet")
@@ -143,6 +146,7 @@ export default function VDashboard() {
   const [open, setOpen] = React.useState(true);
   // getData();
 
+  const {vd}= useParams()
   const [state, setState] = useState({
     slots: [],
   });
@@ -242,6 +246,14 @@ export default function VDashboard() {
             {/* Recent Orders */}
             <Grid item xs={12}></Grid>
           </Grid>
+          <Paper style={{width: '100%'}}>
+              
+                  
+                  { vd=='Profile'? (<Profile />): vd=='Add Slot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='Requests'? (<Requests />):   <Profile/> }
+                 
+                  
+              
+              </Paper>
           <Box pt={4}>
             <Copyright />
           </Box>

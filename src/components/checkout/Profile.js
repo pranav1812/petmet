@@ -9,8 +9,8 @@ import Select from "./select";
 import Checkout from "./Checkout";
 import VetForm from "./VetForm";
 import { BrowserRouter, Route, Link } from "react-router-dom";
-import MainLogo from "../Final Main Logo PET MET.png";
-import LargePicture from "../undraw_good_doggy_4wfq 1.png";
+//import MainLogo from "../Final Main Logo PET MET.png";
+//import LargePicture from "../undraw_good_doggy_4wfq 1.png";
 
 class Profile extends React.Component {
   constructor() {
@@ -54,8 +54,6 @@ class Profile extends React.Component {
     };
     return (
       <div>
-        <img style={imagestyle} src={MainLogo} />
-        <img style={secondimage} src={LargePicture} />
         <h2 style={welcome}>WELCOME! HOW MAY WE ADDRESS YOU?</h2>
         <Route exact path="/select" component={Select} />
         <Route exact path="/Checkout" component={Checkout} />

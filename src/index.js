@@ -17,14 +17,14 @@ import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 /* ----- test components -----*/
 import Checkout from "./components/checkout/Checkout";
 import Select from "./components/checkout/select";
-import Dashboard from "./components/vet/dashboard";
+import VDashboard from "./components/vet/dashboard";
 import VetForm from "./components/checkout/VetForm";
 import SignInSide from "./components/signin";
 /* ----------------------------------------- */
 
 ReactDOM.render(
   <Router>
-    <Dashboard />
+    <App />
   </Router>,
   document.getElementById("root")
 );

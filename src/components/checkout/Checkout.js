@@ -107,7 +107,7 @@ export default function Checkout() {
   };
 
   const skip=()=>{
-    window.location='http://localhost:3000/dashboard/s'
+    window.location='http://localhost:3000/home'
   }
 
   const handleBack = () => {
