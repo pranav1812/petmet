@@ -31,7 +31,7 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@material-ui/icons/Home";
 import DashboardClient from "../dashboardclient/DashboardClient";
 // import Lead from './lead'
-import MainLogo from "../Final Main Logo PET MET.png";
+import MainLogo from "../pictures/Final Main Logo PET MET.png";
 import AllLeads from "./allLeads";
 import MyPets from "./MyPets";
 import Cart from "./Cart";

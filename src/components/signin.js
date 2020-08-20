@@ -12,8 +12,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import { auth } from "../firebase";
 import * as firebase from "firebase";
-import mainlogo from "./Final Main Logo PET MET.png";
-import picture from "./undraw_good_doggy_4wfq 1.png";
+import mainlogo from "./pictures/Final Main Logo PET MET.png";
+import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
 
 function Copyright() {
   return (

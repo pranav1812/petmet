@@ -2,9 +2,9 @@ import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import { FooterContainer } from "../footer/containers/footer";
 import "./cart.css";
-import product1 from "../image 37.png";
-import product2 from "../image 35.png";
-import product3 from "../image 34.png";
+import product1 from "../pictures/image 37.png";
+import product2 from "../pictures/image 35.png";
+import product3 from "../pictures/image 34.png";
 const CartComponent = () => {
   return (
     <div>
