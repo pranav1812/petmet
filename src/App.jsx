@@ -25,7 +25,6 @@ function App() {
       <Switch>
         <Route exact path='/login' component={Login} />
         <Route exact path='/phone' component={Phone} />
-        <Route exact path='/vCompleteProfile' component={VCompleteProfile} />
         <Route exact path='/vVerifyEmail' component={VVerifyEmail} />
         <Route exact path='/vLogin' component={VetLogin} />          
         <Route exact path='/vWaiting' component={VWaiting} />    
@@ -33,6 +32,7 @@ function App() {
         <Route exact path='/verifyEmail' component = {VerifyEmail} />
         <Route exact path='/v/:vd' component={VDashboard} />
         <Route exact path='/:componentt' component={Dashboard} />
+        <Route exact path='/vCompleteProfile' component={VCompleteProfile} />
         
       </Switch> 
       

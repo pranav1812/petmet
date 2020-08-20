@@ -4,11 +4,9 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import DashboardIcon from '@material-ui/icons/Dashboard';
+import {Link} from 'react-router-dom'
 
 import PeopleIcon from '@material-ui/icons/People';
-import {Route, Switch, Link, useParams} from 'react-router-dom'
-
-
 import MailIcon from '@material-ui/icons/Mail';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddAlarmIcon from '@material-ui/icons/AddAlarm'
@@ -17,7 +15,7 @@ import NotificationsIcon from '@material-ui/icons/Notifications';
 
 export const mainListItems = (
   <div>
-    <Link to={'/Profile/'}>
+    <Link to={'/v/Profile/'}>
     <ListItem button>
       <ListItemIcon>
         <AccountCircleIcon />
@@ -26,7 +24,7 @@ export const mainListItems = (
     </ListItem>
     </Link>
 
-    <Link to={'/AddSlot/'}>
+    <Link to={'/v/AddSlot/'}>
        <ListItem button>
       <ListItemIcon>
         <AddAlarmIcon />
@@ -35,7 +33,7 @@ export const mainListItems = (
     </ListItem>
     </Link>
 
-    <Link to={'/Appointments/'}>
+    <Link to={'/v/Appointments/'}>
     <ListItem button>
       <ListItemIcon>
         <AccessAlarmIcon />
@@ -44,26 +42,6 @@ export const mainListItems = (
     </ListItem>
     </Link>
 
-    <Link to={'/Requests/'}>
-    <ListItem button>
-      <ListItemIcon>
-        <NotificationsIcon />
-      </ListItemIcon>
-      <ListItemText primary="Requests" />
-    </ListItem>
-    </Link>
-
   </div>
 );
 
-export const secondaryListItems = (
-  <div>
-    <ListItem button>
-      <ListItemIcon>
-        <PeopleIcon />
-      </ListItemIcon>
-      <ListItemText primary="Clients" />
-    </ListItem>
-    
-  </div>
-);
