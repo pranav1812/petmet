@@ -242,7 +242,7 @@ export default function Dashboard() {
         <Divider />
         <List>
           <div>
-            <Link to={"/home/"}>
+            <Link to={"/Home/"}>
               <ListItem button>
                 <ListItemIcon>
                   <HomeIcon />

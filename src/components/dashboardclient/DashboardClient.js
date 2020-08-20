@@ -6,10 +6,10 @@ import TopCarousel from "./TopCarousel";
 import BestSellers from "./BestSellers.js";
 import AppBar from "@material-ui/core/AppBar";
 import { FooterContainer } from "../footer/containers/footer";
-// import catessentials from "../pictures/image 3.png";
-// import harness from "../image 4.png";
-// import grooming from "../image 5.png";
-// import food from "../image 6.png";
+import catessentials from "../pictures/image 3.png";
+import harness from "../pictures/image 4.png";
+import grooming from "../pictures/image 5.png";
+import food from "../pictures/image 6.png";
 
 const DashboardClient = () => {
   return (
@@ -23,14 +23,14 @@ const DashboardClient = () => {
           Shop for Rs2000 and get a voucher worth Rs345
         </h4>
         <div className="cards">
-          <RoundCard title="TREATS" />
-          <RoundCard title="CLOTHING" />
-          <RoundCard title="LITTER MANAGEMENT" />
-          <RoundCard title="FOOD" />
-          <RoundCard title="GROOMING"  />
-          <RoundCard title="TOYS" />
-          <RoundCard title="ACCESSORIES" />
-          <RoundCard title="CHEWSS"  />
+          <RoundCard title="TREATS" image={food} />
+          <RoundCard title="CLOTHING" image={harness} />
+          <RoundCard title="LITTER MANAGEMENT" image={grooming} />
+          <RoundCard title="FOOD" image={catessentials} />
+          <RoundCard title="GROOMING" image={food} />
+          <RoundCard title="TOYS" image={grooming} />
+          <RoundCard title="ACCESSORIES" image={catessentials} />
+          <RoundCard title="CHEWSS" image={harness} />
         </div>
         <h2 className="headers">BEST SELLERS</h2>
         <div className="productcards">
