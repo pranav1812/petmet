@@ -18,17 +18,20 @@ import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
-import { mainListItems, secondaryListItems } from "./listItems";
+import { mainListItems } from "./listItems";
 import AddSlot from "./addSlot";
 import Footer from "../footer/App";
 import { db, auth } from "../../firebase";
 import Profile from "./profile";
 import Appointments from "./Appointment";
-import Requests from "./requests";
-import Clients from "./clients";
+import EditIcon from '@material-ui/icons/Edit';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
 
 
-import {Route, Switch, useParams} from 'react-router-dom'
+import {Route, Switch, useParams, Link as Linkk} from 'react-router-dom'
 
 var slots = [];
 function getData() {
@@ -180,6 +183,15 @@ export default function VDashboard() {
   };
   const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
 
+  const logout=()=>{
+    auth.signOut().then(function() {
+      console.log("Sign-out successful")
+      window.location.reload()
+    }).catch(function(error) {
+      console.log(error)
+    })
+  }
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -231,28 +243,30 @@ export default function VDashboard() {
         <Divider />
         <List>{mainListItems}</List>
         <Divider />
-        <List>{secondaryListItems}</List>
+
+        <Linkk to="/v/editProfile">
+                <ListItem button >             
+                  <ListItemIcon>
+                    <EditIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Edit Profile" />              
+                </ListItem>
+        </Linkk>
+        <ListItem button onClick={logout} >             
+                <ListItemIcon>
+                  <AccountCircleIcon />
+                </ListItemIcon>
+              <ListItemText primary="Logout"/>              
+            </ListItem>
       </Drawer>
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container maxWidth="lg" className={classes.container}>
-          <Grid container spacing={3}>
-            {/* Chart */}
-            <Grid item xs={12} md={8} lg={9}>
-                <AddSlot />
-            </Grid>
-            {/* Recent Deposits */}
-            <Grid item xs={12} md={4} lg={3}></Grid>
-            {/* Recent Orders */}
-            <Grid item xs={12}></Grid>
-          </Grid>
+          
           <Paper style={{width: '100%'}}>
-              
                   
-                  { vd=='Profile'? (<Profile />): vd=='Add Slot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='Requests'? (<Requests />):   <Profile/> }
-                 
-                  
-              
+                  { vd=='Profile'? (<Profile />): vd=='AddSlot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='editProfile'? (<h1>edit profile</h1>): (<Profile />) }
+                           
               </Paper>
           <Box pt={4}>
             <Copyright />

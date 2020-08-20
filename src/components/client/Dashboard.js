@@ -155,8 +155,16 @@ export default function Dashboard() {
         console.log(user)
         db.collection('user').doc(user.uid).get()
         .then(doc=>{
+          if( user.emailVerified && !doc.exists){
+            db.collection('user').doc(user.uid).set({
+              name: user.displayName,
+              profileCompleted: false
+            })
+          }
           if (doc.exists)
             setName(doc.data().name)
+          else 
+            setName(user.displayName)
         })
       }
     })
