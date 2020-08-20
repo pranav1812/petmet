@@ -1,21 +1,25 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0px 0px;
-  background: radial-gradient(circle, rgba(92,39,251,1) 0%, #36A9CC 100%);
-  @media (max-width: 1000px) {
+  padding: 0px 200px;
+  background-color: #36a9cc;
+  margin-left: -10px;
+  margin-right: -10px;
+  margin-top: -10px;
+  margin-bottom: -10px;
+  @media (max-width: 100%) {
     padding: 1px;
+    margin-top: 110px;
   }
 `;
 
 export const Wrapper = styled.div`
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    max-width:1000px;
-    margin: 0 auto;
-    /* background: red; */
-`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: "100%";
+  margin: 0;
+`;
 
 export const Column = styled.div`
   display: flex;
@@ -39,13 +43,17 @@ export const Link = styled.a`
   font-size: 15px;
   text-decoration: none;
   &:hover {
-      color: #ff9c00;
-      transition: 200ms ease-in;
+    color: #ff9c00;
+    transition: 200ms ease-in;
   }
 `;
+export const Extra = styled.a`
+color:#fff
+margin-bottom:2px;
+font-size:10px;}`;
 
 export const Title = styled.p`
-  font-size: 24px;
+  font-size: 20px;
   color: #fff;
   margin-bottom: 20px;
   font-weight: bold;

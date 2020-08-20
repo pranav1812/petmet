@@ -1,0 +1,49 @@
+.flexbox1 {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-right: 20px;
+}
+.bothflexbox {
+  display: inline-flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+.cartproductimage {
+  float: left;
+}
+.availableoffers {
+  padding: 16px;
+}
+.heading {
+  padding: 16px;
+}
+.cartproductcard {
+  padding: 16px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+.flexbox2 {
+  padding: 16px;
+  padding-top: 0px !important;
+}
+ul {
+  list-style: none;
+  width: 300px;
+}
+
+.btnapply {
+  font-size: 16px !important;
+
+  border: 1px solid #ff5352 !important;
+  background-color: transparent !important;
+  color: #ff5352 !important;
+  margin: 10px;
+}
+.sizeandqty {
+  margin-left: 100px !important;
+  display: flex;
+  flex-direction: row;
+}
+.dropdown-toggle {
+  color: #ff5352;
+}
