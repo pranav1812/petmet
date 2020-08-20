@@ -35,3 +35,8 @@ body {
   font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica, Arial, sans-serif;
 }
+
+.makeStyles-container-13 {
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+}

@@ -1,0 +1,27 @@
+.wishlist {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.wishlistitem {
+  height: 424px;
+  width: 220px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  margin: 15px;
+}
+.wishlistitemimage {
+  width: 220px;
+  height: 294px;
+  object-fit: cover;
+}
+
+.btn1 {
+  font-size: 16px !important;
+
+  border: 0;
+  background-color: transparent !important;
+  color: #ff5352 !important;
+
+  transition: all 250ms ease-in-out;
+}
