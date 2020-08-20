@@ -23,7 +23,8 @@ export default function VerifyEmail() {
                         .then(doc=>{
                             if(!doc.exists){
                                 db.collection('user').doc(user.uid).set({
-                                    name: user.displayName
+                                    name: user.displayName,
+                                    profileCompleted: false
                                 })
                                 
 
@@ -48,7 +49,7 @@ export default function VerifyEmail() {
         window.location='http://localhost:3000/checkout'
     }
     const skip=()=>{
-        window.location='http://localhost:3000/dashboard/s'
+        window.location='http://localhost:3000/home'
     }
     return (
         <div>

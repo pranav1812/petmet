@@ -95,6 +95,19 @@ export default function Checkout() {
       }
       else{
         setUid(user.uid)
+        db.collection('user').doc(user.uid).get()
+          .then(doc=>{
+            if(user.emailVerified && !doc.exists){
+              db.collection('user').doc(user.uid).set({
+                name: user.displayName,
+                profileCompleted: false
+            })
+            }
+            else if(doc.data().profileCompleted){
+              window.location='http://localhost:3000/home'
+            }
+          })
+
       }
     })
   },[])

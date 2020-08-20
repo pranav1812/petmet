@@ -15,7 +15,7 @@ export default function VWaiting() {
                     .then(doc=>{
                         if(doc.exists){
                             if(doc.data().profileCompleted){
-                                window.location='http://localhost:3000/vd'
+                                window.location='http://localhost:3000/v/Profile'
                             }
                             else{
                                 window.location='http://localhost:3000/vCompleteProfile'

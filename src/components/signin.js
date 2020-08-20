@@ -122,13 +122,6 @@ export default function Login() {
         console.log(errorMessage)
       });
 
-      // if(newUser){
-      //   auth.onAuthStateChanged(user=>{
-      //     if(user){
-      //       window.location= 'http://localhost:3000/checkout'
-      //     }
-      //   })
-      // }   
 
     }
   }

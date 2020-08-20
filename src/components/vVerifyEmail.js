@@ -35,7 +35,7 @@ export default function VVerifyEmail() {
                             else if(!doc.data().profileCompleted) 
                                 window.location='http://localhost:3000/vCompleteProfile'
                             else{
-                                window.location= 'http://localhost:3000/vd'
+                                window.location= 'http://localhost:3000/v/Profile/'
                             }
                         })
                         setButton(true)

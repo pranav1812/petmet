@@ -45,7 +45,7 @@ export default function VCompleteProfile() {
                             })
                         }
                         if(doc.exists && doc.data().profileCompleted){
-                            window.location='http://localhost:3000/vd'
+                            window.location='http://localhost:3000/v/Profile/'
                         }
                         
                     })
