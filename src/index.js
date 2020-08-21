@@ -4,18 +4,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
+import 'bootstrap/dist/css/bootstrap.min.css';
 // ------------------bootswatch-------------
 import "bootswatch/dist/minty/bootstrap.min.css";
 
-import Navbar from "./navbar";
-import Checkin from "./CheckIn";
-import Profile from "./components/checkout/Profile";
 import ResponsiveDrawer from "./navbar";
 import Album from "./components/Album";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DashboardClient from "./components/dashboardclient/DashboardClient";
-import Addpet from './components/client/Addpet';
-
+import VetCard from './components/client/VetCard'
 ReactDOM.render(
   <Router>
     <App />
