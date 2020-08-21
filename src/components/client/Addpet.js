@@ -6,6 +6,17 @@ import Button from  '@material-ui/core/Button';
 import ls from 'local-storage'
 
 export default function Addpet() {
+
+    const submit=()=>{
+          db.collection('user').doc(uid).collection('pets').add({
+          category: ls.get('animal'),
+          age: ls.get('age'),
+          gender: ls.get('gender'),
+          breed: ls.get('breed'),
+          name: ls.get('petName')
+        })
+      }
+    
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

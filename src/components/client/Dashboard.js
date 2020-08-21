@@ -240,7 +240,7 @@ export default function Dashboard() {
         <Divider />
         <List>
           <div>
-            <Link to={"/Home"}>
+            <Link to={"/Home/"}>
               <ListItem button>
                 <ListItemIcon>
                   <HomeIcon />
