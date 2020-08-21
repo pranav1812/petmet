@@ -194,7 +194,7 @@ export default function VDashboard() {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.root} >
       <CssBaseline />
       <AppBar
         position="absolute"
@@ -237,12 +237,12 @@ export default function VDashboard() {
         open={open}
       >
         <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
+          <IconButton onClick={handleDrawerClose} >
             <ChevronLeftIcon />
           </IconButton>
         </div>
         <Divider />
-        <List>{mainListItems}</List>
+        <List style={{width: "100%"}}>{mainListItems}</List>
         <Divider />
 
         <Linkk to="/v/editProfile">

@@ -4,7 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
-import {db, auth} from '../../firebase'
+import {db, auth} from '../../firebase';
+import Doctor from '../pictures/doc.jpg';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -47,37 +48,48 @@ const useStyles = makeStyles((theme) => ({
         },[])
         console.log(state)
     return (
-      <div className={classes.root}>
-        <Paper className={classes.paper}>
-          <Grid container spacing={2}>
-            <Grid item>
-              <ButtonBase className={classes.image}>
-                <img className={classes.img} alt="complex" src="https://api.adorable.io/avatars/285/abott@adorable.png" />
-              </ButtonBase>
-            </Grid>
-            <Grid item xs={12} sm container>
-              <Grid item xs container direction="column" spacing={2}>
-                <Grid item xs>
-                  <Typography gutterBottom variant="subtitle1">
-                    Standard license
-                  </Typography>
-                  <Typography variant="body2" gutterBottom>
-                    Full resolution 1920x1080 • JPEG
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    ID: 1030114
-                  </Typography>
-                </Grid>
-                <Grid item>
-                  <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                    {state.Name}                   
-                  </Typography>
-                </Grid>
-              </Grid>
-              
-            </Grid>
-          </Grid>
-        </Paper>
+      <div className="container profile_container">
+        <div className="row justify-content-center">
+          <div className="col-12 col-md-5 offset-sm-1">
+            <h4 className="mt-2 mb-3 head">Name of Vet</h4>
+            <img src={Doctor} className="profile_img" />
+            <p style={{color: "#36A9CC"}} className="mt-2">Verified</p>
+          </div>
+          <div className="col-12 col-md-6">
+            <div className="row mt-5 mt-sm-2">
+              <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
+              <p className="col">Someone</p>
+            </div>
+            <div className="row">
+              <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
+              <p className="col">#23 Model Town</p>
+            </div>
+            <div className="row">
+              <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
+              <p className="col">Patiala</p>
+            </div>
+            <div className="row">
+              <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
+              <p className="col">Punjab</p>
+            </div>
+            <div className="row">
+              <strong className="col-6 col-sm-5 col-lg-3">Mobile No:</strong>
+              <p className="col">8980767999</p>
+            </div>
+            <div className="row">
+              <strong className="col-6 col-sm-5 col-lg-3">Qualification:</strong>
+              <p className="col"></p>
+            </div>
+            <div className="row">
+              <strong className="col-6 col-sm-5 col-lg-3">Experience:</strong>
+              <p className="col">Name of the doctor</p>
+            </div>
+            <div className="row">
+              <strong className="col-6 col-sm-5 col-lg-3">Achievements:</strong>
+              <p className="col">Name of the doctor</p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
