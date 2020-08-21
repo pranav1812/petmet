@@ -2,8 +2,9 @@ import React, {useState, useEffect} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Tile from './Tile'
+import AddSlotTile from './addSlot_tile'
 import {db, auth} from '../../firebase'
+import './vet.css';
 
 import DateFnsUtils from '@date-io/date-fns'; // choose your lib
 import {DateTimePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
@@ -71,14 +72,14 @@ export default function AddSlot(props) {
         <DateTimePicker value={newSlot} onChange={setNewSlot} />
         </MuiPickersUtilsProvider>
 
-            <Button size="medium" color="primary" onClick={sendSlot}>
+            <button className="pink-btn" onClick={sendSlot}>
               Confirm
-            </Button>
+            </button>
         </form>
-        <h1>Current Slots</h1>
+        <h1 className="addSlot_h1">Current Slots</h1>
         {
           state.slots.map((slot)=>           
-             <Tile slt={slot} />
+             <AddSlotTile slt={slot} />
           )
         }
                    

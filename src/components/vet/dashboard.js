@@ -85,6 +85,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    backgroundColor: "#36A9CC",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -181,7 +182,7 @@ export default function VDashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const fixedHeightPaper = clsx(classes.paper, classes.fixedHeight);
+  const fixedHeightPaper = clsx(classes.paper);
 
   const logout=()=>{
     auth.signOut().then(function() {
@@ -259,20 +260,11 @@ export default function VDashboard() {
               <ListItemText primary="Logout"/>              
             </ListItem>
       </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container maxWidth="lg" className={classes.container}>
-          
-          <Paper style={{width: '100%'}}>
-                  
-                  { vd=='Profile'? (<Profile />): vd=='AddSlot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='editProfile'? (<h1>edit profile</h1>): (<Profile />) }
-                           
-              </Paper>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
-        </Container>
-      </main>
+      <div className="main-container">
+        <Grid item xs={12} md={12} lg={12}>
+          { vd=='Profile'? (<Profile />): vd=='AddSlot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='editProfile'? (<h1>edit profile</h1>): (<Profile />) }
+        </Grid>
+      </div>
     </div>
   );
 }

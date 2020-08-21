@@ -3,7 +3,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Tile from './Tile'
-import {db, auth} from '../../firebase'
+import {db, auth} from '../../firebase';
+import './vet.css';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -50,7 +51,7 @@ export default function Appointments(props) {
   return (
     <div>
       
-        <h1>Current Slots</h1>
+        <h1 className="addSlot_h1">Appointments</h1>
         {
           state.slots.map(slot=>           
              <Tile slt={slot} />

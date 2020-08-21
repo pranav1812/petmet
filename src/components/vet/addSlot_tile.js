@@ -16,27 +16,30 @@ const useStyles = makeStyles({
 
 // this function will take arguments (date, time, status, clientinfo="Blank", description="blank") from the parent component
 
-export default function Tile(props) {
+export default function AddSlotTile(props) {
   const classes = useStyles();
   
   
   return (
     <Card className={classes.root} className="tile_vet">
+      
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">
             {props.slt? props.slt.name:"lol"}
           </Typography>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.slt? props.slt.Time.toJSON() :null}
+            16:00
           </Typography>
           <Typography gutterBottom variant="h5" component="h2">
             Status: {props.slt.uid}
           </Typography>
         </CardContent>
+
       <CardActions>
-        <button className="pink-btn" >
-          Client Information
-        </button>  
+        <button size="medium" className="pink-btn">
+          Delete
+        </button>
+
       </CardActions>
     </Card>
   );
