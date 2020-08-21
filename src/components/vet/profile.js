@@ -36,6 +36,7 @@ const useStyles = makeStyles((theme) => ({
     const [state, setState]= useState({})
 
     useEffect(()=>{
+      // doc id-> uid of user
         db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').get()
             .then((doc)=>{
                 setState(doc.data())
@@ -69,13 +70,11 @@ const useStyles = makeStyles((theme) => ({
                 </Grid>
                 <Grid item>
                   <Typography variant="body2" style={{ cursor: 'pointer' }}>
-                    {state.username}
+                    {state.Name}                   
                   </Typography>
                 </Grid>
               </Grid>
-              <Grid item>
-                <Typography variant="subtitle1">$19.00</Typography>
-              </Grid>
+              
             </Grid>
           </Grid>
         </Paper>

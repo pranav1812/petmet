@@ -27,7 +27,9 @@ export default function Tile(props) {
             {props.slt? props.slt.name:"lol"}
           </Typography>
           <Typography gutterBottom variant="h5" component="h2">
-            {props.slt? props.slt.Time.toJSON() :null}
+            {props.slt? props.slt.Time.toString().split(' ').slice(1,4).join(' ') :null}<br />
+            {props.slt? props.slt.Time.toString().split(' ')[4] :null}
+
           </Typography>
           <Typography gutterBottom variant="h5" component="h2">
             Status: {props.slt.uid}

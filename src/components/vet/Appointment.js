@@ -27,6 +27,7 @@ export default function Appointments(props) {
 
   // make real time
   useEffect(() => {
+    // doc id-> uid of user
     db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('upcomingAppointments').get()
     .then(docs=>{
       console.log(typeof(state.slots))

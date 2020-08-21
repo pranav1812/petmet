@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import Tile from './Tile'
 import {db, auth} from '../../firebase'
 
-import DateFnsUtils from '@date-io/date-fns'; // choose your lib
+import DateFnsUtils from '@date-io/date-fns';
 import {DateTimePicker, MuiPickersUtilsProvider} from '@material-ui/pickers';
 
 const useStyles = makeStyles((theme) => ({
@@ -30,6 +30,7 @@ export default function AddSlot(props) {
   const [sentSlot, setSentSlot]= useState(null)
 
   useEffect(() => {
+    // doc id-> uid of user
     db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('freeSlots').get()
     .then(docs=>{
       console.log(typeof(state.slots))
@@ -52,6 +53,7 @@ export default function AddSlot(props) {
     setNewSlot(e.target.value)
   }
   const sendSlot=()=>{
+    // doc id-> uid of user
     db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('freeSlots').add({
       Type: "any",
       Time: newSlot      
