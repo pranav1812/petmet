@@ -9,6 +9,7 @@ import VVerifyEmail from './components/vVerifyEmail'
 import VWaiting from './components/vWaiting'
 import VCompleteProfile from './components/vCompleteProfile'
 import VDashboard from './components/vet/dashboard'
+import SideBar from './components/Admin/sideBar'
 import {Route, Switch} from 'react-router-dom'
 
 /* --------- trial ------*/
@@ -31,6 +32,7 @@ function App() {
         <Route exact path='/vWaiting' component={VWaiting} />    
         <Route exact path='/Checkout' component = {Checkout} />
         <Route exact path='/verifyEmail' component = {VerifyEmail} />
+        <Route exact path='/admin/:component' component={SideBar} />
         <Route exact path='/v/:vd' component={VDashboard} />
         <Route exact path='/:componentt' component={Dashboard} />
         

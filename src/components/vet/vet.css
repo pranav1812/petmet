@@ -49,3 +49,14 @@
 .head {
     font-weight: bold;
 }
+
+/*--------------Edit Profile---------*/
+
+.editProfile {
+    background-color: white;
+    padding: 30px;
+}
+
+.editProfile_form {
+    padding: 20px;
+}

@@ -11,9 +11,7 @@ import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
 import Badge from "@material-ui/core/Badge";
-import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import Link from "@material-ui/core/Link";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
@@ -29,6 +27,7 @@ import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import EditProfile from './EditProfile';
 
 
 import {Route, Switch, useParams, Link as Linkk} from 'react-router-dom'
@@ -262,7 +261,7 @@ export default function VDashboard() {
       </Drawer>
       <div className="main-container">
         <Grid item xs={12} md={12} lg={12}>
-          { vd=='Profile'? (<Profile />): vd=='AddSlot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='editProfile'? (<h1>edit profile</h1>): (<Profile />) }
+          { vd=='Profile'? (<Profile />): vd=='AddSlot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='editProfile'? (<EditProfile />): (<Profile />) }
         </Grid>
       </div>
     </div>

@@ -1,0 +1,123 @@
+/*--------GLobal--------------*/
+
+h1 {
+  font-weight: bold;
+}
+
+.main-head {
+  margin-top: 10px;
+  text-align: center;
+  color: #FF5352;
+  font-weight: bold;
+}
+
+.menu_icons {
+  color:#FF5352;
+  font-size: 20px;
+}
+
+.pink_btn {
+  background-color: #FF5352 ;
+  border-color: #FF5352;
+  color: white;
+  border: #FF5352 solid 1px;
+}
+
+.pink_btn:hover {
+  background-color: #ffffff;
+  color: #FF5352;
+  border-color: #FF5352;
+}
+
+.pink_btn_form {
+  padding: 6px;
+  font-size: 18px;
+  border: none;
+  border-radius: 5px;
+}
+
+.pink_btn_form:hover {
+  border: #FF5352 solid 2px;
+}
+
+.blue_btn {
+  background-color: #36A9CC ;
+  border-color: #36A9CC;
+  color: white;
+  border: #36A9CC solid 1px;
+}
+
+.blue_btn:hover {
+  background-color: #ffffff;
+  color: #36A9CC;
+  border-color: #36A9CC;
+}
+
+
+
+/*-----------Add Product---------------*/
+
+.addProduct {
+  background-color: #f2f2f2;
+  height: auto;
+  margin-top: 30px;
+  border-radius: 20px;
+  padding: 50px 20px;
+}
+
+@media screen and (min-width: 450px) {
+  .addProduct {
+    padding-left: 50px;
+  }
+}
+
+
+/*------------Doctor Verify------------*/
+
+.card-verify {
+  margin-bottom: 10px;
+  height: auto;
+}
+
+.card_img {
+  height: 80%;
+  padding-left: 20px;
+  width: 85%;
+}
+
+.btn-card-1 {
+ position: absolute;
+ bottom: -10px;
+}
+
+.btn-card-2 {
+  position: absolute;
+  bottom: -10px;
+  left: 100px;
+ }
+
+
+.profile_img {
+  height: 200px;
+  width: 200px;
+}
+
+@media screen and (min-width: 1200px) {
+  .verify_card {
+    height: 180px;
+    margin-bottom: 0px;
+  }
+
+  .btn-card-1 {
+    position: absolute;
+    top: 130px;
+   }
+   
+   .btn-card-2 {
+     position: absolute;
+     top: 130px;
+     left: 100px;
+    }
+}
+
+
