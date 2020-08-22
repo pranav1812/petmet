@@ -39,15 +39,15 @@ import Wishlist from "./Wishlist";
 import Appointment from "./Appointment";
 import Home from "./Home";
 
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       Petmet {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
+function Copyright() {
+  return (
+    <Typography variant="body2" color="textSecondary" align="center">
+      {"Copyright © "}
+      Petmet {new Date().getFullYear()}
+      {"."}
+    </Typography>
+  );
+}
 
 const drawerWidth = 240;
 
@@ -88,8 +88,7 @@ const useStyles = makeStyles((theme) => ({
     display: "none",
   },
   title: {
-    flexGrow: 1
-    
+    flexGrow: 1,
   },
   drawerPaper: {
     position: "relative",
@@ -141,30 +140,29 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const {componentt}= useParams()
-  const [name, setName]= useState(null)
-  const [uid, setUid]= useState(null)
-  const [usr, setUsr]= useState(null)
-  useEffect(()=>{
-    
-    auth.onAuthStateChanged(user=>{
-      if(user){
-        setUid(user.uid)
-        setUsr(user)
-        console.log(user)
-        db.collection('user').doc(user.uid).get()
-        .then(doc=>{
-          if( user.emailVerified && !doc.exists){
-            db.collection('user').doc(user.uid).set({
-              name: user.displayName,
-              profileCompleted: false
-            })
-          }
-          if (doc.exists)
-            setName(doc.data().name)
-          else 
-            setName(user.displayName)
-        })
+  const { componentt } = useParams();
+  const [name, setName] = useState(null);
+  const [uid, setUid] = useState(null);
+  const [usr, setUsr] = useState(null);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+        setUsr(user);
+        console.log(user);
+        db.collection("user")
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            if (user.emailVerified && !doc.exists) {
+              db.collection("user").doc(user.uid).set({
+                name: user.displayName,
+                profileCompleted: false,
+              });
+            }
+            if (doc.exists) setName(doc.data().name);
+            else setName(user.displayName);
+          });
       }
     });
   }, []);
@@ -213,7 +211,7 @@ export default function Dashboard() {
             className={classes.title}
           >
             <img style={{ width: "153px", height: "44px" }} src={MainLogo} />
-            
+            {name ? name + "'s dashboard" : null}
             <form style={{ float: "right" }} class="form-inline my-2 my-lg-0">
               <input
                 class="form-control mr-sm-2"
@@ -328,7 +326,7 @@ export default function Dashboard() {
             </Paper>
           </Grid>
           <Box pt={4}>
-            
+            <Copyright />
           </Box>
         </Container>
       </main>

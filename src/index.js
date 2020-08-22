@@ -1,30 +1,18 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import 'bootstrap/dist/css/bootstrap.min.css';
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 // ------------------bootswatch-------------
 import "bootswatch/dist/minty/bootstrap.min.css";
 
-import Navbar from "./navbar";
-import Checkin from "./CheckIn";
-import Profile from "./components/checkout/Profile";
 import ResponsiveDrawer from "./navbar";
 import Album from "./components/Album";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DashboardClient from "./components/dashboardclient/DashboardClient";
-
-/* ----- test components -----*/
-import Checkout from "./components/checkout/Checkout";
-import Select from "./components/checkout/select";
-
-import VDashboard from "./components/vet/dashboard";
-
-import VetForm from "./components/checkout/VetForm";
-import SignInSide from "./components/signin";
-/* ----------------------------------------- */
-
+import VetCard from './components/client/VetCard'
 ReactDOM.render(
   <Router>
     <App />

@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { auth } from "../firebase";
+import { auth, db} from "../firebase";
 import * as firebase from "firebase";
 import mainlogo from "./pictures/Final Main Logo PET MET.png";
 import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
@@ -78,10 +78,12 @@ export default function Login() {
     auth.onAuthStateChanged((user) => {
       if (user) console.log(user);
       if (user && user.emailVerified) {
-        window.location = "http://localhost:3000/home";
+        window.location = "http://localhost:3000/Home";
       }
     });
   }, []);
+
+  
 
   const signupEmail = () => {
     if (mail && pass && name) {
@@ -154,7 +156,7 @@ export default function Login() {
       .then((result) => {
         var user = result.user;
         if (user) {
-          window.location = "http://localhost:3000/home";
+          window.location = "http://localhost:3000/Home";
         }
       })
       .catch((error) => {
@@ -191,7 +193,7 @@ export default function Login() {
 
       auth.onAuthStateChanged((user) => {
         if (user) {
-          window.location = "http://localhost:3000/home";
+          window.location = "http://localhost:3000/Home";
         }
       });
     }
@@ -205,14 +207,26 @@ export default function Login() {
       });
 
       auth.onAuthStateChanged((user) => {
-        console.log("user");
-        if (user) {
-          if (!user.emailVerified) {
-            window.location = "http://localhost:3000/verifyEmail";
-          } else {
-            window.location = "http://localhost:3000/home";
+        if (user){
+          db.collection('Admin').doc(user.uid).get()
+        .then(doc=>{
+          if(doc.exists){
+            window.location = "http://localhost:3000/admin/verifyVet";
+          }
+          else{
+          console.log("user");
+          if (user) {
+            if (!user.emailVerified) {
+              window.location = "http://localhost:3000/verifyEmail";
+            } else {
+              window.location = "http://localhost:3000/Home";
+            }
           }
         }
+      }).catch(e=>console.error(e))
+        
+        }
+        
       });
     } else {
       alert("email and password required");

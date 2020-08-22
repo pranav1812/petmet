@@ -49,8 +49,24 @@ export default function VerifyEmail() {
         window.location='http://localhost:3000/checkout'
     }
     const skip=()=>{
-        window.location='http://localhost:3000/home'
+        window.location='http://localhost:3000/Home'
     }
+
+    const sendVerification=()=>{
+        var usr= auth.currentUser
+        usr.sendEmailVerification().then(()=> {
+            alert("new email verification mail sent")
+          }).catch(function(error) {
+            console.log(error)
+          });
+    }
+
+    const logout=()=>{
+        auth.signOut().then(()=>{
+            window.location.reload()
+        })
+    }
+
     return (
         <div>
             <h3>Email verification Link was sent to your registered email.<br /> 
@@ -74,7 +90,26 @@ export default function VerifyEmail() {
                 >
                         Complete Profile
                 </Button>
-            </div>): null}
+            </div>): (
+                <div>
+                <Button
+                variant="contained"
+                color="primary"
+                onClick={logout}
+                className={classes.button}
+                >
+                Logout
+                </Button>
+                <Button
+                variant="contained"
+                color="primary"
+                onClick={sendVerification}
+                className={classes.button}
+                >
+                send verification link again
+                </Button>
+            </div>
+            )}
         </div>
     )
 }
