@@ -207,12 +207,13 @@ export default function Login() {
       });
 
       auth.onAuthStateChanged((user) => {
-        db.collection('Admin').doc(user.uid).get()
+        if (user){
+          db.collection('Admin').doc(user.uid).get()
         .then(doc=>{
           if(doc.exists){
             window.location = "http://localhost:3000/admin/verifyVet";
-        }
-        else{
+          }
+          else{
           console.log("user");
           if (user) {
             if (!user.emailVerified) {
@@ -222,7 +223,9 @@ export default function Login() {
             }
           }
         }
-      })
+      }).catch(e=>console.error(e))
+        
+        }
         
       });
     } else {
