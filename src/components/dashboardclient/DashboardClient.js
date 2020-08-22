@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import RoundCard from "./RoundCard";
 import Navbar from "../../navbar.js";
 import "./dashboard.css";
@@ -10,8 +10,22 @@ import catessentials from "../pictures/image 3.png";
 import harness from "../pictures/image 4.png";
 import grooming from "../pictures/image 5.png";
 import food from "../pictures/image 6.png";
+import {db} from '../../firebase'
 
 const DashboardClient = () => {
+  const [categories, setCategories]= useState(null)
+  useEffect(()=>{
+    db.collection('items').get()
+      .then(docs=>{
+        console.log(docs.length)
+        var temp=[]
+        docs.forEach(doc=>{
+          temp.push(doc.id)
+        })
+        setCategories(temp)
+        
+      })
+  },[])
   return (
     <div>
       {/* <Navbar /> */}
@@ -23,14 +37,11 @@ const DashboardClient = () => {
           Shop for Rs2000 and get a voucher worth Rs345
         </h4>
         <div className="cards">
-          <RoundCard title="TREATS" image={food} />
-          <RoundCard title="CLOTHING" image={harness} />
-          <RoundCard title="LITTER MANAGEMENT" image={grooming} />
-          <RoundCard title="FOOD" image={catessentials} />
-          <RoundCard title="GROOMING" image={food} />
-          <RoundCard title="TOYS" image={grooming} />
-          <RoundCard title="ACCESSORIES" image={catessentials} />
-          <RoundCard title="CHEWSS" image={harness} />
+          {
+            categories? categories.map(cat=><RoundCard title={cat} image={food} />): null
+          }
+
+          
         </div>
         <h2 className="headers">BEST SELLERS</h2>
         <div className="productcards">

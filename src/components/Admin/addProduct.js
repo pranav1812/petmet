@@ -32,14 +32,16 @@ class AddProduct extends Component {
     }
 
     submit=()=>{
-        console.log(this.state)
+        // console.log(this.state)
         var {category, name, size, cost, quantity, url}= this.state
         if(category && name && size && cost && quantity && url)
         {
-            db.collection('items').add({
-            type: this.state.category,
-            details: this.state
+
+            db.collection('items').doc(category).collection('products').add({
+                details: this.state
             })
+
+        
             alert("Done.... Refresh the page to add new product")
         }
         else{
@@ -78,7 +80,10 @@ class AddProduct extends Component {
                                 <option>Harness</option>
                                 <option>Grooming</option>
                                 <option>Cat Essentials</option>
-                                <option>Other</option>
+                                <option>Clothing</option>
+                                <option>Litter Management</option>
+                                <option>Chewss</option>
+                                <option>Toys</option>
                             </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
