@@ -54,7 +54,7 @@ export default function VVerifyEmail() {
     const sendVerification=()=>{
         var usr= auth.currentUser
         usr.sendEmailVerification().then(()=> {
-            window.location.reload()
+            alert("new email verification mail sent")
           }).catch(function(error) {
             console.log(error)
           });
