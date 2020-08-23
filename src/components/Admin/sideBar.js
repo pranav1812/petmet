@@ -15,9 +15,10 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import {FaStethoscope,FaPlusCircle} from 'react-icons/fa';
+import {FaStethoscope,FaPlusCircle,FaClock} from 'react-icons/fa';
 import AddProduct from './addProduct';
 import VerifyVet from './verify';
+import RecentProducts from './recentProducts';
 import {useParams, Link} from 'react-router-dom'
 
 import {db, auth} from '../../firebase'
@@ -73,7 +74,7 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-        <List>
+        <List style={{width: "235px"}}>
             <Link to={"/admin/verifyVet"}>
               <ListItem button>
                 <ListItemIcon>
@@ -90,7 +91,14 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary="Add Product" />
               </ListItem>
             </Link>
-        
+            <Link to={"/admin/recentProducts"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaClock className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Recent Products" />
+              </ListItem>
+            </Link>
         </List>
     </div>
   );
@@ -149,7 +157,7 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
       <div className={classes.toolbar} />
-            {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />: null}     
+            {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />: null}     
       </main>
     </div>
   );
