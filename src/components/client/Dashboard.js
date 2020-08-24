@@ -39,15 +39,15 @@ import Wishlist from "./Wishlist";
 import Appointment from "./Appointment";
 import Home from "./Home";
 
-function Copyright() {
-  return (
-    <Typography variant="body2" color="textSecondary" align="center">
-      {"Copyright © "}
-      Petmet {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
+// function Copyright() {
+//   return (
+//     <Typography variant="body2" color="textSecondary" align="center">
+//       {"Copyright © "}
+//       Petmet {new Date().getFullYear()}
+//       {"."}
+//     </Typography>
+//   );
+// }
 
 const drawerWidth = 240;
 
@@ -211,7 +211,7 @@ export default function Dashboard() {
             className={classes.title}
           >
             <img style={{ width: "153px", height: "44px" }} src={MainLogo} />
-            {name ? name + "'s dashboard" : null}
+
             <form style={{ float: "right" }} class="form-inline my-2 my-lg-0">
               <input
                 class="form-control mr-sm-2"
@@ -325,9 +325,7 @@ export default function Dashboard() {
               )}
             </Paper>
           </Grid>
-          <Box pt={4}>
-            <Copyright />
-          </Box>
+          <Box pt={4}></Box>
         </Container>
       </main>
     </div>
