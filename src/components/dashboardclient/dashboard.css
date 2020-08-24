@@ -3,12 +3,13 @@ body {
 }
 .topbanner {
   background: #f4eedb;
-  padding: 14px 0;
+  padding: 0px;
   color: #545146;
   text-align: center;
   font-family: "Lato", "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 13px !important;
   margin-top: 0% !important;
+  margin: 0% !important;
 }
 .cards {
   display: flex;
@@ -36,7 +37,12 @@ body {
     Helvetica, Arial, sans-serif;
 }
 
-.makeStyles-container-13 {
-  padding-top: 0 !important;
-  padding-bottom: 0 !important;
+/* .makeStyles-container-13 {
+  padding: 0% !important;
+} */
+
+.productcards {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }

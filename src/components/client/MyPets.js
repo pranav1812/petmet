@@ -1,13 +1,10 @@
 import React, { useState, useEffect } from "react";
-<<<<<<< HEAD
 import { auth } from "../../firebase";
-=======
-import { auth, db } from "../../firebase";
+
 import add from "../pictures/Vector (1).png";
 import outercircle from "../pictures/Ellipse 13.png";
 import petprofile from "../pictures/Ellipse 12.png";
 import "./mypets.css";
->>>>>>> ad73293389d64f236ac762e45474dfd242e28aac
 
 const MyPetsComponent = () => {
   return (
