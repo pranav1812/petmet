@@ -12,7 +12,12 @@ import ResponsiveDrawer from "./navbar";
 import Album from "./components/Album";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DashboardClient from "./components/dashboardclient/DashboardClient";
+
 import VetCard from './components/client/VetCard'
+
+import ShopProducts from "./components/client/ShopProducts";
+
+
 ReactDOM.render(
   <Router>
     <App />

@@ -1,0 +1,44 @@
+.loggedinpet {
+  width: 100%;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 32px;
+  /* identical to box height */
+
+  color: #ffffff;
+  background-color: #36a9cc;
+}
+
+.petname {
+  text-align: left;
+  margin-left: 96px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 16px;
+
+  color: #000000;
+}
+.petdetails {
+  /* width: 54px;
+  height: 14px; */
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  /* line-height: 14px; */
+  /* identical to box height */
+
+  color: #7d7d7d;
+}
+
+.add {
+  border: dashed 1px #000000;
+  border-radius: 50%;
+  padding: 22px;
+}

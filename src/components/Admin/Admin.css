@@ -82,6 +82,7 @@ h1 {
 .card_img {
   height: 80%;
   padding-left: 20px;
+  padding-right: 20px;
   width: 85%;
 }
 
@@ -118,6 +119,17 @@ h1 {
      top: 130px;
      left: 100px;
     }
+   .card_img {
+    padding-right: 0px;
+  }
 }
 
+.list_recent {
+  text-align: left;
+}
+
+.btn-rec {
+  position: absolute;
+  top: 320px;
+}
 

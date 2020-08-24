@@ -36,13 +36,27 @@ class AddProduct extends Component {
         var {category, name, size, cost, quantity, url}= this.state
         if(category && name && size && cost && quantity && url)
         {
-
-            db.collection('items').doc(category).collection('products').add({
-                details: this.state
+            var ref =db.collection('items').doc(category)
+            ref.get().then(doc=>{
+                if(!doc.exists){
+                    ref.set({
+                        type: category,
+                        img: url
+                    }).then(()=>{
+                        ref.collection('products').add({
+                            details: this.state
+                        })
+                    })
+                }else{
+                    ref.collection('products').add({
+                        details: this.state
+                    })
+                }
             })
-
-        
-            alert("Done.... Refresh the page to add new product")
+            
+            
+            
+            // alert("Done.... Refresh the page to add new product")
         }
         else{
             alert("category, name, size, cost, quantity, imageField .... required")
