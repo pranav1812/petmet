@@ -14,7 +14,7 @@ const CartComponent = () => {
           {/* ------------- */}
           <div className="available offers">
             <hr />
-            <h6 style={{ fontWeight: "500 !important" }}>Available Offers</h6>
+            <h6 className="availableoffers">Available Offers</h6>
             <p>
               10% Instant Discount with Federal Bank Debit Cards on a min spend
               of Rs 2,000. TCA
@@ -52,20 +52,23 @@ const CartComponent = () => {
           </div>
           {/* .............................. */}
           <div className="heading">
-            <h6 style={{ fontWeight: 500 }}>
+            <h6 style={{ fontWeight: 600 }}>
               MY SHOPPING BAG ( 1 ITEM)
-              <br /> TOTAL: Rs 345
+              <br /> <div style={{ color: "#FF5352" }}>TOTAL: Rs 345 </div>
             </h6>
           </div>
           {/* .................... */}
-          <div className="cartproductcard">
+          <div
+            style={{ backgroundColor: "#F5F5F5" }}
+            className="cartproductcard"
+          >
             <p>
               <img
                 className="cartproductimage"
                 src={product1}
                 alt="productpicture"
               />
-              <h4>PRODUCT NAME</h4>
+              <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
               <p>Special food for dog designed for summer season</p>
               <p>Rs 345</p>
             </p>
@@ -144,7 +147,7 @@ const CartComponent = () => {
         <div className="flexbox2">
           <hr />
           <div className="coupons">
-            <h6>Apply coupons</h6>
+            <h6 className="availableoffers">Apply coupons</h6>
             <button type="button" class="btn btnapply">
               APPLY
             </button>
@@ -154,24 +157,26 @@ const CartComponent = () => {
           <div className="pricedetails">
             <h6>PRICE DETAILS</h6>
             <ul>
-              <li style={{ display: "inline" }}>
-                Bag Total <p className="price">Rs456</p>
+              <span>
+                <li>
+                  <p>Bag Total Rs456</p>
+                </li>
+              </span>
+              <li>
+                <p> Bag Discount Rs456</p>
               </li>
               <li>
-                Bag Discount <p className="price">Rs456</p>
+                <p>Coupon Discount Rs456</p>
               </li>
               <li>
-                Coupon Discount <p className="price">Rs456</p>
+                <p> Order TotalRs456</p>
               </li>
               <li>
-                <p> Order Total</p> <p className="price">Rs456</p>
-              </li>
-              <li>
-                Delivery Charge <p className="price">Rs456</p>
+                <p> Delivery Charge Rs456</p>
               </li>
               <hr />
               <li>
-                TOTAL <p className="price">Rs456</p>
+                <p> TOTAL Rs456</p>
               </li>
             </ul>
             <button

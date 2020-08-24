@@ -1,3 +1,10 @@
+.availableoffers {
+  font-weight: 560 !important;
+}
+body {
+  font-family: Roboto;
+  font-style: normal;
+}
 .flexbox1 {
   display: flex;
   flex-wrap: wrap;
@@ -16,11 +23,16 @@
   padding: 16px;
 }
 .heading {
-  padding: 16px;
+  padding: 16px !important;
 }
 .cartproductcard {
+  /* display: flex;
+  flex-wrap: wrap;
+  flex-direction: column; */
   padding: 16px;
   border: 1px solid rgba(0, 0, 0, 0.1);
+  width: 538px;
+  height: 275px;
 }
 .flexbox2 {
   padding: 16px;
@@ -28,7 +40,13 @@
 }
 ul {
   list-style: none;
-  width: 300px;
+  width: 250px;
+}
+li {
+  display: inline !important;
+  tab-size: 16;
+  -moz-tab-size: 16;
+  -o-tab-size: 16;
 }
 
 .btnapply {
@@ -46,4 +64,10 @@ ul {
 }
 .dropdown-toggle {
   color: #ff5352;
+}
+
+.wishlist {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
 }
