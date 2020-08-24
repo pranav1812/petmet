@@ -1,14 +1,17 @@
 import React, {useEffect, useState} from "react";
 import RoundCard from "./RoundCard";
-import Navbar from "../../navbar.js";
+//import Navbar from "../../navbar.js";
 import "./dashboard.css";
 import TopCarousel from "./TopCarousel";
 import BestSellers from "./BestSellers.js";
-import AppBar from "@material-ui/core/AppBar";
+//import AppBar from "@material-ui/core/AppBar";
 import { FooterContainer } from "../footer/containers/footer";
-import catessentials from "../pictures/image 3.png";
-import harness from "../pictures/image 4.png";
-import grooming from "../pictures/image 5.png";
+//import catessentials from "../pictures/image 3.png";
+//import harness from "../pictures/image 4.png";
+//import grooming from "../pictures/image 5.png";
+import {Router, Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+import ButtonGroup from '@material-ui/core/Button'
 import food from "../pictures/image 6.png";
 import {db} from '../../firebase'
 
@@ -36,6 +39,10 @@ const DashboardClient = () => {
         <h4 className="topbanner">
           Shop for Rs2000 and get a voucher worth Rs345
         </h4>
+        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+  <Link to='/Addpet/'><Button>Add Pet</Button></Link>
+  <Link to='/Appointment/'><Button>Appointment</Button> </Link>
+</ButtonGroup>
         <div className="cards">
           {
             categories? categories.map(cat=><RoundCard title={cat} image={food} />): null

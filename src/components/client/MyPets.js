@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth, db } from "../../firebase";
+import { auth } from "../../firebase";
 
 export default function MyPets() {
   const [usr, setUsr] = useState(null);

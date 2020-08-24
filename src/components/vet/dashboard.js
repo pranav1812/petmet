@@ -3,7 +3,7 @@ import clsx from "clsx";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
-import Box from "@material-ui/core/Box";
+//import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import List from "@material-ui/core/List";
@@ -18,7 +18,7 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import { mainListItems } from "./listItems";
 import AddSlot from "./addSlot";
-import Footer from "../footer/App";
+//import Footer from "../footer/App";
 import { db, auth } from "../../firebase";
 import Profile from "./profile";
 import Appointments from "./Appointment";
@@ -30,7 +30,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import EditProfile from './EditProfile';
 
 
-import {Route, Switch, useParams, Link as Linkk} from 'react-router-dom'
+import { useParams, Link as Linkk} from 'react-router-dom'
 
 var slots = [];
 function getData() {
@@ -261,7 +261,7 @@ export default function VDashboard() {
       </Drawer>
       <div className="main-container">
         <Grid item xs={12} md={12} lg={12}>
-          { vd=='Profile'? (<Profile />): vd=='AddSlot'? (<AddSlot />): vd=='Appointments'? (<Appointments/>) : vd=='editProfile'? (<EditProfile />): (<Profile />) }
+          { vd==='Profile'? (<Profile />): vd==='AddSlot'? (<AddSlot />): vd==='Appointments'? (<Appointments/>) : vd==='editProfile'? (<EditProfile />): (<Profile />) }
         </Grid>
       </div>
     </div>

@@ -2,16 +2,16 @@ import React from 'react';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import DashboardIcon from '@material-ui/icons/Dashboard';
+//import ListSubheader from '@material-ui/core/ListSubheader';
+//import DashboardIcon from '@material-ui/icons/Dashboard';
 import {Link} from 'react-router-dom'
 
-import PeopleIcon from '@material-ui/icons/People';
-import MailIcon from '@material-ui/icons/Mail';
+//import PeopleIcon from '@material-ui/icons/People';
+//import MailIcon from '@material-ui/icons/Mail';
 import AccountCircleIcon from '@material-ui/icons/AccountCircle';
 import AddAlarmIcon from '@material-ui/icons/AddAlarm'
 import AccessAlarmIcon from '@material-ui/icons/AccessAlarm';
-import NotificationsIcon from '@material-ui/icons/Notifications';
+//import NotificationsIcon from '@material-ui/icons/Notifications';
 
 export const mainListItems = (
   <div>

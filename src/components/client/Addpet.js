@@ -1,11 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
-import Button from  '@material-ui/core/Button';
-import ls from 'local-storage'
+import ls from 'local-storage';
+import {auth, db} from '../../firebase';
 
-export default function PetProfile() {
+import {Router, Link} from 'react-router-dom'
+import Button from '@material-ui/core/Button';
+
+export default function Addpet() {
+
+  
+  const [uid, setUid]= useState(null)
+
+  const submit=()=>{
+    db.collection('user').doc(uid).collection('pets').update({
+      Name: ls.get('Name'),
+      animal: ls.get('animal'),
+      breed: ls.get('breed'),
+      age: ls.get('age'),
+      gender: ls.get('gender'),
+      })
+  }
+
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>
@@ -24,8 +41,8 @@ export default function PetProfile() {
         <Grid item xs={12} sm={6}>
             <TextField
             required
-            id="firstName"
-            name="firstName"
+            id="Name"
+            name="Name"
             label="Name"
             fullWidth
             autoComplete="pet-name"
@@ -67,11 +84,14 @@ export default function PetProfile() {
           />
         </Grid>
         <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="Gender" fullWidth
+          <TextField id="gender" name="gender" label="Gender" fullWidth
           onBlur={e=>{ls.set('gender', e.target.value)}}
          />
         </Grid>
                  
+  <Link to='/Home/'><Button variant="contained" color="primary">
+  Submit
+</Button> </Link>
       </Grid>
     </React.Fragment>
   );

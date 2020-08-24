@@ -11,6 +11,7 @@ import VCompleteProfile from './components/vCompleteProfile'
 import VDashboard from './components/vet/dashboard'
 import SideBar from './components/Admin/sideBar'
 import {Route, Switch} from 'react-router-dom'
+import Addpet from './components/client/Addpet';
 
 /* --------- trial ------*/
 import Profile from './components/checkout/Profile'
@@ -30,6 +31,7 @@ function App() {
         <Route exact path='/vLogin' component={VetLogin} />          
         <Route exact path='/vWaiting' component={VWaiting} />    
         <Route exact path='/Checkout' component = {Checkout} />
+        <Route exact path='/Addpet' component={Addpet}/>
         <Route exact path='/verifyEmail' component = {VerifyEmail} />
         <Route exact path='/admin/:component' component={SideBar} />
         <Route exact path='/v/:vd' component={VDashboard} />
