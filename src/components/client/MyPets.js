@@ -10,23 +10,33 @@ const home= window.location.protocol + "//" + window.location.host + "/" +'Home/
 
 const MyPetsComponent = () => {
   return (
-    <div>
-      <div className="loggedinpet">
+    <div className="wholecomponent">
+      {/* <div className="loggedinpet">
         <p>Hi Rocky!!</p>
-      </div>
+      </div> */}
       <div className="onepet">
-        <img className="petimage" style={{ float: "left" }} src={petprofile} />
-        <p className="petname">Rocky</p>
-        <p className="petdetails">
-          Age: 2 years <br /> Type: Dog(Labrador)
-        </p>
+        <span>
+          <img className="petimage" src={petprofile} />
+          <div>
+            <p className="petname">Rocky</p>
+            <p className="petdetails">
+              Age: 2 years <br /> Type: Dog(Labrador)
+            </p>
+          </div>
+        </span>
       </div>
-      <hr />
-      <div className="addpet">
-      <Link to = '/Addpet/' > 
-        <img className="add" style={{ float: "left" }}  src={add} /> 
-        </Link>
-        <Link to='/Addpet/'><p>Add a Pet</p></Link>
+
+      <div className="onepet">
+        <span>
+          <Link to="/Addpet/">
+            <img className="add" style={{ float: "left" }} src={add} />
+          </Link>
+          <Link to="/Addpet/">
+            <p style={{ marginTop: "18px" }} className="petname">
+              Add a Pet
+            </p>
+          </Link>
+        </span>
       </div>
     </div>
   );

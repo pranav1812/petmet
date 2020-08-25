@@ -75,7 +75,10 @@ const CartComponent = () => {
             </p>
             <div className="sizeandqty">
               {/* ...........select size........... */}
-              <div className="nav-item dropdown show">
+              <div
+                style={{ padding: "35px" }}
+                className="nav-item dropdown show"
+              >
                 <a
                   className="nav-link dropdown-toggle"
                   data-toggle="dropdown"
@@ -138,7 +141,11 @@ const CartComponent = () => {
             <button type="button" class="btn btnapply">
               Remove
             </button>
-            <button type="button" class="btn btnapply">
+            <button
+              style={{ alignContent: "right" }}
+              type="button"
+              class="btn btnapply"
+            >
               Move to wishlist
             </button>
           </div>
