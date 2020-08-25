@@ -16,7 +16,7 @@ import ButtonGroup from '@material-ui/core/Button'
 //import food from "../pictures/image 6.png";
 import {db} from '../../firebase'
 
-import { db } from "../../firebase";
+//import { db } from "../../firebase";
 
 const styles = {
   carouselroot: {

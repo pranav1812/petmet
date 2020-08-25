@@ -39,14 +39,10 @@ import Cart from "./Cart";
 import Wishlist from "./Wishlist";
 import Appointment from "./Appointment";
 import Home from "./Home";
-<<<<<<< HEAD
+import SearchIcon from '@material-ui/icons/Search';
+import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import ShopPage from '../shop/ShopPage';
 import ShopProducts from './ShopProducts';
-=======
-import SearchIcon from "@material-ui/icons/Search";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
-
->>>>>>> 1a827844acd5d889660c76d6ba96aa1688187525
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
