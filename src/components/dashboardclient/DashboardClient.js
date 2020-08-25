@@ -104,14 +104,14 @@ const DashboardClient = () => {
           <TopCarousel />
         </div>
 
-        <Link to="/ShopProducts/">
-          <Link to="/Addpet/">
-            <Button className="dashboardbuttons">Add Pet</Button>
-          </Link>
-          <Link to="/Appointment/">
-            <Button className="dashboardbuttons">Appointment</Button>{" "}
-          </Link>
+        <Link to="/Addpet/">
+          <Button>Add Pet</Button>
+        </Link>
+        <Link to="/Appointment/">
+          <Button>Appointment</Button>{" "}
+        </Link>
 
+        <Link to="/ShopProducts/">
           <div className="cards">
             {categories
               ? categories.map((cat) => (
