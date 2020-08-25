@@ -99,13 +99,13 @@ const DashboardClient = () => {
   <Link to='/Addpet/'><Button>Add Pet</Button></Link>
   <Link to='/Appointment/'><Button>Appointment</Button> </Link>
 </ButtonGroup>
-      <Link to='/ShopProducts/' >
        <div className="cards">
           { 
-            categories? categories.map(cat=><RoundCard title={cat.name} image={cat.img} />): null
+            categories? categories.map(cat=>
+              <Link to='/ShopProducts/' > <RoundCard title={cat.name} image={cat.img} />{"      "} </Link>): null
           }          
         </div>
-        </Link>
+        
         <h2 className="headers">BEST SELLERS</h2>
         <div className="productcards">
           {bestSellers ? (
