@@ -19,24 +19,7 @@ export default function RoundCard(props) {
   const classes = useStyles();
 
   return (
-    // <Card >
-    //   <CardActionArea className="yo">
-    //     <CardMedia
-    //       // className={classes.media}
-    //       className="media"
-    //       image={props.image}
-    //       title={props.title}
-    //     />
-    //     <CardContent>
-    //       <Typography gutterBottom variant="h5" component="h2">
-    //         {props.title}
-    //       </Typography>
-    //     </CardContent>
-    //   </CardActionArea>
-    //   <CardActions></CardActions>
-    // </Card>
-
-    <div className="dashboardcard">
+    <div className="roundcardfile">
       <img className="media" src={props.image} />
       <p>{props.title}</p>
     </div>

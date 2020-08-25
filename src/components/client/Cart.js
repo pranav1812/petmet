@@ -58,19 +58,18 @@ const CartComponent = () => {
             </h6>
           </div>
           {/* .................... */}
-          <div
-            style={{ backgroundColor: "#F5F5F5" }}
-            className="cartproductcard"
-          >
+          <div style={{ backgroundColor: "white" }} className="cartproductcard">
             <p>
               <img
                 className="cartproductimage"
                 src={product1}
                 alt="productpicture"
               />
-              <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
-              <p>Special food for dog designed for summer season</p>
-              <p>Rs 345</p>
+              <div style={{ marginLeft: "140px" }}>
+                <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
+                <p>Special food for dog designed for summer season</p>
+                <p>Rs 345</p>
+              </div>
             </p>
             <div className="sizeandqty">
               {/* ...........select size........... */}
@@ -155,7 +154,7 @@ const CartComponent = () => {
           </div>
           {/* ...................................... */}
           <div className="pricedetails">
-            <h6>PRICE DETAILS</h6>
+            <h6 className="availableoffers">PRICE DETAILS</h6>
             <ul>
               <span>
                 <li>
@@ -190,9 +189,9 @@ const CartComponent = () => {
         </div>
         {/* ................................... */}
       </div>
-      <div style={{ marginTop: "300px" }}>
+      {/* <div style={{ marginTop: "300px" }}>
         <FooterContainer />
-      </div>
+      </div> */}
     </div>
   );
 };

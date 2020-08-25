@@ -10,13 +10,24 @@ import { FooterContainer } from "../footer/containers/footer";
 //import catessentials from "../pictures/image 3.png";
 //import harness from "../pictures/image 4.png";
 //import grooming from "../pictures/image 5.png";
-import {Router, Link} from 'react-router-dom'
-import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/Button'
+
 //import food from "../pictures/image 6.png";
-import {db} from '../../firebase'
+import { db } from "../../firebase";
+
+import { Router, Link } from "react-router-dom";
+import Button from "@material-ui/core/Button";
+import ButtonGroup from "@material-ui/core/Button";
+import Carousel from "react-elastic-carousel";
 
 //import { db } from "../../firebase";
+
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 550, itemsToShow: 2 },
+  { width: 768, itemsToShow: 3 },
+  { width: 1200, itemsToShow: 4 },
+  { width: 240, itemsToShow: 5 },
+];
 
 const styles = {
   carouselroot: {
@@ -92,23 +103,27 @@ const DashboardClient = () => {
         >
           <TopCarousel />
         </div>
-        <h4 style={{ width: "100%" }} className="topbanner">
-          Shop for Rs2000 and get a voucher worth Rs345
-        </h4>
-        <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-  <Link to='/Addpet/'><Button>Add Pet</Button></Link>
-  <Link to='/Appointment/'><Button>Appointment</Button> </Link>
-</ButtonGroup>
 
-          <Link to='/ShopProducts/' >
-        <div className="cards">
-          { 
-            categories? categories.map(cat=><RoundCard title={cat.name} image={cat.img} />): null
-            }          
-        </div>
+        <Link to="/ShopProducts/">
+          <Link to="/Addpet/">
+            <Button className="dashboardbuttons">Add Pet</Button>
+          </Link>
+          <Link to="/Appointment/">
+            <Button className="dashboardbuttons">Appointment</Button>{" "}
+          </Link>
+
+          <div className="cards">
+            {categories
+              ? categories.map((cat) => (
+                  <RoundCard title={cat.name} image={cat.img} />
+                ))
+              : null}
+          </div>
         </Link>
         <h2 className="headers">BEST SELLERS</h2>
         <div className="productcards">
+          {/* <Carousel breakPoints={breakPoints}>
+            <div style={{ padding: "10px" }}> */}
           {bestSellers ? (
             bestSellers.map((bs) => (
               <SquareCard title={bs.name} image={bs.img} />
@@ -116,10 +131,14 @@ const DashboardClient = () => {
           ) : (
             <h5>best sellers arriving</h5>
           )}
+          {/* </div>
+          </Carousel> */}
         </div>
 
         <h2 className="headers">ACCESSORIES</h2>
         <div className="productcards">
+          {/* <Carousel breakPoints={breakPoints}>
+            <div style={{ padding: "10px" }}> */}{" "}
           {accessories ? (
             accessories.map((as) => (
               <SquareCard title={as.name} image={as.img} />
@@ -127,16 +146,22 @@ const DashboardClient = () => {
           ) : (
             <h5>accessiories arriving</h5>
           )}
+          {/* </div>
+          </Carousel> */}
         </div>
         <h2 className="headers">SPECIAL TOYS</h2>
         <div className="productcards">
+          {/* <Carousel breakPoints={breakPoints}>
+            <div style={{ padding: "10px" }}> */}
           {toys ? (
             toys.map((toy) => <SquareCard title={toy.name} image={toy.img} />)
           ) : (
             <h5>special toys arriving</h5>
           )}
+          {/* </div>
+          </Carousel> */}
         </div>
-        <FooterContainer />
+        {/* <FooterContainer /> */}
       </div>
     </div>
   );

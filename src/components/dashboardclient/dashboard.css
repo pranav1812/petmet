@@ -40,3 +40,15 @@ body {
   flex-wrap: wrap;
   flex-direction: row;
 }
+
+.dashboardbuttons {
+  background: #36a9cc !important;
+  border-radius: 7px !important;
+  color: white !important;
+  /* width: 68.81px !important;
+  height: 36px !important; */
+  margin-top: 24px !important;
+  margin-left: 8px !important;
+  padding-right: 10px;
+  padding-left: 10px;
+}

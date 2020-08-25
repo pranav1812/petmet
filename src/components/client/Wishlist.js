@@ -9,7 +9,7 @@ import "./cart.css";
 
 const WishlistComponent = () => {
   return (
-    <div className="wishlist">
+    <div className="wishlistpage">
       {/* <div className="wishlist">
         <div className="wishlistitem">
           <img
@@ -55,16 +55,18 @@ const WishlistComponent = () => {
         </div>
       </div> */}
 
-      <div style={{ backgroundColor: "#F5F5F5" }} className="cartproductcard">
+      <div style={{ backgroundColor: "white" }} className="cartproductcard">
         <p>
           <img
             className="cartproductimage"
             src={product1}
             alt="productpicture"
           />
-          <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
-          <p>Special food for dog designed for summer season</p>
-          <p>Rs 345</p>
+          <div style={{ marginLeft: "140px", color: "black" }}>
+            <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
+            <p>Special food for dog designed for summer season</p>
+            <p>Rs 345</p>
+          </div>
         </p>
         <div className="sizeandqty">
           {/* ...........select size........... */}
@@ -135,10 +137,92 @@ const WishlistComponent = () => {
           Buy Now
         </button>
       </div>
+      {/* ................................second card..................................... */}
+      <div style={{ backgroundColor: "white" }} className="cartproductcard">
+        <p>
+          <img
+            className="cartproductimage"
+            src={product1}
+            alt="productpicture"
+          />
+          <div style={{ marginLeft: "140px", color: "black" }}>
+            <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
+            <p>Special food for dog designed for summer season</p>
+            <p>Rs 345</p>
+          </div>
+        </p>
+        <div className="sizeandqty">
+          {/* ...........select size........... */}
+          <div className="nav-item dropdown show">
+            <a
+              className="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              SIZE
+            </a>
+            <div className="dropdown-menu">
+              <a className="dropdown-item" href="#">
+                BLANKKKKKK
+              </a>
+              <a className="dropdown-item" href="#">
+                BLANKKK
+              </a>
+              <a className="dropdown-item" href="#">
+                BLANKK
+              </a>
+              <div className="dropdown-divider"></div>
+              <a className="dropdown-item" href="#">
+                BLANKKKKK
+              </a>
+            </div>
+          </div>
+          {/* ............select size over....... */}
+          <div className="nav-item dropdown show">
+            <a
+              className="nav-link dropdown-toggle"
+              data-toggle="dropdown"
+              href="#"
+              role="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+            >
+              QTY
+            </a>
+            <div className="dropdown-menu">
+              <a className="dropdown-item" href="#">
+                BLANKKKKKK
+              </a>
+              <a className="dropdown-item" href="#">
+                BLANKKK
+              </a>
+              <a className="dropdown-item" href="#">
+                BLANKK
+              </a>
+              <div className="dropdown-divider"></div>
+              <a className="dropdown-item" href="#">
+                BLANKKKKK
+              </a>
+            </div>
+          </div>
 
-      <div style={{ marginTop: "300px" }}>
-        <FooterContainer />
+          {/* ..................QTY OVERR.......... */}
+        </div>
+        <br />
+        <hr />
+        <button type="button" class="btn btnapply">
+          Remove
+        </button>
+        <button type="button" class="btn btnapply">
+          Buy Now
+        </button>
       </div>
+      {/* <div style={{ marginTop: "300px" }}>
+        <FooterContainer />
+      </div> */}
     </div>
   );
 };

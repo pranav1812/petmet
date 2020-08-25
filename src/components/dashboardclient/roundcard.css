@@ -1,12 +1,12 @@
-.dashboardcard {
+.roundcardfile {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   justify-content: center;
   text-align: center;
-  margin: 2% !important;
-  width: 200px !important;
-  height: 220px !important;
+  margin: 2%;
+  width: 200px;
+  height: 220px;
   text-align: center !important;
   background-color: #fafafa !important;
   box-shadow: none !important;
@@ -23,7 +23,14 @@
   margin-top: 6px;
 }
 
-/* ---------------------card text------------------------------- */
-.MuiTypography-h5 {
-  font-size: 1.2rem !important;
+@media only screen and (max-width: 445px) {
+  .media {
+    height: 80px;
+
+    width: 80px;
+  }
+  .roundcardfile {
+    height: 130px;
+    width: 130px;
+  }
 }
