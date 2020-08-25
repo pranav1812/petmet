@@ -3,7 +3,8 @@ import FoodCategory from "../pictures/image 15.png";
 import "./shopproducts.css";
 import Arrow from "../pictures/Vector.png";
 import Dashboard from "./Dashboard";
-
+//import ShopPage from './Component/shop/ShopPage';
+import {Link} from 'react-router-dom';
 const ShopProducts = () => {
   return (
     <div>
@@ -69,6 +70,7 @@ const ShopProducts = () => {
           </div>
         </span>
         <div className="thumb">
+          <Link to='/ShopPage/' >
           <div className="personalthumb">
             <div>
               <img
@@ -92,6 +94,7 @@ const ShopProducts = () => {
               <img className="arrow" src={Arrow} />
             </span>
           </div>
+          </Link>
           <div className="personalthumb">
             <div>
               <img
@@ -139,7 +142,7 @@ const ShopProducts = () => {
               <img className="arrow" src={Arrow} />
             </span>
           </div>
-
+        
           <div className="personalthumb">
             <div>
               <img

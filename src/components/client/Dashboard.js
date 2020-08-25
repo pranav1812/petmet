@@ -38,7 +38,8 @@ import Cart from "./Cart";
 import Wishlist from "./Wishlist";
 import Appointment from "./Appointment";
 import Home from "./Home";
-
+import ShopPage from '../shop/ShopPage';
+import ShopProducts from './ShopProducts';
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -320,7 +321,11 @@ export default function Dashboard() {
                 <Wishlist />
               ) : componentt == 'Addpet' ? (
                 <Addpet />
-              ) : componentt == "Appointment" ? (
+              ) : componentt == "ShopProducts" ? (
+                <ShopProducts />
+              ) : componentt == 'ShopPage' ? (
+                 <ShopPage /> 
+              ) :componentt == "Appointment" ? (
                 <Appointment />
               ) : (
                 <Home />
