@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { auth } from "../../firebase";
-
 import add from "../pictures/Vector (1).png";
 import outercircle from "../pictures/Ellipse 13.png";
 import petprofile from "../pictures/Ellipse 12.png";
@@ -13,16 +12,16 @@ const MyPetsComponent = () => {
         <p>Hi Rocky!!</p>
       </div>
       <div className="onepet">
-        <img style={{ float: "left" }} src={petprofile} />
+        <img className="petimage" style={{ float: "left" }} src={petprofile} />
         <p className="petname">Rocky</p>
         <p className="petdetails">
           Age: 2 years <br /> Type: Dog(Labrador)
         </p>
       </div>
       <hr />
-      <div className="addpet">
+      <div className="addpet onepet">
         <img className="add" style={{ float: "left" }} src={add} />
-        <p>Add a Pet</p>
+        <p className="petname">Add a Pet</p>
       </div>
     </div>
   );

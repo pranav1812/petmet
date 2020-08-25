@@ -17,9 +17,7 @@ body {
   flex-wrap: wrap;
   justify-content: center;
 }
-/* .carouselandcards {
-  margin-left: 230px;
-} */
+
 .carousel {
   width: 100% !important;
   height: 500px;
@@ -36,10 +34,6 @@ body {
   font-family: Whitney, -apple-system, BlinkMacSystemFont, Segoe UI, Roboto,
     Helvetica, Arial, sans-serif;
 }
-
-/* .makeStyles-container-13 {
-  padding: 0% !important;
-} */
 
 .productcards {
   display: flex;
