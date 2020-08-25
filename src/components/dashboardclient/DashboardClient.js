@@ -99,12 +99,11 @@ const DashboardClient = () => {
   <Link to='/Addpet/'><Button>Add Pet</Button></Link>
   <Link to='/Appointment/'><Button>Appointment</Button> </Link>
 </ButtonGroup>
-
-          <Link to='/ShopProducts/' >
-        <div className="cards">
+      <Link to='/ShopProducts/' >
+       <div className="cards">
           { 
             categories? categories.map(cat=><RoundCard title={cat.name} image={cat.img} />): null
-            }          
+          }          
         </div>
         </Link>
         <h2 className="headers">BEST SELLERS</h2>
