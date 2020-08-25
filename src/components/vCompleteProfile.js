@@ -45,17 +45,17 @@ export default function VCompleteProfile() {
                             })
                         }
                         if(doc.exists && doc.data().profileCompleted){
-                            window.location='http://localhost:3000/v/Profile/'
+                            window.location= window.location.protocol + "//" + window.location.host + "/" +'v/Profile/' 
                         }
                         
                     })
                     React.setButton(true)
             }else{
-                window.location='http://localhost:3000/vVerifyEmail'
+                window.location= window.location.protocol + "//" + window.location.host + "/" +'vVerifyEmail/'
             }
         }
         else if(!user){
-        window.location='http://localhost:3000/vLogin'
+        window.location= window.location.protocol + "//" + window.location.host + "/" +'vLogin/'
         }     
     })
   },[sbt])

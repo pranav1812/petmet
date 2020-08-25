@@ -23,7 +23,7 @@ import PetsIcon from "@material-ui/icons/Pets";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import StarsIcon from "@material-ui/icons/Stars";
 // import MyLeads from './myLeads';
-// import Profile from './profile'
+import EditProfile from './Profile'
 import { auth, db } from "../../firebase";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -185,7 +185,7 @@ export default function Dashboard() {
   };
 
   const toLoginPage = () => {
-    window.location = "http://localhost:3000/login";
+    window.location = window.location.protocol + "//" + window.location.host + "/" + "login";
   };
 
   return (
@@ -316,7 +316,7 @@ export default function Dashboard() {
               <ListItemText primary={usr ? "Logout" : "Login"} />
             </ListItem>
             {usr ? (
-              <Link to="/verifyEmail">
+              <Link to="/editProfile">
                 <ListItem button>
                   <ListItemIcon>
                     <EditIcon />
@@ -351,6 +351,8 @@ export default function Dashboard() {
                  <ShopPage /> 
               ) :componentt == "Appointment" ? (
                 <Appointment />
+              ) : componentt == "editProfile" ? (
+                <EditProfile />
               ) : (
                 <Home />
               )}

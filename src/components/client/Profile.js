@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import TextField from '@material-ui/core/TextField';
 import ls from 'local-storage'
 
-export default function AddressForm() {
+export default function EditProfile() {
   return (
     <React.Fragment>
       <Typography variant="h6" gutterBottom>

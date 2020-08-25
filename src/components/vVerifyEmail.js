@@ -3,6 +3,8 @@ import {auth, db} from '../firebase'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
+const vcp= window.location.protocol + "//" + window.location.host + "/" + 'vCompleteProfile'
+
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -30,12 +32,12 @@ export default function VVerifyEmail() {
                                 db.collection('vet').doc(user.uid).set({
                                     profileCompleted: false
                                 })
-                                window.location='http://localhost:3000/vCompleteProfile'
+                                window.location= vcp
                             }
                             else if(!doc.data().profileCompleted) 
-                                window.location='http://localhost:3000/vCompleteProfile'
+                                window.location= vcp
                             else{
-                                window.location= 'http://localhost:3000/v/Profile/'
+                                window.location= window.location.protocol + "//" + window.location.host + "/" +'v/Profile/'
                             }
                         })
                         setButton(true)
@@ -43,12 +45,12 @@ export default function VVerifyEmail() {
                     alert("verification link was sent to your registered email")
                 }
             }else{
-                window.location='http://localhost:3000/vLogin'
+                window.location= window.location.protocol + "//" + window.location.host + "/" +'vLogin'
             }
         })
     },[])
     const move=()=>{
-        window.location='http://localhost:3000/vCompleteProfile'
+        window.location= vcp
     }
     
     const sendVerification=()=>{

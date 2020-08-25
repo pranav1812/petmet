@@ -5,20 +5,20 @@ export default function VWaiting() {
     useEffect(()=>{
         auth.onAuthStateChanged(user=>{
             if(!user){
-                window.location='http://localhost:3000/vLogin'
+                window.location= window.location.protocol + "//" + window.location.host + "/" +'vLogin'
             }
             else if(!user.emailVerified){
-                window.location='http://localhost:3000/vVerifyEmail'
+                window.location= window.location.protocol + "//" + window.location.host + "/" +'vVerifyEmail'
             }
             else{
                 db.collection('vet').doc(user.uid).get()
                     .then(doc=>{
                         if(doc.exists){
                             if(doc.data().profileCompleted){
-                                window.location='http://localhost:3000/v/Profile'
+                                window.location= window.location.protocol + "//" + window.location.host + "/" +'v/Profile'
                             }
                             else{
-                                window.location='http://localhost:3000/vCompleteProfile'
+                                window.location= window.location.protocol + "//" + window.location.host + "/" +'vCompleteProfile'
                             }
                         }
                     })

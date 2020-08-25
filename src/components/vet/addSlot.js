@@ -54,12 +54,12 @@ export default function AddSlot(props) {
     setNewSlot(e.target.value)
   }
   const sendSlot=()=>{
-    // doc id-> uid of user
+   
     db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('freeSlots').add({
       Type: "any",
       Time: newSlot      
-    })
-    setSentSlot(newSlot)
+    }).then(()=> setSentSlot(newSlot))
+    
   }
 
   
@@ -74,7 +74,7 @@ export default function AddSlot(props) {
         <DateTimePicker value={newSlot} onChange={setNewSlot} />
         </MuiPickersUtilsProvider>
 
-            <button className="pink-btn" onClick={sendSlot}>
+            <button className="pink-btn" onClick={sendSlot} type="button" >
               Confirm
             </button>
         </form>

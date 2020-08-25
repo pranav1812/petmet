@@ -6,6 +6,8 @@ import product1 from "../pictures/image 37.png";
 import product2 from "../pictures/image 35.png";
 import product3 from "../pictures/image 34.png";
 
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+
 const CartComponent = () => {
   return (
     <div>
@@ -202,7 +204,7 @@ export default function Cart() {
     auth.onAuthStateChanged((user) => {
       if (!user) {
         alert("login required");
-        window.location = "http://localhost:3000/Home";
+        window.location = home;
       } else {
         setUsr(user);
       }

@@ -7,6 +7,9 @@ import { FooterContainer } from "../footer/containers/footer";
 // import "./wishlist.css";
 import "./cart.css";
 
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+
+
 const WishlistComponent = () => {
   return (
     <div className="wishlistpage">
@@ -233,7 +236,7 @@ export default function Wishlist() {
     auth.onAuthStateChanged((user) => {
       if (!user) {
         alert("login required");
-        window.location = "http://localhost:3000/Home";
+        window.location = home;
       } else {
         setUsr(user);
       }

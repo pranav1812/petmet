@@ -16,8 +16,13 @@ import { auth, db } from "../../firebase";
 import ls from "local-storage";
 import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 import "./checkout.css";
-
 import PetProfile from "./PetProfile";
+
+const vMail= window.location.protocol + "//" + window.location.host + "/" +'verifyEmail/'
+
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+
+
 
 function Copyright() {
   return (
@@ -89,9 +94,9 @@ export default function Checkout() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        window.location = "http://localhost:3000/login";
+        window.location = window.location.protocol + "//" + window.location.host + "/" +"login";
       } else if (!user.emailVerified) {
-        window.location = "http://localhost:3000/verifyEmail";
+        window.location = vMail;
       } else {
         setUid(user.uid);
         db.collection("user")
@@ -104,7 +109,7 @@ export default function Checkout() {
                 profileCompleted: false,
               });
             } else if (doc.data().profileCompleted) {
-              window.location = "http://localhost:3000/home";
+              window.location = home;
             }
           });
       }
@@ -119,7 +124,7 @@ export default function Checkout() {
   };
 
   const skip = () => {
-    window.location = "http://localhost:3000/home";
+    window.location = home;
   };
 
   const handleBack = () => {

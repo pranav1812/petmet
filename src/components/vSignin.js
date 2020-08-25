@@ -13,6 +13,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import {auth} from '../firebase';
 import * as firebase from 'firebase'
 
+const vMail= window.location.protocol + "//" + window.location.host + "/" +'vVerifyEmail/'
+const vWait= window.location.protocol + "//" + window.location.host + "/" + 'vWaiting'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -72,7 +75,7 @@ export default function VetLogin() {
     // alert(auth.currentUser)
     auth.onAuthStateChanged(user=>{
     if (user && user.emailVerified){
-      window.location='http://localhost:3000/vWaiting'
+      window.location= vWait
     }
   })   
   }, [])
@@ -91,7 +94,7 @@ export default function VetLogin() {
             displayName: name
           })
           user.sendEmailVerification().then(()=> {
-            window.location= 'http://localhost:3000/verifyEmail'
+            window.location= vMail
           }).catch(function(error) {
             console.log(error)
           });
@@ -111,7 +114,7 @@ export default function VetLogin() {
       var user = result.user;
       // new line
       if(user){
-        window.location= 'http://localhost:3000/vWaiting'
+        window.location= vWait
       }
       }).catch(function(error) {
         var errorMessage = error.message;
@@ -134,7 +137,7 @@ export default function VetLogin() {
     auth.signInWithPopup(provider).then((result)=> {
       var user = result.user;
       if(user){
-        window.location="http://localhost:3000/vWaiting"
+        window.location= vWait
       }
     }).catch((error)=> {
       var errorMessage = error.message;
@@ -147,7 +150,7 @@ export default function VetLogin() {
     auth.signInWithPopup(provider).then((result)=> {
       var user = result.user;
       if(user){
-        window.location="http://localhost:3000/vWaiting"
+        window.location= vWait
       }
     }).catch((error)=> {
       var errorMessage = error.message;
@@ -156,7 +159,7 @@ export default function VetLogin() {
   }
 
   const goSimple=()=>{
-    window.location='http://localhost:3000/login'
+    window.location= window.location.protocol + "//" + window.location.host + "/" + 'login'
   }
 
   const googleSignin=()=>{
@@ -173,7 +176,7 @@ export default function VetLogin() {
     
     auth.onAuthStateChanged(user=>{
       if(user){
-        window.location='http://localhost:3000/vWaiting'
+        window.location= vWait
       }
     })
    
@@ -193,10 +196,10 @@ export default function VetLogin() {
         console.log(user)
         if(user){
           if(!user.emailVerified){
-            window.location='http://localhost:3000/vVerifyEmail'
+            window.location= vMail
           }
           else{
-            window.location='http://localhost:3000/vWaiting'
+            window.location= vWait
           }
         }
       })

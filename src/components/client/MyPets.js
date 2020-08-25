@@ -5,6 +5,9 @@ import outercircle from "../pictures/Ellipse 13.png";
 import petprofile from "../pictures/Ellipse 12.png";
 import "./mypets.css";
 import {Link} from 'react-router-dom';
+
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+
 const MyPetsComponent = () => {
   return (
     <div>
@@ -34,7 +37,7 @@ export default function MyPets() {
     auth.onAuthStateChanged((user) => {
       if (!user) {
         alert("login required");
-        window.location = "http://localhost:3000/Home";
+        window.location = home;
       } else {
         setUsr(user);
       }
