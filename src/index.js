@@ -3,7 +3,7 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // ------------------bootswatch-------------
 import "bootswatch/dist/minty/bootstrap.min.css";
@@ -13,10 +13,10 @@ import Album from "./components/Album";
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import DashboardClient from "./components/dashboardclient/DashboardClient";
 
-import VetCard from './components/client/VetCard'
+import VetCard from "./components/client/VetCard";
 
 import ShopProducts from "./components/client/ShopProducts";
-
+import ShopPage from "./components/shop/ShopPage";
 
 ReactDOM.render(
   <Router>

@@ -12,18 +12,24 @@ const MyPetsComponent = () => {
         <p>Hi Rocky!!</p>
       </div>
       <div className="onepet">
-        <img style={{ float: "left" }} src={petprofile} />
+        <img className="petimage" style={{ float: "left" }} src={petprofile} />
         <p className="petname">Rocky</p>
         <p className="petdetails">
           Age: 2 years <br /> Type: Dog(Labrador)
         </p>
       </div>
       <hr />
+<<<<<<< HEAD
       <div className="addpet">
       <Link to = '/Addpet/' > 
         <img className="add" style={{ float: "left" }}  src={add} /> 
         </Link>
         <Link to='/Addpet/'><p>Add a Pet</p></Link>
+=======
+      <div className="addpet onepet">
+        <img className="add" style={{ float: "left" }} src={add} />
+        <p className="petname">Add a Pet</p>
+>>>>>>> 1a827844acd5d889660c76d6ba96aa1688187525
       </div>
     </div>
   );

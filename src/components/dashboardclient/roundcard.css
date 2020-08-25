@@ -1,13 +1,13 @@
 .dashboardcard {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: center;
   text-align: center;
-}
-/* -------------------------------------card----------------------------- */
-.MuiPaper-elevation1 {
-  margin: 2%;
-  width: 200px;
+  margin: 2% !important;
+  width: 200px !important;
   height: 220px !important;
-  text-align: center;
+  text-align: center !important;
   background-color: #fafafa !important;
   box-shadow: none !important;
 }
