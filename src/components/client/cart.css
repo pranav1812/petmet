@@ -10,6 +10,7 @@ body {
   flex-wrap: wrap;
   flex-direction: column;
   margin-right: 20px;
+  word-wrap: break-word;
 }
 .bothflexbox {
   display: inline-flex;

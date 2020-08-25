@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import clsx from "clsx";
+import "./DASHBOARD.css";
 import { makeStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Drawer from "@material-ui/core/Drawer";
@@ -31,13 +32,15 @@ import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
 import HomeIcon from "@material-ui/icons/Home";
 import DashboardClient from "../dashboardclient/DashboardClient";
 // import Lead from './lead'
-import MainLogo from "../pictures/Final Main Logo PET MET.png";
+import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 import Addpet from "./Addpet";
 import MyPets from "./MyPets";
 import Cart from "./Cart";
 import Wishlist from "./Wishlist";
 import Appointment from "./Appointment";
 import Home from "./Home";
+import SearchIcon from "@material-ui/icons/Search";
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 
 // function Copyright() {
 //   return (
@@ -90,6 +93,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+
   drawerPaper: {
     position: "relative",
     whiteSpace: "nowrap",
@@ -105,7 +109,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    width: theme.spacing(7),
+    width: theme.spacing(0),
     [theme.breakpoints.up("sm")]: {
       width: theme.spacing(9),
     },
@@ -210,15 +214,35 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            <img style={{ width: "153px", height: "44px" }} src={MainLogo} />
+            <img
+              className="mainlogoonnav"
+              style={{ width: "130px", height: "33px" }}
+              src={MainLogo}
+            />
 
-            <form style={{ float: "right" }} class="form-inline my-2 my-lg-0">
+            <div
+              style={{ float: "right", display: "inline" }}
+              className="searchicon"
+            >
+              <NotificationsNoneIcon />
+            </div>
+            <div
+              style={{ float: "right", display: "inline" }}
+              className="searchicon"
+            >
+              <SearchIcon />
+            </div>
+
+            <form
+              style={{ float: "right" }}
+              className="form-inline navbarsearch my-2 my-lg-0"
+            >
               <input
                 class="form-control mr-sm-2"
                 type="text"
                 placeholder="Search"
               />
-              <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+              <button class="btn searchbutton  my-2 my-sm-0" type="submit">
                 Search
               </button>
             </form>
@@ -318,7 +342,7 @@ export default function Dashboard() {
                 <Cart />
               ) : componentt == "Wishlist" ? (
                 <Wishlist />
-              ) : componentt == 'Addpet' ? (
+              ) : componentt == "Addpet" ? (
                 <Addpet />
               ) : componentt == "Appointment" ? (
                 <Appointment />

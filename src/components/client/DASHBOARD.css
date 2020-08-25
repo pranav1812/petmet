@@ -1,0 +1,31 @@
+@media only screen and (max-width: 579px) {
+  .navbarsearch {
+    display: none !important;
+  }
+  .mainlogoonnav {
+    display: inline-flex;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 579px) {
+  .searchicon {
+    display: none !important;
+  }
+}
+
+.searchicon {
+  color: rgba(0, 0, 0, 0.54) !important;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.searchbutton {
+  background-color: #36a9cc !important;
+}
+
+.mainlogoonnav {
+  margin-top: 10px;
+}
