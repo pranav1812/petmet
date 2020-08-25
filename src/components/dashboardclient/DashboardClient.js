@@ -12,7 +12,7 @@ import { FooterContainer } from "../footer/containers/footer";
 import {Router, Link} from 'react-router-dom'
 import Button from '@material-ui/core/Button';
 import ButtonGroup from '@material-ui/core/Button'
-import food from "../pictures/image 6.png";
+//import food from "../pictures/image 6.png";
 import {db} from '../../firebase'
 
 const DashboardClient = () => {
