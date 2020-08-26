@@ -169,7 +169,7 @@ const CartComponent = () => {
                 <p>Coupon Discount Rs456</p>
               </li>
               <li>
-                <p> Order TotalRs456</p>
+                <p> Order Total Rs456</p>
               </li>
               <li>
                 <p> Delivery Charge Rs456</p>
