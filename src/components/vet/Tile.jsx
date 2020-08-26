@@ -31,9 +31,7 @@ export default function Tile(props) {
             {props.slt? props.slt.Time.toString().split(' ')[4] :null}
 
           </Typography>
-          <Typography gutterBottom variant="h5" component="h2">
-            Status: {props.slt.uid}
-          </Typography>
+          
         </CardContent>
       <CardActions>
         <button className="pink-btn" >

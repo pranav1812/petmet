@@ -3,7 +3,8 @@ import FoodCategory from "../pictures/image 15.png";
 import "./shopproducts.css";
 import Arrow from "../pictures/Vector.png";
 import Dashboard from "./Dashboard";
-
+//import ShopPage from './Component/shop/ShopPage';
+import { Link } from "react-router-dom";
 const ShopProducts = () => {
   return (
     <div>
@@ -69,6 +70,33 @@ const ShopProducts = () => {
           </div>
         </span>
         <div className="thumb">
+          <Link to="/ShopPage/">
+            <div className="personalthumb">
+              <div>
+                <img
+                  style={{ backgroundColor: "#f5f5f5" }}
+                  className="dishpicture"
+                  src={FoodCategory}
+                />
+              </div>
+              <p className="dishnames">
+                HUFT Drizzle Chicken Liver Dog Biscuits
+              </p>
+
+              <span>
+                <button type="button" className="optionsbutton">
+                  320 gm
+                </button>
+                <button type="button" className="optionsbutton">
+                  800 gm
+                </button>
+              </span>
+              <span>
+                <div className="priceofproduct">₹250</div>
+                {/* <img className="arrow" src={Arrow} /> */}
+              </span>
+            </div>
+          </Link>
           <div className="personalthumb">
             <div>
               <img
@@ -89,54 +117,7 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
-            </span>
-          </div>
-          <div className="personalthumb">
-            <div>
-              <img
-                style={{ backgroundColor: "#f5f5f5" }}
-                className="dishpicture"
-                src={FoodCategory}
-              />
-            </div>
-            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
-
-            <span>
-              <button type="button" className="optionsbutton">
-                320 gm
-              </button>
-              <button type="button" className="optionsbutton">
-                800 gm
-              </button>
-            </span>
-            <span>
-              <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
-            </span>
-          </div>
-
-          <div className="personalthumb">
-            <div>
-              <img
-                style={{ backgroundColor: "#f5f5f5" }}
-                className="dishpicture"
-                src={FoodCategory}
-              />
-            </div>
-            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
-
-            <span>
-              <button type="button" className="optionsbutton">
-                320 gm
-              </button>
-              <button type="button" className="optionsbutton">
-                800 gm
-              </button>
-            </span>
-            <span>
-              <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -160,7 +141,7 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/*   {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -184,30 +165,7 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
-            </span>
-          </div>
-          <div className="personalthumb">
-            <div>
-              <img
-                style={{ backgroundColor: "#f5f5f5" }}
-                className="dishpicture"
-                src={FoodCategory}
-              />
-            </div>
-            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
-
-            <span>
-              <button type="button" className="optionsbutton">
-                320 gm
-              </button>
-              <button type="button" className="optionsbutton">
-                800 gm
-              </button>
-            </span>
-            <span>
-              <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -231,7 +189,30 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
+            </span>
+          </div>
+          <div className="personalthumb">
+            <div>
+              <img
+                style={{ backgroundColor: "#f5f5f5" }}
+                className="dishpicture"
+                src={FoodCategory}
+              />
+            </div>
+            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
+
+            <span>
+              <button type="button" className="optionsbutton">
+                320 gm
+              </button>
+              <button type="button" className="optionsbutton">
+                800 gm
+              </button>
+            </span>
+            <span>
+              <div className="priceofproduct">₹250</div>
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -255,30 +236,7 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
-            </span>
-          </div>
-          <div className="personalthumb">
-            <div>
-              <img
-                style={{ backgroundColor: "#f5f5f5" }}
-                className="dishpicture"
-                src={FoodCategory}
-              />
-            </div>
-            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
-
-            <span>
-              <button type="button" className="optionsbutton">
-                320 gm
-              </button>
-              <button type="button" className="optionsbutton">
-                800 gm
-              </button>
-            </span>
-            <span>
-              <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -302,7 +260,30 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
+            </span>
+          </div>
+          <div className="personalthumb">
+            <div>
+              <img
+                style={{ backgroundColor: "#f5f5f5" }}
+                className="dishpicture"
+                src={FoodCategory}
+              />
+            </div>
+            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
+
+            <span>
+              <button type="button" className="optionsbutton">
+                320 gm
+              </button>
+              <button type="button" className="optionsbutton">
+                800 gm
+              </button>
+            </span>
+            <span>
+              <div className="priceofproduct">₹250</div>
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -326,30 +307,7 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
-            </span>
-          </div>
-          <div className="personalthumb">
-            <div>
-              <img
-                style={{ backgroundColor: "#f5f5f5" }}
-                className="dishpicture"
-                src={FoodCategory}
-              />
-            </div>
-            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
-
-            <span>
-              <button type="button" className="optionsbutton">
-                320 gm
-              </button>
-              <button type="button" className="optionsbutton">
-                800 gm
-              </button>
-            </span>
-            <span>
-              <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -373,7 +331,30 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
+            </span>
+          </div>
+          <div className="personalthumb">
+            <div>
+              <img
+                style={{ backgroundColor: "#f5f5f5" }}
+                className="dishpicture"
+                src={FoodCategory}
+              />
+            </div>
+            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
+
+            <span>
+              <button type="button" className="optionsbutton">
+                320 gm
+              </button>
+              <button type="button" className="optionsbutton">
+                800 gm
+              </button>
+            </span>
+            <span>
+              <div className="priceofproduct">₹250</div>
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -397,7 +378,7 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
 
@@ -421,7 +402,31 @@ const ShopProducts = () => {
             </span>
             <span>
               <div className="priceofproduct">₹250</div>
-              <img className="arrow" src={Arrow} />
+              {/* <img className="arrow" src={Arrow} /> */}
+            </span>
+          </div>
+
+          <div className="personalthumb">
+            <div>
+              <img
+                style={{ backgroundColor: "#f5f5f5" }}
+                className="dishpicture"
+                src={FoodCategory}
+              />
+            </div>
+            <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
+
+            <span>
+              <button type="button" className="optionsbutton">
+                320 gm
+              </button>
+              <button type="button" className="optionsbutton">
+                800 gm
+              </button>
+            </span>
+            <span>
+              <div className="priceofproduct">₹250</div>
+              {/* <img className="arrow" src={Arrow} /> */}
             </span>
           </div>
         </div>

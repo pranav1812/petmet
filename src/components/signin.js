@@ -15,6 +15,11 @@ import * as firebase from "firebase";
 import mainlogo from "./pictures/Final Main Logo PET MET.png";
 import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
 
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+const vMail= window.location.protocol + "//" + window.location.host + "/" +'verifyEmail/'
+const rCheck= window.location.protocol + "//" + window.location.host + "/" +'checkout/'
+const rP= window.location.protocol + "//" + window.location.host + "/" +'phone/'
+
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
@@ -78,7 +83,7 @@ export default function Login() {
     auth.onAuthStateChanged((user) => {
       if (user) console.log(user);
       if (user && user.emailVerified) {
-        window.location = "http://localhost:3000/Home";
+        window.location = home;
       }
     });
   }, []);
@@ -100,7 +105,7 @@ export default function Login() {
           user
             .sendEmailVerification()
             .then(() => {
-              window.location = "http://localhost:3000/verifyEmail";
+              window.location = vMail;
             })
             .catch(function (error) {
               console.log(error);
@@ -122,7 +127,7 @@ export default function Login() {
           var user = result.user;
           // new line
           if (user) {
-            window.location = "http://localhost:3000/checkout";
+            window.location = rCheck;
           }
         })
         .catch(function (error) {
@@ -140,7 +145,7 @@ export default function Login() {
         var user = result.user;
         if (user) {
           console.log(user);
-          // window.location="http://localhost:3000/checkout"
+          // window.location= rCheck
         }
       })
       .catch((error) => {
@@ -156,7 +161,7 @@ export default function Login() {
       .then((result) => {
         var user = result.user;
         if (user) {
-          window.location = "http://localhost:3000/Home";
+          window.location = home;
         }
       })
       .catch((error) => {
@@ -166,15 +171,15 @@ export default function Login() {
   };
 
   const phoneSignup = () => {
-    window.location = "http://localhost:3000/phone";
+    window.location = rP;
   };
 
   const phoneSignin = () => {
-    window.location = "http://localhost:3000/phone";
+    window.location = rP;
   };
 
   const goToVet = () => {
-    window.location = "http://localhost:3000/vLogin";
+    window.location = window.location.protocol + "//" + window.location.host + "/" +'vLogin/';
   };
 
   const googleSignin = () => {
@@ -193,7 +198,7 @@ export default function Login() {
 
       auth.onAuthStateChanged((user) => {
         if (user) {
-          window.location = "http://localhost:3000/Home";
+          window.location = home;
         }
       });
     }
@@ -211,15 +216,15 @@ export default function Login() {
           db.collection('Admin').doc(user.uid).get()
         .then(doc=>{
           if(doc.exists){
-            window.location = "http://localhost:3000/admin/verifyVet";
+            window.location = window.location.protocol + "//" + window.location.host + "/admin/" +'verifyVet/';
           }
           else{
           console.log("user");
           if (user) {
             if (!user.emailVerified) {
-              window.location = "http://localhost:3000/verifyEmail";
+              window.location = vMail;
             } else {
-              window.location = "http://localhost:3000/Home";
+              window.location = home;
             }
           }
         }
@@ -259,7 +264,7 @@ export default function Login() {
             <LockOutlinedIcon />
           </Avatar>
           <Typography style={{ color: "#36A9CC" }} component="h1" variant="h5">
-            {newUser ? "Sign In" : "Sign Up"}
+            {newUser ? "Sign Up" : "Sign In"}
           </Typography>
           <form className={classes.form} noValidate>
             {newUser ? (

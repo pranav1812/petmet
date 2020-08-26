@@ -25,7 +25,7 @@ const SquareCard = (props) => {
         </span>
         <span>
           <div className="priceofproduct">₹250</div>
-          <img className="arrow" src={Arrow} />
+          {/* <img className="arrow" src={Arrow} /> */}
         </span>
       </div>
     </div>

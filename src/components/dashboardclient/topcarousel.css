@@ -5,12 +5,9 @@
   justify-content: center;
   height: 100vh;
 } */
-.carousel {
+/* .carouseltop {
   height: 300px;
-}
-
-.jBnCOy {
-  margin-top: 1px !important;
-  position: absolute;
-  margin-top: 280px !important;
+} */
+.carouseltop {
+  height: auto !important;
 }
