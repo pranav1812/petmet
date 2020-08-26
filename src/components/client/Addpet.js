@@ -1,12 +1,9 @@
 import React, {useState} from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import {Form} from 'react-bootstrap';
 import ls from 'local-storage';
 import {auth, db} from '../../firebase';
-
-import {Router, Link} from 'react-router-dom'
-import Button from '@material-ui/core/Button';
+import '../Admin/Admin.css'
+import {Router, Link} from 'react-router-dom';
 
 export default function Addpet() {
 
@@ -25,7 +22,68 @@ export default function Addpet() {
 
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <h1 className="main-head mt-4">COMPLETE THE PROFILE OF YOUR PETS</h1>
+        <div className="container addProduct">
+                    <Form className="addProduct_form">
+                        <div className="row mb-3">
+                            <Form.Label className="col-3">Add Pet Image</Form.Label>
+                            <input className="col-7 col-sm-8 offset-sm-0 offset-1" type="file"  id="group_image"/>
+                            <img id="target"/>
+                        </div>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Name</Form.Label>
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" id="Name"
+                               name="Name" autoComplete="pet-name"
+                               onBlur={e=>{ls.set('petName', e.target.value)}}>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Animal</Form.Label>
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                            id="animal"
+                            name="animal"
+                            autoComplete="animal"
+                            onBlur={e=>{ls.set('animal', e.target.value)}}  />
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Breed</Form.Label>
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="breed"
+                             name="breed"
+                             autoComplete="breed"
+                             onBlur={e=>{ls.set('breed', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Age</Form.Label>
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="age"
+                             name="age"
+                             autoComplete="age"
+                             onBlur={e=>{ls.set('age', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Gender</Form.Label>
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="gender"
+                             name="gender"
+                             autoComplete="gender"
+                             onBlur={e=>{ls.set('gender', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Link to='/Home/'><button type="button" className="offset-4 offset-sm-3 pink_out">
+                            Submit
+                        </button>
+                        </Link>
+                    </Form>
+                </div>
+    </React.Fragment>
+  );
+};
+
+
+{/*<Typography variant="h6" gutterBottom>
         Complete the profile of your pets
       </Typography>
       <div className="add_grp_image_div margin_bottom">
@@ -92,7 +150,4 @@ export default function Addpet() {
   <Link to='/Home/'><Button variant="contained" color="primary">
   Submit
 </Button> </Link>
-      </Grid>
-    </React.Fragment>
-  );
-};
+</Grid>*/}

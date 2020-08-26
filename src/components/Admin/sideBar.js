@@ -20,6 +20,7 @@ import AddProduct from './addProduct';
 import VerifyVet from './verify';
 import RecentProducts from './recentProducts';
 import {useParams, Link} from 'react-router-dom'
+import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 
 import {db, auth} from '../../firebase'
 
@@ -108,7 +109,7 @@ function ResponsiveDrawer(props) {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <AppBar position="fixed" className={classes.appBar} style={{background: '#36A9CC'}}>
+      <AppBar position="fixed" className={classes.appBar} style={{background: "#F1F1F1"}}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -120,7 +121,9 @@ function ResponsiveDrawer(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" style={{color: "white"}} noWrap>
-            Admin Dashboard
+            <img className="mainlogoonnav"
+              style={{ width: "130px", height: "33px" }}
+              src={MainLogo}></img>
           </Typography>
         </Toolbar>
       </AppBar>

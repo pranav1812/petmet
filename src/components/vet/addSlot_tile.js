@@ -21,7 +21,7 @@ export default function AddSlotTile(props) {
   
   
   return (
-    <Card className={classes.root} className="tile_vet">
+    <Card className={classes.root} className="tile_vet mb-2">
       
         <CardContent>
           <Typography gutterBottom variant="h5" component="h2">

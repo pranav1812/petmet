@@ -1,13 +1,85 @@
 import React from 'react';
-import Grid from '@material-ui/core/Grid';
-import Typography from '@material-ui/core/Typography';
-import TextField from '@material-ui/core/TextField';
+import {Form} from 'react-bootstrap';
 import ls from 'local-storage'
+import '../Admin/Admin.css';
 
 export default function EditProfile() {
   return (
     <React.Fragment>
-      <Typography variant="h6" gutterBottom>
+      <h1 className="main-head mt-4">UPDATE YOUR PROFILE</h1>
+        <div className="container m-4">
+                    <Form className="addProduct_form">
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Name</Form.Label>
+                            <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" id="Name"
+                               name="Name" autoComplete="given-name"
+                               onBlur={e=>{ls.set('name', e.target.value)}}>
+                            </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">E-Mail</Form.Label>
+                            <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                            id="mail"
+                            name="mail"
+                            autoComplete="email"
+                            onBlur={e=>{ls.set('mail', e.target.value)}}  />
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Phone Number</Form.Label>
+                            <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="phone"
+                             name="phone"
+                             autoComplete="number"
+                             onBlur={e=>{ls.set('phone', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Address</Form.Label>
+                            <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="address"
+                             name="address"
+                             autoComplete="address"
+                             onBlur={e=>{ls.set('address', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">City</Form.Label>
+                            <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="city"
+                             name="city"
+                             autoComplete="city"
+                             onBlur={e=>{ls.set('city', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">State</Form.Label>
+                            <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="state"
+                             name="state"
+                             autoComplete="state"
+                             onBlur={e=>{ls.set('state', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Zip</Form.Label>
+                            <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                             id="zip"
+                             name="zip"
+                             autoComplete="shipping postal-code"
+                             onBlur={e=>{ls.set('pin', e.target.value)}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <button type="button" className="offset-4 offset-sm-3 pink_out">
+                            Update
+                        </button>
+                    </Form>
+                </div>
+    </React.Fragment>
+  );
+}
+
+{/**
+<Typography variant="h6" gutterBottom>
         Update your Profile
       </Typography>
      
@@ -87,7 +159,4 @@ export default function EditProfile() {
           />
         </Grid>
         </Grid>
-        
-    </React.Fragment>
-  );
-}
+*/}
