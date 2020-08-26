@@ -112,15 +112,17 @@ const DashboardClient = () => {
           </Link>
         </div>
 
-        <Link to="/ShopProducts/">
+        
           <div className="cards">
             {categories
               ? categories.map((cat) => (
+                <Link to="/ShopProducts/">
                   <RoundCard title={cat.name} image={cat.img} />
+                </Link>
                 ))
               : null}
           </div>
-        </Link>
+        
         <h2 className="headers">BEST SELLERS</h2>
         <div className="productcards">
           {/* <Carousel breakPoints={breakPoints}>

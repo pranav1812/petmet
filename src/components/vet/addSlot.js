@@ -58,7 +58,10 @@ export default function AddSlot(props) {
     db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').collection('freeSlots').add({
       Type: "any",
       Time: newSlot      
-    }).then(()=> setSentSlot(newSlot))
+    }).then(()=> {
+      alert("added new slot")
+      setSentSlot(newSlot)
+    })
     
   }
 

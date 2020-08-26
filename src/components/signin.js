@@ -216,7 +216,7 @@ export default function Login() {
           db.collection('Admin').doc(user.uid).get()
         .then(doc=>{
           if(doc.exists){
-            window.location = window.location.protocol + "//" + window.location.host + "/" +'verifyVet/';
+            window.location = window.location.protocol + "//" + window.location.host + "/admin" +'verifyVet/';
           }
           else{
           console.log("user");
