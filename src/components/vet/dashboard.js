@@ -32,6 +32,7 @@ import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 
 
 import { useParams, Link as Linkk} from 'react-router-dom'
+import Footer from "../FooterNew";
 
 var slots = [];
 function getData() {
@@ -253,11 +254,13 @@ export default function VDashboard() {
               <ListItemText primary="Logout"/>              
             </ListItem>
       </Drawer>
-      <div className="main-container">
+      <div className="main-container mb-0">
         <Grid item xs={12} md={12} lg={12}>
           { vd==='Profile'? (<Profile />): vd==='AddSlot'? (<AddSlot />): vd==='Appointments'? (<Appointments/>) : vd==='editProfile'? (<EditProfile />): (<Profile />) }
         </Grid>
+        <Footer />
       </div>
+      
     </div>
   );
 }

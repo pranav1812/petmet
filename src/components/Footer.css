@@ -1,0 +1,19 @@
+.footer_img {
+    width: 60%;
+}
+
+.footer {
+    /*background-color:rgba(247, 247, 247, 0.884) ;*/
+    padding-top: 40px;
+    bottom: 0;
+    position: relative;
+}
+
+.footer_icon {
+    color: #36A9CC;
+}
+
+.social {
+    font-size: 30px;
+    padding-right: 5px;
+}

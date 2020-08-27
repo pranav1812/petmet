@@ -6,7 +6,6 @@ import "./dashboard.css";
 import TopCarousel from "./TopCarousel";
 import BestSellers from "./BestSellers.js";
 //import AppBar from "@material-ui/core/AppBar";
-import { FooterContainer } from "../footer/containers/footer";
 //import catessentials from "../pictures/image 3.png";
 //import harness from "../pictures/image 4.png";
 //import grooming from "../pictures/image 5.png";
@@ -164,7 +163,6 @@ const DashboardClient = () => {
           {/* </div>
           </Carousel> */}
         </div>
-        {/* <FooterContainer /> */}
       </div>
     </div>
   );

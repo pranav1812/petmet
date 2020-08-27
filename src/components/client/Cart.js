@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
-import { FooterContainer } from "../footer/containers/footer";
 import "./cart.css";
 import product1 from "../pictures/image 37.png";
 import product2 from "../pictures/image 35.png";
@@ -198,9 +197,6 @@ const CartComponent = () => {
         </div>
         {/* ................................... */}
       </div>
-      {/* <div style={{ marginTop: "300px" }}>
-        <FooterContainer />
-      </div> */}
     </div>
   );
 };

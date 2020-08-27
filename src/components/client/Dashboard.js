@@ -43,6 +43,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import ShopPage from '../shop/ShopPage';
 import ShopProducts from './ShopProducts';
+import Footer from '../FooterNew';
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -360,6 +361,7 @@ export default function Dashboard() {
           </Grid>
           <Box pt={4}></Box>
         </Container>
+        <Footer />
       </main>
     </div>
   );

@@ -3,7 +3,6 @@ import { auth } from "../../firebase";
 import product1 from "../pictures/image 37.png";
 import product2 from "../pictures/image 35.png";
 import product3 from "../pictures/image 34.png";
-import { FooterContainer } from "../footer/containers/footer";
 // import "./wishlist.css";
 import "./cart.css";
 
@@ -223,9 +222,6 @@ const WishlistComponent = () => {
           Buy Now
         </button>
       </div>
-      {/* <div style={{ marginTop: "300px" }}>
-        <FooterContainer />
-      </div> */}
     </div>
   );
 };

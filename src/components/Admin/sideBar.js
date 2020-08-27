@@ -21,6 +21,7 @@ import VerifyVet from './verify';
 import RecentProducts from './recentProducts';
 import {useParams, Link} from 'react-router-dom'
 import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
+import Footer from '../FooterNew';
 
 import {db, auth} from '../../firebase'
 
@@ -160,8 +161,10 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
       <div className={classes.toolbar} />
-            {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />: null}     
+            {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />: null} 
+            <Footer />    
       </main>
+      
     </div>
   );
 }
