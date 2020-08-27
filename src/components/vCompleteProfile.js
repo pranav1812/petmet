@@ -31,7 +31,19 @@ export default function VCompleteProfile() {
     
   const classes = useStyles();
     const [uid, setUid]= React.useState(null)
-    const [sbt, setSbt]= useState(false)
+    const [state, setState] = useState({
+      name: null,
+      description: null,
+      cost: null,
+      size: null,
+      quantity: null,
+      category: null, 
+      ingriedients: null,
+      addInfo: null,
+      url: null
+    })
+    const[sbt, setSbt]=useState(false)
+    const [url, setUrl]= useState(null)
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
         if(user){
@@ -62,25 +74,16 @@ export default function VCompleteProfile() {
 
 
   const submit=()=>{
+    var {Name,phone,Achievements,Qualification,experience,Address,city,state,zip}=state
+       
     db.collection('vet').doc(uid).update({
-      Name: ls.get('Name'),
-      phone: ls.get('phone'),
-      Achievements: ls.get('Achievements'),
-      Qualification: ls.get('Qualification'),
-      experience: ls.get('experience'),
-      Address: ls.get('Address'),
-      city: ls.get('city'),
-      state: ls.get('state'),
-      zip: ls.get('zip'),
-      verified: false,
-      profileCompleted: true
+   details:state
     })
     setSbt(true)
   }
 
   return (
     <React.Fragment>
-
 <CssBaseline />
       
       <Typography variant="h6" gutterBottom>
@@ -94,9 +97,7 @@ export default function VCompleteProfile() {
             name="Name"
             label="Name"
             fullWidth
-            autoComplete="given-name"
-            onBlur={e=>{ls.set('Name', e.target.value)}}
-          />
+            autoComplete="given-name" onBlur={(e)=>{this.setState({name: e.target.value})}}/>
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -106,8 +107,7 @@ export default function VCompleteProfile() {
             label="phone"
             fullWidth
             autoComplete="phone"
-            onBlur={e=>{ls.set('phone', e.target.value)}}
-          />
+            onBlur={(e)=>{setState({phone: e.target.value})}} />
         </Grid>
         <Grid item xs={12}>
           <TextField
@@ -116,8 +116,7 @@ export default function VCompleteProfile() {
             label="Achievements"
             fullWidth
             autoComplete="Achievements"
-            onBlur={e=>{ls.set('Achievements', e.target.value)}}
-          />
+            onBlur={(e)=>{setState({Achievements: e.target.value})}}/>
         </Grid>
         <Grid item xs={12} sm={6}>
         <TextField
@@ -127,8 +126,7 @@ export default function VCompleteProfile() {
             label="Qualification"
             fullWidth
             autoComplete="Qualification"
-            onBlur={e=>{ls.set('Qualification', e.target.value)}}
-          />
+            onBlur={(e)=>{setState({Qualification: e.target.value})}}/>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -138,8 +136,7 @@ export default function VCompleteProfile() {
             label="experience in years"
             fullWidth
             autoComplete="years"
-            onBlur={e=>{ls.set('experience', e.target.value)}}
-          />
+            onBlur={(e)=>{setState({experience: e.target.value})}}/>
         </Grid>
         
         <Grid item xs={12} sm={6}>
@@ -150,8 +147,7 @@ export default function VCompleteProfile() {
             label="Address"
             fullWidth
             autoComplete="Address"
-            onBlur={e=>{ls.set('Address', e.target.value)}}
-          />
+            onBlur={(e)=>{setState({address: e.target.value})}}/>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -161,13 +157,11 @@ export default function VCompleteProfile() {
             label="City"
             fullWidth
             autoComplete="city"
-            onBlur={e=>{ls.set('city', e.target.value)}}
-          />
+            onBlur={(e)=>{setState({city: e.target.value})}}/>
         </Grid>
         <Grid item xs={12} sm={6}>
           <TextField id="state" name="state" label="State" fullWidth 
-          onBlur={e=>{ls.set('state', e.target.value)}}
-          />
+          onBlur={(e)=>{setState({state: e.target.value})}}/>
                 </Grid>
         <Grid item xs={12} sm={6}>
           <TextField
@@ -177,8 +171,7 @@ export default function VCompleteProfile() {
             label="Zip / Postal code"
             fullWidth
             autoComplete="shipping postal-code"
-            onBlur={e=>{ls.set('zip', e.target.value)}}
-          />
+            onBlur={(e)=>{setState({zip: e.target.value})}}/>
         </Grid>
         
 
