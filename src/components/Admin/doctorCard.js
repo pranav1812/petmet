@@ -37,12 +37,12 @@ class DoctorCard extends Component {
                         <div className="col-12 col-sm-4 align-self-center mt-3">
                             <Card.Img className="card_img" src="https://firebasestorage.googleapis.com/v0/b/petmet-268a4.appspot.com/o/itemImages%2Fimage%203.png?alt=media&token=e46c6b3a-2110-46c1-8902-4b2b838660d9" />
                         </div>
-                        <div className="col-12 col-sm-8 mb-4 mb-xl-2">
+                        <div className="col-12 col-sm-8 mb-4 mb-xl-3">
                             <Card.Body>
                                 <Card.Title>{data.Name}</Card.Title>
                                 <Card.Text>
                                     <ul className="list-unstyled">
-                                        <li>Address: {data.Address} </li>
+                                        <li>Address: {data.Address}<br /> </li>
                                         <li>Qualification: {data.Qualification}</li>
                                     </ul>
                                 </Card.Text>

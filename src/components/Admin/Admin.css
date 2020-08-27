@@ -112,6 +112,17 @@ h1 {
   left: 100px;
  }
 
+ .btn-card-1-1 {
+  position: absolute;
+  bottom: -6px;
+ }
+
+ .btn-card-2-1 {
+  position: absolute;
+  bottom: -6px;
+  left: 90px;
+ }
+
 
 .profile_img {
   height: 200px;
@@ -126,12 +137,12 @@ h1 {
 
   .btn-card-1 {
     position: absolute;
-    top: 130px;
+    bottom: -20px;
    }
    
    .btn-card-2 {
      position: absolute;
-     top: 130px;
+     bottom: -20px;
      left: 100px;
     }
    .card_img {
