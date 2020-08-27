@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { auth } from "../../firebase";
+import { auth, db } from "../../firebase";
 import product1 from "../pictures/image 37.png";
 import product2 from "../pictures/image 35.png";
 import product3 from "../pictures/image 34.png";
@@ -10,11 +10,30 @@ const home= window.location.protocol + "//" + window.location.host + "/" +'Home/
 
 
 const WishlistComponent = () => {
+
+  const [wish, setWish]= useState(null)
+
+  useEffect(()=>{
+    auth.onAuthStateChanged(user=>{
+      console.log(user)
+      db.collection('user').doc(user.uid).collection('wishlist').get()
+        .then(docs=>{
+          var temp=[]
+          docs.forEach((doc)=>{
+            temp.push(doc.data())
+          })
+          setWish(temp)
+        })
+    })
+    
+  }, [])
+
   return (
     <div className="wishlistpage">
       
-
-      <div style={{ backgroundColor: "white" }} className="cartproductcard">
+      {wish? wish.map(wi=> (
+        <div style={{ margin: "10px", width: "30em" }} className="cartproductcard">
+        
         <p>
           <img
             className="cartproductimage"
@@ -22,73 +41,13 @@ const WishlistComponent = () => {
             alt="productpicture"
           />
           <div style={{ marginLeft: "140px", color: "black" }}>
-            <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
-            <p>Special food for dog designed for summer season</p>
-            <p>Rs 345</p>
+            <h4 style={{ fontWeight: "500" }}>{wi.name} </h4>
+            <p>{wi.des} </p>
+            <p>{"Rs. " + wi.cost} </p>
           </div>
         </p>
-        <div className="sizeandqty">
-          {/* ...........select size........... */}
-          <div className="nav-item dropdown show">
-            <a
-              className="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              SIZE
-            </a>
-            <div className="dropdown-menu">
-              <a className="dropdown-item" href="#">
-                BLANKKKKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKK
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
-                BLANKKKKK
-              </a>
-            </div>
-          </div>
-          {/* ............select size over....... */}
-          <div className="nav-item dropdown show">
-            <a
-              className="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              QTY
-            </a>
-            <div className="dropdown-menu">
-              <a className="dropdown-item" href="#">
-                BLANKKKKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKK
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
-                BLANKKKKK
-              </a>
-            </div>
-          </div>
-
-          {/* ..................QTY OVERR.......... */}
-        </div>
-        <br />
-        <hr />
+        
+       <br />
         <button type="button" class="btn btnapply">
           Remove
         </button>
@@ -96,89 +55,10 @@ const WishlistComponent = () => {
           Buy Now
         </button>
       </div>
-      {/* ................................second card..................................... */}
-      <div style={{ backgroundColor: "white" }} className="cartproductcard">
-        <p>
-          <img
-            className="cartproductimage"
-            src={product1}
-            alt="productpicture"
-          />
-          <div style={{ marginLeft: "140px", color: "black" }}>
-            <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
-            <p>Special food for dog designed for summer season</p>
-            <p>Rs 345</p>
-          </div>
-        </p>
-        <div className="sizeandqty">
-          {/* ...........select size........... */}
-          <div className="nav-item dropdown show">
-            <a
-              className="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              SIZE
-            </a>
-            <div className="dropdown-menu">
-              <a className="dropdown-item" href="#">
-                BLANKKKKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKK
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
-                BLANKKKKK
-              </a>
-            </div>
-          </div>
-          {/* ............select size over....... */}
-          <div className="nav-item dropdown show">
-            <a
-              className="nav-link dropdown-toggle"
-              data-toggle="dropdown"
-              href="#"
-              role="button"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              QTY
-            </a>
-            <div className="dropdown-menu">
-              <a className="dropdown-item" href="#">
-                BLANKKKKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKKK
-              </a>
-              <a className="dropdown-item" href="#">
-                BLANKK
-              </a>
-              <div className="dropdown-divider"></div>
-              <a className="dropdown-item" href="#">
-                BLANKKKKK
-              </a>
-            </div>
-          </div>
+      ) ): null}
 
-          {/* ..................QTY OVERR.......... */}
-        </div>
-        <br />
-        <hr />
-        <button type="button" class="btn btnapply">
-          Remove
-        </button>
-        <button type="button" class="btn btnapply">
-          Buy Now
-        </button>
-      </div>
+      
+      
     </div>
   );
 };
