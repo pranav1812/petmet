@@ -11,12 +11,12 @@ class Footer extends Component {
         return ( 
             <div className="footer">
                 <hr />
-                <div className="container mt-5">
+                <div className="container">
                     <div className="row">
                         <div className="col-12 col-sm-5">
                             <img className="footer_img" src={Logo} alt="logo"></img>
                             <p className="mt-3">Petmet is the one stop destination for all the needs of your pets.</p>
-                            <div className="row ml-4 mb-4">
+                            <div className="row ml-4">
                                 <span className="footer_icon social"><FaFacebook /></span>
                                 <span className="footer_icon social"><AiFillInstagram /></span>
                                 <span className="footer_icon social"><FaLinkedin /></span>
@@ -40,7 +40,7 @@ class Footer extends Component {
                         </div>
                     </div>
                     <hr></hr>
-                    <div className="row mt-3 justify-content-center">
+                    <div className="row justify-content-center">
                         <p>Copyright &copy; 2020 PetMet India, Inc. All rights reserved.</p>
                     </div>
                 </div>

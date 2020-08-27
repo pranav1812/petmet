@@ -72,9 +72,10 @@ export default function Addpet() {
                              onBlur={e=>{ls.set('gender', e.target.value)}}>
                              </Form.Control>
                         </Form.Group>
-                        <Link to='/Home/'><button type="button" className="offset-4 offset-sm-3 pink_out">
+                        <Link to='/Home/'>
+                          <button type="button" className="offset-4 offset-sm-3 pink_out">
                             Submit
-                        </button>
+                          </button>
                         </Link>
                     </Form>
                 </div>
