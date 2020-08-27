@@ -3,6 +3,8 @@ import {auth, db} from '../firebase'
 import Button from '@material-ui/core/Button';
 import { makeStyles } from '@material-ui/core/styles';
 
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+const rCheck= window.location.protocol + "//" + window.location.host + "/" +'checkout/'
 
 const useStyles = makeStyles((theme) => ({
     button: {
@@ -33,7 +35,7 @@ export default function VerifyEmail() {
                             //     window.location='http://localhost:3000/dashboard/any'
                             // }
                             // else if(!doc.data().profileCompleted){
-                            //     window.location='http://localhost:3000/checkout'
+                            //     window.location= rCheck
                             // }
                         })
                         setButton(true)
@@ -41,15 +43,15 @@ export default function VerifyEmail() {
                     alert("verification required")
                 }
             }else{
-                window.location='http://localhost:3000/login'
+                window.location= window.location.protocol + "//" + window.location.host + "/" + 'login/'
             }
         })
     },[])
     const move=()=>{
-        window.location='http://localhost:3000/checkout'
+        window.location= rCheck
     }
     const skip=()=>{
-        window.location='http://localhost:3000/Home'
+        window.location= home
     }
 
     const sendVerification=()=>{

@@ -3,7 +3,7 @@ import Carousel from "./Carousel";
 import Button from "@material-ui/core/Button";
 import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
 import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
-import Rating from "@material-ui/lab/Rating";
+/*import Rating from "@material-ui/lab/Rating";*/
 import IconLabelButtons from "./Buttons";
 import "./shoppage.css";
 import BestSellers from "../dashboardclient/BestSellers";
@@ -31,12 +31,12 @@ const ShopPage = () => {
           </p>
           <hr style={{ color: "rgba(0,0,0,0.1" }} />
 
-          <Rating
+          {/*<Rating
             style={{ marginTop: "20px" }}
             name="read-only"
             value={value}
             readOnly
-          />
+          />*/}
           <p style={{ fontSize: 14, marginTop: "20px" }}>
             Lorem ipsum dolor sit amet, <br />
             consectetur adipiscing elit, sed do eiusmod tempor incididunt <br />

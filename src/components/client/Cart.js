@@ -6,6 +6,8 @@ import product1 from "../pictures/image 37.png";
 import product2 from "../pictures/image 35.png";
 import product3 from "../pictures/image 34.png";
 
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+
 const CartComponent = () => {
   return (
     <div>
@@ -58,23 +60,25 @@ const CartComponent = () => {
             </h6>
           </div>
           {/* .................... */}
-          <div
-            style={{ backgroundColor: "#F5F5F5" }}
-            className="cartproductcard"
-          >
+          <div style={{ backgroundColor: "white" }} className="cartproductcard">
             <p>
               <img
                 className="cartproductimage"
                 src={product1}
                 alt="productpicture"
               />
-              <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
-              <p>Special food for dog designed for summer season</p>
-              <p>Rs 345</p>
+              <div style={{ marginLeft: "140px" }}>
+                <h4 style={{ fontWeight: "500" }}>PRODUCT NAME</h4>
+                <p>Special food for dog designed for summer season</p>
+                <p>Rs 345</p>
+              </div>
             </p>
             <div className="sizeandqty">
               {/* ...........select size........... */}
-              <div className="nav-item dropdown show">
+              <div
+                style={{ padding: "35px" }}
+                className="nav-item dropdown show"
+              >
                 <a
                   className="nav-link dropdown-toggle"
                   data-toggle="dropdown"
@@ -137,7 +141,11 @@ const CartComponent = () => {
             <button type="button" class="btn btnapply">
               Remove
             </button>
-            <button type="button" class="btn btnapply">
+            <button
+              style={{ alignContent: "right" }}
+              type="button"
+              class="btn btnapply"
+            >
               Move to wishlist
             </button>
           </div>
@@ -155,7 +163,7 @@ const CartComponent = () => {
           </div>
           {/* ...................................... */}
           <div className="pricedetails">
-            <h6>PRICE DETAILS</h6>
+            <h6 className="availableoffers">PRICE DETAILS</h6>
             <ul>
               <span>
                 <li>
@@ -169,7 +177,7 @@ const CartComponent = () => {
                 <p>Coupon Discount Rs456</p>
               </li>
               <li>
-                <p> Order TotalRs456</p>
+                <p> Order Total Rs456</p>
               </li>
               <li>
                 <p> Delivery Charge Rs456</p>
@@ -190,9 +198,9 @@ const CartComponent = () => {
         </div>
         {/* ................................... */}
       </div>
-      <div style={{ marginTop: "300px" }}>
+      {/* <div style={{ marginTop: "300px" }}>
         <FooterContainer />
-      </div>
+      </div> */}
     </div>
   );
 };
@@ -203,7 +211,7 @@ export default function Cart() {
     auth.onAuthStateChanged((user) => {
       if (!user) {
         alert("login required");
-        window.location = "http://localhost:3000/Home";
+        window.location = home;
       } else {
         setUsr(user);
       }

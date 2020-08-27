@@ -9,11 +9,26 @@ h1 {
   text-align: center;
   color: #FF5352;
   font-weight: bold;
+  font-size: 30px;
 }
 
 .menu_icons {
   color:#FF5352;
   font-size: 20px;
+}
+
+.pink_out {
+  background-color: white ;
+  border-color: #FF5352;
+  color: #FF5352;
+  border: #FF5352 solid 1px;
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.pink_out:hover {
+  background-color: #FF5352 ;
+  color: #f2f2f2;
 }
 
 .pink_btn {

@@ -25,7 +25,7 @@ class DoctorCard extends Component {
         verify=()=>{
             db.collection('vet').doc(this.props.vid).update({
                 verified: true
-            })
+            }).then(()=> window.location.reload())
         }
     render() { 
         const {data}= this.props

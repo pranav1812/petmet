@@ -28,6 +28,7 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import EditProfile from './EditProfile';
+import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 
 
 import { useParams, Link as Linkk} from 'react-router-dom'
@@ -84,7 +85,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
-    backgroundColor: "#36A9CC",
+    backgroundColor: "#F1F1F1",
   },
   appBarShift: {
     marginLeft: drawerWidth,
@@ -157,17 +158,17 @@ export default function VDashboard() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        window.location = "http://localhost:3000/vLogin";
+        window.location = window.location.protocol + "//" + window.location.host + "/" +"vLogin";
       } else {
         if (!user.emailVerified) {
-          window.location = "http://localhost:3000/vVerifyEmail";
+          window.location = window.location.protocol + "//" + window.location.host + "/" + "vVerifyEmail";
         } else {
           db.collection("vet")
             .doc(user.uid)
             .get()
             .then((doc) => {
               if (!doc.exists || !doc.data().profileCompleted) {
-                window.location = "http://localhost:3000/vCompleteProfile";
+                window.location = window.location.protocol + "//" + window.location.host + "/" +"vCompleteProfile";
               }
             });
         }
@@ -210,22 +211,15 @@ export default function VDashboard() {
               open && classes.menuButtonHidden
             )}
           >
+            
             <MenuIcon />
           </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            Vet Dashboard
+          <Typography variant="h6" style={{color: "white"}} noWrap>
+            <img className="mainlogoonnav"
+              style={{ width: "130px", height: "33px" }}
+              src={MainLogo}></img>
           </Typography>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <NotificationsIcon />
-            </Badge>
-          </IconButton>
+          
         </Toolbar>
       </AppBar>
       <Drawer

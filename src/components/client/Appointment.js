@@ -6,6 +6,8 @@ import dog from '../pictures/dog.png'
 import rabbit from '../pictures/rabbit.png'
 import cat from '../pictures/cat.png'
 
+const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+
 const useStyles = makeStyles((theme) => ({
     vet:{
         position: 'absolute',
@@ -93,7 +95,7 @@ export default function Appointment() {
       auth.onAuthStateChanged(user=>{
           if(!user){
               alert("login required")
-              window.location='http://localhost:3000/Home'
+              window.location= home
           }
           else{
               setUsr(user)

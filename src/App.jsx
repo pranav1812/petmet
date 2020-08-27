@@ -25,6 +25,7 @@ function App() {
   return (
     <div className="kuchh_aur">    
       <Switch>
+        <Route exact path='/' component={Dashboard} />
         <Route exact path='/login' component={Login} />
         <Route exact path='/phone' component={Phone} />
         <Route exact path='/vVerifyEmail' component={VVerifyEmail} />
@@ -37,7 +38,9 @@ function App() {
         <Route exact path='/admin/:component' component={SideBar} />
         <Route exact path='/v/:vd' component={VDashboard} />
         <Route exact path='/:componentt' component={Dashboard} />
-         </Switch> 
+        
+        
+      </Switch> 
       
     
     </div>
