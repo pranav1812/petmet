@@ -162,12 +162,12 @@ export default function Dashboard() {
           .then((doc) => {
             if (user.emailVerified && !doc.exists) {
               db.collection("user").doc(user.uid).set({
-                name: user.displayName,
+                name: user.displayName || "Anonymous",
                 profileCompleted: false,
               });
             }
             if (doc.exists) setName(doc.data().name);
-            else setName(user.displayName);
+            else setName(user.displayName || "Anonymous User");
           });
       }
     });
@@ -228,6 +228,8 @@ export default function Dashboard() {
             >
               <NotificationsNoneIcon />
             </div>
+            {/*Yaha lagana hai*/}
+            {(<div style={{ float: "right", display: "inline" }} ><AccountCircleIcon /> {name? name: "no user"}</div>)} 
             <div
               style={{ float: "right", display: "inline" }}
               className="searchicon"

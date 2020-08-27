@@ -87,8 +87,8 @@ image:{position: 'absolute',
 
 export default function Appointment() {
     const classes = useStyles();
-    const [state, setState]= useState({})
-    console.log(state)
+    const [vets, setVets]= useState(null)
+    
     
   const [usr, setUsr]= useState(null)
   useEffect(()=>{
@@ -99,6 +99,23 @@ export default function Appointment() {
           }
           else{
               setUsr(user)
+              db.collection('user').doc(user.uid).get()
+                .then(doc=>{
+                  if(doc.exists){
+                    var city= doc.data().city
+                    db.collection('vet').where("city", "==", city).get()
+                      .then(docs=>{
+                        var temp=[]
+                        docs.forEach(vet=>{
+                          temp.push(vet.data())
+                        })
+                        setVets(temp)
+                      })
+                      .catch(err=>console.error(err))
+                  }                 
+                })
+                .catch(err=>console.error(err))
+              
           }
       })
   })
@@ -106,7 +123,9 @@ export default function Appointment() {
       <div>
           {usr? (<h1>Appointment</h1>): null}
 
-          <div className="container ">
+          {
+            vets? vets.map(vet=>(
+              <div className="container ">
         <div className="row ">
           <div className="image">
             <img src={dog} className="profile_img" />
@@ -114,20 +133,22 @@ export default function Appointment() {
           <div className="hi">
             <div className="vet">
                 
-            <strong className="head">Ortho Vet Clinic</strong>
+            
             <p></p>
-              <strong className="col">Dr. Arvind Goyal</strong>
-            </div>
-            <div className="address">
-              <p className="col">Shop No. 17, Sector 6, Market Road</p>
+              <strong className="col">{vet.Name} </strong>
             </div>
             <div className="open">
-              <p className="col"> Open Closes 9 PM</p>
+              <p className="col">{vet.Qualification} </p>
+            </div>
+            <div className="open">
+              <p className="col">{vet.experience} </p>
+            </div>
+            <div className="address">
+              <p className="col">{vet.Address} </p>
             </div>
             
-            <div className="dist">
-              <p className="col">36KM</p>
-            </div>
+            
+            
             </div>
       
         </div>
@@ -135,61 +156,9 @@ export default function Appointment() {
       </div>
   
 
-      <div className="container ">
-        <div className="row ">
-          <div className="image">
-            <img src={rabbit} className="profile_img" />
-          </div>
-          <div className="hi">
-            <div className="vet">
-            <strong className="head">Ortho Vet Clinic</strong>
-           <p></p>
-              <strong className="col">Dr. Arvind Goyal</strong>
-            </div>
-            <div className="address">
-              <p className="col">Shop No. 17, Sector 6, Market Road</p>
-            </div>
-            <div className="open">
-              <p className="col"> Open Closes 9 PM</p>
-            </div>
-            
-            <div className="dist">
-              <p className="col">36KM</p>
-            </div>
-            </div>
-      
-        </div>
-        <hr/>
-      </div>
-     
+            )): null
+          }
 
-      <div className="container ">
-        <div className="row ">
-          <div className="image">
-            <img src={cat} className="profile_img" />
-          </div>
-          <div className="hi">
-            <div className="vet">
-            <strong className="head">Ortho Vet Clinic</strong>
-           <p></p>
-              <strong className="col">Dr. Arvind Goyal</strong>
-            </div>
-            <div className="address">
-              <p className="col">Shop No. 17, Sector 6, Market Road</p>
-            </div>
-            <div className="open">
-              <p className="col"> Open Closes 9 PM</p>
-            </div>
-            
-            <div className="dist">
-              <p className="col">36KM</p>
-            </div>
-            </div>
-      
-        </div>
-        <hr/>
-      </div>
-     
 
       </div>
   )
