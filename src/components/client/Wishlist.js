@@ -12,50 +12,7 @@ const home= window.location.protocol + "//" + window.location.host + "/" +'Home/
 const WishlistComponent = () => {
   return (
     <div className="wishlistpage">
-      {/* <div className="wishlist">
-        <div className="wishlistitem">
-          <img
-            className="wishlistitemimage"
-            src={product1}
-            alt="wishlistitem"
-          />
-          <h6 style={{ padding: " 10px 10px 0", color: "#282c3f" }}>
-            Product Name <br /> Rs3456
-          </h6>
-          <hr />
-          <button type="button" class="btn1 btn-link">
-            MOVE TO BAG
-          </button>
-        </div>
-        <div className="wishlistitem">
-          <img
-            className="wishlistitemimage"
-            src={product2}
-            alt="wishlistitem"
-          />
-          <h6 style={{ padding: " 10px 10px 0", color: "#282c3f" }}>
-            Product Name <br /> Rs3456
-          </h6>
-          <hr />
-          <button type="button" class="btn1 btn-link">
-            MOVE TO BAG
-          </button>
-        </div>
-        <div className="wishlistitem">
-          <img
-            className="wishlistitemimage"
-            src={product3}
-            alt="wishlistitem"
-          />
-          <h6 style={{ padding: " 10px 10px 0", color: "#282c3f" }}>
-            Product Name <br /> Rs3456
-          </h6>
-          <hr />
-          <button type="button" class="btn1 btn-link">
-            MOVE TO BAG
-          </button>
-        </div>
-      </div> */}
+      
 
       <div style={{ backgroundColor: "white" }} className="cartproductcard">
         <p>
