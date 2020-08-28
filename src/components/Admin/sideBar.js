@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import Divider from '@material-ui/core/Divider';
+import Container from "@material-ui/core/Container";
 import Drawer from '@material-ui/core/Drawer';
 import Hidden from '@material-ui/core/Hidden';
 import IconButton from '@material-ui/core/IconButton';
@@ -21,6 +22,7 @@ import VerifyVet from './verify';
 import RecentProducts from './recentProducts';
 import {useParams, Link} from 'react-router-dom'
 import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
+import Footer from '../FooterNew';
 
 import {db, auth} from '../../firebase'
 
@@ -55,7 +57,8 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(0),
+    paddingTop: theme.spacing(3),
   },
 }));
 
@@ -160,8 +163,13 @@ function ResponsiveDrawer(props) {
       </nav>
       <main className={classes.content}>
       <div className={classes.toolbar} />
-            {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />: null}     
+      <Container className={classes.container}>
+        {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />: null}
+      </Container>
+            
+            <Footer />    
       </main>
+      
     </div>
   );
 }

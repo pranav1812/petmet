@@ -34,12 +34,12 @@ class Product extends Component {
                                 <Card.Title>Name</Card.Title>
 
                                     <ul className="list-unstyled">
-                                        <li>Cost </li>
-                                        <li>Quantity</li>
-                                        <li>Category</li>
+                                        <li>Cost<br /> </li>
+                                        <li>Quantity<br /></li>
+                                        <li>Category<br /></li>
                                     </ul>
-                                <button className="mr-1 btn-sm blue_btn btn-card-2" onClick={this.handleShow}>View</button>
-                                <button className="mr-1 btn-sm pink_btn btn-card-1" onClick={this.verify}>Edit</button>
+                                <button className="mr-1 btn-sm blue_btn btn-card-2-1" onClick={this.handleShow}>View</button>
+                                <button className="mr-1 btn-sm pink_btn btn-card-1-1" onClick={this.verify}>Edit</button>
                             </Card.Body>
                         </div>
                     </div>

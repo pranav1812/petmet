@@ -43,6 +43,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import ShopPage from '../shop/ShopPage';
 import ShopProducts from './ShopProducts';
+import Footer from '../FooterNew';
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -138,14 +139,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
   const handleDrawerOpen = () => {
     setOpen(true);
   };
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const { componentt } = useParams();
+  const  componentt  = useParams().componentt || "Home";
   const [name, setName] = useState(null);
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);
@@ -161,12 +162,12 @@ export default function Dashboard() {
           .then((doc) => {
             if (user.emailVerified && !doc.exists) {
               db.collection("user").doc(user.uid).set({
-                name: user.displayName,
+                name: user.displayName || "Anonymous",
                 profileCompleted: false,
               });
             }
             if (doc.exists) setName(doc.data().name);
-            else setName(user.displayName);
+            else setName(user.displayName || "Anonymous User");
           });
       }
     });
@@ -227,6 +228,8 @@ export default function Dashboard() {
             >
               <NotificationsNoneIcon />
             </div>
+            {/*Yaha lagana hai*/}
+            {(<div style={{ float: "right", display: "inline" }} ><AccountCircleIcon /> {name? name: "no user"}</div>)} 
             <div
               style={{ float: "right", display: "inline" }}
               className="searchicon"
@@ -360,6 +363,7 @@ export default function Dashboard() {
           </Grid>
           <Box pt={4}></Box>
         </Container>
+        <Footer />
       </main>
     </div>
   );

@@ -10,6 +10,7 @@ import List from "@material-ui/core/List";
 import Typography from "@material-ui/core/Typography";
 import Divider from "@material-ui/core/Divider";
 import IconButton from "@material-ui/core/IconButton";
+import Container from "@material-ui/core/Container";
 import Badge from "@material-ui/core/Badge";
 import Grid from "@material-ui/core/Grid";
 import Link from "@material-ui/core/Link";
@@ -32,6 +33,7 @@ import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 
 
 import { useParams, Link as Linkk} from 'react-router-dom'
+import Footer from "../FooterNew";
 
 var slots = [];
 function getData() {
@@ -129,13 +131,14 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     height: "100vh",
     overflow: "auto",
+    paddingTop: theme.spacing(5),
   },
   container: {
     paddingTop: theme.spacing(4),
     paddingBottom: theme.spacing(4),
   },
   paper: {
-    padding: theme.spacing(2),
+    paddingTop: theme.spacing(2),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
@@ -147,7 +150,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function VDashboard() {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
   // getData();
 
   const {vd}= useParams()
@@ -253,11 +256,16 @@ export default function VDashboard() {
               <ListItemText primary="Logout"/>              
             </ListItem>
       </Drawer>
-      <div className="main-container">
-        <Grid item xs={12} md={12} lg={12}>
-          { vd==='Profile'? (<Profile />): vd==='AddSlot'? (<AddSlot />): vd==='Appointments'? (<Appointments/>) : vd==='editProfile'? (<EditProfile />): (<Profile />) }
-        </Grid>
-      </div>
+      <main className={classes.content}>
+      <div className={classes.toolbar} />
+      <Container className={classes.container}>
+      { vd==='Profile'? (<Profile />): vd==='AddSlot'? (<AddSlot />): vd==='Appointments'? (<Appointments/>) : vd==='editProfile'? (<EditProfile />): (<Profile />) }
+
+      </Container>
+            
+            <Footer />    
+      </main>
     </div>
   );
 }
+
