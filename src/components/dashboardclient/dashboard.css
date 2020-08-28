@@ -41,24 +41,41 @@ body {
   flex-direction: row;
 }
 
-.dashboardbuttons {
-  background: transparent !important;
-  border-radius: 7px !important;
+.dashboardbuttons1 {
   color: #36a9cc !important;
-  /* width: 68.81px !important;
-  height: 36px !important; */
-  margin-top: 24px !important;
-  margin-left: 15px !important;
-  padding: 15px !important;
 
-  border: 1px solid #36a9cc !important;
-  font-size: 1.053rem !important;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 520;
+  font-size: 1.4em !important;
+  margin-left: 12px;
 }
 
-.twodashboardbuttons {
-  margin-right: auto;
-  margin-left: auto;
-  width: 29.5%;
-  display: block;
+.dashboardbuttons2 {
+  justify-content: right !important;
+  align-items: right !important;
+  color: #36a9cc !important;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 520;
+  font-size: 1.4em !important;
+  float: right;
+  margin-right: 12px;
+}
+
+.topmostbuttonss {
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 0px;
+  padding: 12px;
+  top: -68px;
   position: relative;
+}
+
+@media (max-width: 567px) {
+  .carousel-indicators li {
+    width: 12px !important;
+  }
+  .carousel-indicators {
+    margin: 0px 60px 0px 60px !important;
+  }
 }

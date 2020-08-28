@@ -23,7 +23,7 @@ import PetsIcon from "@material-ui/icons/Pets";
 import AccessTimeIcon from "@material-ui/icons/AccessTime";
 import StarsIcon from "@material-ui/icons/Stars";
 // import MyLeads from './myLeads';
-import EditProfile from './Profile'
+import EditProfile from "./Profile";
 import { auth, db } from "../../firebase";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
@@ -39,11 +39,11 @@ import Cart from "./Cart";
 import Wishlist from "./Wishlist";
 import Appointment from "./Appointment";
 import Home from "./Home";
-import SearchIcon from '@material-ui/icons/Search';
-import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
-import ShopPage from '../shop/ShopPage';
-import ShopProducts from './ShopProducts';
-import Footer from '../FooterNew';
+import SearchIcon from "@material-ui/icons/Search";
+import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
+import ShopPage from "../shop/ShopPage";
+import ShopProducts from "./ShopProducts";
+import Footer from "../FooterNew";
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -123,18 +123,18 @@ const useStyles = makeStyles((theme) => ({
     overflow: "auto",
   },
   container: {
-    paddingTop: theme.spacing(4),
-    paddingBottom: theme.spacing(4),
+    paddingTop: theme.spacing(0),
+    paddingBottom: theme.spacing(0),
   },
   paper: {
-    padding: theme.spacing(2),
+    padding: theme.spacing(0),
     display: "flex",
     overflow: "auto",
     flexDirection: "column",
   },
-  fixedHeight: {
-    height: 240,
-  },
+  // fixedHeight: {
+  //   height: 240,
+  // },
 }));
 
 export default function Dashboard() {
@@ -146,7 +146,7 @@ export default function Dashboard() {
   const handleDrawerClose = () => {
     setOpen(false);
   };
-  const  componentt  = useParams().componentt || "Home";
+  const componentt = useParams().componentt || "Home";
   const [name, setName] = useState(null);
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);
@@ -161,10 +161,12 @@ export default function Dashboard() {
           .get()
           .then((doc) => {
             if (user.emailVerified && !doc.exists) {
-              db.collection("user").doc(user.uid).set({
-                name: user.displayName || "Anonymous",
-                profileCompleted: false,
-              });
+              db.collection("user")
+                .doc(user.uid)
+                .set({
+                  name: user.displayName || "Anonymous",
+                  profileCompleted: false,
+                });
             }
             if (doc.exists) setName(doc.data().name);
             else setName(user.displayName || "Anonymous User");
@@ -186,7 +188,8 @@ export default function Dashboard() {
   };
 
   const toLoginPage = () => {
-    window.location = window.location.protocol + "//" + window.location.host + "/" + "login";
+    window.location =
+      window.location.protocol + "//" + window.location.host + "/" + "login";
   };
 
   return (
@@ -226,10 +229,20 @@ export default function Dashboard() {
               style={{ float: "right", display: "inline" }}
               className="searchicon"
             >
-              <NotificationsNoneIcon />
+              {/* <NotificationsNoneIcon /> */}
             </div>
             {/*Yaha lagana hai*/}
-            {(<div style={{ float: "right", display: "inline" }} ><AccountCircleIcon /> {name? name: "no user"}</div>)} 
+            {
+              <div
+                className="accounticon"
+                style={{
+                  float: "right",
+                  display: "inline",
+                }}
+              >
+                <AccountCircleIcon /> {name ? name : "no user"}
+              </div>
+            }
             <div
               style={{ float: "right", display: "inline" }}
               className="searchicon"
@@ -334,7 +347,7 @@ export default function Dashboard() {
       <main className={classes.content}>
         <div className={classes.appBarSpacer} />
         <Container className={classes.container}>
-          <Grid container spacing={3}>
+          <Grid container spacing={0}>
             {/* Chart */}
 
             <Paper style={{ width: "100%" }}>
@@ -350,9 +363,9 @@ export default function Dashboard() {
                 <Addpet />
               ) : componentt == "ShopProducts" ? (
                 <ShopProducts />
-              ) : componentt == 'ShopPage' ? (
-                 <ShopPage /> 
-              ) :componentt == "Appointment" ? (
+              ) : componentt == "ShopPage" ? (
+                <ShopPage />
+              ) : componentt == "Appointment" ? (
                 <Appointment />
               ) : componentt == "editProfile" ? (
                 <EditProfile />

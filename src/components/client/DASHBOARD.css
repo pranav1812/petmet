@@ -1,4 +1,31 @@
-@media only screen and (max-width: 579px) {
+.makeStyles-container-13 {
+  padding-top: 0px !important;
+  padding-bottom: 0px !important;
+}
+
+.MuiContainer-root {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.MuiContainer-root {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  margin-left: 0px !important;
+  margin-right: 0px !important;
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+@media (min-width: 1280px) {
+  .MuiContainer-maxWidthLg {
+    max-width: 1496px !important;
+  }
+}
+
+/* ................page padding above...................... */
+
+@media only screen and (max-width: 649px) {
   .navbarsearch {
     display: none !important;
   }
@@ -8,9 +35,12 @@
     margin-right: auto;
     width: 50%;
   }
+  .accounticon {
+    margin-top: 10px;
+  }
 }
 
-@media only screen and (min-width: 579px) {
+@media only screen and (min-width: 649px) {
   .searchicon {
     display: none !important;
   }
@@ -20,10 +50,12 @@
   color: rgba(0, 0, 0, 0.54) !important;
   margin-left: 5px;
   margin-right: 5px;
+  margin-top: 10px;
 }
 
 .searchbutton {
   background-color: #36a9cc !important;
+  margin-right: 10px;
 }
 
 .mainlogoonnav {

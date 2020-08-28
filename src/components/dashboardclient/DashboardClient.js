@@ -93,8 +93,7 @@ const DashboardClient = () => {
   }, []);
   return (
     <div>
-      {/* <Navbar /> */}
-      <div className="carouselandcards">
+      <div>
         <div
           style={{ padding: "0 !important" }}
           className="carousel"
@@ -102,67 +101,62 @@ const DashboardClient = () => {
         >
           <TopCarousel />
         </div>
-        <div className="twodashboardbuttons">
+        <div className="topmostbuttonss">
           <Link to="/Addpet/">
-            <Button className="dashboardbuttons">Add Pet</Button>
+            <Button className="dashboardbuttons1">Add Pet</Button>
           </Link>
           <Link to="/Appointment/">
-            <Button className="dashboardbuttons">Appointment</Button>{" "}
+            <Button className="dashboardbuttons2">Appointment</Button>{" "}
           </Link>
         </div>
+      </div>
 
-        
-          <div className="cards">
-            {categories
-              ? categories.map((cat) => (
-                <Link to="/ShopProducts/">
-                  <RoundCard title={cat.name} image={cat.img} />
-                </Link>
-                ))
-              : null}
-          </div>
-        
-        <h2 className="headers">BEST SELLERS</h2>
-        <div className="productcards">
-          {/* <Carousel breakPoints={breakPoints}>
-            <div style={{ padding: "10px" }}> */}
-          {bestSellers ? (
-            bestSellers.map((bs) => (
-              <SquareCard title={bs.name} image={bs.img} />
+      <div className="cards">
+        {categories
+          ? categories.map((cat) => (
+              <Link to="/ShopProducts/">
+                <RoundCard title={cat.name} image={cat.img} />
+              </Link>
             ))
-          ) : (
-            <h5>best sellers arriving</h5>
-          )}
-          {/* </div>
-          </Carousel> */}
-        </div>
+          : null}
+      </div>
 
-        <h2 className="headers">ACCESSORIES</h2>
-        <div className="productcards">
-          {/* <Carousel breakPoints={breakPoints}>
+      <h2 className="headers">BEST SELLERS</h2>
+      <div className="productcards">
+        {/* <Carousel breakPoints={breakPoints}>
+            <div style={{ padding: "10px" }}> */}
+        {bestSellers ? (
+          bestSellers.map((bs) => <SquareCard title={bs.name} image={bs.img} />)
+        ) : (
+          <h5>best sellers arriving</h5>
+        )}
+        {/* </div>
+          </Carousel> */}
+      </div>
+
+      <h2 className="headers">ACCESSORIES</h2>
+      <div className="productcards">
+        {/* <Carousel breakPoints={breakPoints}>
             <div style={{ padding: "10px" }}> */}{" "}
-          {accessories ? (
-            accessories.map((as) => (
-              <SquareCard title={as.name} image={as.img} />
-            ))
-          ) : (
-            <h5>accessiories arriving</h5>
-          )}
-          {/* </div>
+        {accessories ? (
+          accessories.map((as) => <SquareCard title={as.name} image={as.img} />)
+        ) : (
+          <h5>accessiories arriving</h5>
+        )}
+        {/* </div>
           </Carousel> */}
-        </div>
-        <h2 className="headers">SPECIAL TOYS</h2>
-        <div className="productcards">
-          {/* <Carousel breakPoints={breakPoints}>
+      </div>
+      <h2 className="headers">SPECIAL TOYS</h2>
+      <div className="productcards">
+        {/* <Carousel breakPoints={breakPoints}>
             <div style={{ padding: "10px" }}> */}
-          {toys ? (
-            toys.map((toy) => <SquareCard title={toy.name} image={toy.img} />)
-          ) : (
-            <h5>special toys arriving</h5>
-          )}
-          {/* </div>
+        {toys ? (
+          toys.map((toy) => <SquareCard title={toy.name} image={toy.img} />)
+        ) : (
+          <h5>special toys arriving</h5>
+        )}
+        {/* </div>
           </Carousel> */}
-        </div>
       </div>
     </div>
   );
