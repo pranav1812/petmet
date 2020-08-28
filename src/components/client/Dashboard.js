@@ -230,7 +230,7 @@ export default function Dashboard() {
               <NotificationsNoneIcon />
             </div>
             {/*Yaha lagana hai*/}
-            {(<div style={{ float: "right", display: "inline" }} ><AccountCircleIcon /> {name? name: "no user"}</div>)} 
+            {(<div style={{ float: "right", display: "inline",paddingLeft: "30px",color: "grey" }} ><AccountCircleIcon /> {name? name: "no user"}</div>)} 
             <div
               style={{ float: "right", display: "inline" }}
               className="searchicon"
