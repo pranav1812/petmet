@@ -8,7 +8,9 @@ import {db, auth} from '../../firebase';
 import Doctor from '../pictures/doc.jpg';
 //import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import HomeIcon from '@material-ui/icons/Home';
+import {BiClinic} from 'react-icons/bi';
+import {RiStethoscopeLine,RiChat3Line} from 'react-icons/ri';
+import {FiVideo} from 'react-icons/fi';
 import {Form,Button, Row, Col, Container} from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
@@ -59,8 +61,8 @@ const useStyles = makeStyles((theme) => ({
          <Row>
          <Col /*sm={8} xs={12} md={8}*/ >
            
-            <button type ="button" startIcon={<HomeIcon/>}  variant='primary' size="lg" block color='#36A9CC' className="offset-4 offset-sm-3 pink_out" >
-                  VISIT CLINIC
+            <button type ="button"  variant='primary' size="lg" block color='#36A9CC' className="btn-block pink_out" >
+            <span><BiClinic className="mb-1"/>  </span> VISIT CLINIC
                     </button>
               </Col>      
               </Row> 
@@ -68,8 +70,8 @@ const useStyles = makeStyles((theme) => ({
               <Row>
          <Col /*sm={8} xs={12} md={8}*/ >
            
-            <button type ="button"  variant='primary' startIcon={<HomeIcon/>} size="lg" block  color="#FE434C" className="offset-4 offset-sm-3 pink_out" >
-                  VET HOME VISIT
+            <button type ="button"  variant='primary'  size="lg" block  color="#FE434C" className="btn-block pink_out" >
+            <span><RiStethoscopeLine className="mb-1"/> </span> VET HOME VISIT
                     </button>
               </Col>      
               </Row> 
@@ -78,8 +80,8 @@ const useStyles = makeStyles((theme) => ({
          <Row>
          <Col /*sm={8} xs={12} md={8}*/ >
            
-    <button type ="button"  variant='primary' size="lg" block  className="offset-4 offset-sm-3 pink_out" startIcon={<HomeIcon/>} >
-             VIDEO CALL
+    <button type ="button"  variant='primary' size="lg" block  className="btn-block pink_out" >
+    <span><FiVideo className="mb-1"/>  </span> VIDEO CALL
                     </button>
               </Col>      
               </Row> 
@@ -88,8 +90,8 @@ const useStyles = makeStyles((theme) => ({
          <Row>
          <Col /*sm={8} xs={12} md={8}*/ >
            
-            <button type ="button" startIcon={<HomeIcon/>} variant='primary'  size="lg" block  className="offset-4 offset-sm-3 pink_out" >
-                  CHAT
+            <button type ="button" variant='primary'  size="lg" block  className="btn-block pink_out" >
+            <span><RiChat3Line className="mb-1"/>  </span> CHAT
                     </button>
               </Col>      
               </Row> 
@@ -98,9 +100,6 @@ const useStyles = makeStyles((theme) => ({
                       </Container>
  
         </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={props.onHide}>Close</Button>
-        </Modal.Footer>
       </Modal>
     );
   }
@@ -152,7 +151,7 @@ const useStyles = makeStyles((theme) => ({
           </div>
         
         
-             <button type ="button"  className="offset-4 offset-sm-3 pink_out" onClick={() => setModalShow(true)}>
+             <button type ="button"  className="pink_out" onClick={() => setModalShow(true)}>
                   Book an Appointment
                     </button>
 
