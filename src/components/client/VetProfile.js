@@ -54,9 +54,7 @@ const useStyles = makeStyles((theme) => ({
           <h4></h4>
       <Container>
       <p>
- 
-
-         <Row>
+          <Row>
          <Col /*sm={8} xs={12} md={8}*/ >
            
             <button type ="button" startIcon={<HomeIcon/>}  variant='primary' size="lg" block color='#36A9CC' className="offset-4 offset-sm-3 pink_out" >
@@ -96,8 +94,7 @@ const useStyles = makeStyles((theme) => ({
           <p></p>
                       </p>
                       </Container>
- 
-        </Modal.Body>
+         </Modal.Body>
         <Modal.Footer>
           <Button onClick={props.onHide}>Close</Button>
         </Modal.Footer>
