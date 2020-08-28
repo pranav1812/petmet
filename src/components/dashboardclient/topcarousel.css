@@ -11,3 +11,10 @@
 .carouseltop {
   height: auto !important;
 }
+
+.carousel-inner {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  max-height: 440px !important;
+}
