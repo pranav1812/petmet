@@ -2,9 +2,11 @@ import React, {useState, useEffect} from 'react'
 import {auth, db} from '../../firebase'
 import { makeStyles } from '@material-ui/core/styles';
 
+import {Form,Button} from 'react-bootstrap';
 import dog from '../pictures/dog.png'
 import rabbit from '../pictures/rabbit.png'
 import cat from '../pictures/cat.png'
+import {Link} from 'react-router-dom'
 
 const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
 
@@ -159,7 +161,10 @@ export default function Appointment() {
             )): null
           }
 
-
+<Link to='/VetProfile'><button type="button" className="offset-4 offset-sm-3 pink_out" >
+                            vet
+                        </button>
+                        </Link>     
       </div>
   )
 }
