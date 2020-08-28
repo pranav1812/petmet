@@ -6,6 +6,10 @@ import { makeStyles } from '@material-ui/core/styles';
 //import ButtonBase from '@material-ui/core/ButtonBase';
 import {db, auth} from '../../firebase';
 import Doctor from '../pictures/doc.jpg';
+//import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+import HomeIcon from '@material-ui/icons/Home';
+import {Form,Button, Row, Col, Container} from 'react-bootstrap';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,21 +36,78 @@ const useStyles = makeStyles((theme) => ({
     },
   }));
   
-  export default function Profile() {
-    const classes = useStyles();
-    const [state, setState]= useState({})
+  function MyVerticallyCenteredModal(props) {
+    return (
+      <Modal
+        {...props}
+        size="sm"
+        aria-labelledby="example-modal-sizes-title-sm"
+        centered
+        dialogClassName="modal-50w"
+      >
+        <Modal.Header closeButton>
+          <Modal.Title id="contained-modal-title-vcenter">
+            BOOK AN APPOINTMENT
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <h4></h4>
+      <Container>
+      <p>
+ 
 
-    useEffect(()=>{
-      // doc id-> uid of user
-        db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').get()
-            .then((doc)=>{
-                setState(doc.data())
-                
-            }).catch(err=> {
-            console.error(err)
-            })
-        },[])
-        console.log(state)
+         <Row>
+         <Col /*sm={8} xs={12} md={8}*/ >
+           
+            <button type ="button" startIcon={<HomeIcon/>}  variant='primary' size="lg" block color='#36A9CC' className="offset-4 offset-sm-3 pink_out" >
+                  VISIT CLINIC
+                    </button>
+              </Col>      
+              </Row> 
+         <p></p>
+              <Row>
+         <Col /*sm={8} xs={12} md={8}*/ >
+           
+            <button type ="button"  variant='primary' startIcon={<HomeIcon/>} size="lg" block  color="#FE434C" className="offset-4 offset-sm-3 pink_out" >
+                  VET HOME VISIT
+                    </button>
+              </Col>      
+              </Row> 
+              <p></p>
+              
+         <Row>
+         <Col /*sm={8} xs={12} md={8}*/ >
+           
+    <button type ="button"  variant='primary' size="lg" block  className="offset-4 offset-sm-3 pink_out" startIcon={<HomeIcon/>} >
+             VIDEO CALL
+                    </button>
+              </Col>      
+              </Row> 
+             <p></p>
+              
+         <Row>
+         <Col /*sm={8} xs={12} md={8}*/ >
+           
+            <button type ="button" startIcon={<HomeIcon/>} variant='primary'  size="lg" block  className="offset-4 offset-sm-3 pink_out" >
+                  CHAT
+                    </button>
+              </Col>      
+              </Row> 
+          <p></p>
+                      </p>
+                      </Container>
+ 
+        </Modal.Body>
+        <Modal.Footer>
+          <Button onClick={props.onHide}>Close</Button>
+        </Modal.Footer>
+      </Modal>
+    );
+  }
+
+  export default function VetProfile() {
+  const [modalShow, setModalShow] = React.useState(false);
+
     return (
       <div className="container profile_container">
         <div className="row justify-content-center">
@@ -89,7 +150,20 @@ const useStyles = makeStyles((theme) => ({
               <p className="col">Name of the doctor</p>
             </div>
           </div>
-        </div>
+        
+        
+             <button type ="button"  className="offset-4 offset-sm-3 pink_out" onClick={() => setModalShow(true)}>
+                  Book an Appointment
+                    </button>
+
+        <MyVerticallyCenteredModal
+          show={modalShow}
+          onHide={() => setModalShow(false)}
+          />
+
+   </div>
+        
+                    
       </div>
     );
   }

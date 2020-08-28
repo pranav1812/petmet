@@ -44,6 +44,7 @@ import NotificationsNoneIcon from '@material-ui/icons/NotificationsNone';
 import ShopPage from '../shop/ShopPage';
 import ShopProducts from './ShopProducts';
 import Footer from '../FooterNew';
+import VetProfile from './VetProfile';
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -350,6 +351,8 @@ export default function Dashboard() {
                 <Addpet />
               ) : componentt == "ShopProducts" ? (
                 <ShopProducts />
+              ) : componentt == 'VetProfile' ? (
+                <VetProfile />
               ) : componentt == 'ShopPage' ? (
                  <ShopPage /> 
               ) :componentt == "Appointment" ? (
