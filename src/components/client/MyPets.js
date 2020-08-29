@@ -9,22 +9,52 @@ import {Link} from 'react-router-dom';
 const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
 
 const MyPetsComponent = () => {
+  const [uid, setUid]= useState(null)
+  const [pets, setPets]= useState(null)
+  useEffect(()=>{
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        setUid(user.uid)
+        var ref= db.collection('user').doc(user.uid)
+        ref.get()
+          .then(doc=>{
+            if(doc.exists){
+              ref.collection('pets').get()
+                .then(docs=>{
+                  if(docs){
+                    var temp=[]
+                    docs.forEach(doc=>{
+                      temp.push(doc.data())
+                    })
+                    setPets(temp)
+                  }
+                })
+            }
+          })
+      }
+    })
+  }, [])
   return (
     <div className="wholecomponent">
-      {/* <div className="loggedinpet">
-        <p>Hi Rocky!!</p>
-      </div> */}
-      <div className="onepet">
-        <span>
-          <img className="petimage" src={petprofile} />
+      
+      {
+        pets? pets.map(pet=>(
+          <div className="onepet">
+          <span>
+          <img className="petimage" src={pet.url} />
           <div>
-            <p className="petname">Rocky</p>
+            <p className="petname">{pet.name} </p>
+            
             <p className="petdetails">
-              Age: 2 years <br /> Type: Dog(Labrador)
+              Category: {pet.category}<br />
+              Age: {pet.age} years <br /> Breed: {pet.breed}
             </p>
           </div>
         </span>
       </div>
+        )): null
+      }
+      
 
       <div className="onepet">
         <span>
