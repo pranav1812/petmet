@@ -45,6 +45,9 @@ import ShopPage from "../shop/ShopPage";
 import ShopProducts from "./ShopProducts";
 import Footer from "../FooterNew";
 import VetProfile from "./VetProfile";
+import { Button } from "@material-ui/core";
+import {Modal} from 'react-bootstrap';
+import {RiLogoutBoxRFill} from 'react-icons/ri';
 // function Copyright() {
 //   return (
 //     <Typography variant="body2" color="textSecondary" align="center">
@@ -138,6 +141,62 @@ const useStyles = makeStyles((theme) => ({
   // },
 }));
 
+function Modall()
+{
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+  const [usr, setUsr] = useState(null);
+  useEffect(()=>{
+    console.log(window.namee)
+    var user = auth.currentUser
+    if(user)
+    {
+      setUsr(user)
+    }
+    
+  },[])
+  const logout = () => {
+    auth
+      .signOut()
+      .then(function () {
+        console.log("Sign-out successful");
+        window.location.reload();
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  };
+  return(
+    <>
+      <Button
+                className="accounticon"
+          style={{
+            float: "right",
+            display: "inline",
+            paddingLeft: "30px",
+          color: "grey",
+        }}
+        onClick={handleShow}
+      >
+                <AccountCircleIcon />{/* {prop ? prop : "no user"}*/}
+    </Button>
+    <Modal centered show={show} onHide={handleClose}>
+          <Modal.Body style={{textAlign: "center"}}>
+                <span style={{fontSize:"80px",paddingBottom:"20px",color:"#36A9CC"}}><RiLogoutBoxRFill /></span>
+                <button className="btn-block pink-btn" onClick={usr?logout():()=>{window.location= window.location.protocol + "//" + window.location.host + "/" + "login"}} style={{
+                }}>{usr?"Log Out":"Log In"}</button>
+          </Modal.Body>
+          <Modal.Footer>
+            <button className="pink-btn" onClick={handleClose}>
+              Close
+            </button>
+          </Modal.Footer>
+      </Modal>
+    </>
+  )
+}
+
 export default function Dashboard() {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
@@ -166,12 +225,13 @@ export default function Dashboard() {
               db.collection("user")
                 .doc(user.uid)
                 .set({
-                  name: user.displayName || "Anonymous",
+                  name: user.displayName || "Guest",
                   profileCompleted: false,
                 });
             }
             if (doc.exists) setName(doc.data().name);
-            else setName(user.displayName || "Anonymous User");
+            else setName(user.displayName || "Guest User");
+            window.namee = name
           });
       }
     });
@@ -235,17 +295,10 @@ export default function Dashboard() {
             </div>
             {/*Yaha lagana hai*/}
             {
-              <div
-                className="accounticon"
-                style={{
-                  float: "right",
-                  display: "inline",
-                  paddingLeft: "30px",
-                  color: "grey",
-                }}
-              >
-                <AccountCircleIcon /> {name ? name : "no user"}
-              </div>
+              <> 
+              <Modall /> 
+              </>
+
             }
             <div
               style={{ float: "right", display: "inline" }}
