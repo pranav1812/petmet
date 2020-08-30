@@ -37,6 +37,8 @@ function App() {
         <Route exact path='/vCompleteProfile' component={VCompleteProfile} />
         <Route exact path='/admin/:component' component={SideBar} />
         <Route exact path='/v/:vd' component={VDashboard} />
+        <Route exact path='/:componentt/:subComponent/:productId' component={Dashboard} />
+        <Route exact path='/:componentt/:subComponent' component={Dashboard} />
         <Route exact path='/:componentt' component={Dashboard} />
         
         

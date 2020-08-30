@@ -32,17 +32,20 @@ const WishlistComponent = () => {
     <div className="wishlistpage">
       
       {wish? wish.map(wi=> (
-        <div style={{ margin: "10px", width: "30em" }} className="cartproductcard">
+        <div style={{ margin: "10px", width: "40em" }} className="cartproductcard">
         
         <p>
           <img
+            height= "200px"
+            width= "150px"
+            style={{marginRight: "1em"}}
             className="cartproductimage"
-            src={product1}
+            src={wi.url || product1}
             alt="productpicture"
           />
           <div style={{ marginLeft: "140px", color: "black" }}>
             <h4 style={{ fontWeight: "500" }}>{wi.name} </h4>
-            <p>{wi.des} </p>
+            <p>{wi.description} </p>
             <p>{"Rs. " + wi.cost} </p>
           </div>
         </p>

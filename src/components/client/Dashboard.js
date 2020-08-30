@@ -148,6 +148,7 @@ export default function Dashboard() {
     setOpen(false);
   };
   const componentt = useParams().componentt || "Home";
+  
   const [name, setName] = useState(null);
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);

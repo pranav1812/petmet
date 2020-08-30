@@ -1,33 +1,71 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import Carousel from "./Carousel";
-import Button from "@material-ui/core/Button";
-import { createStyles, makeStyles, Theme } from "@material-ui/core/styles";
-import AddShoppingCartIcon from "@material-ui/icons/AddShoppingCart";
 /*import Rating from "@material-ui/lab/Rating";*/
-import IconLabelButtons from "./Buttons";
+
 import "./shoppage.css";
-import BestSellers from "../dashboardclient/BestSellers";
+import {db, auth} from '../../firebase'
+// import BestSellers from "../dashboardclient/BestSellers";
+import {useParams} from 'react-router-dom'
 
 const ShopPage = () => {
-  const [value, setValue] = React.useState(2);
+  const [info, setInfo]= useState(null)
+  const {productId, subComponent}= useParams()
+  useEffect(()=>{
+    db.collection('items').doc(subComponent).collection('products').doc(productId).get()
+      .then(doc=>{
+        setInfo(doc.data().details)
+      })
+  }, [])
+
+  const addToCart=()=>{
+    var user= auth.currentUser
+    if(user){
+      db.collection('user').doc(user.uid).collection('cart').add({
+        ...info,
+        key: productId
+      }).then(()=>alert("Product Added to Cart"))
+    }else{
+      prompt("Need to login")
+    }
+    
+  }
+
+  const addToWishlist=()=>{
+    var user= auth.currentUser
+    if(user){
+      db.collection('user').doc(user.uid).collection('wishlist').add({
+        ...info,
+        key: productId
+      }).then(()=>alert("Product Added to Wishlist"))
+    }else{
+      prompt("Need to login")
+    }
+  }
+  
   return (
     <div>
-      <div className="carouselanddetails">
+      {info?(
+        <div className="carouselanddetails">
         <div>
-          <Carousel />
+          <img 
+            src={info.url}
+            height="200px"
+            width="180px"
+            alt= {info.name}
+          />
         </div>
         <div className="details">
           <p
             className="openedproductname"
             style={{ fontSize: 20, fontWeight: 500, marginBottom: "5px" }}
           >
-            DOG FOOD
+            {info.name}
           </p>
           <p
             className="openedproductname"
             style={{ fontSize: 19, fontWeight: 500, marginBottom: "10px" }}
           >
-            Rs2000
+            Rs {info.cost}
           </p>
           <hr style={{ color: "rgba(0,0,0,0.1" }} />
 
@@ -38,60 +76,23 @@ const ShopPage = () => {
             readOnly
           />*/}
           <p style={{ fontSize: 14, marginTop: "20px" }}>
-            Lorem ipsum dolor sit amet, <br />
-            consectetur adipiscing elit, sed do eiusmod tempor incididunt <br />
-            ut labore et.
-            <br /> <div>Product Type:</div>
-            <ul className="a">
-              <li>T-Shirt Product Details</li>
-
-              <li>Leather upper Pull-up tabs</li>
-
-              <li>3-month warranty against manufacturing defects</li>
-
-              <li>Lace Fastening Rubber sole</li>
-
-              <li>Wipe with a clean, dry cloth when needed </li>
-            </ul>
-            <div style={{ display: "inline" }}>
-              <div>Product Code:</div> 460220300057{" "}
+            {info.description}
+            <br /> <div>Product Type: {subComponent} <br />
+                  {info.ingriedients}
             </div>
+            
           </p>
-          <IconLabelButtons />
+          <button onClick={addToCart} >Add to Cart</button>
+          <button onClick={addToWishlist} >Add to Wishlist</button>
         </div>
-      </div>
+      
       <hr style={{ color: "rgba(0,0,0,0.1" }} />
-      <div style={{ paddingBottom: "30px", paddingTop: "16px" }}>
-        <ul className="b">
-          <li className="listb">DESCRIPTION</li>
-          <li className="listb">ADDITIONAL INFORMATION</li>
-          <li className="listb">SHIPPING</li>
-          <li className="listb">REVIEWS</li>
-          <hr style={{ color: "rgba(0,0,0,0.1" }} />
-        </ul>
-        <p style={{ textAlign: "center" }}>
-          Design inspiration lorem ipsum dolor sit amet, consectetuer adipiscing
-          elit. Morbi commodo, ipsum sed pharetra gravida, orci magna rhoncus
-          neque, id pulvinar odio lorem non turpis. Nullam sit amet enim.
-          Suspendisse id velit vitae ligula volutpat condimentum. Aliquam erat
-          volutpat. Sed quis velit. Nulla facilisi. Nulla libero. Vivamus
-          pharetra posuere sapien. Nam consectetuer. Sed aliquam, nunc eget
-          euismod ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum
-          enim nibh eget ipsum. Nam consectetuer. Sed aliquam, nunc eget euismod
-          ullamcorper, lectus nunc ullamcorper orci, fermentum bibendum enim
-          nibh eget ipsum. Nulla libero. Vivamus pharetra posuere sapien.
-        </p>
+      
+      
       </div>
-      <hr style={{ color: "rgba(0,0,0,0.1" }} />
-      <h3
-        className="heading"
-        style={{ textAlign: "center", paddingTop: "16px" }}
-      >
-        RELATED PRODUCTS
-      </h3>
-      <div>
-        <BestSellers />
-      </div>
+      
+      ): <h2>please wait</h2>}
+      
     </div>
   );
 };

@@ -15,10 +15,10 @@ import { db } from "../../firebase";
 
 import { Router, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/Button";
+
 import Carousel from "react-elastic-carousel";
 
-//import { db } from "../../firebase";
+
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -114,8 +114,8 @@ const DashboardClient = () => {
       <div className="cards">
         {categories
           ? categories.map((cat) => (
-              <Link to="/ShopProducts/">
-                <RoundCard title={cat.name} image={cat.img} />
+              <Link to={"/ShopProducts/"+ cat.name }>
+                <RoundCard  title={cat.name} image={cat.img} />
               </Link>
             ))
           : null}
