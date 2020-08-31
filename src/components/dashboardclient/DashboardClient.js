@@ -43,7 +43,6 @@ const DashboardClient = () => {
     db.collection("items")
       .get()
       .then((docs) => {
-        console.log(docs.length);
         var temp = [];
         docs.forEach((doc) => {
           if (

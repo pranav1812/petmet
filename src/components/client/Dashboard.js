@@ -48,15 +48,7 @@ import VetProfile from "./VetProfile";
 import { Button } from "@material-ui/core";
 import {Modal} from 'react-bootstrap';
 import {RiLogoutBoxRFill} from 'react-icons/ri';
-// function Copyright() {
-//   return (
-//     <Typography variant="body2" color="textSecondary" align="center">
-//       {"Copyright © "}
-//       Petmet {new Date().getFullYear()}
-//       {"."}
-//     </Typography>
-//   );
-// }
+
 
 const drawerWidth = 240;
 
@@ -141,14 +133,13 @@ const useStyles = makeStyles((theme) => ({
   // },
 }));
 
-function Modall()
-{
+const Modall=(prop)=>{
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [usr, setUsr] = useState(null);
   useEffect(()=>{
-    console.log(window.namee)
+    console.log(prop)
     var user = auth.currentUser
     if(user)
     {
@@ -157,10 +148,9 @@ function Modall()
     
   },[])
   const logout = () => {
-    auth
-      .signOut()
+    auth.signOut()
       .then(function () {
-        console.log("Sign-out successful");
+        alert("Sign-out successful");
         window.location.reload();
       })
       .catch(function (error) {
@@ -179,13 +169,13 @@ function Modall()
         }}
         onClick={handleShow}
       >
-                <AccountCircleIcon />{/* {prop ? prop : "no user"}*/}
+                <AccountCircleIcon />{prop.prop ? prop.prop : "guest user"}
     </Button>
     <Modal centered show={show} onHide={handleClose}>
           <Modal.Body style={{textAlign: "center"}}>
                 <span style={{fontSize:"80px",paddingBottom:"20px",color:"#36A9CC"}}><RiLogoutBoxRFill /></span>
-                <button className="btn-block pink-btn" onClick={usr?logout():()=>{window.location= window.location.protocol + "//" + window.location.host + "/" + "login"}} style={{
-                }}>{usr?"Log Out":"Log In"}</button>
+                <button className="btn-block pink-btn" onClick={prop.prop?logout:()=>{window.location= window.location.protocol + "//" + window.location.host + "/" + "login"}} style={{
+                }}>{prop.prop?"Log Out":"Log In"}</button>
           </Modal.Body>
           <Modal.Footer>
             <button className="pink-btn" onClick={handleClose}>
@@ -214,6 +204,7 @@ export default function Dashboard() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
+       
         setUid(user.uid);
         setUsr(user);
         console.log(user);
@@ -230,16 +221,15 @@ export default function Dashboard() {
                 });
             }
             if (doc.exists) setName(doc.data().name);
-            else setName(user.displayName || "Guest User");
-            window.namee = name
+            else setName(user.displayName);
+            console.log(name)
           });
       }
     });
   }, []);
 
   const logout = () => {
-    auth
-      .signOut()
+    auth.signOut()
       .then(function () {
         console.log("Sign-out successful");
         window.location.reload();
@@ -294,12 +284,13 @@ export default function Dashboard() {
               {/* <NotificationsNoneIcon /> */}
             </div>
             {/*Yaha lagana hai*/}
-            {
+            
               <> 
-              <Modall /> 
+              {name? <Modall prop={name} />: <Modall prop={null} /> }
+              
               </>
 
-            }
+            
             <div
               style={{ float: "right", display: "inline" }}
               className="searchicon"
