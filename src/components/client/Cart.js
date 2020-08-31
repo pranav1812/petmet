@@ -11,15 +11,28 @@ const CartComponent = () => {
 
   const [wish, setWish]= useState(null)
   const [total, setTotal]= useState(null)
+  const [uid, setUid] = useState(null)
+  const proLink = (_id,category) => {
+    window.location = window.location.protocol + "//" + window.location.host + "/" + "ShopPage" + "/" + category + "/" + _id
+  }
+  const delPro = (key) => {
+    db.collection('user').doc(uid).collection('cart').doc(key).delete()
+    .then(()=>{
+      window.location.reload()
+    })
+  }
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
-      console.log(user)
-      db.collection('user').doc(user.uid).collection('cart').get()
+      if(user){
+        console.log(user)
+        setUid(user.uid)
+        console.log(uid)
+        db.collection('user').doc(user.uid).collection('cart').get()
         .then(docs=>{
           var temp=[]
           var net=0
           docs.forEach((doc)=>{
-            temp.push(doc.data())
+            temp.push({...doc.data(),key: doc.id,_id: doc.data().key})
             if(doc.data().cost){
               net+= Number(doc.data().cost)
             }
@@ -27,6 +40,7 @@ const CartComponent = () => {
           setWish(temp)
           setTotal(net)
         })
+      }
     })
     
   }, [])
@@ -64,11 +78,11 @@ const CartComponent = () => {
         </p>
         
        <br />
-        <button type="button" class="btn btnapply">
+        <button type="button" class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
           Remove
         </button>
-        <button type="button" class="btn btnapply">
-          Buy Now
+        <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
+          View Product
         </button>
       </div>
       ) ): null}
