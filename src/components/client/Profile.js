@@ -1,9 +1,51 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {Form} from 'react-bootstrap';
 import ls from 'local-storage'
 import '../Admin/Admin.css';
+import {auth, db, storage} from '../../firebase';
+import '../Admin/Admin.css'
+import {Router, Link} from 'react-router-dom';
 
 export default function EditProfile() {
+
+  const [uid, setUid]= useState(null)
+
+  const [profile, setProfile]= useState({
+    name: null,
+    mail: null,
+    address: null,
+    phone: null,
+    city: null,
+    state: null,
+    zip:null
+  })
+
+  useEffect(()=>{
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        setUid(user.uid)
+        db.collection('user').doc(user.uid).get()
+          .then(doc=>{
+            if(!doc.exists){
+              alert("some error occured")
+            }
+          })
+      }
+    })
+    
+  },[])
+
+  const submit=()=>{
+    const {name, mail, phone, address, city, state, zip}= profile
+    db.collection('user').doc(uid).update({
+      ...profile,
+    }).then(()=>{
+      window.location= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+    })
+    
+  }
+
+
   return (
     <React.Fragment>
       <h1 className="main-head mt-4">UPDATE YOUR PROFILE</h1>
@@ -13,8 +55,8 @@ export default function EditProfile() {
                             <Form.Label className="col-3">Name</Form.Label>
                             <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" id="Name"
                                name="Name" autoComplete="given-name"
-                               onBlur={e=>{ls.set('name', e.target.value)}}>
-                            </Form.Control>
+                               onBlur={e=>{setProfile({...profile, name: e.target.value})}}> 
+                               </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">E-Mail</Form.Label>
@@ -22,15 +64,16 @@ export default function EditProfile() {
                             id="mail"
                             name="mail"
                             autoComplete="email"
-                            onBlur={e=>{ls.set('mail', e.target.value)}}  />
-                        </Form.Group>
+                            onBlur={e=>{setProfile({...profile, mail: e.target.value})}}> 
+                            </Form.Control>
+                            </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Phone Number</Form.Label>
                             <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
                              id="phone"
                              name="phone"
                              autoComplete="number"
-                             onBlur={e=>{ls.set('phone', e.target.value)}}>
+                             onBlur={e=>{setProfile({...profile, number: e.target.value})}}> 
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -39,7 +82,7 @@ export default function EditProfile() {
                              id="address"
                              name="address"
                              autoComplete="address"
-                             onBlur={e=>{ls.set('address', e.target.value)}}>
+                             onBlur={e=>{setProfile({...profile, address: e.target.value})}}> 
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -48,7 +91,7 @@ export default function EditProfile() {
                              id="city"
                              name="city"
                              autoComplete="city"
-                             onBlur={e=>{ls.set('city', e.target.value)}}>
+                             onBlur={e=>{setProfile({...profile, city: e.target.value})}}> 
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -57,7 +100,7 @@ export default function EditProfile() {
                              id="state"
                              name="state"
                              autoComplete="state"
-                             onBlur={e=>{ls.set('state', e.target.value)}}>
+                             onBlur={e=>{setProfile({...profile, state: e.target.value})}}> 
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -66,10 +109,10 @@ export default function EditProfile() {
                              id="zip"
                              name="zip"
                              autoComplete="shipping postal-code"
-                             onBlur={e=>{ls.set('pin', e.target.value)}}>
+                             onBlur={e=>{setProfile({...profile, zip: e.target.value})}}> 
                              </Form.Control>
                         </Form.Group>
-                        <button type="button" className="offset-4 offset-sm-3 pink_out">
+                        <button type="button" className="offset-4 offset-sm-3 pink_out" onClick={submit}>
                             Update
                         </button>
                     </Form>

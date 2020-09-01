@@ -133,12 +133,14 @@ export default function Appointment() {
             <img src={dog} className="profile_img" />
           </div>
           <div className="hi">
+          <Link to="/VetProfile" >
             <div className="vet">
-                
+             
             
             <p></p>
               <strong className="col">{vet.Name} </strong>
             </div>
+            </Link>
             <div className="open">
               <p className="col">{vet.Qualification} </p>
             </div>

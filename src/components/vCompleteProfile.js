@@ -9,7 +9,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 //import AppBar from '@material-ui/core/AppBar';
 //import Toolbar from '@material-ui/core/Toolbar';
 import ls from 'local-storage';
-import {auth, db} from '../firebase'
+import {auth, db, storage} from '../firebase'
 import {Form} from 'react-bootstrap';
 
 import {makeStyles} from '@material-ui/core/styles';
@@ -31,56 +31,55 @@ const useStyles = makeStyles({
 export default function VCompleteProfile() {
     
   const classes = useStyles();
-    const [uid, setUid]= React.useState(null)
-    const [state, setState] = useState({
-      name: null,
-      description: null,
-      cost: null,
-      size: null,
-      quantity: null,
-      category: null, 
-      ingriedients: null,
-      addInfo: null,
-      url: null
-    })
-    const[sbt, setSbt]=useState(false)
-    const [url, setUrl]= useState(null)
+  const [uid, setUid]= useState(null)
+ const[url, setUrl]= useState(null)
+  const [vet, setVet]= useState({
+    name: null,
+    phone: null,
+    achievements: null,
+    qualification: null,
+    experience: null,
+    address: null,
+    city: null,
+    state:null,
+    zip:null
+  })
+
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
-        if(user){
-            if(user.emailVerified){
-                setUid(user.uid)
-                db.collection('vet').doc(user.uid).get()
-                    .then(doc=>{
-                        if(! doc.exists){
-                            db.collection('vet').doc(user.uid).set({
-                                profileCompleted: false
-                            })
-                        }
-                        if(doc.exists && doc.data().profileCompleted){
-                            window.location= window.location.protocol + "//" + window.location.host + "/" +'v/Profile/' 
-                        }
-                        
-                    })
-                    React.setButton(true)
-            }else{
-                window.location= window.location.protocol + "//" + window.location.host + "/" +'vVerifyEmail/'
+      if(user){
+        setUid(user.uid)
+        db.collection('vet').doc(user.uid).get()
+          .then(doc=>{
+            if(!doc.exists){
+              alert("some error occured")
             }
-        }
-        else if(!user){
-        window.location= window.location.protocol + "//" + window.location.host + "/" +'vLogin/'
-        }     
+          })
+      }
     })
-  },[sbt])
+   
+  },[])
 
-
+  const addImg=(e)=>{
+    var file= e.target.files[0]
+    var storageRef= storage.ref('vetImages/'+file.name)
+    storageRef.put(file).then(()=> {
+    alert("image uploaded")
+    storageRef.getDownloadURL()
+        .then(url=> setUrl(url))
+        .catch(err=> console.log(err))
+    })
+    .catch(err=> console.log(err))
+  }
+ 
+  
   const submit=()=>{
-    var {Name,phone,Achievements,Qualification,experience,Address,city,state,zip}=state
-       
+    const {name, phone, achievements, experience, qualification, address, city, state, zip }= vet
     db.collection('vet').doc(uid).update({
-   details:state
+      ...vet,
+    }).then(()=>{
+      window.location= window.location.protocol + "//" + window.location.host + "/" +'v/Profile'
     })
-    setSbt(true)
   }
 
   return (
@@ -88,12 +87,17 @@ export default function VCompleteProfile() {
       <h1 className="main-head mt-4">COMPLETE YOUR PROFILE</h1>
         <div className="container m-5">
                     <Form className="addProduct_form">
+                    <div className="row mb-3">
+                            <Form.Label className="col-3">Add Vet Image</Form.Label>
+                            <input onChange={addImg} type="file"  id="group_image"/>
+                            <img id="target"/>
+                        </div>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Name</Form.Label>
                             <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input" id="Name"
                                name="Name" autoComplete="given-name"
-                               onBlur={e=>{ls.set('Name', e.target.value)}}>
-                            </Form.Control>
+                               onBlur={e=>{setVet({...vet, name: e.target.value})}}>
+                               </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Phone No.</Form.Label>
@@ -101,15 +105,16 @@ export default function VCompleteProfile() {
                             id="phone"
                             name="phone"
                             autoComplete="phone"
-                            onBlur={e=>{ls.set('phone', e.target.value)}}  />
-                        </Form.Group>
+                            onBlur={e=>{setVet({...vet, phone: e.target.value})}}>
+                          </Form.Control>
+                            </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Achievements</Form.Label>
                             <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="textarea" rows="3"
                              id="Achievements"
                              name="Achievements"
                              autoComplete="Achievements"
-                             onBlur={e=>{ls.set('Achievements', e.target.value)}}>
+                             onBlur={e=>{setVet({...vet, achievements: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -118,7 +123,7 @@ export default function VCompleteProfile() {
                              id="qualification"
                              name="qualification"
                              autoComplete="qualification"
-                             onBlur={e=>{ls.set('qualification', e.target.value)}}>
+                             onBlur={e=>{setVet({...vet, qualification: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -127,7 +132,7 @@ export default function VCompleteProfile() {
                              id="experience"
                              name="experience"
                              autoComplete="years"
-                             onBlur={e=>{ls.set('experience', e.target.value)}}>
+                             onBlur={e=>{setVet({...vet, experience: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -136,7 +141,7 @@ export default function VCompleteProfile() {
                              id="Address"
                              name="Address"
                              autoComplete="Address"
-                             onBlur={e=>{ls.set('Address', e.target.value)}}>
+                             onBlur={e=>{setVet({...vet, address: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -145,7 +150,7 @@ export default function VCompleteProfile() {
                              id="city"
                              name="city"
                              autoComplete="city"
-                             onBlur={e=>{ls.set('city', e.target.value)}}>
+                             onBlur={e=>{setVet({...vet, city: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -154,7 +159,7 @@ export default function VCompleteProfile() {
                              id="state"
                              name="state"
                              autoComplete="state"
-                             onBlur={e=>{ls.set('state', e.target.value)}}>
+                             onBlur={e=>{setVet({...vet, state: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -163,8 +168,8 @@ export default function VCompleteProfile() {
                              id="zip"
                              name="zip"
                              autoComplete="Zip / Postal code"
-                             onBlur={e=>{ls.set('zip', e.target.value)}}>
-                             </Form.Control>
+                             onBlur={e=>{setVet({...vet, zip: e.target.value})}}>
+                               </Form.Control>
                         </Form.Group>
                         <button type="button" className="offset-4 offset-sm-3 pink_out" onClick={submit}>
                             Finish
