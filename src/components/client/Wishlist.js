@@ -12,20 +12,32 @@ const home= window.location.protocol + "//" + window.location.host + "/" +'Home/
 const WishlistComponent = () => {
 
   const [wish, setWish]= useState(null)
-
+  const [uid, setUid] = useState(null)
+  const proLink = (_id,category) => {
+    window.location = window.location.protocol + "//" + window.location.host + "/" + "ShopPage" + "/" + category + "/" + _id
+  }
+  const delPro = (key) => {
+    db.collection('user').doc(uid).collection('wishlist').doc(key).delete()
+    .then(()=>{
+      window.location.reload()
+    })
+  }
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
-      console.log(user)
+     if(user){
+       console.log(user)
+      setUid(user.uid)
       db.collection('user').doc(user.uid).collection('wishlist').get()
         .then(docs=>{
           var temp=[]
           docs.forEach((doc)=>{
-            temp.push(doc.data())
+            temp.push({...doc.data(),key: doc.id,_id: doc.data().key})
           })
           setWish(temp)
         })
-    })
+      }
     
+     })
   }, [])
 
   return (
@@ -51,20 +63,17 @@ const WishlistComponent = () => {
         </p>
         
        <br />
-        <button type="button" class="btn btnapply">
+        <button type="button" class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
           Remove
         </button>
-        <button type="button" class="btn btnapply">
-          Buy Now
+        <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
+          View Product
         </button>
       </div>
-      ) ): null}
-
-      
-      
+      )): null}  
     </div>
-  );
-};
+  )
+}
 
 export default function Wishlist() {
   const [usr, setUsr] = useState(null);
