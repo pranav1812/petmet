@@ -20,6 +20,10 @@ export default function VWaiting() {
                             else{
                                 window.location= window.location.protocol + "//" + window.location.host + "/" +'vCompleteProfile'
                             }
+                        }else{
+                            db.collection('vet').doc(user.uid).set({
+                                profileCompleted: false
+                            }).then(()=> window.location.reload())
                         }
                     })
             }

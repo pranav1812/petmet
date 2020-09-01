@@ -7,19 +7,32 @@ import {db, auth} from '../../firebase'
 // import BestSellers from "../dashboardclient/BestSellers";
 import {useParams} from 'react-router-dom'
 import { Modal, Form, Button } from "react-bootstrap";
+import ls from 'local-storage'
 
 const ShopPage = () => {
+  
+  const [userInfo, setUserInfo] = useState(null)
+  const [paymentMode,setPaymentMode]= useState(null)
+  const [newDeliveryAddress,setNewDeliveryAddress]= useState(null)
   const [show, setShow] = useState(false)
   const [showw, setShoww] = useState(false)
   const [info, setInfo]= useState(null)
-  const [qty, setQty]=useState(null)
+  const [qty, setQty]=useState(1)
   const {productId, subComponent}= useParams()
   useEffect(()=>{
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        db.collection('user').doc(user.uid).get()
+          .then(doc=>{
+            setUserInfo(doc.data())
+          })
+      }
+    })
     db.collection('items').doc(subComponent).collection('products').doc(productId).get()
       .then(doc=>{
         setInfo(doc.data().details)
       })
-  }, [])
+  }, [qty])
 
   const handleClose1=()=>setShow(false);
   const handleShow1=()=>setShow(true);
@@ -53,6 +66,11 @@ const ShopPage = () => {
     }else{
       prompt("Need to login")
     }
+  }
+
+  const confirmOrder=()=>{
+    console.log(newDeliveryAddress || userInfo.address)
+    console.log(paymentMode)
   }
   
   return (
@@ -122,7 +140,7 @@ const ShopPage = () => {
                 </div>
                 <div className="row">
                   <strong className="col-8">Quantity</strong>
-                  <input className="col-3" type="number" min="1" max={info.quantity} defaultValue="1" onChange={(e)=>{setQty(e.target.value)}}></input>
+                  <input className="col-4" type="number" min="1" max={info.quantity} defaultValue="1" onChange={(e)=>{setQty(Number(e.target.value))}}></input>
                 </div>
                 <div className="row">
                   <strong className="col-8">Cost of 1 Product</strong>
@@ -130,19 +148,19 @@ const ShopPage = () => {
                 </div>
                 <div className="row">
                   <strong className="col-8">Cost of Products</strong>
-                  <p>Rs. {info.cost*info.quantity}</p>
+                  <p>Rs. {info.cost*qty}</p>
                 </div>
                 <div className="row">
                   <strong className="col-8">GST</strong>
-                  <p>Rs. {0.3*info.cost*info.quantity}</p>
+                  <p>Rs. {0.3*info.cost*qty}</p>
                 </div>
                 <div className="row">
                   <strong className="col-8">Delivery Charges</strong>
-                  <p>Rs. {}</p>
+                  <p>Rs. {1.3*info.cost*qty>300 ? 0: 150}</p>
                 </div>
                 <div className="row">
                   <strong className="col-8">Total Cost</strong>
-                  <p>Rs. 321</p>
+                  <p>Rs. {1.3*info.cost*qty>300 ? 1.3*info.cost*qty: 150+ 1.3*info.cost*qty}</p>
                 </div>
               </div>
             </div>
@@ -160,30 +178,27 @@ const ShopPage = () => {
           <Modal.Body>
             <div className="container">
               <div className="row mb-4">
-                <h6 className="col-4"><strong>Delivery Address: </strong></h6>
-                <h6>Address of the Receiver</h6>
+                <h6 className="col-4"><strong>Delivery Address: {userInfo? userInfo.address: null} </strong></h6>
+                <h6>Another Address</h6>
+                <input type="text" placeholder={userInfo? userInfo.address: null} onBlur={(e)=>{e.target.value.trim!=" "? setNewDeliveryAddress(e.target.value): setNewDeliveryAddress(userInfo.address)}} />
               </div>
               <div>
                 <h5><strong>Payment Options</strong></h5>
                 <Form>
-                  <div className="row ml-3 mb-3 mt-2">
-                    <Form.Check inline label="  Cash on Delivery" />
-                  </div>
-                  <div className="row ml-3 mb-3">
-                    <Form.Check inline label="  Debit/Credit/ATM Card" />
-                  </div>
-                  <div className="row ml-3 mb-3">
-                    <Form.Check inline label="  Net Banking" />
-                  </div>
-                  <div className="row ml-3 mb-3">
-                    <Form.Check inline label="  UPI Payment" />
-                  </div>
+                  
+                  <select onChange={(e)=>{setPaymentMode(e.target.value)}}>
+                    <option value="nb" >Net Banking</option>
+                    <option value="cod" >Cash on Delivery</option>
+                    <option value="upi" >UPI Payment</option>
+                    <option value="card" >Debit/Credit/ATM Card</option>
+                  </select>
+                  
                 </Form>
               </div>
             </div>
           </Modal.Body>
           <Modal.Footer>
-            <button className="pink_out">Confirm Order</button>
+            <button className="pink_out" onClick={confirmOrder} >Confirm Order</button>
             <button className="pink_out" onClick={handleClose2}>Cancel</button>
           </Modal.Footer>
       </Modal>
