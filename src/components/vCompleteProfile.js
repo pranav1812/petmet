@@ -82,6 +82,7 @@ export default function VCompleteProfile() {
     const {name, phone, achievements, experience, qualification, address, city, state, zip }= vet
     db.collection('vet').doc(uid).update({
       ...vet,
+      profileCompleted: true
     }).then(()=>{
       window.location= window.location.protocol + "//" + window.location.host + "/" +'v/Profile'
     })

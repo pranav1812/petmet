@@ -9,7 +9,7 @@ import {Router, Link} from 'react-router-dom';
 export default function EditProfile() {
 
   const [uid, setUid]= useState(null)
-  const[client,setClient]=useState(null)
+  const [client,setClient]=useState(null)
   const [profile, setProfile]= useState({
     name: null,
     mail: null,
@@ -25,25 +25,22 @@ export default function EditProfile() {
       if(user){
         setUid(user.uid)
         db.collection('user').doc(user.uid).get()
-          .then(docs=>{
-            if(docs){
-              var temp=[]
+          .then(doc=>{
+            if(doc.exists){
              // docs.forEach(doc=>{
-             Array.from(docs).forEach(doc=>{
-             temp.push(doc.data())         
-              })
-              setClient(temp)
-              }
-          })
+              setProfile(doc.data())
+              setClient(doc.data())}
+          }
+          )
       }
     })
     
   },[])
 
   const submit=()=>{
-    const {name, mail, phone, address, city, state, zip}= profile
     db.collection('user').doc(uid).update({
       ...profile,
+      profileCompleted: true,
     }).then(()=>{
       window.location= window.location.protocol + "//" + window.location.host + "/" +'Home/'
     })
@@ -55,14 +52,12 @@ export default function EditProfile() {
     <React.Fragment>
       <h1 className="main-head mt-4">UPDATE YOUR PROFILE</h1>
         <div className="container m-4">
-        {
-        client? client.map(client=>(
           <Form className="addProduct_form">
           <Form.Group className="row">
               <Form.Label className="col-3">Name</Form.Label>
               <Form.Control required className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" id="Name"
                  name="Name" autoComplete="given-name"
-                 placeholder={client.name}
+                 placeholder={client?client.name:null}
                  onBlur={e=>{setProfile({...profile, name: e.target.value})}}> 
                  </Form.Control>
           </Form.Group>
@@ -72,7 +67,7 @@ export default function EditProfile() {
               id="mail"
               name="mail"
               autoComplete="email"
-              placeholder={client.mail}
+              placeholder={client?client.mail:null}
               onBlur={e=>{setProfile({...profile, mail: e.target.value})}}> 
               </Form.Control>
               </Form.Group>
@@ -82,8 +77,8 @@ export default function EditProfile() {
                id="phone"
                name="phone"
                autoComplete="number"
-               placeholder={client.phone}
-               onBlur={e=>{setProfile({...profile, number: e.target.value})}}> 
+               placeholder={client?client.phone:null}
+               onBlur={e=>{setProfile({...profile, phone: e.target.value})}}> 
                </Form.Control>
           </Form.Group>
           <Form.Group className="row">
@@ -92,7 +87,7 @@ export default function EditProfile() {
                id="address"
                name="address"
                autoComplete="address"
-               placeholder={client.address}
+               placeholder={client?client.address:null}
                onBlur={e=>{setProfile({...profile, address: e.target.value})}}> 
                </Form.Control>
           </Form.Group>
@@ -102,7 +97,7 @@ export default function EditProfile() {
                id="city"
                name="city"
                autoComplete="city"
-               placeholder={client.city}
+               placeholder={client?client.city:null}
                onBlur={e=>{setProfile({...profile, city: e.target.value})}}> 
                </Form.Control>
           </Form.Group>
@@ -112,7 +107,7 @@ export default function EditProfile() {
                id="state"
                name="state"
                autoComplete="state"
-               placeholder={client.state}
+               placeholder={client?client.state:null}
                onBlur={e=>{setProfile({...profile, state: e.target.value})}}> 
                </Form.Control>
           </Form.Group>
@@ -122,7 +117,7 @@ export default function EditProfile() {
                id="zip"
                name="zip"
                autoComplete="shipping postal-code"
-               placeholder={client.zip}
+               placeholder={client?client.zip:null}
               onBlur={e=>{setProfile({...profile, zip: e.target.value})}}> 
                </Form.Control>
           </Form.Group>
@@ -130,95 +125,9 @@ export default function EditProfile() {
               Update
           </button>
       </Form>
-
-        )): null
-      }
       
 
                 </div>
     </React.Fragment>
   );
 }
-
-{/**
-<Typography variant="h6" gutterBottom>
-        Update your Profile
-      </Typography>
-     
-        <Grid item xs={12}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="name"
-            name="name"
-            label="Full name"
-            fullWidth
-            autoComplete="given-name"
-            onBlur={e=>{ls.set('name', e.target.value)}}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="mail"
-            name="mail"
-            label="E-mail"
-            fullWidth
-            autoComplete="email"
-            onBlur={e=>{ls.set('mail', e.target.value)}}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="phone"
-            name="phone"
-            label="Phone Number"
-            fullWidth
-            autoComplete="number"
-            onBlur={e=>{ls.set('phone', e.target.value)}}
-          />
-        </Grid>
-            <Grid>
-          <TextField
-            required
-            id="address"
-            name="address"
-            label="Address"
-            fullWidth
-            autoComplete="address"
-            required
-            onBlur={e=>{ls.set('address', e.target.value)}}
-          />
-        </Grid>
-        
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="city"
-            onBlur={e=>{ls.set('city', e.target.value)}}
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State" fullWidth
-          onBlur={e=>{ls.set('state', e.target.value)}}
-          />
-          
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Pin code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            onBlur={e=>{ls.set('pin', e.target.value)}}
-          />
-        </Grid>
-        </Grid>
-*/}
