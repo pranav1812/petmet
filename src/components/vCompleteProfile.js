@@ -52,9 +52,14 @@ export default function VCompleteProfile() {
         db.collection('vet').doc(user.uid).get()
           .then(doc=>{
             if(!doc.exists){
-              alert("some error occured")
+              db.collection("vet").doc(user.uid).set({
+                profileCompleted: false,
+                //alert("some error occured")  
+              });
+            }else if (doc.data().profileCompleted) {
+              window.location = window.location.protocol + "//" + window.location.host + "/" +'v/Profile';
             }
-          })
+          });
       }
     })
    

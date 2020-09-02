@@ -77,7 +77,7 @@ const useStyles = makeStyles((theme) => ({
               <p className="col">8980767999</p>
             </div>
             <div className="row">
-              <strong className="col-6 col-sm-5 col-lg-3">Qualification:</strong>
+              <strong className="col-6 col-sm-5 col-lg-3">Qualification</strong>
               <p className="col">MBBS</p>
             </div>
             <div className="row">
