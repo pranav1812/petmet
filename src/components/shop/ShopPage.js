@@ -18,6 +18,7 @@ const ShopPage = () => {
   const [showw, setShoww] = useState(false)
   const [info, setInfo]= useState(null)
   const [qty, setQty]=useState(1)
+  const [totalPrice, setTotalPrice]= useState(null)
   const {productId, subComponent}= useParams()
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
@@ -31,6 +32,7 @@ const ShopPage = () => {
     db.collection('items').doc(subComponent).collection('products').doc(productId).get()
       .then(doc=>{
         setInfo(doc.data().details)
+        setTotalPrice(doc.data().details.cost)
       })
   }, [qty])
 
@@ -71,6 +73,7 @@ const ShopPage = () => {
   const confirmOrder=()=>{
     console.log(newDeliveryAddress || userInfo.address)
     console.log(paymentMode)
+    console.log(qty*info.cost*1.3>300? qty*info.cost*1.3: qty*info.cost*1.3+150)
   }
   
   return (
@@ -140,7 +143,11 @@ const ShopPage = () => {
                 </div>
                 <div className="row">
                   <strong className="col-8">Quantity</strong>
-                  <input className="col-4" type="number" min="1" max={info.quantity} defaultValue="1" onChange={(e)=>{setQty(Number(e.target.value))}}></input>
+                  <input className="col-4" type="number" min="1" max={info.quantity} defaultValue="1" onChange={(e)=>{
+                    setTotalPrice(Number(e.target.value)*Number(info.cost)*1.3)
+                    setQty(Number(e.target.value))
+                    
+                    }}></input>
                 </div>
                 <div className="row">
                   <strong className="col-8">Cost of 1 Product</strong>

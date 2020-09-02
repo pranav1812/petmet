@@ -10,12 +10,13 @@ const TopCarousel = () => {
     // .........................carousel.................................
 
     db.collection("homepage")
-      .doc("carousel")
-      .get()
-      .then((docs) => {
-        var temp = [];
-        docs.forEach((doc) => temp.push(doc.data()));
-        setImages(temp);
+      .doc("carousel").get()
+        .then((doc) => {
+          if(doc.exists){
+            var temp = [];
+            doc.data().images.forEach((img) => temp.push(img));
+            setImages(temp);
+          }       
       })
       .catch((e) => console.log(e));
     // ............................carousel...................................
@@ -42,28 +43,12 @@ const TopCarousel = () => {
           {images ? (
             images.map((bss) => (
               <div className="carousel-item active">
-                <img src={bss.link1} className="d-block w-100" alt="..." />
+                <img src={bss} className="d-block w-100" alt="..." />
               </div>
             ))
-          ) : (
-            <h3>beeroo</h3>
-          )}
+          ) : <h5>Please Wait.... Loading</h5>}
 
-          <div className="carousel-item">
-            <img
-              src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-          <div className="carousel-item">
-            <img
-              src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
-        </div>
+          {/* yaha pe*/}
         <a
           class="carousel-control-prev"
           href="#carouselExampleIndicators"
@@ -82,6 +67,7 @@ const TopCarousel = () => {
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
+      </div>
       </div>
     </div>
   );
