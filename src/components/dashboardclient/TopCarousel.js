@@ -1,29 +1,27 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { db } from "../../firebase";
 import "./topcarousel.css";
+import { Carousel } from "react-bootstrap";
 
-// const styles = {
-//   root: {
-//     padding: "0 !important",
-//   },
-// };
 const TopCarousel = () => {
+  const [images, setImages] = useState(null);
+
+  useEffect(() => {
+    // .........................carousel.................................
+
+    db.collection("homepage")
+      .doc("carousel")
+      .get()
+      .then((docs) => {
+        var temp = [];
+        docs.forEach((doc) => temp.push(doc.data()));
+        setImages(temp);
+      })
+      .catch((e) => console.log(e));
+    // ............................carousel...................................
+  }, []);
+
   return (
-    // <div className={styles.root} className="topcarousel">
-    //   <Carousel>
-    //     <Products>
-    //       <img src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg" />
-    //     </Products>
-    //     <Products>
-    //       <img src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg" />
-    //     </Products>
-    //     <Products>
-    //       <img src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg" />
-    //     </Products>
-    //     <Products>
-    //       <img src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg" />
-    //     </Products>
-    //   </Carousel>
-    // </div>
     <div>
       <div
         id="carouselExampleIndicators"
@@ -40,13 +38,17 @@ const TopCarousel = () => {
           <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
         </ol>
         <div className="carousel-inner">
-          <div className="carousel-item active">
-            <img
-              src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg"
-              className="d-block w-100"
-              alt="..."
-            />
-          </div>
+          {/* .....................tried............................ */}
+          {images ? (
+            images.map((bss) => (
+              <div className="carousel-item active">
+                <img src={bss.link1} className="d-block w-100" alt="..." />
+              </div>
+            ))
+          ) : (
+            <h3>beeroo</h3>
+          )}
+
           <div className="carousel-item">
             <img
               src="https://storage.sg.content-cdn.io/in-resources/e0c89b48-2067-4e06-a376-74220379b6d9/Images/userimages/DISCOUNT%20OFFER%20FB%20cover.jpg"

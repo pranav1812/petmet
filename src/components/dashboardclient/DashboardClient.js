@@ -18,8 +18,6 @@ import Button from "@material-ui/core/Button";
 
 import Carousel from "react-elastic-carousel";
 
-
-
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
   { width: 550, itemsToShow: 2 },
@@ -58,17 +56,6 @@ const DashboardClient = () => {
       .catch((e) => console.log(e));
 
     db.collection("items")
-      .doc("Best Sellers")
-      .collection("products")
-      .get()
-      .then((docs) => {
-        var temp = [];
-        docs.forEach((doc) => temp.push(doc.data()));
-        setBestSellers(temp);
-      })
-      .catch((e) => console.log(e));
-
-    db.collection("items")
       .doc("Accessories")
       .collection("products")
       .get()
@@ -76,6 +63,17 @@ const DashboardClient = () => {
         var temp = [];
         docs.forEach((doc) => temp.push(doc.data()));
         setAccessories(temp);
+      })
+      .catch((e) => console.log(e));
+
+    db.collection("items")
+      .doc("bestSellers")
+      .collection("products")
+      .get()
+      .then((docs) => {
+        var temp = [];
+        docs.forEach((doc) => temp.push(doc.data()));
+        setBestSellers(temp);
       })
       .catch((e) => console.log(e));
 
@@ -113,8 +111,8 @@ const DashboardClient = () => {
       <div className="cards">
         {categories
           ? categories.map((cat) => (
-              <Link to={"/ShopProducts/"+ cat.name }>
-                <RoundCard  title={cat.name} image={cat.img} />
+              <Link to={"/ShopProducts/" + cat.name}>
+                <RoundCard title={cat.name} image={cat.img} />
               </Link>
             ))
           : null}
