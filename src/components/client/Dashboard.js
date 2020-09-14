@@ -271,11 +271,14 @@ export default function Dashboard() {
             noWrap
             className={classes.title}
           >
-            <img
-              className="mainlogoonnav"
-              style={{ width: "130px", height: "33px" }}
-              src={MainLogo}
-            />
+            <Link to="/Home">
+              <img
+                className="mainlogoonnav"
+                style={{ width: "130px", height: "33px" }}
+                src={MainLogo}
+              />
+            </Link>
+            
 
             <div
               style={{ float: "right", display: "inline" }}

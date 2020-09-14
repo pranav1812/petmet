@@ -46,7 +46,7 @@ const TopCarousel = () => {
                 <img src={bss} className="d-block w-100" alt="..." />
               </div>
             ))
-          ) : <h5>Please Wait.... Loading</h5>}
+          ) : null}
 
           {/* yaha pe*/}
         <a

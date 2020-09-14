@@ -123,6 +123,7 @@ const CartComponent = () => {
               type="button"
               style={{ backgroundColor: "#36A9CC" }}
               class="btn btn-secondary"
+              
             >
               PLACE ORDER
             </button>
