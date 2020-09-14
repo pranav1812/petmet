@@ -148,7 +148,7 @@ const ShopPage = () => {
       
       
 
-      <Modal show={confirmShow} >
+      <Modal show={confirmShow} centered>
         <Modal.Header >
           <Modal.Title>Order Placed</Modal.Title>
         </Modal.Header>
