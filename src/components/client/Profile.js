@@ -52,7 +52,6 @@ export default function EditProfile() {
     <React.Fragment>
       <h1 className="main-head mt-4">UPDATE YOUR PROFILE</h1>
         <div className="container m-4">
-
           <Form className="addProduct_form">
           <Form.Group className="row">
               <Form.Label className="col-3">Name</Form.Label>

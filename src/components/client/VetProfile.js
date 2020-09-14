@@ -136,80 +136,102 @@ function MyVerticallyCenteredModal(props) {
 }
 
 export default function VetProfile() {
-  // const [uid, setUid] = useState(null);
-  // const [vet, setVet] = useState(null);
-  // useEffect(() => {
-  //   auth.onAuthStateChanged((user) => {
-  //     if (user) {
-  //       setUid(vet.uid);
-  //       var ref = db.collection("vet").doc(vet.uid);
-  //       ref.get().then((doc) => {
-  //         if (doc.exists) {
-  //           ref
-  //             .collection("vet")
-  //             .get()
-  //             .then((docs) => {
-  //               if (docs) {
-  //                 var temp = [];
-  //                 docs.forEach((doc) => {
-  //                   temp.push(doc.data());
-  //                 });
-  //                 setVet(temp);
-  //               }
-  //             });
-  //         }
-  //       });
-  //     }
-  //   });
-  // }, []);
+  const [vet, setVet] = useState(null);
+  const [uid, setUid] = useState(null);
+
+  useEffect((user) => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setUid(user.uid);
+        db.collection("vet")
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              db.collection("vet")
+                .doc(user.uid)
+                .get()
+                .then((docs) => {
+                  var temp = [];
+                  docs.map((doc) => {
+                    temp.push(doc.data());
+                  });
+                  setVet(temp);
+                });
+            }
+          });
+      }
+    });
+  }, []);
+
+  //   // ............................end...................................
 
   const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <div className="container profile_container">
       <div className="row justify-content-center">
-        <div className="col-12 col-md-5 offset-sm-1">
-          <h4 className="mt-2 mb-3 head">Name of Vet</h4>
-          <img src={Doctor} className="profile_img" />
-          <p style={{ color: "#36A9CC" }} className="mt-2">
-            Verified
-          </p>
-        </div>
-        <div className="col-12 col-md-6">
-          <div className="row mt-5 mt-sm-2">
-            <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
-            <p className="col">Someone</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
-            <p className="col">#23 Model Town</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
-            <p className="col">Patiala</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
-            <p className="col">Punjab</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Mobile No:</strong>
-            <p className="col">8980767999</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Qualification:</strong>
-            <p className="col">MBBS</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Experience:</strong>
-            <p className="col">Name of the doctor</p>
-          </div>
+        {/* ........................................... */}
+        {vet ? (
+          vet.map((vets) => (
+            <div>
+              <div className="col-12 col-md-5 offset-sm-1">
+                <h4 className="mt-2 mb-3 head">{vets.Name}</h4>
+                <img src={Doctor} className="profile_img" />
+                <p style={{ color: "#36A9CC" }} className="mt-2">
+                  Verified
+                </p>
+              </div>
+              <div className="col-12 col-md-6">
+                <div className="row mt-5 mt-sm-2">
+                  <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
+                  <p className="col">{vets.Name}</p>
+                </div>
+                <div className="row">
+                  <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
+                  <p className="col">{vets.Address}</p>
+                </div>
+                <div className="row">
+                  <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
+                  <p className="col">{vet.city}</p>
+                </div>
+                <div className="row">
+                  <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
+                  <p className="col">{vets.state}</p>
+                </div>
+                <div className="row">
+                  <strong className="col-6 col-sm-5 col-lg-3">
+                    Mobile No:
+                  </strong>
+                  <p className="col">{vets.phone}</p>
+                </div>
+                <div className="row">
+                  <strong className="col-6 col-sm-5 col-lg-3">
+                    Qualification:
+                  </strong>
+                  <p className="col">{vets.Qualification}</p>
+                </div>
+                <div className="row">
+                  <strong className="col-6 col-sm-5 col-lg-3">
+                    Experience:
+                  </strong>
+                  <p className="col">{vets.experience}</p>
+                </div>
 
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Achievements:</strong>
-            <p className="col">Name of the doctor</p>
-          </div>
-        </div>
+                <div className="row">
+                  <strong className="col-6 col-sm-5 col-lg-3">
+                    Achievements:
+                  </strong>
+                  <p className="col">{vets.Achievements}</p>
+                </div>
+              </div>
+            </div>
+          ))
+        ) : (
+          <h5>Wait...loading</h5>
+        )}
+
+        {/* ...................................................... */}
 
         <button
           type="button"
