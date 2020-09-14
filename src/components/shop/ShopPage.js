@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from "react";
-import Carousel from "./Carousel";
+
 /*import Rating from "@material-ui/lab/Rating";*/
 import '../Admin/Admin.css'
 import "./shoppage.css";
@@ -7,6 +7,7 @@ import {db, auth} from '../../firebase'
 // import BestSellers from "../dashboardclient/BestSellers";
 import {useParams} from 'react-router-dom'
 import { Modal, Form, Button } from "react-bootstrap";
+import {Link} from 'react-router-dom'
 import ls from 'local-storage'
 
 const ShopPage = () => {
@@ -19,10 +20,17 @@ const ShopPage = () => {
   const [info, setInfo]= useState(null)
   const [qty, setQty]=useState(1)
   const [totalPrice, setTotalPrice]= useState(null)
+  const [uid, setUid]= useState(null)
   const {productId, subComponent}= useParams()
+  const [confirmShow, setConfirmShow] = useState(false);
+
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
+  
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
       if(user){
+        setUid(user.uid)
         db.collection('user').doc(user.uid).get()
           .then(doc=>{
             setUserInfo(doc.data())
@@ -39,7 +47,10 @@ const ShopPage = () => {
   const handleClose1=()=>setShow(false);
   const handleShow1=()=>setShow(true);
 
-  const handleClose2=()=>setShoww(false);
+  const handleClose2=()=>{
+    setShoww(false)
+    setConfirmShow(true)
+  };
   const handleShow2=()=>{
     setShow(false)
     setShoww(true)
@@ -48,7 +59,7 @@ const ShopPage = () => {
   const addToCart=()=>{
     var user= auth.currentUser
     if(user){
-      db.collection('user').doc(user.uid).collection('cart').add({
+      db.collection('user').doc(user.uid).collection('cart').doc(productId).set({
         ...info,
         key: productId
       }).then(()=>alert("Product Added to Cart"))
@@ -61,7 +72,7 @@ const ShopPage = () => {
   const addToWishlist=()=>{
     var user= auth.currentUser
     if(user){
-      db.collection('user').doc(user.uid).collection('wishlist').add({
+      db.collection('user').doc(user.uid).collection('wishlist').doc(productId).set({
         ...info,
         key: productId
       }).then(()=>alert("Product Added to Wishlist"))
@@ -70,10 +81,22 @@ const ShopPage = () => {
     }
   }
 
+  const handleConfirmClose=()=>{
+    setConfirmShow(false)
+    // window.location= "demo"
+  }
+
   const confirmOrder=()=>{
     console.log(newDeliveryAddress || userInfo.address)
     console.log(paymentMode)
     console.log(qty*info.cost*1.3>300? qty*info.cost*1.3: qty*info.cost*1.3+150)
+    db.collection('user').doc(uid).collection('pastOrders').add({
+      ...info,
+      productId: productId
+    }).then(()=>{
+      handleClose2()
+      
+    })
   }
   
   return (
@@ -122,6 +145,23 @@ const ShopPage = () => {
         </div>
       
       <hr style={{ color: "rgba(0,0,0,0.1" }} />
+      
+      
+
+      <Modal show={confirmShow} centered>
+        <Modal.Header >
+          <Modal.Title>Order Placed</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Woohoo, your order has been placed</Modal.Body>
+        <Modal.Footer>
+          <Link to='/Home'>         
+          <Button variant="secondary">
+            Okay
+          </Button>
+          </Link>
+        </Modal.Footer>
+      </Modal>
+    
 
       <Modal show={show} onHide={handleClose1} centered>
           <Modal.Header closeButton>
@@ -214,7 +254,7 @@ const ShopPage = () => {
       
       </div>
       
-      ): <h2>please wait</h2>}
+      ): null}
 
       
       

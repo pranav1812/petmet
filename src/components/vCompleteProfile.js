@@ -33,17 +33,7 @@ export default function VCompleteProfile() {
   const classes = useStyles();
   const [uid, setUid]= useState(null)
  const[url, setUrl]= useState(null)
-  const [vet, setVet]= useState({
-    name: null,
-    phone: null,
-    achievements: null,
-    qualification: null,
-    experience: null,
-    address: null,
-    city: null,
-    state:null,
-    zip:null
-  })
+  const [vet, setVet]= useState({})
 
   useEffect(()=>{
     auth.onAuthStateChanged(user=>{
@@ -82,7 +72,8 @@ export default function VCompleteProfile() {
     const {name, phone, achievements, experience, qualification, address, city, state, zip }= vet
     db.collection('vet').doc(uid).update({
       ...vet,
-      profileCompleted: true
+      profileCompleted: true,
+      imgUrl: url
     }).then(()=>{
       window.location= window.location.protocol + "//" + window.location.host + "/" +'v/Profile'
     })
@@ -102,7 +93,7 @@ export default function VCompleteProfile() {
                             <Form.Label className="col-3">Name</Form.Label>
                             <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input" id="Name"
                                name="Name" autoComplete="given-name"
-                               onBlur={e=>{setVet({...vet, name: e.target.value})}}>
+                               onBlur={e=>{setVet({...vet, Name: e.target.value})}}>
                                </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -120,7 +111,7 @@ export default function VCompleteProfile() {
                              id="Achievements"
                              name="Achievements"
                              autoComplete="Achievements"
-                             onBlur={e=>{setVet({...vet, achievements: e.target.value})}}>
+                             onBlur={e=>{setVet({...vet, Achievements: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -129,7 +120,7 @@ export default function VCompleteProfile() {
                              id="qualification"
                              name="qualification"
                              autoComplete="qualification"
-                             onBlur={e=>{setVet({...vet, qualification: e.target.value})}}>
+                             onBlur={e=>{setVet({...vet, Qualification: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -147,7 +138,7 @@ export default function VCompleteProfile() {
                              id="Address"
                              name="Address"
                              autoComplete="Address"
-                             onBlur={e=>{setVet({...vet, address: e.target.value})}}>
+                             onBlur={e=>{setVet({...vet, Address: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
@@ -186,102 +177,3 @@ export default function VCompleteProfile() {
   );
 }
 
-
-/*
-<Typography variant="h6" gutterBottom>
-        VET FORM
-      </Typography>
-      <Grid container spacing={3}>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="Name"
-            name="Name"
-            label="Name"
-            fullWidth
-            autoComplete="given-name" onBlur={(e)=>{this.setState({name: e.target.value})}}/>
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            required
-            id="phone"
-            name="phone"
-            label="phone"
-            fullWidth
-            autoComplete="phone"
-            onBlur={(e)=>{setState({phone: e.target.value})}} />
-        </Grid>
-        <Grid item xs={12}>
-          <TextField
-            id="Achievements"
-            name="Achievements"
-            label="Achievements"
-            fullWidth
-            autoComplete="Achievements"
-            onBlur={(e)=>{setState({Achievements: e.target.value})}}/>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-        <TextField
-            required
-            id="Qualification"
-            name="Qualification"
-            label="Qualification"
-            fullWidth
-            autoComplete="Qualification"
-            onBlur={(e)=>{setState({Qualification: e.target.value})}}/>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="experience"
-            name="experience"
-            label="experience in years"
-            fullWidth
-            autoComplete="years"
-            onBlur={(e)=>{setState({experience: e.target.value})}}/>
-        </Grid>
-        
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="Address"
-            name="Address"
-            label="Address"
-            fullWidth
-            autoComplete="Address"
-            onBlur={(e)=>{setState({address: e.target.value})}}/>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="city"
-            name="city"
-            label="City"
-            fullWidth
-            autoComplete="city"
-            onBlur={(e)=>{setState({city: e.target.value})}}/>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField id="state" name="state" label="State" fullWidth 
-          onBlur={(e)=>{setState({state: e.target.value})}}/>
-                </Grid>
-        <Grid item xs={12} sm={6}>
-          <TextField
-            required
-            id="zip"
-            name="zip"
-            label="Zip / Postal code"
-            fullWidth
-            autoComplete="shipping postal-code"
-            onBlur={(e)=>{setState({zip: e.target.value})}}/>
-        </Grid>
-        
-
-        <Grid item xs={12} sm={6}>
-        <Button variant="contained" color="primary" onClick={submit}>
-            FINISH
-        </Button>
-         </Grid>
-    
-      </Grid>
-      */

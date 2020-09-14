@@ -45,29 +45,23 @@ const TopCarousel = () => {
             <div className="carousel-item active">
               <img src={images} className="d-block w-100" alt="..." />
             </div>
-          ) : (
-            <h5>Please Wait.... Loading</h5>
-          )}
+          ) : null}
 
           {images ? (
             <div className="carousel-item">
               <img src={images} className="d-block w-100" alt="..." />
             </div>
-          ) : (
-            <h5>Please Wait.... Loading</h5>
-          )}
+          ) : null}
 
           {/* yaha pe*/}
 
-          {/* {images ? (
+          {images ? (
             images.map((bss) => (
               <div className="carousel-item active">
                 <img src={bss} className="d-block w-100" alt="..." />
               </div>
             ))
-          ) : (
-            <h5>Please Wait.... Loading</h5>
-          )} */}
+          ) : null}
 
           <a
             class="carousel-control-prev"

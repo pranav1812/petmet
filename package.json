@@ -29,6 +29,7 @@
     "react-elastic-carousel": "^0.7.3",
     "react-icons": "^3.11.0",
     "react-modal": "^3.11.2",
+    "react-preloaders": "^3.0.3",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-swipeable-views": "^0.13.9",
