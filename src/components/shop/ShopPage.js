@@ -8,7 +8,10 @@ import {db, auth} from '../../firebase'
 import {useParams} from 'react-router-dom'
 import { Modal, Form, Button } from "react-bootstrap";
 import {Link} from 'react-router-dom'
-import ls from 'local-storage'
+import emailjs from 'emailjs-com';
+import {emailConfig} from '../../sendMail'
+import{ init } from 'emailjs-com';
+init(emailConfig.userId);
 
 const ShopPage = () => {
   
@@ -40,7 +43,7 @@ const ShopPage = () => {
     db.collection('items').doc(subComponent).collection('products').doc(productId).get()
       .then(doc=>{
         setInfo(doc.data().details)
-        setTotalPrice(doc.data().details.cost)
+        // setTotalPrice(doc.data().details.cost)
       })
   }, [qty])
 
@@ -55,6 +58,18 @@ const ShopPage = () => {
     setShow(false)
     setShoww(true)
   }
+
+  /* send email function */
+
+  const sendEmail=(obj)=> {
+    emailjs.send(emailConfig.serviceId, emailConfig.confirmOrderTemplate , obj)
+    .then(res=>{
+      console.log('SUCCESS!', res.status, res.text)
+    }).catch(err=>console.log('FAILED...', err))
+  }
+
+
+  /* send email function */
 
   const addToCart=()=>{
     var user= auth.currentUser
@@ -87,14 +102,38 @@ const ShopPage = () => {
   }
 
   const confirmOrder=()=>{
-    console.log(newDeliveryAddress || userInfo.address)
-    console.log(paymentMode)
-    console.log(qty*info.cost*1.3>300? qty*info.cost*1.3: qty*info.cost*1.3+150)
+    setTotalPrice(qty*Number(info.cost)*1.3>300? qty*Number(info.cost)*1.3: qty*Number(info.cost)*1.3+150)
+
+    /* timestamp*/
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = dd + '/' + mm + '/' + yyyy;
+
     db.collection('user').doc(uid).collection('pastOrders').add({
       ...info,
-      productId: productId
-    }).then(()=>{
+      productId: productId,
+      orderedOn: today,
+      total: totalPrice,
+      numberOfUnits: qty
+    }).then((doc)=>{
+      db.collection('All_Orders').doc(doc.id).set({
+        ...info,
+      productId: productId,
+      orderedOn: today,
+      total: totalPrice,
+      customerId: uid,
+      numberOfUnits: qty
+      })
       handleClose2()
+      var email_details={
+        order_id: doc.id,
+        message: `total: Rs. ${totalPrice}....  \nno. of units: ${qty}....  Product: ${info.name}`,
+        to_email: userInfo.mail,
+        to_name: userInfo.name
+      }
+      sendEmail(email_details)
       
     })
   }
@@ -218,7 +257,7 @@ const ShopPage = () => {
           </Modal.Footer>
       </Modal>
 
-      <Modal size="lg" show={showw} onHide={handleClose2} centered>
+      <Modal size="lg" show={showw} onHide={()=>{setShoww(false)}} centered>
           <Modal.Header closeButton>
             <Modal.Title>Order Item</Modal.Title>
           </Modal.Header>
@@ -246,7 +285,7 @@ const ShopPage = () => {
           </Modal.Body>
           <Modal.Footer>
             <button className="pink_out" onClick={confirmOrder} >Confirm Order</button>
-            <button className="pink_out" onClick={handleClose2}>Cancel</button>
+            <button className="pink_out" onClick={()=>{setShoww(false)}}>Cancel</button>
           </Modal.Footer>
       </Modal>
       

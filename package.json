@@ -16,6 +16,7 @@
     "bootswatch": "^4.5.2",
     "date-fns": "^2.15.0",
     "emailjs": "^3.3.0",
+    "emailjs-com": "^2.6.3",
     "firebase": "^4.8.0",
     "firebaseui": "^4.6.1",
     "install": "^0.13.0",
