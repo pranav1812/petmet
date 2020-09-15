@@ -65,6 +65,7 @@ function MyVerticallyCenteredModal(props) {
                   block
                   color="#36A9CC"
                   className="btn-block pink_out"
+                  onClick={MyVerticallyCenteredModal}
                 >
                   <span>
                     <BiClinic className="mb-1" />{" "}
