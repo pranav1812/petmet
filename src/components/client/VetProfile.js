@@ -140,31 +140,62 @@ export default function VetProfile() {
   const [vet, setVet] = useState(null);
   const [uid, setUid] = useState(null);
 
-  useEffect((user) => {
+  // useEffect((user) => {
+  //   auth.onAuthStateChanged((user) => {
+  //     if (user) {
+  //       setUid(vet.uid);
+
+  //       db.collection('vet')
+  //         .doc(vet.uid)
+  //         .get.then((doc) => {
+  //           if (doc.exists) {
+  //             var Name = doc.data().Name;
+  //             db.collection("vet")
+  //               .where("Name", "==", Name)
+  //               .get()
+  //               .then((docs) => {
+  //                 var temp = [];
+  //                 docs.map((doc) => {
+  //                   temp.push(doc.data());
+  //                 });
+  //                 setVet(temp);
+  //               });
+  //           }
+  //         });
+  //     }
+  //   });
+  // }, []);
+
+  const [vets, setVets] = useState(null);
+
+  const [usr, setUsr] = useState(null);
+  useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        setUid(user.uid);
-        db.collection("vet")
+        setUsr(user);
+        db.collection("user")
           .doc(user.uid)
           .get()
           .then((doc) => {
             if (doc.exists) {
+              var Name = doc.data().Name;
               db.collection("vet")
-                .doc(user.uid)
+                .where("Name", "==", Name)
                 .get()
                 .then((docs) => {
                   var temp = [];
-                  docs.map((doc) => {
-                    temp.push(doc.data());
+                  docs.forEach((vet) => {
+                    temp.push(vet.data());
                   });
-                  setVet(temp);
-                });
+                  setVets(temp);
+                })
+                .catch((err) => console.error(err));
             }
-          });
+          })
+          .catch((err) => console.error(err));
       }
     });
-  }, []);
-
+  });
   //   // ............................end...................................
 
   const [modalShow, setModalShow] = React.useState(false);
