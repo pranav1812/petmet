@@ -48,27 +48,28 @@ body {
   font-style: normal;
   font-weight: 520;
   font-size: 1.4em !important;
-  margin-left: 12px;
+  /* margin-left: 30%; */
 }
 
 .dashboardbuttons2 {
-  justify-content: right !important;
-  align-items: right !important;
+  justify-content: center !important;
+  /* align-items: right !important; */
   color: #36a9cc !important;
   font-family: Roboto;
   font-style: normal;
   font-weight: 520;
   font-size: 1.4em !important;
-  float: right;
-  margin-right: 12px;
+  /* float: right; */
+  margin-right: 30%;
 }
 
 .topmostbuttonss {
-  background-color: rgba(0, 0, 0, 0.4);
-  border: 0px;
-  padding: 12px;
-  top: -68px;
-  position: relative;
+display: block;
+/* 
+background-color:; */
+margin-left: auto;
+margin-right: auto;
+width: 25%;
 }
 
 @media (max-width: 567px) {

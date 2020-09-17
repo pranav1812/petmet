@@ -15,8 +15,7 @@ import { db } from "../../firebase";
 
 import { Router, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
-
-import Carousel from "react-elastic-carousel";
+import ButtonGroup from "@material-ui/core/Button";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -98,15 +97,20 @@ const DashboardClient = () => {
         >
           <TopCarousel />
         </div>
-        <div className="topmostbuttonss">
+      </div>
+{/* 
+      <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
+  <Button>One</Button>
+  <Button>Two</Button>
+ </ButtonGroup> */}
+ <div className="topmostbuttonss">
           <Link to="/Addpet/">
             <Button className="dashboardbuttons1">Add Pet</Button>
           </Link>
           <Link to="/Appointment/">
             <Button className="dashboardbuttons2">Appointment</Button>{" "}
           </Link>
-        </div>
-      </div>
+          </div>
 
       <div className="cards">
         {categories
