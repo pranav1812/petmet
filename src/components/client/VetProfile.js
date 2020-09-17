@@ -281,3 +281,5 @@ export default function VetProfile() {
     </div>
   );
 }
+
+// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
