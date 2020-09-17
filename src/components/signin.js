@@ -10,15 +10,19 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
-import { auth, db} from "../firebase";
+import { auth, db } from "../firebase";
 import * as firebase from "firebase";
 import mainlogo from "./pictures/Final Main Logo PET MET.png";
 import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
 
-const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
-const vMail= window.location.protocol + "//" + window.location.host + "/" +'verifyEmail/'
-const rCheck= window.location.protocol + "//" + window.location.host + "/" +'checkout/'
-const rP= window.location.protocol + "//" + window.location.host + "/" +'phone/'
+const home =
+  window.location.protocol + "//" + window.location.host + "/" + "Home/";
+const vMail =
+  window.location.protocol + "//" + window.location.host + "/" + "verifyEmail/";
+const rCheck =
+  window.location.protocol + "//" + window.location.host + "/" + "checkout/";
+const rP =
+  window.location.protocol + "//" + window.location.host + "/" + "phone/";
 
 function Copyright() {
   return (
@@ -42,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
     position: "relative",
   },
   picture: {
-    marginTop: "230px",
-    marginLeft: "45%",
     position: "relative",
   },
   paper: {
@@ -87,8 +89,6 @@ export default function Login() {
       }
     });
   }, []);
-
-  
 
   const signupEmail = () => {
     if (mail && pass && name) {
@@ -179,7 +179,8 @@ export default function Login() {
   };
 
   const goToVet = () => {
-    window.location = window.location.protocol + "//" + window.location.host + "/" +'vLogin/';
+    window.location =
+      window.location.protocol + "//" + window.location.host + "/" + "vLogin/";
   };
 
   const googleSignin = () => {
@@ -212,26 +213,31 @@ export default function Login() {
       });
 
       auth.onAuthStateChanged((user) => {
-        if (user){
-          db.collection('Admin').doc(user.uid).get()
-        .then(doc=>{
-          if(doc.exists){
-            window.location = window.location.protocol + "//" + window.location.host + "/admin/" +'verifyVet/';
-          }
-          else{
-          console.log("user");
-          if (user) {
-            if (!user.emailVerified) {
-              window.location = vMail;
-            } else {
-              window.location = home;
-            }
-          }
+        if (user) {
+          db.collection("Admin")
+            .doc(user.uid)
+            .get()
+            .then((doc) => {
+              if (doc.exists) {
+                window.location =
+                  window.location.protocol +
+                  "//" +
+                  window.location.host +
+                  "/admin/" +
+                  "verifyVet/";
+              } else {
+                console.log("user");
+                if (user) {
+                  if (!user.emailVerified) {
+                    window.location = vMail;
+                  } else {
+                    window.location = home;
+                  }
+                }
+              }
+            })
+            .catch((e) => console.error(e));
         }
-      }).catch(e=>console.error(e))
-        
-        }
-        
       });
     } else {
       alert("email and password required");
@@ -255,7 +261,11 @@ export default function Login() {
       <Grid item xs={false} sm={4} md={7}>
         <img className={classes.mainlogo} src={mainlogo} />
         <br />
-        <img className={classes.picture} src={picture} />
+        <img
+          className={classes.picture}
+          style={{ height: " 500px" }}
+          src={picture}
+        />
       </Grid>
 
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>

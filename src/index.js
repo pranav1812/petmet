@@ -15,7 +15,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 ReactDOM.render(
   <Router>
     <App />
-    <Circle2 color={'#FF5352'} />
+    <Circle2 color={'#FF5352'} time={3000}/>
   </Router>,
   document.getElementById("root")
 );
