@@ -1,106 +1,177 @@
-import React, { Component } from 'react';
+import React, {useState, useEffect } from 'react';
 import {Form,Button} from 'react-bootstrap';
 import './vet.css';
-import {db, storage} from '../../firebase'
+import {auth,db, storage} from '../../firebase'
 
-class EditProfile extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { 
-            name: null,
-            address: null,
-            city: null,
-            state: null,
-            phone: null,
-            Achievements: null, 
-            Qualification: null,
-            Experience: null,
-            url: null
-         }
-    }
+import {makeStyles} from '@material-ui/core/styles';
 
-    sendImg=(e)=>{
-        var file= e.target.files[0]
-        var storageRef= storage.ref('vetImages/'+file.name)
-        storageRef.put(file).then(()=> {
-        alert("image uploaded")
-        storageRef.getDownloadURL()
-            .then(url=> this.setState({url: url}))
-            .catch(err=> console.log(err))
-        })
-        .catch(err=> console.log(err))
+const useStyles = makeStyles({
+    root: {
+      width: "100%"
+    },
+    button: {
+      marginRight: 10,
+      borderRadius: 100,
+      fontSize: 20,
+    },
+    instructions: {
+      marginTop: 2,
+      marginBottom: 5
     }
+  });
+export default function EditProfile() {
+    
+  const classes = useStyles();
+  const [uid, setUid]= useState(null)
+ const[url, setUrl]= useState(null)
+  const [doc, setDoc]= useState({
+    Name: null,
+    phone: null,
+    Achievements: null,
+    experience: null,
+    Qualification: null,
+   Addrees:null,
+   city:null,
+    state: null,
+    zip:null
+  
+  })
 
-    submit=()=>{
-         console.log(this.state)
-        var {name, address, city, state, phone, Achievements, Qualification, Experience, url}= this.state
-        //if(name)
-        //{
-            db.collection('vet').doc('Wsqzi5DoefSSpKvTKELy').add({
-                            details: this.state
-                        })
-            
-            
-            // alert("Done.... Refresh the page to add new product")
-        //}
-        //else{
-          //  alert("error")
-       // }
-        
-        
-    }
+  useEffect(()=>{
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        setUid(user.uid)
+        db.collection('vet').doc(user.uid).get()
+          .then(doc=>{
+            if(doc.exists){
+                setDoc(doc.data())
+
+            }
+          });
+      }
+    })
    
-    render() { 
-        return ( 
-            <>
-                <h1 className="addSlot_h1">Edit Profile</h1>
-                <div className="container editProfile">
-                    <Form className="editProfile_form">
-                        <div className="row mb-3">
-                            <Form.Label className="col-3">Image of Vet</Form.Label>
-                            <input className="col-7 col-sm-8 offset-sm-0 offset-1" type="file" onChange={this.sendImg}/>
+  },[])
+
+  const addImg=(e)=>{
+    var file= e.target.files[0]
+    var storageRef= storage.ref('vetImages/'+file.name)
+    storageRef.put(file).then(()=> {
+    alert("image uploaded")
+    storageRef.getDownloadURL()
+        .then(url=> setUrl(url))
+        .catch(err=> console.log(err))
+    })
+    .catch(err=> console.log(err))
+  }
+ 
+  
+  const submit=()=>{
+    db.collection('vet').doc(uid).update({
+      ...doc,
+      //profileCompleted: true,
+    }).then(()=>{
+    // window.location= window.location.protocol + "//" + window.location.host +  "/" +'v/Profile'
+    alert("Profile Updated");
+    })
+    
+  }
+
+  return (
+    <React.Fragment>
+      <h1 className="main-head mt-4">EDIT YOUR PROFILE</h1>
+        <div className="container m-5">
+                    <Form className="addProduct_form">
+                    <div className="row mb-3">
+                            <Form.Label className="col-3">Add Vet Image</Form.Label>
+                            <input onChange={addImg} type="file"  id="group_image"/>
+                            <img id="target"/>
                         </div>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Name</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({name: e.target.value})}}></Form.Control>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input" id="Name"
+                               name="Name" autoComplete="given-name"
+                               onBlur={e=>{setDoc({...doc, Name: e.target.value})}}>
+                               </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Address</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({address: e.target.value})}}></Form.Control>
-                        </Form.Group>
+                            <Form.Label className="col-3">Phone No.</Form.Label>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input"
+                            id="phone"
+                            name="phone"
+                            autoComplete="phone"
+                            onBlur={e=>{setDoc({...doc, phone: e.target.value})}}>
+                          </Form.Control>
+                            </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">City</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({city: e.target.value})}}></Form.Control>
-                        </Form.Group>
-                        <Form.Group className="row">
-                            <Form.Label className="col-3">State</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({state: e.target.value})}}></Form.Control>
-                        </Form.Group>
-                        <Form.Group className="row">
-                            <Form.Label className="col-3">Mobile No</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({phone: e.target.value})}}></Form.Control>
+                            <Form.Label className="col-3">Achievements</Form.Label>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="textarea" rows="3"
+                             id="Achievements"
+                             name="Achievements"
+                             autoComplete="Achievements"
+                             onBlur={e=>{setDoc({...doc, Achievements: e.target.value})}}>
+                             </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Qualification</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({Qualification: e.target.value})}}>
-                            </Form.Control>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input"
+                             id="qualification"
+                             name="qualification"
+                             autoComplete="qualification"
+                             onBlur={e=>{setDoc({...doc, Qualification: e.target.value})}}>
+                             </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Experience</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({Experience: e.target.value})}}></Form.Control>
+                            <Form.Label className="col-3">Experience in Years</Form.Label>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input"
+                             id="experience"
+                             name="experience"
+                             autoComplete="years"
+                             onBlur={e=>{setDoc({...doc, experience: e.target.value})}}>
+                             </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Achievements</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({Achievements: e.target.value})}}></Form.Control>
+                            <Form.Label className="col-3">Address</Form.Label>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input"
+                             id="Address"
+                             name="Address"
+                             autoComplete="Address"
+                             onBlur={e=>{setDoc({...doc, Address: e.target.value})}}>
+                             </Form.Control>
                         </Form.Group>
-                      
-                      <button type="submit" className="offset-4 offset-sm-3 pink-btn" onClick={this.submit}>
-                            Done                 </button>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">City</Form.Label>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input"
+                             id="city"
+                             name="city"
+                             autoComplete="city"
+                             onBlur={e=>{setDoc({...doc, city: e.target.value})}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">State</Form.Label>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input"
+                             id="state"
+                             name="state"
+                             autoComplete="state"
+                             onBlur={e=>{setDoc({...doc, state: e.target.value})}}>
+                             </Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Zip</Form.Label>
+                            <Form.Control required className="col-7 col-sm-9 offset-sm-0 offset-1" as="input"
+                             id="zip"
+                             name="zip"
+                             autoComplete="Zip / Postal code"
+                             onBlur={e=>{setDoc({...doc, zip: e.target.value})}}>
+                               </Form.Control>
+                        </Form.Group>
+                        <button type="button" className="offset-4 offset-sm-3 pink_out" onClick={submit}>
+                            Finish
+                        </button>
                     </Form>
                 </div>
-            </>
-         );
-    }
+    </React.Fragment>
+  );
 }
- 
-export default EditProfile;
+
