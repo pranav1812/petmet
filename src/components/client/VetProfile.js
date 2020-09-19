@@ -12,6 +12,7 @@ import { BiClinic } from "react-icons/bi";
 import { RiStethoscopeLine, RiChat3Line } from "react-icons/ri";
 import { FiVideo } from "react-icons/fi";
 import { Form, Button, Row, Col, Container } from "react-bootstrap";
+import Declarations from "./Declarations";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -158,52 +159,52 @@ export default function VetProfile() {
   const [vet, setVet] = useState(null);
   const [uid, setUid] = useState(null);
 
-  const [show, setShow] = useState(true);
-  const [showw, setShoww] = useState(false);
+  // const [show, setShow] = useState(true);
+  // const [showw, setShoww] = useState(false);
 
-  const handleClose1 = () => setShow(false);
-  const handleShow1 = () => setShow(true);
+  // const handleClose1 = () => setShow(false);
+  // const handleShow1 = () => setShow(true);
 
-  const handleClose2 = () => {
-    setShoww(false);
-  };
-  const handleShow2 = () => {
-    setShow(false);
-    setShoww(true);
-  };
-  function Declarations() {
-    return (
-      <div>
-        <Modal show={show} onHide={handleClose1} centered>
-          <Modal.Header closeButton>
-            <Modal.Title>Order Item</Modal.Title>
-          </Modal.Header>
+  // const handleClose2 = () => {
+  //   setShoww(false);
+  // };
+  // const handleShow2 = () => {
+  //   setShow(false);
+  //   setShoww(true);
+  // };
+  // function Declarations() {
+  //   return (
+  //     <div>
+  //       <Modal show={show} onHide={handleClose1} centered>
+  //         <Modal.Header closeButton>
+  //           <Modal.Title>Order Item</Modal.Title>
+  //         </Modal.Header>
 
-          <Modal.Footer>
-            <button onClick={handleShow2}>Next</button>
-            <button onClick={handleClose1}>Cancel</button>
-          </Modal.Footer>
-        </Modal>
+  //         <Modal.Footer>
+  //           <button onClick={handleShow2}>Next</button>
+  //           <button onClick={handleClose1}>Cancel</button>
+  //         </Modal.Footer>
+  //       </Modal>
 
-        <Modal
-          size="lg"
-          show={showw}
-          onHide={() => {
-            setShoww(false);
-          }}
-          centered
-        >
-          <Modal.Header closeButton>
-            <Modal.Title>Order Item</Modal.Title>
-          </Modal.Header>
+  //       <Modal
+  //         size="lg"
+  //         show={showw}
+  //         onHide={() => {
+  //           setShoww(false);
+  //         }}
+  //         centered
+  //       >
+  //         <Modal.Header closeButton>
+  //           <Modal.Title>Order Item</Modal.Title>
+  //         </Modal.Header>
 
-          <Modal.Footer>
-            <h1>hogyaaaa</h1>
-          </Modal.Footer>
-        </Modal>
-      </div>
-    );
-  }
+  //         <Modal.Footer>
+  //           <h1>hogyaaaa</h1>
+  //         </Modal.Footer>
+  //       </Modal>
+  //     </div>
+  //   );
+  // }
 
   // useEffect((user) => {
   //   auth.onAuthStateChanged((user) => {
@@ -262,7 +263,7 @@ export default function VetProfile() {
   });
   //   // ............................end...................................
 
-  const [modalShow, setModalShow] = React.useState(false);
+  // const [modalShow, setModalShow] = React.useState(false);
 
   return (
     <div className="container profile_container">
@@ -329,9 +330,11 @@ export default function VetProfile() {
 
         {/* ...................................................... */}
 
-        <button type="button" className="pink_out" onClick={Declarations}>
+        {/* <button type="button" className="pink_out" onClick={Declarations}>
           Book an Appointment
-        </button>
+        </button> */}
+
+        <Declarations />
 
         {/* <MyVerticallyCenteredModal
           show={show} onHide={handleClose1(false)}
@@ -345,5 +348,8 @@ export default function VetProfile() {
     </div>
   );
 }
+<<<<<<< HEAD
 
 // https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
+=======
+>>>>>>> 009f0e75ee5bc61313ea21bff4b1412548099058
