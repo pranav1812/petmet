@@ -58,102 +58,102 @@ const useStyles = makeStyles((theme) => ({
 // </Modal>
 //   )
 // }
-// function MyVerticallyCenteredModal(props) {
-//   return (
-//     <Modal
-//       {...props}
-//       size="sm"
-//       aria-labelledby="example-modal-sizes-title-sm"
-//       centered
-//       dialogClassName="modal-50w"
-//     >
-//       <Modal.Header closeButton>
-//         <Modal.Title id="contained-modal-title-vcenter">
-//           BOOK AN APPOINTMENT
-//         </Modal.Title>
-//       </Modal.Header>
-//       <Modal.Body>
-//         <h4></h4>
-//         <Container>
-//           <p>
-//             <Row>
-//               <Col /*sm={8} xs={12} md={8}*/>
-//                 <button
-//                   type="button"
-//                   variant="primary"
-//                   size="lg"
-//                   block
-//                   color="#36A9CC"
-//                   className="btn-block pink_out"
-//                 >
-//                   <span>
-//                     <BiClinic className="mb-1" />{" "}
-//                   </span>{" "}
-//                   VISIT CLINIC
-//                 </button>
-//               </Col>
-//             </Row>
-//             <p></p>
-//             <Row>
-//               <Col /*sm={8} xs={12} md={8}*/>
-//                 <button
-//                   type="button"
-//                   variant="primary"
-//                   size="lg"
-//                   block
-//                   color="#FE434C"
-//                   className="btn-block pink_out"
-//                 >
-//                   <span>
-//                     <RiStethoscopeLine className="mb-1" />{" "}
-//                   </span>{" "}
-//                   VET HOME VISIT
-//                 </button>
-//               </Col>
-//             </Row>
-//             <p></p>
+function MyVerticallyCenteredModal(props) {
+  return (
+    <Modal
+      {...props}
+      size="sm"
+      aria-labelledby="example-modal-sizes-title-sm"
+      centered
+      dialogClassName="modal-50w"
+    >
+      <Modal.Header closeButton>
+        <Modal.Title id="contained-modal-title-vcenter">
+          BOOK AN APPOINTMENT
+        </Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        <h4></h4>
+        <Container>
+          <p>
+            <Row>
+              <Col /*sm={8} xs={12} md={8}*/>
+                <button
+                  type="button"
+                  variant="primary"
+                  size="lg"
+                  block
+                  color="#36A9CC"
+                  className="btn-block pink_out"
+                >
+                  <span>
+                    <BiClinic className="mb-1" />{" "}
+                  </span>{" "}
+                  VISIT CLINIC
+                </button>
+              </Col>
+            </Row>
+            <p></p>
+            <Row>
+              <Col /*sm={8} xs={12} md={8}*/>
+                <button
+                  type="button"
+                  variant="primary"
+                  size="lg"
+                  block
+                  color="#FE434C"
+                  className="btn-block pink_out"
+                >
+                  <span>
+                    <RiStethoscopeLine className="mb-1" />{" "}
+                  </span>{" "}
+                  VET HOME VISIT
+                </button>
+              </Col>
+            </Row>
+            <p></p>
 
-//             <Row>
-//               <Col /*sm={8} xs={12} md={8}*/>
-//                 <button
-//                   type="button"
-//                   variant="primary"
-//                   size="lg"
-//                   block
-//                   className="btn-block pink_out"
-//                 >
-//                   <span>
-//                     <FiVideo className="mb-1" />{" "}
-//                   </span>{" "}
-//                   VIDEO CALL
-//                 </button>
-//               </Col>
-//             </Row>
-//             <p></p>
+            <Row>
+              <Col /*sm={8} xs={12} md={8}*/>
+                <button
+                  type="button"
+                  variant="primary"
+                  size="lg"
+                  block
+                  className="btn-block pink_out"
+                >
+                  <span>
+                    <FiVideo className="mb-1" />{" "}
+                  </span>{" "}
+                  VIDEO CALL
+                </button>
+              </Col>
+            </Row>
+            <p></p>
 
-//             <Row>
-//               <Col /*sm={8} xs={12} md={8}*/>
-//                 <button
-//                   type="button"
-//                   variant="primary"
-//                   size="lg"
-//                   block
-//                   className="btn-block pink_out"
-//                 >
-//                   <span>
-//                     <RiChat3Line className="mb-1" />{" "}
-//                   </span>{" "}
-//                   CHAT
-//                 </button>
-//               </Col>
-//             </Row>
-//             <p></p>
-//           </p>
-//         </Container>
-//       </Modal.Body>
-//     </Modal>
-//   );
-// }
+            <Row>
+              <Col /*sm={8} xs={12} md={8}*/>
+                <button
+                  type="button"
+                  variant="primary"
+                  size="lg"
+                  block
+                  className="btn-block pink_out"
+                >
+                  <span>
+                    <RiChat3Line className="mb-1" />{" "}
+                  </span>{" "}
+                  CHAT
+                </button>
+              </Col>
+            </Row>
+            <p></p>
+          </p>
+        </Container>
+      </Modal.Body>
+    </Modal>
+  );
+}
 
 export default function VetProfile() {
   const [vet, setVet] = useState(null);
