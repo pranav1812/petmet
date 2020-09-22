@@ -347,9 +347,4 @@ export default function VetProfile() {
       </div>
     </div>
   );
-}
-<<<<<<< HEAD
-
-// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
-=======
->>>>>>> 009f0e75ee5bc61313ea21bff4b1412548099058
+}// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
