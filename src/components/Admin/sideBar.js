@@ -16,13 +16,17 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
+import {RiCheckboxCircleLine} from 'react-icons/ri';
 import {FaStethoscope,FaPlusCircle,FaClock} from 'react-icons/fa';
+import {MdLocalGroceryStore} from 'react-icons/md';
 import AddProduct from './addProduct';
 import VerifyVet from './verify';
 import RecentProducts from './recentProducts';
 import {useParams, Link} from 'react-router-dom'
 import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 import Footer from '../FooterNew';
+import Orders_List from './Orders';
+import Appointments from './Appointments';
 
 import {db, auth} from '../../firebase'
 
@@ -98,9 +102,25 @@ function ResponsiveDrawer(props) {
             <Link to={"/admin/recentProducts"}>
               <ListItem button>
                 <ListItemIcon>
+                  <MdLocalGroceryStore className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Products" />
+              </ListItem>
+            </Link>
+            <Link to={"/admin/orders"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <RiCheckboxCircleLine className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Orders" />
+              </ListItem>
+            </Link>
+            <Link to={"/admin/appointments"}>
+              <ListItem button>
+                <ListItemIcon>
                   <FaClock className="menu_icons"/>
                 </ListItemIcon>
-                <ListItemText primary="Recent Products" />
+                <ListItemText primary="Appointments" />
               </ListItem>
             </Link>
         </List>
@@ -162,12 +182,11 @@ function ResponsiveDrawer(props) {
         </Hidden>
       </nav>
       <main className={classes.content}>
-      <div className={classes.toolbar} />
-      <Container className={classes.container}>
-        {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />: null}
-      </Container>
-            
-            <Footer />    
+        <div className={classes.toolbar} />
+        <div className="container">
+          {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />:component=='orders'?<Orders_List/>:component=='appointments'?<Appointments/>: null}
+        </div>
+        <Footer />    
       </main>
       
     </div>

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import {Card,Modal} from 'react-bootstrap';
-import Food from '../pictures/food.png';
 import './Admin.css';
 
 class Product extends Component {
