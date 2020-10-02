@@ -1,10 +1,10 @@
 import React from 'react';
 import {Card,Badge} from 'react-bootstrap';
 
-const AppointmentCard = () => {
+const PastAppointmentCard = () => {
     return ( 
         <div>
-                <Card className="mb-2">
+            <Card className="mb-2">
                             <Card.Body>
                                     <div className="row">
                                         <div className="col-12 col-lg-6">
@@ -31,4 +31,4 @@ const AppointmentCard = () => {
      );
 }
  
-export default AppointmentCard;
+export default PastAppointmentCard;
