@@ -27,6 +27,7 @@ import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 import Footer from '../FooterNew';
 import Orders_List from './Orders';
 import Appointments from './Appointments';
+import {Button} from 'react-bootstrap';
 
 import {db, auth} from '../../firebase'
 
@@ -71,7 +72,7 @@ function ResponsiveDrawer(props) {
   const classes = useStyles();
   const theme = useTheme();
   const [mobileOpen, setMobileOpen] = React.useState(false);
-
+  const [sideBar, setSideBar] = React.useState("vet");
   const {component}= useParams()
 
   const handleDrawerToggle = () => {
@@ -82,16 +83,11 @@ function ResponsiveDrawer(props) {
     <div>
       <div className={classes.toolbar} />
       <Divider />
-        <List style={{width: "235px"}}>
-            <Link to={"/admin/verifyVet"}>
-              <ListItem button>
-                <ListItemIcon>
-                  <FaStethoscope className="menu_icons" />
-                </ListItemIcon>
-                <ListItemText primary="Verify Vets" />
-              </ListItem>
-            </Link>
-            <Link to={"/admin/addProduct"}>
+      <List style={{width: "235px"}}>
+        {
+          sideBar=="e-commerce"?(
+            <div>
+              <Link to={"/admin/addProduct"}>
               <ListItem button>
                 <ListItemIcon>
                   <FaPlusCircle className="menu_icons"/>
@@ -100,19 +96,31 @@ function ResponsiveDrawer(props) {
               </ListItem>
             </Link>
             <Link to={"/admin/recentProducts"}>
-              <ListItem button>
-                <ListItemIcon>
-                  <MdLocalGroceryStore className="menu_icons"/>
-                </ListItemIcon>
-                <ListItemText primary="Products" />
-              </ListItem>
+            <ListItem button>
+              <ListItemIcon>
+                <MdLocalGroceryStore className="menu_icons"/>
+              </ListItemIcon>
+              <ListItemText primary="Products" />
+            </ListItem>
+          </Link>
+          <Link to={"/admin/orders"}>
+            <ListItem button>
+              <ListItemIcon>
+                <RiCheckboxCircleLine className="menu_icons"/>
+              </ListItemIcon>
+              <ListItemText primary="Orders" />
+            </ListItem>
             </Link>
-            <Link to={"/admin/orders"}>
+          </div>
+          ):
+          (
+            <div>
+              <Link to={"/admin/verifyVet"}>
               <ListItem button>
                 <ListItemIcon>
-                  <RiCheckboxCircleLine className="menu_icons"/>
+                  <FaStethoscope className="menu_icons" />
                 </ListItemIcon>
-                <ListItemText primary="Orders" />
+                <ListItemText primary="Verify Vets" />
               </ListItem>
             </Link>
             <Link to={"/admin/appointments"}>
@@ -123,6 +131,12 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary="Appointments" />
               </ListItem>
             </Link>
+          </div>
+          )
+        }
+            
+            <Divider />
+            {sideBar=="e-commerce"?<Link to="/admin/verifyVet"><Button className="btn btn-block mt-2" onClick={()=>{setSideBar("vet")}}>VET</Button></Link>:<Link to="/admin/orders"><Button className="btn btn-block mt-2" onClick={()=>{setSideBar("e-commerce")}}>E-COMMERCE</Button></Link>} 
         </List>
     </div>
   );
