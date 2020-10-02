@@ -41,7 +41,6 @@ function App() {
         <Route exact path='/:componentt/:subComponent' component={Dashboard} />
         <Route exact path='/:componentt' component={Dashboard} />
         
-        
       </Switch> 
       
     
