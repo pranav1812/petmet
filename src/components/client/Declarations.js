@@ -29,7 +29,7 @@ const Declarations = (props) => {
       <Button color="danger" onClick={toggle}>
         Book Appointment
       </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className}>
+      <Modal isOpen={modal} toggle={toggle} className={className} centered>
         <ModalHeader toggle={toggle}>Modal title</ModalHeader>
         <ModalBody>
           <div className="firstmodalbody">
@@ -63,6 +63,7 @@ const Declarations = (props) => {
             isOpen={nestedModal}
             toggle={toggleNested}
             onClosed={closeAll ? toggle : undefined}
+            centered
           >
             <ModalHeader>BOOK AN APPOINTMENT</ModalHeader>
             <ModalBody>
