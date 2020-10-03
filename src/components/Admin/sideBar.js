@@ -28,7 +28,10 @@ import Footer from '../FooterNew';
 import Orders_List from './Orders';
 import Appointments from './Appointments';
 import {Button} from 'react-bootstrap';
-
+import {ImCross} from 'react-icons/im';
+import OutOfStock from './OutofStock';
+import AddCategory from './AddCategory';
+import PastAppointments from './PastAppointments';
 import {db, auth} from '../../firebase'
 
 const drawerWidth = 240;
@@ -95,12 +98,28 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary="Add Product" />
               </ListItem>
             </Link>
+            <Link to={"/admin/addcategory"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaPlusCircle className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Add Category" />
+              </ListItem>
+            </Link>
             <Link to={"/admin/recentProducts"}>
             <ListItem button>
               <ListItemIcon>
                 <MdLocalGroceryStore className="menu_icons"/>
               </ListItemIcon>
               <ListItemText primary="Products" />
+            </ListItem>
+          </Link>
+          <Link to={"/admin/outofstock"}>
+            <ListItem button>
+              <ListItemIcon>
+                <ImCross className="menu_icons"/>
+              </ListItemIcon>
+              <ListItemText primary="Out of Stock" />
             </ListItem>
           </Link>
           <Link to={"/admin/orders"}>
@@ -128,7 +147,15 @@ function ResponsiveDrawer(props) {
                 <ListItemIcon>
                   <FaClock className="menu_icons"/>
                 </ListItemIcon>
-                <ListItemText primary="Appointments" />
+                <ListItemText primary="Pending Appointments" />
+              </ListItem>
+            </Link>
+            <Link to={"/admin/pastappointments"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaClock className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Past Appointments" />
               </ListItem>
             </Link>
           </div>
@@ -198,7 +225,7 @@ function ResponsiveDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div className="container">
-          {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />:component=='orders'?<Orders_List/>:component=='appointments'?<Appointments/>: null}
+          {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />:component=='orders'?<Orders_List/>:component=='appointments'?<Appointments/>:component=='outofstock'?<OutOfStock/>:component=='addcategory'?<AddCategory/>:component=='pastappointments'?<PastAppointments/>: null}
         </div>
         <Footer />    
       </main>
