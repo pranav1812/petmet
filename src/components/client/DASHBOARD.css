@@ -19,7 +19,7 @@
 }
 @media (min-width: 1280px) {
   .MuiContainer-maxWidthLg {
-    max-width: 1496px !important;
+    max-width: 100% !important;
   }
 }
 
@@ -60,4 +60,35 @@
 
 .mainlogoonnav {
   margin-top: 10px;
+}
+
+.newnavbar {
+  background-color: #ffffff;
+  height: 62.2849235534668px;
+  z-index: 103 !important;
+  border-radius: 0px;
+  box-shadow: 0px 4px 7px 0px #000000 14%;
+
+  color: #000000;
+}
+
+.newnavitems {
+  /* position: absolute;
+  width: 114px;
+  height: 15px;
+  left: 574.88px;
+  top: 121.16px; */
+
+  /* font-family: Gotham; */
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  line-height: 15px;
+
+  color: #979797;
+}
+.newnavsearchbox {
+  border: 0.75px solid #979797 !important;
+  box-sizing: border-box !important;
+  border-radius: 2px !important;
 }
