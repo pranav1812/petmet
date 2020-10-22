@@ -396,12 +396,8 @@ export default function Dashboard() {
         </List>
       </Drawer>
       <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container className={classes.container}>
           <Grid container spacing={0}>
             {/* Chart */}
-
-            <Paper style={{ width: "100%" }}>
               {componentt == "Home" ? (
                 <DashboardClient />
               ) : componentt == "myPets" ? (
@@ -425,10 +421,8 @@ export default function Dashboard() {
               ) : (
                 <Home />
               )}
-            </Paper>
           </Grid>
           <Box pt={4}></Box>
-        </Container>
         <Footer />
       </main>
     </div>
