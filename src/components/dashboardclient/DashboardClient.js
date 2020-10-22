@@ -5,6 +5,7 @@ import SquareCard from "./SquareCard";
 import "./dashboard.css";
 import TopCarousel from "./TopCarousel";
 import BestSellers from "./BestSellers.js";
+import Carousel from 'react-elastic-carousel';
 //import AppBar from "@material-ui/core/AppBar";
 //import catessentials from "../pictures/image 3.png";
 //import harness from "../pictures/image 4.png";
@@ -16,13 +17,14 @@ import { db } from "../../firebase";
 import { Router, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/Button";
+import Vet from '../pictures/vet_img.png';
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
-  { width: 550, itemsToShow: 2 },
+  { width: 550, itemsToShow: 3 },
   { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 4 },
-  { width: 240, itemsToShow: 5 },
+  { width: 1200, itemsToShow: 3 },
+  { width: 240, itemsToShow: 3 },
 ];
 
 const styles = {
@@ -88,31 +90,35 @@ const DashboardClient = () => {
       .catch((e) => console.log(e));
   }, []);
   return (
-    <div>
-      <div>
+    <div style={{paddingTop: "60px"}}>
+      <div className="row m-3">
         <div
-          style={{ padding: "0 !important" }}
-          className="carousel"
-          className={styles.carouselroot}
+          style={{ marginTop: "25px" }}
+          className="carousel col-12 col-sm-7" 
         >
           <TopCarousel />
+          
+        </div>
+        <div className="col-12 col-sm-5">
+          <img 
+            src={Vet}
+            style={{
+              width: "100%"
+            }} />
+          <Link to="/Appointment/">
+            <button className="dashboardbuttons2 btn btn-block btn-sm">Book an Appointment</button>{" "}
+          </Link>
         </div>
       </div>
-{/* 
-      <ButtonGroup variant="contained" color="primary" aria-label="contained primary button group">
-  <Button>One</Button>
-  <Button>Two</Button>
- </ButtonGroup> */}
- <div className="topmostbuttonss">
+
+ {/*<div className="topmostbuttonss">
           <Link to="/Addpet/">
             <Button className="dashboardbuttons1">Add Pet</Button>
           </Link>
-          <Link to="/Appointment/">
-            <Button className="dashboardbuttons2">Appointment</Button>{" "}
-          </Link>
-          </div>
+          
+  </div>*/}
 
-      <div className="cards">
+      {/*<div className="cards">
         {categories
           ? categories.map((cat) => (
               <Link to={"/ShopProducts/" + cat.name}>
@@ -124,42 +130,80 @@ const DashboardClient = () => {
 
       <h2 className="headers">BEST SELLERS</h2>
       <div className="productcards">
-        {/* <Carousel breakPoints={breakPoints}>
-            <div style={{ padding: "10px" }}> */}
+       
         {bestSellers ? (
           bestSellers.map((bs) => <SquareCard title={bs.name} image={bs.img} />)
         ) : (
           <h5>best sellers arriving</h5>
         )}
-        {/* </div>
-          </Carousel> */}
+       
       </div>
 
       <h2 className="headers">ACCESSORIES</h2>
       <div className="productcards">
-        {/* <Carousel breakPoints={breakPoints}>
-            <div style={{ padding: "10px" }}> */}{" "}
+        
         {accessories ? (
           accessories.map((as) => <SquareCard title={as.name} image={as.img} />)
         ) : (
           <h5>accessiories arriving</h5>
         )}
-        {/* </div>
-          </Carousel> */}
+        
       </div>
       <h2 className="headers">SPECIAL TOYS</h2>
       <div className="productcards">
-        {/* <Carousel breakPoints={breakPoints}>
-            <div style={{ padding: "10px" }}> */}
+        
         {toys ? (
           toys.map((toy) => <SquareCard title={toy.name} image={toy.img} />)
         ) : (
           <h5>special toys arriving</h5>
         )}
-        {/* </div>
-          </Carousel> */}
-      </div>
-    </div>
+       
+        </div> */}
+
+        <h3 className="mt-4" style={{fontWeight: "bold"}}>Our Features</h3>  
+
+        <div className="banner">
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-sm-4">
+
+              </div>
+              <div className="col-12 col-sm-4">
+                
+              </div>
+              <div className="col-12 col-sm-4">
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        <h3 className="mt-4" style={{fontWeight: "bold"}}>For all your pet's needs</h3>
+        <div className="row">
+          <div className="cards">
+          {categories
+            ? categories.map((cat) => (
+                <Link to={"/ShopProducts/" + cat.name}>
+                  <RoundCard title={cat.name} image={cat.img} />
+                </Link>
+              ))
+            : null}
+          </div>
+        </div>
+        <h2 className="mt-4">DOG ESSENTIALS</h2>
+        <div>
+              <Carousel breakPoints={breakPoints}>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+              </Carousel>
+        </div>
+  </div>
   );
 };
 export default DashboardClient;

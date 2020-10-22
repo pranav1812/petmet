@@ -1,6 +1,7 @@
 import React from "react";
 import Arrow from "../pictures/Vector.png";
 import "./squarecard.css";
+import {Button} from 'react-bootstrap';
 
 const SquareCard = (props) => {
   return (
@@ -14,19 +15,8 @@ const SquareCard = (props) => {
           />
         </div>
         <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
-
-        <span>
-          <button type="button" className="optionsbutton">
-            320 gm
-          </button>
-          <button type="button" className="optionsbutton">
-            800 gm
-          </button>
-        </span>
-        <span>
-          <div className="priceofproduct">₹250</div>
-          {/* <img className="arrow" src={Arrow} /> */}
-        </span>
+        <div className="priceofproduct">₹250</div>
+        <Button className="btn btn-block mt-4 m-2">Add to Cart</Button>
       </div>
     </div>
   );

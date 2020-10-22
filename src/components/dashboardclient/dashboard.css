@@ -1,6 +1,11 @@
 body {
   justify-content: center;
 }
+
+h2 {
+  text-align: center;
+}
+
 .topbanner {
   background: #f4eedb;
   padding: 0px;
@@ -16,11 +21,12 @@ body {
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  background-color: #ffffff;
 }
 
 .carousel {
   width: 100% !important;
-  height: 500px;
+
 }
 
 .headers {
@@ -82,4 +88,11 @@ body {
   .carousel-indicators {
     margin: 0px 60px 0px 60px !important;
   }
+}
+
+.banner {
+  background-image: url(../pictures/bg.svg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 650px;
 }

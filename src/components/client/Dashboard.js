@@ -277,7 +277,7 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
+    <div style={{backgroundColor: "#ffffff"}}>
       {/* <CssBaseline /> */}
       <AppBar
         position="absolute"
@@ -306,7 +306,7 @@ export default function Dashboard() {
           <Navbar className="newnavbar" expand="lg">
             <Navbar.Brand href="#home">
               <img
-                className="mainlogoonnav"
+                className="mainlogoonnav mb-2"
                 style={{ width: "130px", height: "33px" }}
                 src={MainLogo}
               />
@@ -471,8 +471,8 @@ export default function Dashboard() {
           </div>
         </List>
       </Drawer> */}
-      <main className={classes.content}>
-          <Grid container spacing={0}>
+      <div>
+         
             {/* Chart */}
 
             {componentt == "Home" ? (
@@ -498,10 +498,10 @@ export default function Dashboard() {
             ) : (
               <Home />
             )}
-          </Grid>
-          <Box pt={4}></Box>
-        <Footer />
-      </main>
+          
+        
+      </div>
+      <Footer style={{width: "100%"}} />
     </div>
   );
 }

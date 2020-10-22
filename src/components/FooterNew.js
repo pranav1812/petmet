@@ -24,16 +24,16 @@ class Footer extends Component {
                             </div>
                         </div>
                         <div className="col-12 col-sm-3">
-                            <h5>Useful Links</h5>
+                            <h5 style={{color: "#000000",fontWeight: "bold"}}>Useful Links</h5>
                             <ul className="list-unstyled">
                                 <li>Home</li><br />
-                                <li>Home</li><br />
-                                <li>Home</li><br />
-                                <li>Home</li><br />
+                                <li>About Us</li><br />
+                                <li>Contact Us</li><br />
+                                <li>Privacy Policy</li><br />
                             </ul>
                         </div>
                         <div className="col-12 col-sm-4">
-                            <h5>Contact Info.</h5>
+                            <h5 style={{color: "#000000",fontWeight: "bold"}}>Contact Info.</h5>
                             <p><span className="footer_icon"><FaMapMarkerAlt /></span> ABC ubfuwgeghe, Chandigarh, India</p>
                             <p><span className="footer_icon"><MdEmail /></span> petmet@gmail.com</p>
                             <p><span className="footer_icon"><FaPhoneAlt /></span> +91 9832577388</p>
@@ -41,7 +41,7 @@ class Footer extends Component {
                     </div>
                     <hr></hr>
                     <div className="row justify-content-center">
-                        <p>Copyright &copy; 2020 PetMet India, Inc. All rights reserved.</p>
+                        <p style={{color: "#C4C4C4"}}>Copyright &copy; 2020 PetMet India, Inc. All rights reserved.</p>
                     </div>
                 </div>
             </div>
