@@ -62,19 +62,19 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  toolbar: {
-    paddingRight: 24,
-    backgroundColor: "#F1F1F1",
-  },
-  toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
-  },
+  // toolbar: {
+  //   paddingRight: 24,
+  //   backgroundColor: "#F1F1F1",
+  // },
+  // toolbarIcon: {
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "flex-end",
+  //   padding: "0 8px",
+  //   ...theme.mixins.toolbar,
+  // },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    // zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -100,33 +100,34 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 
-  drawerPaper: {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: "hidden",
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(0),
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9),
-    },
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
-  },
+  // drawerPaper: {
+  //   position: "relative",
+  //   whiteSpace: "nowrap",
+  //   width: drawerWidth,
+  //   transition: theme.transitions.create("width", {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.enteringScreen,
+  //   }),
+  // },
+  // drawerPaperClose: {
+  //   overflowX: "hidden",
+  //   transition: theme.transitions.create("width", {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen,
+  //   }),
+  //   width: theme.spacing(0),
+  //   [theme.breakpoints.up("sm")]: {
+  //     width: theme.spacing(9),
+  //   },
+  // },
+  // appBarSpacer: theme.mixins.toolbar,
+  // content: {
+  //   flexGrow: 1,
+  //   height: "100vh",
+  //   overflow: "auto",
+  // },
   container: {
+    zIndex: theme.zIndex.appBar - 1,
     paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(0),
   },
@@ -281,7 +282,7 @@ export default function Dashboard() {
       {/* <CssBaseline /> */}
       <AppBar
         position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
+        // className={clsx(classes.appBar, open && classes.appBarShift)}
       >
         {/* <Toolbar className={classes.toolbar}> */}
         {/* <IconButton
@@ -296,13 +297,13 @@ export default function Dashboard() {
           >
             <MenuIcon />
           </IconButton> */}
-        <Typography
+        {/* <Typography
           component="h1"
           variant="h6"
           color="inherit"
           noWrap
           className={classes.title}
-        >
+        > */}
           <Navbar className="newnavbar" expand="lg">
             <Navbar.Brand href="#home">
               <img
@@ -313,7 +314,7 @@ export default function Dashboard() {
             </Navbar.Brand>
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="mr-auto">
+              <Nav className="mr-auto" style={{position:"relative",zIndex:"999",backgroundColor:"#ffffff"}}>
                 <Nav.Link className="newnavitems" href="#home">
                   Home
                 </Nav.Link>
@@ -390,7 +391,7 @@ export default function Dashboard() {
                 Search
               </button>
             </form> */}
-        </Typography>
+        {/* </Typography> */}
         {/* </Toolbar> */}
       </AppBar>
       {/* <Drawer
@@ -471,7 +472,7 @@ export default function Dashboard() {
           </div>
         </List>
       </Drawer> */}
-      <div>
+      <div className={classes.container}>
          
             {/* Chart */}
 
@@ -501,7 +502,7 @@ export default function Dashboard() {
           
         
       </div>
-      <Footer style={{width: "100%"}} />
+      <Footer />
     </div>
   );
 }

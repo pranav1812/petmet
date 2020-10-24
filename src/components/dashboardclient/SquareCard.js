@@ -1,12 +1,13 @@
 import React from "react";
-import Arrow from "../pictures/Vector.png";
+import Dog from "../pictures/dog.png";
 import "./squarecard.css";
-import {Button} from 'react-bootstrap';
+import {Button, Card} from 'react-bootstrap';
+import {BsHeart} from 'react-icons/bs';
 
 const SquareCard = (props) => {
   return (
     <div>
-      <div className="personalthumb">
+      {/* <div className="personalthumb">
         <div>
           <img
             style={{ backgroundColor: "#f5f5f5" }}
@@ -17,7 +18,27 @@ const SquareCard = (props) => {
         <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
         <div className="priceofproduct">₹250</div>
         <Button className="btn btn-block mt-4 m-2">Add to Cart</Button>
-      </div>
+      </div> */}
+      <Card className="outCard">
+        <div className="crdImg">
+          <Card.Img src={Dog} className="dishImg" />
+          <span className="iconspan"><BsHeart className="ic"/></span>
+        </div>
+        <div>
+          <Card.Title style={{fontWeight: "bold"}}>HUFT Drizzle Buddy Raincoat- Purpule</Card.Title>
+          <div className="row justify-content-center mb-1">
+            <button className="row-btn">320 gm</button>
+            <button className="row-btn">800 gm</button>
+            <button className="row-btn">1 kg</button>
+            <button className="row-btn">2 kg</button>
+          </div>
+          <div className="row justify-content-center align-items-center">
+            <p className="acprize">Rs. 950</p>
+            <p className="cprize ml-4">Rs. 1250</p>
+          </div>
+          <button className="btn btn-block btn-sm" style={{color:"#ffffff", backgroundColor: "#36a9cc",borderRadius: "3px"}}>Add to Cart</button>
+        </div>
+      </Card>
     </div>
   );
 };

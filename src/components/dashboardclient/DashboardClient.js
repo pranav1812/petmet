@@ -18,13 +18,17 @@ import { Router, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/Button";
 import Vet from '../pictures/vet_img.png';
+import Dogs from '../pictures/fc1.png';
+import SmallAnimals from '../pictures/fc2.png';
+import Cats from '../pictures/fc3.png';
+import Birds from '../pictures/fc4.png';
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
+  { width: 240, itemsToShow: 1 },
   { width: 550, itemsToShow: 3 },
-  { width: 768, itemsToShow: 3 },
-  { width: 1200, itemsToShow: 3 },
-  { width: 240, itemsToShow: 3 },
+  { width: 768, itemsToShow: 4 },
+  { width: 1200, itemsToShow: 4 },
 ];
 
 const styles = {
@@ -90,8 +94,8 @@ const DashboardClient = () => {
       .catch((e) => console.log(e));
   }, []);
   return (
-    <div style={{paddingTop: "60px"}}>
-      <div className="row m-3">
+    <div style={{paddingTop: "60px",overflowX: "hidden"}}>
+      <div className="row m-2">
         <div
           style={{ marginTop: "25px" }}
           className="carousel col-12 col-sm-7" 
@@ -163,22 +167,20 @@ const DashboardClient = () => {
         <h3 className="mt-4" style={{fontWeight: "bold"}}>Our Features</h3>  
 
         <div className="banner">
-          <div className="container">
-            <div className="row">
+            <div className="row align-items-center">
               <div className="col-12 col-sm-4">
-
+                <img className="bannerimg" src={Vet} />
               </div>
               <div className="col-12 col-sm-4">
-                
+                <img className="bannerimg" src={Vet} />
               </div>
               <div className="col-12 col-sm-4">
-                
+                <img className="bannerimg" src={Vet} />
               </div>
             </div>
-          </div>
         </div>
         <h3 className="mt-4" style={{fontWeight: "bold"}}>For all your pet's needs</h3>
-        <div className="row">
+        <div className="row ">
           <div className="cards">
           {categories
             ? categories.map((cat) => (
@@ -189,9 +191,65 @@ const DashboardClient = () => {
             : null}
           </div>
         </div>
-        <h2 className="mt-4">DOG ESSENTIALS</h2>
-        <div>
+        <h2 className="mt-4" style={{paddingBottom: "20px"}}>DOG ESSENTIALS</h2>
+        <div className="carousel-styling" style={{justifyContent: "center",paddingBottom: "40px"}} >
               <Carousel breakPoints={breakPoints}>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+              </Carousel>
+        </div>
+        <h2 className="mt-4" style={{paddingBottom: "20px"}}>CAT ESSENTIALS</h2>
+        <div style={{justifyContent: "center",paddingBottom: "40px"}}>
+              <Carousel breakPoints={breakPoints}>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+                <item>
+                  <SquareCard />
+                </item>
+              </Carousel>
+        </div>
+        <h3 className="mt-4" style={{fontWeight: "bold",paddingBottom:"20px"}}>FEATURED CATEGORIES</h3>
+        <div className="row justify-content-center" style={{paddingBottom: "30px"}}>
+          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+            <img src={Dogs} />
+            <h4 className="mt-3" style={{fontWeight: "bold"}}>Dogs</h4>
+          </div>
+          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+            <img src={SmallAnimals} />
+            <h4 className="mt-3" style={{fontWeight: "bold"}}>Small Animals</h4>
+          </div>
+          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+            <img src={Cats} />
+            <h4 className="mt-3" style={{fontWeight: "bold"}}>Cats</h4>
+          </div>
+          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+            <img src={Birds} />
+            <h4 className="mt-3" style={{fontWeight: "bold"}}>Birds</h4>
+          </div>
+        </div>
+        <h2 className="mt-4" style={{paddingBottom: "20px"}}>CAT ESSENTIALS</h2>
+        <div style={{justifyContent: "center",paddingBottom: "40px"}}>
+              <Carousel breakPoints={breakPoints}>
+                <item>
+                  <SquareCard />
+                </item>
                 <item>
                   <SquareCard />
                 </item>

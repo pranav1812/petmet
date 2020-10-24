@@ -12,7 +12,7 @@
 }
 
 .footer_icon {
-    color: #36A9CC;
+    color: black;
 }
 
 .social {
@@ -22,4 +22,18 @@
 
 .footer p,li {
     color: #000000;
+}
+
+.facebook {
+    color: #4267B2;
+}
+
+.twitter {
+    color: #1DA1F2;
+}
+
+.instagram {
+    /* color: #d6249f; */
+    /* color: -webkit-linear-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%); */
+    color: #4267B2;
 }

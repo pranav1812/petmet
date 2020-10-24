@@ -22,6 +22,7 @@ h2 {
   flex-wrap: wrap;
   justify-content: center;
   background-color: #ffffff;
+  padding-left: 2%;
 }
 
 .carousel {
@@ -95,4 +96,41 @@ h2 {
   background-repeat: no-repeat;
   background-size: cover;
   height: 650px;
+  padding: 6%;
+  text-align: center;
+  padding-top: 12%;
+  overflow-x: hidden;
 }
+
+.bannerimg {
+  width: 27vw;
+  height: 40vh;
+} 
+
+.rec.rec-arrow {
+  border-radius: 0;
+  background-color: #ffffff;
+  color: #36a9cc;
+}
+
+button.rec-arrow:hover, button.rec-arrow:active, button.rec-arrow:focus, button.rec-arrow:hover:enabled {
+  color: #ffffff;
+  background-color: #36a9cc;
+}
+
+button.rec-dot{
+  background-color: #36a9cc;
+  box-shadow: 0 0 1px 3px #36a9cc;
+}
+
+button.rec-dot:hover {
+  /* box-shadow: 0 0 1px 3px rgba(235,16,16,0.5); */
+  background: #ffffff;
+  color: #36a9cc;
+  box-shadow: 0 0 1px 3px #36a9cc;
+}
+
+
+
+
+
