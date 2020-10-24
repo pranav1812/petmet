@@ -45,29 +45,45 @@ const WishlistComponent = () => {
       
       {wish? wish.map(wi=> (
         <div style={{ margin: "10px", width: "40em" }} className="cartproductcard">
-        
+        <h1>MY WISHLIST</h1>
         <p>
           <img
-            height= "200px"
-            width= "150px"
+            position= "absolute"
+            width= "146.59px"
+            height= "195.13px"
+            left= "71.1px"
+            top= "289.84px"
             style={{marginRight: "1em"}}
             className="cartproductimage"
             src={wi.url || product1}
             alt="productpicture"
           />
           <div style={{ marginLeft: "140px", color: "black" }}>
-            <h4 style={{ fontWeight: "500" }}>{wi.name} </h4>
-            <p>{wi.description} </p>
-            <p>{"Rs. " + wi.cost} </p>
+            <h4 style={{ fontfamily: "Roboto", fontstyle: "normal", fontweight: "500",fontsize: "22px",
+lineheight: "26px",
+textalign: "center", color: "#2B3B47"
+ }}>{wi.name} </h4>
+            <p style={{fontfamily: "Roboto",fontstyle: "normal",fontweight: "normal",
+fontsize: "18px",
+lineheight: "21px",
+color: "#000000"
+}}>{wi.description} </p>
+            <p style={{fontfamily: "Roboto",
+fontstyle: "normal",
+fontweight: "500",
+fontsize: "28px",
+lineheight: "33px",
+color: "#FF5352",
+}}>{"Rs. " + wi.cost} </p>
           </div>
         </p>
         
        <br />
-        <button type="button" class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
-          Remove
+        <button type="button" style={{backgroundcolor: "#008CBA"}} class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
+          Add to cart
         </button>
         <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
-          View Product
+          Buy Now
         </button>
       </div>
       )): null}  

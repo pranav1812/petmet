@@ -304,7 +304,7 @@ export default function Dashboard() {
           noWrap
           className={classes.title}
         > */}
-          <Navbar className="newnavbar" expand="lg">
+        <Navbar className="newnavbar" expand="lg">
             <Navbar.Brand href="#home">
               <img
                 className="mainlogoonnav mb-2"
@@ -321,13 +321,13 @@ export default function Dashboard() {
                 <Nav.Link className="newnavitems" href="#link">
                   My Pets
                 </Nav.Link>
-                <Nav.Link className="newnavitems" href="#link">
+                <Nav.Link className="newnavitems" href="/Wishlist">
                   Wishlist
                 </Nav.Link>
                 <Nav.Link className="newnavitems" href="#link">
                   Appointments
-                </Nav.Link>
-                {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                </Nav.Link>*/
+                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
                     Another action
