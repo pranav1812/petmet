@@ -9,8 +9,7 @@
 .outCard {
   width: 86%;
   margin-left: 7%;
-  /* max-height: 400.13px; */
-  height: auto;
+  max-height: 400.13px;
   justify-content: center;
   text-align: center;
   padding: 15px;

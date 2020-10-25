@@ -46,6 +46,7 @@ import ShopProducts from "./ShopProducts";
 import Footer from "../FooterNew";
 import VetProfile from "./VetProfile";
 import { Button } from "@material-ui/core";
+import {MdAccountCircle,MdShoppingCart} from 'react-icons/md';
 import {
   Modal,
   Navbar,
@@ -341,15 +342,30 @@ export default function Dashboard() {
                   </NavDropdown.Item>
                 </NavDropdown> */}
               </Nav>
-              <Form inline>
+              {/* <Form>
                 <FormControl
                   type="text"
                   className="newnavsearchbox"
                   placeholder="Search Pet food, special toys and many more...."
-                  className="mr-sm-2"
+                  className="mr-sm-4"
+                  
                 />
-                {/* <Button variant="outline-success">Search</Button> */}
-              </Form>
+                
+              </Form> */}
+              <input 
+                type="text"
+                placeholder=" Search Pet food, special toys and many more...."
+                className="newnavsearchbox" />
+              <div className="row mt-lg-4">
+                <div className="mr-lg-4">
+                  <MdAccountCircle style={{fontSize:"33px",color:"#36a9cc"}}/>
+                  <p>Profile</p>
+                </div>
+                <div className="mr-lg-4">
+                  <MdShoppingCart style={{fontSize:"33px",color:"#979797"}}/>
+                  <p>Cart</p>
+                </div>
+              </div>
             </Navbar.Collapse>
           </Navbar>
 
