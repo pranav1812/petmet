@@ -73,22 +73,21 @@
 }
 
 .newnavitems {
-  /* position: absolute;
-  width: 114px;
-  height: 15px;
-  left: 574.88px;
-  top: 121.16px; */
-
-  /* font-family: Gotham; */
-  font-style: normal;
   font-weight: normal;
   font-size: 16px;
   line-height: 15px;
-
-  color: #979797;
+  color: #a4a4a4 !important;
 }
+
+.newnavitems:hover {
+  color: #36a9cc !important;
+  font-weight: bold;
+}
+
 .newnavsearchbox {
   border: 0.75px solid #979797 !important;
   box-sizing: border-box !important;
   border-radius: 2px !important;
+  width: 450px !important;
+  margin-right: 160px;
 }
