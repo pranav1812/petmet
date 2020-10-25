@@ -5,7 +5,12 @@ import product2 from "../pictures/image 35.png";
 import product3 from "../pictures/image 34.png";
 import "./wishlist.css";
 import "./cart.css";
-
+import  Rectangle115 from "../pictures/Rectangle 115";
+import  Rectangle116 from "../pictures/Rectangle 116";
+import  Rectangle117 from "../pictures/Rectangle 117";
+import  Rectangle118 from "../pictures/Rectangle 118";
+import  Rectangle119 from "../pictures/Rectangle 119";
+import  Rectangle120 from "../pictures/Rectangle 120";
 const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
 
 
@@ -72,46 +77,46 @@ fontsize: "18px",
 lineheight: "21px",
 color: "#000000"
 }}>{wi.description} </p>
+ 
+<span> <img src=""></img> </span> 
  <p>
-
-
- <span classname="cost" style={{
-   /* width: "77.44px",
+<span style={{
+    width: "77.44px",
     height: "27.69px",
     left: "71.1px",
-    top: "525.16px",*/
-    fontfamily: "Roboto",
-fontstyle: "normal",
-fontweight: "500",
-fontsize: "58px",
-lineheight: "33px",
+    top: "525.16px",
+    fontFamily: "Roboto",
+fontStyle: "normal",
+fontWeight: "500",
+fontSize: "28px",
+lineHeight: "33px",
 color: "#FF5352",
-}}>{"Rs. " + wi.cost} </span>
-
-      
-<p style={{
+}}>{"Rs. " + wi.cost}
+</span>
+   <span>  </span>   
+<span style={{
  /*position: "absolute",
  width: "75.99px",
  height: "18.69px",
  left: "155.37px",
  top: "532.16px",*/
-fontstyle: "normal",
-fontweight: "500",
-fontsize: "20px",
-lineheight: "23px",
+fontStyle: "normal",
+fontWeight: "500",
+fontSize: "20px",
+lineHeight: "23px",
 color: "#B5B5B5",
 textDecorationLine:"line-through",
-}}>{"Rs. " + wi.cost} </p>
+}}>{"Rs. " + wi.cost}</span>
 
 </p>
   </div>
         </p>
         
        <br />
-        <button type="button"  class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
+        <button type="button" id="buttondd" class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
           Add to cart
         </button>
-        <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
+        <button type="button" id="buttonbuy" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
           Buy Now
         </button>
       </div>

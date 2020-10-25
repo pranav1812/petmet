@@ -38,3 +38,14 @@ font-size: "58px";
 line-height: "33px";
 color: "#FF5352";
 }
+
+#buttonadd{
+  position: absolute;
+  width: 191.4px;
+  height: 40.18px;
+  left: 274.28px;
+  top: 521.41px;
+  
+  background: #36A9CC;
+  border-radius: 3px;
+}
