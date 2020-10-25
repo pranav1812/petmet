@@ -3,7 +3,7 @@ import { auth, db } from "../../firebase";
 import product1 from "../pictures/image 37.png";
 import product2 from "../pictures/image 35.png";
 import product3 from "../pictures/image 34.png";
-// import "./wishlist.css";
+import "./wishlist.css";
 import "./cart.css";
 
 const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
@@ -41,45 +41,74 @@ const WishlistComponent = () => {
   }, [])
 
   return (
-    <div className="wishlistpage">
+<div  style={{marginTop:"50px"}} className="wishlistpage">
       
-      {wish? wish.map(wi=> (
-        <div style={{ margin: "10px", width: "40em" }} className="cartproductcard">
-        <h1>MY WISHLIST</h1>
-        <p>
-          <img
-            position= "absolute"
-            width= "146.59px"
-            height= "195.13px"
-            left= "71.1px"
-            top= "289.84px"
-            style={{marginRight: "1em"}}
-            className="cartproductimage"
-            src={wi.url || product1}
-            alt="productpicture"
-          />
-          <div style={{ marginLeft: "140px", color: "black" }}>
-            <h4 style={{ fontfamily: "Roboto", fontstyle: "normal", fontweight: "500",fontsize: "22px",
+{wish? wish.map(wi=> (
+<div style={{ margin: "10px", width: "40em" }} className="cartproductcard">
+       
+<p>
+<img
+position= "absolute"
+width= "146.59px"
+height= "195.13px"
+left= "71.1px"
+top= "289.84px"
+style={{marginRight: "1em"}}
+className="cartproductimage"
+src={wi.url || product1}
+alt="productpicture"/>
+
+<div style={{ marginLeft: "140px", color: "black" }}>
+
+
+<h4 style={{ fontfamily: "Roboto", fontstyle: "normal", fontweight: "500",fontsize: "22px",
 lineheight: "26px",
 textalign: "center", color: "#2B3B47"
  }}>{wi.name} </h4>
-            <p style={{fontfamily: "Roboto",fontstyle: "normal",fontweight: "normal",
+
+
+<p style={{fontfamily: "Roboto",fontstyle: "normal",fontweight: "normal",
 fontsize: "18px",
 lineheight: "21px",
 color: "#000000"
 }}>{wi.description} </p>
-            <p style={{fontfamily: "Roboto",
+ <p>
+
+
+ <span classname="cost" style={{
+   /* width: "77.44px",
+    height: "27.69px",
+    left: "71.1px",
+    top: "525.16px",*/
+    fontfamily: "Roboto",
 fontstyle: "normal",
 fontweight: "500",
-fontsize: "28px",
+fontsize: "58px",
 lineheight: "33px",
 color: "#FF5352",
+}}>{"Rs. " + wi.cost} </span>
+
+      
+<p style={{
+ /*position: "absolute",
+ width: "75.99px",
+ height: "18.69px",
+ left: "155.37px",
+ top: "532.16px",*/
+fontstyle: "normal",
+fontweight: "500",
+fontsize: "20px",
+lineheight: "23px",
+color: "#B5B5B5",
+textDecorationLine:"line-through",
 }}>{"Rs. " + wi.cost} </p>
-          </div>
+
+</p>
+  </div>
         </p>
         
        <br />
-        <button type="button" style={{backgroundcolor: "#008CBA"}} class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
+        <button type="button"  class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
           Add to cart
         </button>
         <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
@@ -103,5 +132,7 @@ export default function Wishlist() {
       }
     });
   });
-  return <div>{usr ? <WishlistComponent /> : null}</div>;
+  return <div>
+     <h1>MY WISHLIST</h1>
+    {usr ? <WishlistComponent /> : null}</div>;
 }

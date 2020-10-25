@@ -316,16 +316,16 @@ export default function Dashboard() {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav className="mr-auto" style={{position:"relative",zIndex:"999",backgroundColor:"#ffffff"}}>
-                <Nav.Link className="newnavitems" href="#home">
+                <Nav.Link className="newnavitems" href="/Home/">
                   Home
                 </Nav.Link>
-                <Nav.Link className="newnavitems" href="#link">
+                <Nav.Link className="newnavitems" href="/MyPets/">
                   My Pets
                 </Nav.Link>
-                <Nav.Link className="newnavitems" href="/Wishlist">
+                <Nav.Link className="newnavitems" href="/Wishlist/">
                   Wishlist
                 </Nav.Link>
-                <Nav.Link className="newnavitems" href="#link">
+                <Nav.Link className="newnavitems" href="/Appointments/">
                   Appointments
                 </Nav.Link>*/
                  {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">

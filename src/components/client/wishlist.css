@@ -25,3 +25,16 @@
 
   transition: all 250ms ease-in-out;
 } */
+
+.cost{
+  width: "77.44px";
+    height: "27.69px";
+    left: "71.1px";
+    top: "525.16px";
+    font-family: "Roboto";
+font-family : "normal";
+font-weight: "500";
+font-size: "58px";
+line-height: "33px";
+color: "#FF5352";
+}
