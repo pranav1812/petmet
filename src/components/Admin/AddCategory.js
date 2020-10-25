@@ -39,13 +39,12 @@ const AddCategory = () => {
   }
   
   const submit=()=>{
-    var ref= db.collection('items').doc(uid)
     const {category}= cat
-    ref.add({
+    db.collection('items').doc('category').add({
       ...cat,
       url: url
     }).then(()=>{
-      window.location.reload();
+      window.location.reload()
     })
     
   }
@@ -63,8 +62,10 @@ const AddCategory = () => {
                         </div>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Name</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" ></Form.Control>
-                            onBlur={e=>{setCat({...cat, category: e.target.value})}}
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={e=>{setCat({...cat, category: e.target.value})}} >
+
+                            </Form.Control>
+                            
                            
                         </Form.Group>
                         <button type="button"  className="offset-4 offset-sm-3 pink_btn pink_btn_form" onClick={submit}>

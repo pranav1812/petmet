@@ -31,6 +31,8 @@ class AddProduct extends Component {
         .catch(err=> console.log(err))
     }
 
+    
+    
     submit=()=>{
         // console.log(this.state)
         var {category, name, size, cost, quantity, url}= this.state
