@@ -1,72 +1,59 @@
-.personalthumb {
-  width: 250px;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  text-align: center;
-  margin: 10px;
-  margin-bottom: 60px;
-  filter: drop-shadow(2px 4px 10px rgba(0, 0, 0, 0.2));
-  transition-duration: 1s;
-  border-radius: 3px;
-  background-color: #f5f5f5;
-  margin: 40px;
+
+.dishImg {
+  justify-content: center;
+  height: 100%;
+  border-radius: 0px;
+  border: none;
 }
-.dishnames {
-  width: 250px;
-  border: solid black 0px 2px 2px 2px;
+
+.outCard {
+  width: 86%;
+  margin-left: 7%;
+  max-height: 400.13px;
+  justify-content: center;
   text-align: center;
-  font-family: Roboto;
+  padding: 15px;
+  background: #FFFFFF;
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+}
+
+.crdImg {
+  padding: 0% 20% 4% 20%;
+}
+
+.row-btn {
+  color: #36a9cc;
+  border: #36a9cc solid 1px;
+  background-color: #ffffff;
+  margin: 5px;
+}
+
+.acprize {
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
-  line-height: 14px;
-  text-align: center;
-  color: #2b3b47;
-  word-wrap: normal;
-
-  margin-bottom: 10px;
-}
-.dishpicture {
-  width: 145px;
-  height: 148.56px;
-  /* left: 55px;
-  top: 626px; */
-  background-color: #f5f5f5 !important;
-
-  border-radius: 2px 2px 0px 0px;
-
-  margin-bottom: 15px;
-  padding-top: 10px;
-}
-
-.optionsbutton {
-  font-size: 16px !important;
-
-  background-color: transparent !important;
-  color: #36a9cc !important;
-  margin: 10px;
-  border: 0.5px solid #36a9cc;
-  box-sizing: border-box;
-  border-radius: 1px;
-}
-.priceofproduct {
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 23px;
-  width: 51px;
-  height: 17px;
-  left: 231px;
-  top: 742px;
-  margin-right: 10px !important;
-
+  font-size: 28px;
   color: #ff5352;
 }
 
-.arrow {
-  float: right;
-  padding: 20px;
-  padding-bottom: 5px !important ;
+.cprize {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 23px;
+  text-decoration-line: line-through;
 }
+
+.iconspan {
+  position: absolute;
+  top: 2%;
+  left: 90%;
+  color: #ff5352;
+  font-size: larger;
+}
+
+.btn-bl {
+  color: #ffffff;
+  background-color: #36a9cc;
+  border-radius: 3px;
+}
+

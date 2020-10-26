@@ -5,19 +5,17 @@
   justify-content: center;
   text-align: center;
   margin: 2%;
-  width: 200px;
-  height: 220px;
+  width: 250px;
+  height: 250px;
   text-align: center !important;
-  background-color: #fafafa !important;
-  box-shadow: none !important;
 }
 
 /* ---------------------------------------cardimage-------------------------------- */
 .media {
-  height: 140px;
+  height: 180px;
   border: 4px;
-  width: 140px;
-  border-radius: 75px;
+  width: 180px;
+  border-radius: 50%;
   justify-content: center;
   margin-left: 25px;
   margin-top: 6px;

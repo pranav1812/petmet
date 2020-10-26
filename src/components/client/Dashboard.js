@@ -46,9 +46,20 @@ import ShopProducts from "./ShopProducts";
 import Footer from "../FooterNew";
 import VetProfile from "./VetProfile";
 import { Button } from "@material-ui/core";
-import {Modal} from 'react-bootstrap';
-import {RiLogoutBoxRFill} from 'react-icons/ri';
-
+import Cat from '../pictures/cat.png';
+import {MdAccountCircle,MdShoppingCart} from 'react-icons/md';
+import {
+  Modal,
+  Navbar,
+  Nav,
+  NavDropdown,
+  Form,
+  FormControl,
+  Dropdown,
+} from "react-bootstrap";
+import { RiLogoutBoxRFill } from "react-icons/ri";
+import {HiSwitchHorizontal} from "react-icons/hi";
+import {GrAdd} from 'react-icons/gr';
 
 const drawerWidth = 240;
 
@@ -56,19 +67,19 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  toolbar: {
-    paddingRight: 24,
-    backgroundColor: "#F1F1F1",
-  },
-  toolbarIcon: {
-    display: "flex",
-    alignItems: "center",
-    justifyContent: "flex-end",
-    padding: "0 8px",
-    ...theme.mixins.toolbar,
-  },
+  // toolbar: {
+  //   paddingRight: 24,
+  //   backgroundColor: "#F1F1F1",
+  // },
+  // toolbarIcon: {
+  //   display: "flex",
+  //   alignItems: "center",
+  //   justifyContent: "flex-end",
+  //   padding: "0 8px",
+  //   ...theme.mixins.toolbar,
+  // },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    // zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -90,65 +101,67 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     flexGrow: 1,
+    zIndex: "100000",
+    width: "100%",
   },
 
-  drawerPaper: {
-    position: "relative",
-    whiteSpace: "nowrap",
-    width: drawerWidth,
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.enteringScreen,
-    }),
-  },
-  drawerPaperClose: {
-    overflowX: "hidden",
-    transition: theme.transitions.create("width", {
-      easing: theme.transitions.easing.sharp,
-      duration: theme.transitions.duration.leavingScreen,
-    }),
-    width: theme.spacing(0),
-    [theme.breakpoints.up("sm")]: {
-      width: theme.spacing(9),
-    },
-  },
-  appBarSpacer: theme.mixins.toolbar,
-  content: {
-    flexGrow: 1,
-    height: "100vh",
-    overflow: "auto",
-  },
+  // drawerPaper: {
+  //   position: "relative",
+  //   whiteSpace: "nowrap",
+  //   width: drawerWidth,
+  //   transition: theme.transitions.create("width", {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.enteringScreen,
+  //   }),
+  // },
+  // drawerPaperClose: {
+  //   overflowX: "hidden",
+  //   transition: theme.transitions.create("width", {
+  //     easing: theme.transitions.easing.sharp,
+  //     duration: theme.transitions.duration.leavingScreen,
+  //   }),
+  //   width: theme.spacing(0),
+  //   [theme.breakpoints.up("sm")]: {
+  //     width: theme.spacing(9),
+  //   },
+  // },
+  // appBarSpacer: theme.mixins.toolbar,
+  // content: {
+  //   flexGrow: 1,
+  //   height: "100vh",
+  //   overflow: "auto",
+  // },
   container: {
+    zIndex: theme.zIndex.appBar - 1,
     paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(0),
   },
   paper: {
-    padding: theme.spacing(0),
-    display: "flex",
-    overflow: "auto",
-    flexDirection: "column",
+    // padding: theme.spacing(0),
+    // display: "flex",
+    // overflow: "auto",
+    // flexDirection: "column",
   },
   // fixedHeight: {
   //   height: 240,
   // },
 }));
 
-const Modall=(prop)=>{
+const Modall = (prop) => {
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [usr, setUsr] = useState(null);
-  useEffect(()=>{
-    console.log(prop)
-    var user = auth.currentUser
-    if(user)
-    {
-      setUsr(user)
+  useEffect(() => {
+    console.log(prop);
+    var user = auth.currentUser;
+    if (user) {
+      setUsr(user);
     }
-    
-  },[])
+  }, []);
   const logout = () => {
-    auth.signOut()
+    auth
+      .signOut()
       .then(function () {
         alert("Sign-out successful");
         window.location.reload();
@@ -157,35 +170,60 @@ const Modall=(prop)=>{
         console.log(error);
       });
   };
-  return(
+  return (
     <>
       <Button
-                className="accounticon"
-          style={{
-            float: "right",
-            display: "inline",
-            paddingLeft: "30px",
+        className="accounticon"
+        style={{
+          float: "right",
+          display: "inline",
+          paddingLeft: "30px",
           color: "grey",
         }}
         onClick={handleShow}
       >
-                <AccountCircleIcon />{prop.prop ? prop.prop : "guest user"}
-    </Button>
-    <Modal centered show={show} onHide={handleClose}>
-          <Modal.Body style={{textAlign: "center"}}>
-                <span style={{fontSize:"80px",paddingBottom:"20px",color:"#36A9CC"}}><RiLogoutBoxRFill /></span>
-                <button className="btn-block pink-btn" onClick={prop.prop?logout:()=>{window.location= window.location.protocol + "//" + window.location.host + "/" + "login"}} style={{
-                }}>{prop.prop?"Log Out":"Log In"}</button>
-          </Modal.Body>
-          <Modal.Footer>
-            <button className="pink-btn" onClick={handleClose}>
-              Close
-            </button>
-          </Modal.Footer>
+        <AccountCircleIcon />
+        {prop.prop ? prop.prop : "guest user"}
+      </Button>
+      <Modal centered show={show} onHide={handleClose}>
+        <Modal.Body style={{ textAlign: "center" }}>
+          <span
+            style={{
+              fontSize: "80px",
+              paddingBottom: "20px",
+              color: "#36A9CC",
+            }}
+          >
+            <RiLogoutBoxRFill />
+          </span>
+          <button
+            className="btn-block pink-btn"
+            onClick={
+              prop.prop
+                ? logout
+                : () => {
+                    window.location =
+                      window.location.protocol +
+                      "//" +
+                      window.location.host +
+                      "/" +
+                      "login";
+                  }
+            }
+            style={{}}
+          >
+            {prop.prop ? "Log Out" : "Log In"}
+          </button>
+        </Modal.Body>
+        <Modal.Footer>
+          <button className="pink-btn" onClick={handleClose}>
+            Close
+          </button>
+        </Modal.Footer>
       </Modal>
     </>
-  )
-}
+  );
+};
 
 export default function Dashboard() {
   const classes = useStyles();
@@ -197,14 +235,13 @@ export default function Dashboard() {
     setOpen(false);
   };
   const componentt = useParams().componentt || "Home";
-  
+
   const [name, setName] = useState(null);
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-       
         setUid(user.uid);
         setUsr(user);
         console.log(user);
@@ -222,14 +259,15 @@ export default function Dashboard() {
             }
             if (doc.exists) setName(doc.data().name);
             else setName(user.displayName);
-            console.log(name)
+            console.log(name);
           });
       }
     });
   }, []);
 
   const logout = () => {
-    auth.signOut()
+    auth
+      .signOut()
       .then(function () {
         console.log("Sign-out successful");
         window.location.reload();
@@ -245,14 +283,14 @@ export default function Dashboard() {
   };
 
   return (
-    <div className={classes.root}>
-      <CssBaseline />
+    <div style={{backgroundColor: "#ffffff"}}>
+      {/* <CssBaseline /> */}
       <AppBar
         position="absolute"
-        className={clsx(classes.appBar, open && classes.appBarShift)}
+        // className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        <Toolbar className={classes.toolbar}>
-          <IconButton
+        {/* <Toolbar className={classes.toolbar}> */}
+        {/* <IconButton
             edge="start"
             color="#282c3f"
             aria-label="open drawer"
@@ -263,45 +301,144 @@ export default function Dashboard() {
             )}
           >
             <MenuIcon />
-          </IconButton>
-          <Typography
-            component="h1"
-            variant="h6"
-            color="inherit"
-            noWrap
-            className={classes.title}
-          >
-            <Link to="/Home">
+          </IconButton> */}
+        {/* <Typography
+          component="h1"
+          variant="h6"
+          color="inherit"
+          noWrap
+          className={classes.title}
+        > */}
+        <Navbar className="newnavbar" expand="lg">
+            <Navbar.Brand href="#home">
+              <img
+                className="mainlogoonnav mb-2"
+                style={{ width: "130px", height: "33px" }}
+                src={MainLogo}
+              />
+            </Navbar.Brand>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="mr-auto" style={{position:"relative",zIndex:"999",backgroundColor:"#ffffff"}}>
+                <Nav.Link className="newnavitems" href="/Home/">
+                  Home
+                </Nav.Link>
+                <Nav.Link className="newnavitems" href="#link">
+                  <div className="dropdown">
+                    <button className="ddbtn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      My Pets
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenu2" style={{width:"210px"}}>
+                      <div style={{padding:"10px"}} className="form-check">
+                        <div className="row mb-3">
+                            <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}} />
+                            <h6 className="mt-1 mr-3">Rocky</h6>
+                            <input className="justify-content-end mt-2" type="radio" checked></input>
+                        </div>
+                        <div className="row mb-3">
+                            <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}}/>
+                            <h6 className="mt-1 mr-3">Fishes</h6>
+                            <input className="justify-content-end mt-2" type="radio"></input>
+                        </div>
+                        <div className="row">
+                            <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
+                            <h6 className="mt-1 mr-3">Add a Pet</h6>
+                            <input className="justify-content-end mt-2" type="radio"></input>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </Nav.Link>
+                <Nav.Link className="newnavitems" href="/Wishlist/">
+                  Wishlist
+                </Nav.Link>
+                <Nav.Link className="newnavitems" href="/Appointments/">
+                  Appointments
+                </Nav.Link>
+                 {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.2">
+                    Another action
+                  </NavDropdown.Item>
+                  <NavDropdown.Item href="#action/3.3">
+                    Something
+                  </NavDropdown.Item>
+                  <NavDropdown.Divider />
+                  <NavDropdown.Item href="#action/3.4">
+                    Separated link
+                  </NavDropdown.Item>
+                </NavDropdown> */}
+              </Nav>
+              {/* <Form>
+                <FormControl
+                  type="text"
+                  className="newnavsearchbox"
+                  placeholder="Search Pet food, special toys and many more...."
+                  className="mr-sm-4"
+                  
+                />
+                
+              </Form> */}
+              <input 
+                type="text"
+                placeholder=" Search Pet food, special toys and many more...."
+                className="newnavsearchbox" />
+                <div className="mr-4 mt-4">
+                  <div>
+                    <button type="button" className="togglebtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <MdAccountCircle style={{fontSize:"33px",color:"#36a9cc", backgroundColor:"#ffffff"}}/>
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right" style={{minWidth:"250px",height:"auto"}}>
+                        <div className="row ml-2 mt-2">
+                            <img className="mr-4" src={Cat} style={{height:"40px",width:"40px",borderRadius:"50%"}} />
+                            <div>
+                              <h6>Sartajbir Singh</h6>
+                              <p style={{fontSize:"10px",padding:"0px",margin:"0px"}}>ssingh4_be19@thapar.edu</p>
+                            </div>
+                        </div>
+                        <div className="row ml-2 mt-3">
+                          <HiSwitchHorizontal style={{fontSize:"37px"}} className="mr-4"/>
+                          <h6 className="mt-1">Switch Account</h6>
+                        </div>
+                        <hr style={{margin: "12px 10px"}}/>
+                        <h6 className="m-2">Log Out</h6>
+                    </div>
+                  </div>
+                  <p>Profile</p>
+                </div>
+                <div className="mr-4 mt-4">
+                  <MdShoppingCart style={{fontSize:"33px",color:"#979797"}}/>
+                  <p className="mt-1">Cart</p>
+                </div>
+            </Navbar.Collapse>
+          </Navbar>
+
+          {/* <Link to="/Home">
               <img
                 className="mainlogoonnav"
                 style={{ width: "130px", height: "33px" }}
                 src={MainLogo}
               />
             </Link>
-            
 
             <div
               style={{ float: "right", display: "inline" }}
               className="searchicon"
             >
               {/* <NotificationsNoneIcon /> */}
-            </div>
-            {/*Yaha lagana hai*/}
-            
-              <> 
-              {name? <Modall prop={name} />: <Modall prop={null} /> }
-              
-              </>
+          {/* </div> */}
+          {/*Yaha lagana hai*/}
 
-            
+          {/* <>{name ? <Modall prop={name} /> : <Modall prop={null} />}</>
+
             <div
               style={{ float: "right", display: "inline" }}
               className="searchicon"
             >
               <SearchIcon />
-            </div>
+            </div> */}
 
-            <form
+          {/* <form
               style={{ float: "right" }}
               className="form-inline navbarsearch my-2 my-lg-0"
             >
@@ -313,11 +450,11 @@ export default function Dashboard() {
               <button class="btn searchbutton  my-2 my-sm-0" type="submit">
                 Search
               </button>
-            </form>
-          </Typography>
-        </Toolbar>
+            </form> */}
+        {/* </Typography> */}
+        {/* </Toolbar> */}
       </AppBar>
-      <Drawer
+      {/* <Drawer
         variant="permanent"
         classes={{
           paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
@@ -394,43 +531,38 @@ export default function Dashboard() {
             ) : null}
           </div>
         </List>
-      </Drawer>
-      <main className={classes.content}>
-        <div className={classes.appBarSpacer} />
-        <Container className={classes.container}>
-          <Grid container spacing={0}>
+      </Drawer> */}
+      <div className={classes.container}>
+         
             {/* Chart */}
 
-            <Paper style={{ width: "100%" }}>
-              {componentt == "Home" ? (
-                <DashboardClient />
-              ) : componentt == "myPets" ? (
-                <MyPets />
-              ) : componentt == "Cart" ? (
-                <Cart />
-              ) : componentt == "Wishlist" ? (
-                <Wishlist />
-              ) : componentt == "Addpet" ? (
-                <Addpet />
-              ) : componentt == "ShopProducts" ? (
-                <ShopProducts />
-              ) : componentt == "VetProfile" ? (
-                <VetProfile />
-              ) : componentt == "ShopPage" ? (
-                <ShopPage />
-              ) : componentt == "Appointment" ? (
-                <Appointment />
-              ) : componentt == "editProfile" ? (
-                <EditProfile />
-              ) : (
-                <Home />
-              )}
-            </Paper>
-          </Grid>
-          <Box pt={4}></Box>
-        </Container>
-        <Footer />
-      </main>
+            {componentt == "Home" ? (
+              <DashboardClient />
+            ) : componentt == "myPets" ? (
+              <MyPets />
+            ) : componentt == "Cart" ? (
+              <Cart />
+            ) : componentt == "Wishlist" ? (
+              <Wishlist />
+            ) : componentt == "Addpet" ? (
+              <Addpet />
+            ) : componentt == "ShopProducts" ? (
+              <ShopProducts />
+            ) : componentt == "VetProfile" ? (
+              <VetProfile />
+            ) : componentt == "ShopPage" ? (
+              <ShopPage />
+            ) : componentt == "Appointment" ? (
+              <Appointment />
+            ) : componentt == "editProfile" ? (
+              <EditProfile />
+            ) : (
+              <Home />
+            )}
+          
+        
+      </div>
+      <Footer />
     </div>
   );
 }
