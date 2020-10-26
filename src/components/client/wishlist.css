@@ -38,3 +38,36 @@ font-size: "58px";
 line-height: "33px";
 color: "#FF5352";
 }
+
+.buttonadd{
+  position: absolute;
+  width: 191.4px;
+  height: 40.18px;
+  left: 274.28px;
+  top: 521.41px;
+ font-family: Gotham;
+ font-style: normal;
+ font-weight: normal;
+font-size: 16px;
+line-height: 15px;
+text-decoration-color:#FFFFFF;
+  background: #36A9CC;
+  border-radius: 3px;
+}
+
+.buttonbuy{
+  position: absolute;
+width: 191px;
+height: 40.18px;
+left: 487.6px;
+top: 521.41px;
+border: 1px solid #36A9CC;
+box-sizing: border-box;
+border-radius: 3px;
+font-family: Gotham;
+font-style: normal;
+font-weight: normal;
+font-size: 16px;
+line-height: 15px;
+text-decoration-color: #36A9CC;
+}

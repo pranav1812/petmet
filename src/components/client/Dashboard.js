@@ -46,6 +46,7 @@ import ShopProducts from "./ShopProducts";
 import Footer from "../FooterNew";
 import VetProfile from "./VetProfile";
 import { Button } from "@material-ui/core";
+import Cat from '../pictures/cat.png';
 import {MdAccountCircle,MdShoppingCart} from 'react-icons/md';
 import {
   Modal,
@@ -54,8 +55,11 @@ import {
   NavDropdown,
   Form,
   FormControl,
+  Dropdown,
 } from "react-bootstrap";
 import { RiLogoutBoxRFill } from "react-icons/ri";
+import {HiSwitchHorizontal} from "react-icons/hi";
+import {GrAdd} from 'react-icons/gr';
 
 const drawerWidth = 240;
 
@@ -319,15 +323,38 @@ export default function Dashboard() {
                 <Nav.Link className="newnavitems" href="/Home/">
                   Home
                 </Nav.Link>
-                <Nav.Link className="newnavitems" href="/MyPets/">
-                  My Pets
+                <Nav.Link className="newnavitems" href="#link">
+                  <div className="dropdown">
+                    <button className="ddbtn" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      My Pets
+                    </button>
+                    <div className="dropdown-menu" aria-labelledby="dropdownMenu2" style={{width:"210px"}}>
+                      <div style={{padding:"10px"}} className="form-check">
+                        <div className="row mb-3">
+                            <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}} />
+                            <h6 className="mt-1 mr-3">Rocky</h6>
+                            <input className="justify-content-end mt-2" type="radio" checked></input>
+                        </div>
+                        <div className="row mb-3">
+                            <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}}/>
+                            <h6 className="mt-1 mr-3">Fishes</h6>
+                            <input className="justify-content-end mt-2" type="radio"></input>
+                        </div>
+                        <div className="row">
+                            <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
+                            <h6 className="mt-1 mr-3">Add a Pet</h6>
+                            <input className="justify-content-end mt-2" type="radio"></input>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </Nav.Link>
                 <Nav.Link className="newnavitems" href="/Wishlist/">
                   Wishlist
                 </Nav.Link>
                 <Nav.Link className="newnavitems" href="/Appointments/">
                   Appointments
-                </Nav.Link>*/
+                </Nav.Link>
                  {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action/3.2">
@@ -356,16 +383,33 @@ export default function Dashboard() {
                 type="text"
                 placeholder=" Search Pet food, special toys and many more...."
                 className="newnavsearchbox" />
-              <div className="row mt-lg-4">
-                <div className="mr-lg-4">
-                  <MdAccountCircle style={{fontSize:"33px",color:"#36a9cc"}}/>
+                <div className="mr-4 mt-4">
+                  <div>
+                    <button type="button" className="togglebtn" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      <MdAccountCircle style={{fontSize:"33px",color:"#36a9cc", backgroundColor:"#ffffff"}}/>
+                    </button>
+                    <div className="dropdown-menu dropdown-menu-right" style={{minWidth:"250px",height:"auto"}}>
+                        <div className="row ml-2 mt-2">
+                            <img className="mr-4" src={Cat} style={{height:"40px",width:"40px",borderRadius:"50%"}} />
+                            <div>
+                              <h6>Sartajbir Singh</h6>
+                              <p style={{fontSize:"10px",padding:"0px",margin:"0px"}}>ssingh4_be19@thapar.edu</p>
+                            </div>
+                        </div>
+                        <div className="row ml-2 mt-3">
+                          <HiSwitchHorizontal style={{fontSize:"37px"}} className="mr-4"/>
+                          <h6 className="mt-1">Switch Account</h6>
+                        </div>
+                        <hr style={{margin: "12px 10px"}}/>
+                        <h6 className="m-2">Log Out</h6>
+                    </div>
+                  </div>
                   <p>Profile</p>
                 </div>
-                <div className="mr-lg-4">
+                <div className="mr-4 mt-4">
                   <MdShoppingCart style={{fontSize:"33px",color:"#979797"}}/>
-                  <p>Cart</p>
+                  <p className="mt-1">Cart</p>
                 </div>
-              </div>
             </Navbar.Collapse>
           </Navbar>
 
