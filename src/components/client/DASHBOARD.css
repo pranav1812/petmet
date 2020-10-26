@@ -79,7 +79,7 @@
   color: #a4a4a4 !important;
 }
 
-.newnavitems:hover {
+.newnavitems:hover,.newnavitems:focus {
   color: #36a9cc !important;
   font-weight: bold;
 }
@@ -90,4 +90,33 @@
   border-radius: 2px !important;
   width: 450px !important;
   margin-right: 160px;
+}
+
+.togglebtn:focus,.togglebtn:active {
+  border: none !important;
+  box-shadow: none !important;
+  outline-style: none !important;
+}
+
+.togglebtn {
+  background-color: #ffffff;
+  color: #ffffff;
+  border: none;
+}
+
+.ddbtn {
+  color: #afafaf  ;
+  background-color: #ffffff;
+  border: none;
+}
+
+.ddbtn:focus,.ddbtn:active {
+  border: none !important;
+  box-shadow: none !important;
+  outline-style: none !important;
+}
+
+.ddbtn:hover,.ddbtn:focus {
+  color: #36a9cc;
+  font-weight: bold;
 }
