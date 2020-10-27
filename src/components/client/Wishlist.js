@@ -46,10 +46,10 @@ const WishlistComponent = () => {
   }, [])
 
   return (
-<div  style={{marginTop:"50px"}} className="wishlistpage">
+<div style={{marginTop:"50px",padding:"20px"}} className="wishlistpage">
       
 {wish? wish.map(wi=> (
-<div style={{ margin: "10px", width: "40em" }} className="cartproductcard">
+<div style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
        
 <p>
 <img
