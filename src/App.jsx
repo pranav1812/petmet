@@ -12,10 +12,12 @@ import VDashboard from "./components/vet/dashboard";
 import SideBar from "./components/Admin/sideBar";
 import { Route, Switch } from "react-router-dom";
 import Addpet from "./components/client/Addpet";
+import ShopProducts from "./components/client/ShopProducts";
 
 /* --------- trial ------*/
 import Profile from "./components/checkout/Profile";
 import VerifyEmail from "./components/verifyEmail";
+import NewProductDetails from "./components/client/NewProductDetails";
 
 /* --------- trial ------*/
 function App() {
@@ -37,6 +39,7 @@ function App() {
         <Route exact path="/vCompleteProfile" component={VCompleteProfile} />
         <Route exact path="/admin/:component" component={SideBar} />
         <Route exact path="/v/:vd" component={VDashboard} />
+        <Route exact path="/productdetails" component={ShopProducts} />
         <Route
           exact
           path="/:componentt/:subComponent/:productId"
