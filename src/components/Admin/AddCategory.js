@@ -1,29 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import {Form } from 'react-bootstrap';
 
-import {db, auth, storage} from '../../firebase'
+import {db, storage} from '../../firebase'
 
 const AddCategory = () => {
     
-  const [uid, setUid]= useState(null)
   const [url, setUrl]= useState(null)
-   const[cat, setCat]= useState({
-       category:null
-   })
-
-   useEffect(()=>{
-       auth.onAuthStateChanged(user=>{
-           if(user){
-               setUid(user.uid)
-               db.collection('items').doc(user.uid).get()
-               .then(doc=>{
-                   if(!doc.exists){
-                       alert("some error occured")
-                   }
-               })
-           }
-       })
-   },[])
+  const[cat, setCat]= useState(null)
 
    
   const addImg=(e)=>{
@@ -34,15 +17,15 @@ const AddCategory = () => {
     storageRef.getDownloadURL()
         .then(url=> setUrl(url))
         .catch(err=> console.log(err))
-    })
+    })  
     .catch(err=> console.log(err))
   }
   
   const submit=()=>{
-    const {category}= cat
-    db.collection('items').doc('category').add({
-      ...cat,
-      url: url
+    
+    db.collection('items').doc(cat).set({
+      type: cat,
+      img: url
     }).then(()=>{
       window.location.reload()
     })
@@ -62,7 +45,7 @@ const AddCategory = () => {
                         </div>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Name</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={e=>{setCat({...cat, category: e.target.value})}} >
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onChange={e=>{setCat(e.target.value)}} >
 
                             </Form.Control>
                             
