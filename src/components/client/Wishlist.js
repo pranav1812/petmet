@@ -73,6 +73,7 @@ const WishlistComponent = () => {
             temp.push({...doc.data(),key: doc.id,_id: doc.data().key})
           })
           setWish(temp)
+          console.log(wish)
         })
       }
     
@@ -80,13 +81,13 @@ const WishlistComponent = () => {
   }, [])
 
   return (
-<div style={{marginTop:"50px",padding:"20px"}} className="wishlistpage">
-      
+<div  style={{marginTop:"50px"}} className="wishlistpage">
+    <h1>My wishlist</h1>
 {wish? wish.map(wi=> (
 <div style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
        
 <p>
-  <h1>MY WISHLIST</h1>
+  
 <img
 position= "absolute"
 width= "146.59px"
@@ -179,5 +180,5 @@ export default function Wishlist() {
     });
   });
   return <div>
-         {usr ?(<h1>MY WISHLIST </h1> && <WishlistComponent /> && <CarouselComp/>) : null}</div>;
+         {usr ?(<div> <WishlistComponent />  <CarouselComp/></div>) : null}</div>;
 }
