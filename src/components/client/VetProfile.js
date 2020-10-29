@@ -159,12 +159,12 @@ const useStyles = makeStyles((theme) => ({
 //   );
 // }
 
-export default function VetProfile() {
-  const [vets, setVets] = useState(null);
-  const [qty, setQty] = useState(1);
-  const [uid, setUid] = useState(null);
-  const [userInfo, setUserInfo] = useState(null);
-  const { productId, subComponent } = useParams();
+// export default function VetProfile() {
+//   const [vets, setVets] = useState(null);
+//   const [qty, setQty] = useState(1);
+//   const [uid, setUid] = useState(null);
+//   const [userInfo, setUserInfo] = useState(null);
+//   const { productId, subComponent } = useParams();
   // const { uid, setUid } = useParams();
   // const { subComponent } = useParams();
 
@@ -225,70 +225,85 @@ export default function VetProfile() {
 
   // const [modalShow, setModalShow] = React.useState(false);
 
+//   return (
+    
+//         {/* <button type="button" className="pink_out" onClick={Declarations}>
+//           Book an Appointment
+//         </button>  */}
+
+//     //     <Declarations />
+//     //   </div>
+//     // </div>
+    
+//   );
+// }// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
+
+export default function Profile() {
+  const classes = useStyles();
+  const[uid,setUid] = useState(null)
+  const[vet,setVet] = useState(null)
+  const [state, setState]= useState({})
+  useEffect(()=>{
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        setUid(user.uid)
+        db.collection('vet').doc(user.uid).get()
+          .then(doc=>{
+            if(doc.exists){
+             // docs.forEach(doc=>{
+              setVet(doc.data())}
+          }
+          )
+      }
+    })
+    
+  },[])
+
+      console.log(state)
   return (
     <div className="container profile_container">
       <div className="row justify-content-center">
-        {/* ........................................... */}
-
-            <div>
-              <div className="col-12 col-md-5 offset-sm-1">
-                <h4 className="mt-2 mb-3 head">Sartaj Clinic</h4>
-                <img src={Doctor} className="profile_img" />
-                <p style={{ color: "#36A9CC" }} className="mt-2">
-                  Verified
-                </p>
-              </div>
-              <div className="col-12 col-md-6">
-                <div className="row mt-5 mt-sm-2">
-                  <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
-                  <p className="col">Sartaj</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
-                  <p className="col">Patiala</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
-                  <p className="col">Patiala</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
-                  <p className="col">Punjab</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Mobile No:
-                  </strong>
-                  <p className="col">28378478</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Qualification:
-                  </strong>
-                  <p className="col">mbbs</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Experience:
-                  </strong>
-                  <p className="col">10 years</p>
-                </div>
-
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Achievements:
-                  </strong>
-                  <p className="col">yes</p>
-                </div>
-              </div>
-            </div>
-
-        <button type="button" className="pink_out" onClick={Declarations}>
-          Book an Appointment
-        </button> 
-
-        <Declarations />
+        <div className="col-12 col-md-5 offset-sm-1">
+          <h4 className="mt-2 mb-3 head">Name of Vet</h4>
+          <img src={vet?vet.imgUrl:null} className="profile_img" />
+          <p style={{color: "#36A9CC"}} className="mt-2">Verified</p>
+        </div>
+        <div className="col-12 col-md-6">
+          <div className="row mt-5 mt-sm-2">
+            <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
+            <p className="col">{vet?vet.Name:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
+            <p className="col">{vet?vet.Address:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
+            <p className="col">{vet?vet.city:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
+            <p className="col">{vet?vet.state:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Mobile No:</strong>
+            <p className="col">{vet?vet.phone:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Qualification</strong>
+            <p className="col">{vet?vet.Qualification:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Experience:</strong>
+            <p className="col">{vet?vet.experience:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Achievements:</strong>
+            <p className="col">{vet?vet.Achievements:null}</p>
+          </div>
+        </div>
       </div>
+      <Declarations />
     </div>
   );
-}// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
+}

@@ -81,10 +81,10 @@ const WishlistComponent = () => {
   }, [])
 
   return (
-<div  style={{marginTop:"50px"}} className="wishlistpage">
+<div  style={{marginTop:"50px",padding:"2%"}} className="wishlistpage">
     <h1>My wishlist</h1>
 {wish? wish.map(wi=> (
-<div style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
+<div className="row" style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
        
 <p>
   
@@ -128,12 +128,12 @@ color: "#000000"
     left: "71.1px",
     top: "525.16px",
     fontFamily: "Roboto",
-fontStyle: "normal",
-fontWeight: "500",
-fontSize: "28px",
-lineHeight: "33px",
-color: "#FF5352",
-}}>{"Rs. " + wi.cost}
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: "28px",
+    lineHeight: "33px",
+    color: "#FF5352",
+    }}>{"Rs. " + wi.cost}
 </span>
    <span>  </span>   
 <span style={{
