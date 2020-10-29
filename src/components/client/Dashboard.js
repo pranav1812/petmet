@@ -352,8 +352,8 @@ export default function Dashboard() {
                 <Nav.Link className="newnavitems" href="/Wishlist/">
                   Wishlist
                 </Nav.Link>
-                <Nav.Link className="newnavitems" href="/Appointments/">
-                  Appointments
+                <Nav.Link className="newnavitems" href="/Appointment/">
+                  Appointment
                 </Nav.Link>
                  {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -401,8 +401,9 @@ export default function Dashboard() {
                           <h6 className="mt-1">Switch Account</h6>
                         </div>
                         <hr style={{margin: "12px 10px"}}/>
-                        <h6 className="m-2">Log Out</h6>
-                    </div>
+                        <button onClick={logout}><h6 className="m-2">Log Out</h6>
+                        </button>                        
+                        </div>
                   </div>
                   <p>Profile</p>
                 </div>

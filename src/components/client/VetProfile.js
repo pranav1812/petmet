@@ -168,7 +168,7 @@ export default function VetProfile() {
   // const { uid, setUid } = useParams();
   // const { subComponent } = useParams();
 
-  const [usr, setUsr] = useState(null);
+  /*const [usr, setUsr] = useState(null);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -188,7 +188,7 @@ export default function VetProfile() {
         setVets(doc.data());
         // setTotalPrice(doc.data().details.cost)
       });
-  }, [qty]);
+  }, [qty]);*/
 
   // useEffect(() => {
   //   auth.onAuthStateChanged((user) => {
@@ -230,11 +230,9 @@ export default function VetProfile() {
       <div className="row justify-content-center">
         {/* ........................................... */}
 
-        {vets ? (
-          vets.map((vet) => (
             <div>
               <div className="col-12 col-md-5 offset-sm-1">
-                <h4 className="mt-2 mb-3 head">{vets.Name}</h4>
+                <h4 className="mt-2 mb-3 head">Sartaj Clinic</h4>
                 <img src={Doctor} className="profile_img" />
                 <p style={{ color: "#36A9CC" }} className="mt-2">
                   Verified
@@ -243,68 +241,53 @@ export default function VetProfile() {
               <div className="col-12 col-md-6">
                 <div className="row mt-5 mt-sm-2">
                   <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
-                  <p className="col">{vets.Name}</p>
+                  <p className="col">Sartaj</p>
                 </div>
                 <div className="row">
                   <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
-                  <p className="col">{vets.Address}</p>
+                  <p className="col">Patiala</p>
                 </div>
                 <div className="row">
                   <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
-                  <p className="col">{vet.city}</p>
+                  <p className="col">Patiala</p>
                 </div>
                 <div className="row">
                   <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
-                  <p className="col">{vets.state}</p>
+                  <p className="col">Punjab</p>
                 </div>
                 <div className="row">
                   <strong className="col-6 col-sm-5 col-lg-3">
                     Mobile No:
                   </strong>
-                  <p className="col">{vets.phone}</p>
+                  <p className="col">28378478</p>
                 </div>
                 <div className="row">
                   <strong className="col-6 col-sm-5 col-lg-3">
                     Qualification:
                   </strong>
-                  <p className="col">{vets.Qualification}</p>
+                  <p className="col">mbbs</p>
                 </div>
                 <div className="row">
                   <strong className="col-6 col-sm-5 col-lg-3">
                     Experience:
                   </strong>
-                  <p className="col">{vets.experience}</p>
+                  <p className="col">10 years</p>
                 </div>
 
                 <div className="row">
                   <strong className="col-6 col-sm-5 col-lg-3">
                     Achievements:
                   </strong>
-                  <p className="col">{vets.Achievements}</p>
+                  <p className="col">yes</p>
                 </div>
               </div>
             </div>
-          ))
-        ) : (
-          <h5>Wait...loading</h5>
-        )}
 
-        {/* ...................................................... */}
-
-        {/* <button type="button" className="pink_out" onClick={Declarations}>
+        <button type="button" className="pink_out" onClick={Declarations}>
           Book an Appointment
-        </button> */}
+        </button> 
 
         <Declarations />
-
-        {/* <MyVerticallyCenteredModal
-          show={show} onHide={handleClose1(false)}
-    
-        />
-
-        <timeLapse
-      show={showw} onHide={handleClose2}
-        /> */}
       </div>
     </div>
   );
