@@ -153,11 +153,6 @@ export default function Appointment() {
                 </div>
               </div>
               <hr />
-              <Link to="/VetProfile">
-        <button type="button" className="offset-4 offset-sm-3 pink_out">
-          vet
-        </button>
-      </Link>
         </div>
           ))
         : null}

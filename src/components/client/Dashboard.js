@@ -332,20 +332,20 @@ export default function Dashboard() {
                       <div style={{padding:"10px"}} className="form-check">
                         <div className="row mb-3">
                             <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}} />
-                            <h6 className="mt-1 mr-3">Rocky</h6>
+                      <Link to={"/myPets/"}>      <h6 className="mt-1 mr-3">Rocky</h6> </Link>
                             <input className="justify-content-end mt-2" type="radio" checked></input>
                         </div>
                         <div className="row mb-3">
                             <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}}/>
-                            <h6 className="mt-1 mr-3">Fishes</h6>
+                            <Link to={"/myPets/"}>      <h6 className="mt-1 mr-3">Fishes</h6> </Link>
                             <input className="justify-content-end mt-2" type="radio"></input>
                         </div>
                         <div className="row">
                             <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
-                            <h6 className="mt-1 mr-3">Add a Pet</h6>
+                           <Link to={"/Addpet"}> <h6 className="mt-1 mr-3">Add a Pet</h6> </Link> 
                             <input className="justify-content-end mt-2" type="radio"></input>
+                            </div>
                         </div>
-                      </div>
                     </div>
                   </div>
                 </Nav.Link>

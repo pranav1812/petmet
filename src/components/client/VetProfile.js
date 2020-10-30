@@ -238,71 +238,86 @@ const useStyles = makeStyles((theme) => ({
 //   );
 // }// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
 
-export default function Profile() {
-  const classes = useStyles();
-  const[uid,setUid] = useState(null)
-  const[vet,setVet] = useState(null)
-  const [state, setState]= useState({})
-  useEffect(()=>{
-    auth.onAuthStateChanged(user=>{
-      if(user){
-        setUid(user.uid)
-        db.collection('vet').doc(user.uid).get()
-          .then(doc=>{
-            if(doc.exists){
-             // docs.forEach(doc=>{
-              setVet(doc.data())}
-          }
-          )
-      }
-    })
-    
-  },[])
+export default function Profile() { const classes = useStyles();
+  const [vet, setVets] = useState(null);
 
-      console.log(state)
+  const [usr, setUsr] = useState(null);
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (!user) {
+        alert("login required");
+        window.location = home;
+      } else {
+        setUsr(user);
+        db.collection("user")
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            if (doc.exists) {
+              var city = doc.data().city;
+              db.collection("vet")
+                .where("city", "==", city)
+                .get()
+                .then((docs) => {
+                  var temp = [];
+                  docs.forEach((vet) => {
+                    temp.push({...vet.data(),key:vet.id});
+                  });
+                  setVets(temp);
+                })
+                .catch((err) => console.error(err));
+            }
+          })
+          .catch((err) => console.error(err));
+      }
+    });
+  });
   return (
     <div className="container profile_container">
-      <div className="row justify-content-center">
-        <div className="col-12 col-md-5 offset-sm-1">
-          <h4 className="mt-2 mb-3 head">Name of Vet</h4>
-          <img src={vet?vet.imgUrl:null} className="profile_img" />
-          <p style={{color: "#36A9CC"}} className="mt-2">Verified</p>
+      {usr ? <h1>Book your Appointment</h1> : null}
+      {vet 
+      ? vet.map((vet)=>( <div className="row justify-content-center">
+      <div className="col-12 col-md-5 offset-sm-1">
+        <h4 className="mt-2 mb-3 head">Name of Vet</h4>
+        <img src={vet.imgUrl} className="profile_img" />
+        <p style={{color: "#36A9CC"}} className="mt-2">Verified</p>
+      </div>
+      <div className="col-12 col-md-6">
+        <div className="row mt-5 mt-sm-2">
+          <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
+          <p className="col">{vet.Name}</p>
         </div>
-        <div className="col-12 col-md-6">
-          <div className="row mt-5 mt-sm-2">
-            <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
-            <p className="col">{vet?vet.Name:null}</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
-            <p className="col">{vet?vet.Address:null}</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
-            <p className="col">{vet?vet.city:null}</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
-            <p className="col">{vet?vet.state:null}</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Mobile No:</strong>
-            <p className="col">{vet?vet.phone:null}</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Qualification</strong>
-            <p className="col">{vet?vet.Qualification:null}</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Experience:</strong>
-            <p className="col">{vet?vet.experience:null}</p>
-          </div>
-          <div className="row">
-            <strong className="col-6 col-sm-5 col-lg-3">Achievements:</strong>
-            <p className="col">{vet?vet.Achievements:null}</p>
-          </div>
+        <div className="row">
+          <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
+          <p className="col">{vet.Address}</p>
+        </div>
+        <div className="row">
+          <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
+          <p className="col">{vet.city}</p>
+        </div>
+        <div className="row">
+          <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
+          <p className="col">{vet.state}</p>
+        </div>
+        <div className="row">
+          <strong className="col-6 col-sm-5 col-lg-3">Mobile No:</strong>
+          <p className="col">{vet.phone}</p>
+        </div>
+        <div className="row">
+          <strong className="col-6 col-sm-5 col-lg-3">Qualification</strong>
+          <p className="col">{vet.Qualification}</p>
+        </div>
+        <div className="row">
+          <strong className="col-6 col-sm-5 col-lg-3">Experience:</strong>
+          <p className="col">{vet.experience}</p>
+        </div>
+        <div className="row">
+          <strong className="col-6 col-sm-5 col-lg-3">Achievements:</strong>
+          <p className="col">{vet.Achievements}</p>
         </div>
       </div>
+    </div>
+   )):null}
       <Declarations />
     </div>
   );
