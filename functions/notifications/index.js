@@ -2,7 +2,7 @@ var admin= require('firebase-admin')
 
 // var db= admin.firestore()
 var fcm= admin.messaging()
-var notify;
+var notify={};
 
 // docData= snap
 notify.sendAppointmentConfirmationNotification= (deviceToken, docData)=>{

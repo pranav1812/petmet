@@ -2,7 +2,7 @@ var admin= require('firebase-admin')
 
 var db= admin.firestore()
 
-var background;
+var background={};
 
 background.setAppointentForVet=(user, docData)=>{
     // user parameter is an object that contains necessary info about the user
@@ -32,16 +32,20 @@ background.confirmOrder= async(orderSummary, userDetails)=>{
     totalCost=0
 
     productPromises= []
+    console.log(orderSummary.products)
     orderSummary.products.forEach(product=>{
         var detailsPromise= db.collection('items').doc(product.category).collection('products').doc(product.productId).get()
         productPromises.push(detailsPromise)
     })
+    console.log("product promises")
+    console.log(productPromises)
 
     try{
         var resolvedPromises= await Promise.all(productPromises)
+        console.log(resolvedPromises)
         resolvedPromises.forEach((doc, index)=>{
-            totalCost+=Number(doc.data().cost)*orderSummary[index].units
-            orderSummary.products[index].costPerPc= Number(doc.data().cost)
+            totalCost+=Number(doc.data().details.cost)*orderSummary.products[index].units
+            orderSummary.products[index].costPerPc= doc.data().details.cost
         })
         orderSummary.total= totalCost,
         orderSummary.user= userDetails.name
@@ -52,8 +56,9 @@ background.confirmOrder= async(orderSummary, userDetails)=>{
             paid: false
         })
     }
-    catch{
+    catch(err){
         console.error("some error occurred")
+        console.log(err)
     }
 }
 
