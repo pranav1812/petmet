@@ -26,43 +26,13 @@ const Declarations = (props) => {
 
   return (
     <div>
-      <Button color="danger" onClick={toggle}>
+      <Button color="danger" onClick={setModal}>
         Book Appointment
       </Button>
-      <Modal isOpen={modal} toggle={toggle} className={className} centered>
-        <ModalHeader toggle={toggle}>Modal title</ModalHeader>
-        <ModalBody>
-          <div className="firstmodalbody">
-            <p>September 18 2020</p>
-            <p>18:30:00</p>
-            <br />
-            <br />
-            <Button
-              className="buttonformodal"
-              style={{ marginLeft: "20px" }}
-              onClick={toggleNested}
-            >
-              Confirm Slot
-            </Button>
-          </div>
-          <div className="firstmodalbody">
-            <p>September 18 2020</p>
-            <p>18:30:00</p>
-            <br />
-            <br />
-            <Button
-              className="buttonformodal"
-              style={{ marginLeft: "20px" }}
-              onClick={toggleNested}
-            >
-              Confirm Slot
-            </Button>
-          </div>
-
-          <Modal
-            isOpen={nestedModal}
-            toggle={toggleNested}
-            onClosed={closeAll ? toggle : undefined}
+      <Modal
+            isOpen={modal}
+            toggle={toggle}
+            // onClosed={closeAll ? toggle : undefined}
             centered
           >
             <ModalHeader>BOOK AN APPOINTMENT</ModalHeader>
@@ -114,6 +84,7 @@ const Declarations = (props) => {
                         size="lg"
                         block
                         className="btn-block pink_out"
+                        onClick={setNestedModal}
                       >
                         <span>
                           <FiVideo className="mb-1" />{" "}
@@ -143,23 +114,20 @@ const Declarations = (props) => {
                   <p></p>
                 </p>
               </Container>
+              <Modal
+                isOpen={nestedModal}
+                toggle={toggleNested}
+                onClosed={closeAll ? toggle : undefined}
+                centered
+              >
+                <ModalBody>
+                  <Container>
+                    <h1>hello</h1>
+                  </Container>
+                </ModalBody>
+              </Modal>
             </ModalBody>
-            <ModalFooter>
-              <Button color="primary" onClick={toggleNested}>
-                Done
-              </Button>{" "}
-              <Button color="danger" onClick={toggleAll}>
-                All Done
-              </Button>
-            </ModalFooter>
           </Modal>
-        </ModalBody>
-        <ModalFooter>
-          <Button className="buttonclosemodal" onClick={toggle}>
-            Cancel
-          </Button>
-        </ModalFooter>
-      </Modal>
     </div>
   );
 };

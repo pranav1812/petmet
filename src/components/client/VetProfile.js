@@ -159,16 +159,16 @@ const useStyles = makeStyles((theme) => ({
 //   );
 // }
 
-export default function VetProfile() {
-  const [vets, setVets] = useState(null);
-  const [qty, setQty] = useState(1);
-  const [uid, setUid] = useState(null);
-  const [userInfo, setUserInfo] = useState(null);
-  const { productId, subComponent } = useParams();
+// export default function VetProfile() {
+//   const [vets, setVets] = useState(null);
+//   const [qty, setQty] = useState(1);
+//   const [uid, setUid] = useState(null);
+//   const [userInfo, setUserInfo] = useState(null);
+//   const { productId, subComponent } = useParams();
   // const { uid, setUid } = useParams();
   // const { subComponent } = useParams();
 
-  const [usr, setUsr] = useState(null);
+  /*const [usr, setUsr] = useState(null);
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -188,7 +188,7 @@ export default function VetProfile() {
         setVets(doc.data());
         // setTotalPrice(doc.data().details.cost)
       });
-  }, [qty]);
+  }, [qty]);*/
 
   // useEffect(() => {
   //   auth.onAuthStateChanged((user) => {
@@ -225,87 +225,85 @@ export default function VetProfile() {
 
   // const [modalShow, setModalShow] = React.useState(false);
 
+//   return (
+    
+//         {/* <button type="button" className="pink_out" onClick={Declarations}>
+//           Book an Appointment
+//         </button>  */}
+
+//     //     <Declarations />
+//     //   </div>
+//     // </div>
+    
+//   );
+// }// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
+
+export default function Profile() {
+  const classes = useStyles();
+  const[uid,setUid] = useState(null)
+  const[vet,setVet] = useState(null)
+  const [state, setState]= useState({})
+  useEffect(()=>{
+    auth.onAuthStateChanged(user=>{
+      if(user){
+        setUid(user.uid)
+        db.collection('vet').doc(user.uid).get()
+          .then(doc=>{
+            if(doc.exists){
+             // docs.forEach(doc=>{
+              setVet(doc.data())}
+          }
+          )
+      }
+    })
+    
+  },[])
+
+      console.log(state)
   return (
     <div className="container profile_container">
       <div className="row justify-content-center">
-        {/* ........................................... */}
-
-        {vets ? (
-          vets.map((vet) => (
-            <div>
-              <div className="col-12 col-md-5 offset-sm-1">
-                <h4 className="mt-2 mb-3 head">{vets.Name}</h4>
-                <img src={Doctor} className="profile_img" />
-                <p style={{ color: "#36A9CC" }} className="mt-2">
-                  Verified
-                </p>
-              </div>
-              <div className="col-12 col-md-6">
-                <div className="row mt-5 mt-sm-2">
-                  <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
-                  <p className="col">{vets.Name}</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
-                  <p className="col">{vets.Address}</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
-                  <p className="col">{vet.city}</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
-                  <p className="col">{vets.state}</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Mobile No:
-                  </strong>
-                  <p className="col">{vets.phone}</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Qualification:
-                  </strong>
-                  <p className="col">{vets.Qualification}</p>
-                </div>
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Experience:
-                  </strong>
-                  <p className="col">{vets.experience}</p>
-                </div>
-
-                <div className="row">
-                  <strong className="col-6 col-sm-5 col-lg-3">
-                    Achievements:
-                  </strong>
-                  <p className="col">{vets.Achievements}</p>
-                </div>
-              </div>
-            </div>
-          ))
-        ) : (
-          <h5>Wait...loading</h5>
-        )}
-
-        {/* ...................................................... */}
-
-        {/* <button type="button" className="pink_out" onClick={Declarations}>
-          Book an Appointment
-        </button> */}
-
-        <Declarations />
-
-        {/* <MyVerticallyCenteredModal
-          show={show} onHide={handleClose1(false)}
-    
-        />
-
-        <timeLapse
-      show={showw} onHide={handleClose2}
-        /> */}
+        <div className="col-12 col-md-5 offset-sm-1">
+          <h4 className="mt-2 mb-3 head">Name of Vet</h4>
+          <img src={vet?vet.imgUrl:null} className="profile_img" />
+          <p style={{color: "#36A9CC"}} className="mt-2">Verified</p>
+        </div>
+        <div className="col-12 col-md-6">
+          <div className="row mt-5 mt-sm-2">
+            <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
+            <p className="col">{vet?vet.Name:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
+            <p className="col">{vet?vet.Address:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
+            <p className="col">{vet?vet.city:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
+            <p className="col">{vet?vet.state:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Mobile No:</strong>
+            <p className="col">{vet?vet.phone:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Qualification</strong>
+            <p className="col">{vet?vet.Qualification:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Experience:</strong>
+            <p className="col">{vet?vet.experience:null}</p>
+          </div>
+          <div className="row">
+            <strong className="col-6 col-sm-5 col-lg-3">Achievements:</strong>
+            <p className="col">{vet?vet.Achievements:null}</p>
+          </div>
+        </div>
       </div>
+      <Declarations />
     </div>
   );
-}// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
+}
