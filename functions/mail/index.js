@@ -1,8 +1,8 @@
 var admin= require('firebase-admin')
 var templates= require('./templates')
 
-var db= admin.firebase()
-var sendMail;
+var db= admin.firestore()
+var sendMail={};
 
 // order confirmation email
 
