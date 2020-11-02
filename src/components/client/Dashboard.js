@@ -340,11 +340,13 @@ export default function Dashboard() {
                             <h6 className="mt-1 mr-3">Fishes</h6>
                             <input className="justify-content-end mt-2" type="radio"></input>
                         </div>
-                        <div className="row">
-                            <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
-                            <h6 className="mt-1 mr-3">Add a Pet</h6>
-                            <input className="justify-content-end mt-2" type="radio"></input>
-                        </div>
+                        <Link to="/Addpet/">
+                          <div className="row">
+                              <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
+                              <h6 className="mt-1 mr-3">Add a Pet</h6>
+                              <input className="justify-content-end mt-2" type="radio"></input>
+                          </div>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -408,7 +410,9 @@ export default function Dashboard() {
                   <p>Profile</p>
                 </div>
                 <div className="mr-4 mt-4">
-                  <MdShoppingCart style={{fontSize:"33px",color:"#979797"}}/>
+                  <Link to="/Cart/">
+                    <MdShoppingCart style={{fontSize:"33px",color:"#979797"}} />
+                  </Link>
                   <p className="mt-1">Cart</p>
                 </div>
             </Navbar.Collapse>

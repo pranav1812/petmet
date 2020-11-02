@@ -59,64 +59,75 @@ export default function Addpet() {
   }
 
   return (
-    <React.Fragment>
-      <h1 className="main-head mt-4">COMPLETE THE PROFILE OF YOUR PETS</h1>
-        <div className="container addProduct">
-                    <Form className="addProduct_form">
-                        <div className="row mb-3">
-                            <Form.Label className="col-3">Add Pet Image</Form.Label>
-                            <input onChange={addImg} type="file"  id="group_image"/>
-                            <img id="target"/>
-                        </div>
+    <div style={{backgroundColor:"#36a9cc",marginTop:"0px",height:"100vh",paddingTop:"30px",overflowX:"hidden"}}>
+      <div className="row justify-content-center">
+        <Link to="/Home/"><button className="mt-2 mr-sm-4 backbtn">Back</button></Link>
+        <h1 style={{textAlign:"center",color:"white",marginLeft:"50px"}} >COMPLETE THE PROFILE OF YOUR PETS</h1>
+      </div>
+        <div className="container frm-bdy">
+          <div className="row justify-content-center">
+            <div className="col-11 col-sm-5 order-sm-last img-cont">
+              <h6 className="mb-3">Add Pet Image</h6>
+              <div className="img-container">
+                <p>Add a Pet Image</p>
+                <input className="ml-sm-4" onChange={addImg} type="file"  id="group_image"/>
+                <img id="target"/>
+              </div>
+            </div>
+            <div className="col-12 col-sm-6">
+              <Form className="addProduct_form">
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Name</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" id="Name"
+                            <Form.Control className="col-12 ml-4" as="input" id="Name"
                                name="Name" autoComplete="pet-name"
-                               onBlur={e=>{setPet({...pet, name: e.target.value})}}>
+                               onBlur={e=>{setPet({...pet, name: e.target.value})}}
+                               placeholder="Name">
                             </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Animal</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                            
+                            <Form.Control className="col-12 ml-4" as="input"
                             id="animal"
+                            placeholder="Animal"
                             name="animal"
                             autoComplete="animal"
                             onBlur={e=>{setPet({...pet, category: e.target.value})}}  />
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Breed</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                            <Form.Control className="col-12 ml-4" as="input"
                              id="breed"
+                             placeholder="Breed"
                              name="breed"
                              autoComplete="breed"
                              onBlur={e=>{setPet({...pet, breed: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Age</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                            <Form.Control className="col-12 ml-4" as="input"
                              id="age"
                              name="age"
+                             placeholder="Age"
                              autoComplete="age"
                              onBlur={e=>{setPet({...pet, age: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Label className="col-3">Weight</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input"
+                            <Form.Control className="col-12 ml-4" as="input"
                              id="weight"
+                             placeholder="Weight"
                              name="weight"
                              autoComplete="weight"
                              onBlur={e=>{setPet({...pet, weight: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
-                        <button type="button" className="offset-4 offset-sm-3 pink_out" onClick={submit} >
+                        <button className="btn-block blue_btn ml-4 frm-button" onClick={submit} >
                             Submit
                         </button>
                       
                     </Form>
-                </div>
-    </React.Fragment>
+            </div>
+          </div>    
+        </div>
+    </div>
   );
 };
 
