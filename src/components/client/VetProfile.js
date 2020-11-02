@@ -239,44 +239,25 @@ const useStyles = makeStyles((theme) => ({
 // }// https://stackoverflow.com/questions/61152718/send-meeting-url-using-google-meet-api
 
 export default function Profile() { const classes = useStyles();
-  const [vet, setVets] = useState(null);
-
+  const [vet, setVet] = useState(null);
+  const {subComponent } = useParams();
+  const vid = subComponent;
   const [usr, setUsr] = useState(null);
-  useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (!user) {
-        alert("login required");
-        window.location = home;
-      } else {
-        setUsr(user);
-        db.collection("user")
-          .doc(user.uid)
-          .get()
-          .then((doc) => {
-            if (doc.exists) {
-              var city = doc.data().city;
-              db.collection("vet")
-                .where("city", "==", city)
-                .get()
-                .then((docs) => {
-                  var temp = [];
-                  docs.forEach((vet) => {
-                    temp.push({...vet.data(),key:vet.id});
-                  });
-                  setVets(temp);
-                })
-                .catch((err) => console.error(err));
-            }
-          })
-          .catch((err) => console.error(err));
+  
+  useEffect(()=>{
+      db.collection("vet").doc(vid).get().then(doc=>{
+      if(doc.exists){
+        setVet(doc.data())
       }
-    });
-  });
+    })
+    
+  },[])
+
   return (
     <div className="container profile_container">
-      {usr ? <h1>Book your Appointment</h1> : null}
+      
       {vet 
-      ? vet.map((vet)=>( <div className="row justify-content-center">
+      ? ( <div className="row justify-content-center">
       <div className="col-12 col-md-5 offset-sm-1">
         <h4 className="mt-2 mb-3 head">Name of Vet</h4>
         <img src={vet.imgUrl} className="profile_img" />
@@ -317,7 +298,7 @@ export default function Profile() { const classes = useStyles();
         </div>
       </div>
     </div>
-   )):null}
+   ):null}
       <Declarations />
     </div>
   );
