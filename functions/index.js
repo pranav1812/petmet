@@ -1,11 +1,12 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
+admin.initializeApp();
 
 const notify= require('./notifications/index')
 const background= require('./background/index')
 const sendMail= require('./mail/index')
 
-admin.initializeApp();
+
 const db = admin.firestore()
 // const fcm= admin.messaging()
 
