@@ -112,7 +112,7 @@ export default function Appointment() {
                 .then((docs) => {
                   var temp = [];
                   docs.forEach((vet) => {
-                    temp.push(vet.data());
+                    temp.push({...vet.data(),key:vet.id});
                   });
                   setVets(temp);
                 })
@@ -135,7 +135,7 @@ export default function Appointment() {
                   <img src={dog} className="profile_img" />
                 </div>
                 <div className="hi">
-                  <Link to={"/VetProfile" + vet.Name}>
+                  <Link to={"/VetProfile/"+vet.key}>
                     <div className="vet">
                       <p></p>
                       <strong className="col">{vet.Name} </strong>
@@ -153,15 +153,10 @@ export default function Appointment() {
                 </div>
               </div>
               <hr />
-            </div>
+        </div>
           ))
         : null}
 
-      <Link to="/VetProfile">
-        <button type="button" className="offset-4 offset-sm-3 pink_out">
-          vet
-        </button>
-      </Link>
     </div>
   );
 }

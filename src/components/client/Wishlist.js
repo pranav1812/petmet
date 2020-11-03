@@ -5,6 +5,9 @@ import product2 from "../pictures/image 35.png";
 import product3 from "../pictures/image 34.png";
 import "./wishlist.css";
 import "./cart.css";
+import Carousel from 'react-elastic-carousel';
+import SquareCard from "./SquareCard";
+
 import  Rectangle115 from "../pictures/Rectangle 115.png";
 import  Rectangle116 from "../pictures/Rectangle 116.png";
 import  Rectangle117 from "../pictures/Rectangle 117.png";
@@ -13,7 +16,38 @@ import  Rectangle119 from "../pictures/Rectangle 119.png";
 import  Rectangle120 from "../pictures/Rectangle 120.png";
 const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
 
+const breakPoints = [
+  { width: 1, itemsToShow: 1 },
+  { width: 240, itemsToShow: 1 },
+  { width: 550, itemsToShow: 3 },
+  { width: 768, itemsToShow: 4 },
+  { width: 1200, itemsToShow: 4 },
+];
 
+
+const CarouselComp=()=>{
+  return(
+    <div>
+  <h2 className="mt-4" style={{paddingBottom: "20px"}}>DOG ESSENTIALS</h2>
+  <div className="carousel-styling" style={{justifyContent: "center",paddingBottom: "40px"}} >
+        <Carousel breakPoints={breakPoints}>
+          <item>
+            <SquareCard />
+          </item>
+          <item>
+            <SquareCard />
+          </item>
+          <item>
+            <SquareCard />
+          </item>
+          <item>
+            <SquareCard />
+          </item>
+        </Carousel>
+  </div>
+  </div>
+)
+}
 const WishlistComponent = () => {
 
   const [wish, setWish]= useState(null)
@@ -39,6 +73,7 @@ const WishlistComponent = () => {
             temp.push({...doc.data(),key: doc.id,_id: doc.data().key})
           })
           setWish(temp)
+          console.log(wish)
         })
       }
     
@@ -46,12 +81,13 @@ const WishlistComponent = () => {
   }, [])
 
   return (
-<div  style={{marginTop:"50px"}} className="wishlistpage">
-      
+<div  style={{marginTop:"50px",padding:"2%"}} className="wishlistpage">
+    <h1>My wishlist</h1>
 {wish? wish.map(wi=> (
-<div style={{ margin: "10px", width: "40em" }} className="cartproductcard">
+<div className="row" style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
        
 <p>
+  
 <img
 position= "absolute"
 width= "146.59px"
@@ -92,12 +128,12 @@ color: "#000000"
     left: "71.1px",
     top: "525.16px",
     fontFamily: "Roboto",
-fontStyle: "normal",
-fontWeight: "500",
-fontSize: "28px",
-lineHeight: "33px",
-color: "#FF5352",
-}}>{"Rs. " + wi.cost}
+    fontStyle: "normal",
+    fontWeight: "500",
+    fontSize: "28px",
+    lineHeight: "33px",
+    color: "#FF5352",
+    }}>{"Rs. " + wi.cost}
 </span>
    <span>  </span>   
 <span style={{
@@ -144,6 +180,5 @@ export default function Wishlist() {
     });
   });
   return <div>
-     <h1>MY WISHLIST</h1>
-    {usr ? <WishlistComponent /> : null}</div>;
+         {usr ?(<div> <WishlistComponent />  <CarouselComp/></div>) : null}</div>;
 }

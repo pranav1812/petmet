@@ -79,7 +79,7 @@
   color: #a4a4a4 !important;
 }
 
-.newnavitems:hover,.newnavitems:focus {
+.newnavitems:hover,.newnavitems:focus,.newnavitems:active {
   color: #36a9cc !important;
   font-weight: bold;
 }

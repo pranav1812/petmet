@@ -47,11 +47,19 @@ class AddProduct extends Component {
                     }).then(()=>{
                         ref.collection('products').add({
                             details: this.state
+                        }).then((doc)=>{
+                            db.collection('All_Products').doc(doc.id).set({
+                                details: this.state
+                            }).then(()=>{window.location.reload()})
                         })
                     })
                 }else{
                     ref.collection('products').add({
                         details: this.state
+                    }).then((doc)=>{
+                        db.collection('All_Products').doc(doc.id).set({
+                            details: this.state
+                        }).then(()=>{window.location.reload()})
                     })
                 }
             })

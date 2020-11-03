@@ -1,4 +1,4 @@
-var templates;
+var templates={};
 
 templates.orderConfirmation=(orderDetails, mailId)=>{
     // orderDetailsSchema={

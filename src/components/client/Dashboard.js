@@ -332,28 +332,39 @@ export default function Dashboard() {
                       <div style={{padding:"10px"}} className="form-check">
                         <div className="row mb-3">
                             <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}} />
-                            <h6 className="mt-1 mr-3">Rocky</h6>
+                      <Link to={"/myPets/"}>      <h6 className="mt-1 mr-3">Rocky</h6> </Link>
                             <input className="justify-content-end mt-2" type="radio" checked></input>
                         </div>
                         <div className="row mb-3">
                             <img src={Cat} className="ml-4 mr-3" style={{height:"40px",width:"40px",borderRadius:"50%"}}/>
-                            <h6 className="mt-1 mr-3">Fishes</h6>
+                            <Link to={"/myPets/"}>      <h6 className="mt-1 mr-3">Fishes</h6> </Link>
                             <input className="justify-content-end mt-2" type="radio"></input>
                         </div>
+<<<<<<< HEAD
                         <div className="row">
                             <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
-                            <h6 className="mt-1 mr-3">Add a Pet</h6>
+                           <Link to={"/Addpet"}> <h6 className="mt-1 mr-3">Add a Pet</h6> </Link> 
                             <input className="justify-content-end mt-2" type="radio"></input>
+                            </div>
                         </div>
+=======
+                        <Link to="/Addpet/">
+                          <div className="row">
+                              <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
+                              <h6 className="mt-1 mr-3">Add a Pet</h6>
+                              <input className="justify-content-end mt-2" type="radio"></input>
+                          </div>
+                        </Link>
                       </div>
+>>>>>>> 3caa5ce4365321ef84987c986ace14f2296d0f89
                     </div>
                   </div>
                 </Nav.Link>
                 <Nav.Link className="newnavitems" href="/Wishlist/">
                   Wishlist
                 </Nav.Link>
-                <Nav.Link className="newnavitems" href="/Appointments/">
-                  Appointments
+                <Nav.Link className="newnavitems" href="/Appointment/">
+                  Appointment
                 </Nav.Link>
                  {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -401,13 +412,16 @@ export default function Dashboard() {
                           <h6 className="mt-1">Switch Account</h6>
                         </div>
                         <hr style={{margin: "12px 10px"}}/>
-                        <h6 className="m-2">Log Out</h6>
-                    </div>
+                        <button onClick={logout}><h6 className="m-2">Log Out</h6>
+                        </button>                        
+                        </div>
                   </div>
                   <p>Profile</p>
                 </div>
                 <div className="mr-4 mt-4">
-                  <MdShoppingCart style={{fontSize:"33px",color:"#979797"}}/>
+                  <Link to="/Cart/">
+                    <MdShoppingCart style={{fontSize:"33px",color:"#979797"}} />
+                  </Link>
                   <p className="mt-1">Cart</p>
                 </div>
             </Navbar.Collapse>
