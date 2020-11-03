@@ -18,6 +18,7 @@ import ShopProducts from "./components/client/ShopProducts";
 import Profile from "./components/checkout/Profile";
 import VerifyEmail from "./components/verifyEmail";
 import NewProductDetails from "./components/client/NewProductDetails";
+import ShopPage from "./components/shop/ShopPage";
 
 /* --------- trial ------*/
 function App() {
@@ -39,7 +40,7 @@ function App() {
         <Route exact path="/vCompleteProfile" component={VCompleteProfile} />
         <Route exact path="/admin/:component" component={SideBar} />
         <Route exact path="/v/:vd" component={VDashboard} />
-        <Route exact path="/productdetails" component={ShopProducts} />
+        <Route exact path="/productdetails" component={ShopPage} />
         <Route
           exact
           path="/:componentt/:subComponent/:productId"
