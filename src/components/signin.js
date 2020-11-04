@@ -14,6 +14,7 @@ import { auth, db } from "../firebase";
 import * as firebase from "firebase";
 import mainlogo from "./pictures/Final Main Logo PET MET.png";
 import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
+import "./signin.css";
 
 const home =
   window.location.protocol + "//" + window.location.host + "/" + "Home/";
@@ -270,9 +271,9 @@ export default function Login() {
 
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          {/* <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
-          </Avatar>
+          </Avatar> */}
           <Typography style={{ color: "#36A9CC" }} component="h1" variant="h5">
             {newUser ? "Sign Up" : "Sign In"}
           </Typography>
@@ -319,7 +320,7 @@ export default function Login() {
               }}
             />
             <br />
-            <span>or</span>
+            <span className="or">or</span>
             <br />
             <TextField
               variant="outlined"
@@ -343,29 +344,30 @@ export default function Login() {
             >
               {newUser ? "Sign Up" : "Sign In"}
             </Button>
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              style={{ backgroundColor: "#36A9CC" }}
-              class="btn btn-primary btn-lg btn-block"
-              onClick={newUser ? googleSignup : googleSignin}
-            >
-              {newUser ? "Sign Up with Google" : "Sign In with Google"}
-            </Button>
+            <span>
+              <button
+                type="button"
+                fullWidth
+                variant="contained"
+                style={{ backgroundColor: "#36A9CC" }}
+                className="facebookbutton"
+                onClick={newUser ? fbSignup : fbSignin}
+              >
+                {newUser ? "Sign Up with facebook" : "Sign In with facebook"}
+              </button>
+              <button
+                type="button"
+                fullWidth
+                variant="contained"
+                style={{ backgroundColor: "#36A9CC" }}
+                className=" googlebutton"
+                onClick={newUser ? googleSignup : googleSignin}
+              >
+                {newUser ? "Sign Up with Google" : "Sign In with Google"}
+              </button>
+            </span>
 
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              style={{ backgroundColor: "#36A9CC" }}
-              class="btn btn-primary btn-lg btn-block"
-              onClick={newUser ? fbSignup : fbSignin}
-            >
-              {newUser ? "Sign Up with facebook" : "Sign In with facebook"}
-            </Button>
-
-            <Button
+            {/* <Button
               type="button"
               fullWidth
               variant="contained"
@@ -374,7 +376,7 @@ export default function Login() {
               onClick={newUser ? phoneSignup : phoneSignin}
             >
               {newUser ? "Sign Up with phone no." : "Sign In with phone no."}
-            </Button>
+            </Button> */}
 
             <Grid container>
               {!newUser ? (
