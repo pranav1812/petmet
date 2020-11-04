@@ -128,9 +128,15 @@ const ShopProducts = () => {
                     <hr />
                   </div>
                   <div className="products_rightflex">
-                    <SquareCard style={{ margin: "31px" }} />
-                    <SquareCard />
-                    <SquareCard />
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <SquareCard style={{ margin: "31px" }} />
+                    </Link>
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <SquareCard style={{ margin: "31px" }} />
+                    </Link>
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <SquareCard style={{ margin: "31px" }} />
+                    </Link>
                   </div>
                 </div>
               </span>
