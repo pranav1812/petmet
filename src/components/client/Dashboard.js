@@ -340,17 +340,9 @@ export default function Dashboard() {
                             <Link to={"/myPets/"}>      <h6 className="mt-1 mr-3">Fishes</h6> </Link>
                             <input className="justify-content-end mt-2" type="radio"></input>
                         </div>
-<<<<<<< HEAD
-                        <div className="row">
-                            <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
-                           <Link to={"/Addpet"}> <h6 className="mt-1 mr-3">Add a Pet</h6> </Link> 
-                            <input className="justify-content-end mt-2" type="radio"></input>
-                            </div>
-                        </div>
-=======
                         <Link to="/Addpet/">
                           <div className="row">
-                              <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
+                             <GrAdd className="ml-4 mr-3" style={{fontSize:"30px"}}/>
                               <h6 className="mt-1 mr-3">Add a Pet</h6>
                               <input className="justify-content-end mt-2" type="radio"></input>
                           </div>
