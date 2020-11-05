@@ -209,3 +209,15 @@ h3 {
 .products_leftflex > ul > li > input {
   margin-right: 14.25px;
 }
+.products_leftflex > button {
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 17px;
+
+  color: #797979;
+
+  background-color: #ffffff;
+  border: none;
+}

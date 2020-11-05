@@ -47,6 +47,35 @@ const ShopPage = () => {
 
   // const handleClose = () => setShow(false);
   // const handleShow = () => setShow(true);
+  const [num, setNum] = useState(0);
+
+  const decrease = () => {
+    if (num > 0) {
+      setNum(num - 1);
+    } else {
+      setNum(0);
+    }
+  };
+  const increase = () => {
+    setNum(num + 1);
+  };
+  const [showreadmore, setShowreadmore] = useState(false);
+  const showfunction = () => {
+    if (showreadmore == false) {
+      setShowreadmore(true);
+    } else {
+      setShowreadmore(false);
+    }
+  };
+  const Box = () => {
+    return (
+      <p>
+        biscuits makes treat time both nutritious and delicious. loaded with
+        rich flavours from farm-fresh chicken and other high-quality human-grade
+        ingredients
+      </p>
+    );
+  };
 
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
@@ -206,6 +235,10 @@ const ShopPage = () => {
             farm-fresh chicken and other high-quality human-grade
             ingredients,...
           </p>
+          <span>
+            <p onClick={showfunction}>Read More</p>
+            <p>{showreadmore && <Box />}</p>
+          </span>
           <p>Size:</p>
 
           <div className="row justify-content-center mb-1">
@@ -214,6 +247,11 @@ const ShopPage = () => {
             <button className="row-btn">1 kg</button>
             <button className="row-btn">2 kg</button>
           </div>
+          <span>
+            <button onClick={increase}>+</button>
+            <p>{num}</p>
+            <button onClick={decrease}>-</button>
+          </span>
           <div className="row justify-content-center align-items-center">
             <p className="acprize">Rs. 950</p>
             <p className="cprize ml-4">Rs. 1250</p>

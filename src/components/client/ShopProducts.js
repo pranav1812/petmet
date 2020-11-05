@@ -26,7 +26,60 @@ const ShopProducts = () => {
         console.log(temp.length);
       });
   }, []);
-
+  const [dropdownvar, setDropdownvar] = useState(false);
+  const dropdowndata = () => {
+    if (dropdownvar == false) {
+      setDropdownvar(true);
+    } else {
+      setDropdownvar(false);
+    }
+  };
+  const Dropdownfun = () => {
+    return (
+      <ul>
+        <li>
+          <input type="checkbox" />
+          Acana
+        </li>
+        <br />
+        <li>
+          <input type="checkbox" />
+          Arden Grange
+        </li>
+        <br />
+        <li>
+          <input type="checkbox" />
+          Acana
+        </li>
+        <br />
+        <li>
+          <input type="checkbox" />
+          Arden Grange
+        </li>
+        <br />
+        <li>
+          <input type="checkbox" />
+          Acanaa
+        </li>
+        <br />
+        <li>
+          <input type="checkbox" />
+          Arden Gargee
+        </li>
+        <br />
+        <li>
+          <input type="checkbox" />
+          Acana
+        </li>
+        <br />
+        <li>
+          <input type="checkbox" />
+          Ardenr
+        </li>
+        <br />
+      </ul>
+    );
+  };
   return (
     <div>
       {products
@@ -37,73 +90,53 @@ const ShopProducts = () => {
                   <div className="products_leftflex">
                     <p>PRICE</p>
                     <hr />
-                    <p>
+
+                    <button onClick={dropdowndata}>
                       BRANDS <ArrowDropDownIcon />
-                    </p>
-                    <ul>
-                      <li>
-                        <input type="checkbox" />
-                        Acana
-                      </li>
-                      <br />
-                      <li>
-                        <input type="checkbox" />
-                        Arden Grange
-                      </li>
-                      <br />
-                      <li>
-                        <input type="checkbox" />
-                        Acana
-                      </li>
-                      <br />
-                      <li>
-                        <input type="checkbox" />
-                        Arden Grange
-                      </li>
-                      <br />
-                      <li>
-                        <input type="checkbox" />
-                        Acanaa
-                      </li>
-                      <br />
-                      <li>
-                        <input type="checkbox" />
-                        Arden Gargee
-                      </li>
-                      <br />
-                      <li>
-                        <input type="checkbox" />
-                        Acana
-                      </li>
-                      <br />
-                      <li>
-                        <input type="checkbox" />
-                        Ardenr
-                      </li>
-                      <br />
-                    </ul>
+                    </button>
+
+                    {dropdownvar && <Dropdownfun />}
+
                     <hr />
-                    <p>
+                    <button onClick={dropdowndata}>
                       PRODUCT TYPE <ArrowDropDownIcon />
-                    </p>
+                    </button>
+
+                    {dropdownvar && <Dropdownfun />}
+
                     <hr />
-                    <p>
+                    <button onClick={dropdowndata}>
                       BREED <ArrowDropDownIcon />
-                    </p>
+                    </button>
+
+                    {dropdownvar && <Dropdownfun />}
+
                     <hr />
-                    <p>
+                    <button onClick={dropdowndata}>
                       LIFE STAGE <ArrowDropDownIcon />
-                    </p>
+                    </button>
+
+                    {dropdownvar && <Dropdownfun />}
+
                     <hr />
-                    <p>
+                    <button onClick={dropdowndata}>
                       LIFE STAGE <ArrowDropDownIcon />
-                    </p>
+                    </button>
+
+                    {dropdownvar && <Dropdownfun />}
+
                     <hr />
                   </div>
                   <div className="products_rightflex">
-                    <SquareCard style={{ margin: "31px" }} />
-                    <SquareCard />
-                    <SquareCard />
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <SquareCard style={{ margin: "31px" }} />
+                    </Link>
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <SquareCard style={{ margin: "31px" }} />
+                    </Link>
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <SquareCard style={{ margin: "31px" }} />
+                    </Link>
                   </div>
                 </div>
               </span>

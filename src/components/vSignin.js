@@ -14,6 +14,7 @@ import { auth } from "../firebase";
 import * as firebase from "firebase";
 import mainlogo from "./pictures/Final Main Logo PET MET.png";
 import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
+import "./signin.css";
 const vMail =
   window.location.protocol +
   "//" +
@@ -259,9 +260,9 @@ export default function VetLogin() {
       </Grid>
       <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          {/* <Avatar className={classes.avatar}>
             <LockOutlinedIcon />
-          </Avatar>
+          </Avatar> */}
           <Typography component="h1" variant="h5">
             {newUser ? "Sign Up" : "Sign In"}
           </Typography>
@@ -311,35 +312,39 @@ export default function VetLogin() {
             <Button
               type="button"
               fullWidth
-              variant="contained"
               color="primary"
-              className={classes.submit}
+              style={{ backgroundColor: "#36A9CC" }}
+              class="btn btn-primary btn-lg btn-block"
+              variant="contained"
+              // className={classes.submit}
               onClick={newUser ? signupEmail : emailLogin}
             >
               {newUser ? "Sign Up" : "Sign In"}
             </Button>
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={newUser ? googleSignup : googleSignin}
-            >
-              {newUser ? "Sign Up with Google" : "Sign In with Google"}
-            </Button>
-
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={newUser ? fbSignup : fbSignin}
-            >
-              {newUser ? "Sign Up with facebook" : "Sign In with facebook"}
-            </Button>
-
+            <span>
+              <button
+                type="button"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                className="facebookbutton"
+                onClick={newUser ? fbSignup : fbSignin}
+              >
+                {newUser ? "Sign Up with facebook" : "Sign In with facebook"}
+              </button>
+              <button
+                type="button"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+                className="googlebutton"
+                onClick={newUser ? googleSignup : googleSignin}
+              >
+                {newUser ? "Sign Up with Google" : "Sign In with Google"}
+              </button>
+            </span>
             <Grid container>
               {!newUser ? (
                 <Grid item xs>
@@ -359,10 +364,13 @@ export default function VetLogin() {
             </Grid>
 
             <Button
+              fullWidth
+              style={{ backgroundColor: "#36A9CC" }}
+              class="btn btn-primary btn-lg btn-block"
+              variant="contained"
               type="button"
               variant="contained"
               color="primary"
-              className={classes.submit}
               onClick={goSimple}
             >
               Signin as User
