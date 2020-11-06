@@ -11,6 +11,8 @@ import { Form, Button, Row, Col, Container } from "react-bootstrap";
 import Declarations from "./Declarations";
 import './VetProfile.css';
 import Add from '../pictures/Rectangle 154.png';
+import VetConfirmation from './VetConfirmation';
+import {Link} from 'react-router-dom';
 
 
 const home =
@@ -148,7 +150,7 @@ const submit=()=>{
         <div className="col-12 col-lg-4 vet_p_card">
           <div className="card_img">
             <img src={vet.imgUrl} className="profile_img" />
-            <h6 className="clinic_name">{vet.Name}</h6>
+            <h6 className="clinic_name name">{vet.Name}</h6>
           </div>
           <div className="row justify-content-center">
             <span class="badge-des">Vet</span>
@@ -264,8 +266,15 @@ const submit=()=>{
               <p>Add a new Address</p>
               <input type="text" > </input>
             </div>
+<<<<<<< HEAD
           */}</div>:null}
           <button className="blueButton" onClick={submit}>Request Booking</button>
+=======
+          </div>:null}
+          <Link to="/vetconfirmation">
+            <button className="blueButton">Request Booking</button>
+          </Link>
+>>>>>>> 7f4eb190ba78852a4b55b20e73b3d5b643379e7a
         </div>
         <div className="col-12 col-lg-4" style={{textAlign:"center"}}>
           <img className="add_img" src={Add} />

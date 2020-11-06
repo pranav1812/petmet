@@ -60,6 +60,7 @@ import {
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
+import VetConfirmation from './VetConfirmation';
 
 const drawerWidth = 240;
 
@@ -651,6 +652,8 @@ export default function Dashboard() {
           <Appointment />
         ) : componentt == "editProfile" ? (
           <EditProfile />
+        ) : componentt == "vetconfirmation" ? (
+          <VetConfirmation />
         ) : (
           <Home />
         )}
