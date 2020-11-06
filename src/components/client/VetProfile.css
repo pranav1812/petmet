@@ -14,7 +14,6 @@
     border: 0.5px solid #CACACA;
     border-radius: 2px;
     padding: 20px;
-    height: auto;
 }
 
 .card_img {
@@ -76,3 +75,27 @@
     padding: 7px 120px;
     
 }
+
+.address {
+    margin-left: 35px;
+    border: 1px solid #CECECE;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.addressbtn {
+    border: 1px solid #000000;
+    border-radius: 4px;
+    color: #000000;
+    background-color: #ffffff;
+}
+
+.addadd {
+    background: #FFFFFF;
+    border: 1px dashed #949494;
+    border-radius: 2px;
+    margin-left: 35px;
+    padding: 10px;
+    color: #ff5352;
+}
+

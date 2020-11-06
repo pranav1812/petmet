@@ -45,6 +45,7 @@ export default function Profile() { const classes = useStyles();
   const {subComponent } = useParams();
   const vid = subComponent;
   const [usr, setUsr] = useState(null);
+  const [show, setShow] = useState(false);
   
   useEffect(()=>{
       db.collection("vet").doc(vid).get().then(doc=>{
@@ -54,6 +55,10 @@ export default function Profile() { const classes = useStyles();
     })
     
   },[])
+
+const toggle=()=>{
+  setShow(!show)
+}  
 
   return (
   //   <div className="container profile_container">
@@ -160,7 +165,7 @@ export default function Profile() { const classes = useStyles();
               Choose appointment method
             </a>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a className="dropdown-item" href="#">Home Visit</a>
+              <a className="dropdown-item" onClick={toggle}>Home Visit</a>
               <a className="dropdown-item" href="#">Clinic Visit</a>
               <a className="dropdown-item" href="#">Video Call</a>
               <a className="dropdown-item" href="#">Chat</a>
@@ -186,6 +191,25 @@ export default function Profile() { const classes = useStyles();
               <a className="dropdown-item" href="#">Something else here</a>
             </div>
           </div>
+          {show==true?
+          <div className="mt-4">
+            <div className="address">
+              <div style={{textAlign:"left"}}>
+                <input className="ml-3 mb-2" type="radio" checked></input>
+                <div className="ml-3" style={{textAlign:"left"}}>
+                  <h6>Nishant Saini</h6>
+                  <p>House No. 123, Sector 15 Panchkula, Haryana, India</p>
+                  <p>134113</p>
+                  <p>98998 98998</p>
+                  <button className="mr-3 addressbtn">REMOVE</button>
+                  <button className="addressbtn">EDIT</button>
+                </div>
+              </div>
+            </div>
+            <div className="addadd mt-4">
+              <p>Add a new Address</p>
+            </div>
+          </div>:null}
           <button className="blueButton">Request Booking</button>
         </div>
         <div className="col-12 col-lg-4" style={{textAlign:"center"}}>
