@@ -198,28 +198,24 @@ const submit=()=>{
            {/* <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Choose appointment method
     </a> */}
-            <Form.Group className="row">
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="select" onChange={(e)=>{toggle(e.target.value)}}>
-                                <option defaultChecked>---Appointment Mode--</option>
+                          <Form.Group className="row">
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" style={{backgroundColor:"#e6e6e6",marginLeft:"60px",border:"none",fontSize:"17px"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
+                                <option defaultChecked>Choose appointment method</option>
                                 <option>Home Visit</option>
                                 <option>Clinic Visit</option>
                                 <option>Video Call</option>
                                 <option>Chat</option>
                             </Form.Control>
                         </Form.Group>
-                       
-            
-                        <Form.Group className="row" >
-                          <label for="date">Date</label>
-                          <input type="date"  name="date" onChange={(e)=>{setDate(e.target.value)} } />
-                        </Form.Group>
-
-                        <Form.Group className="row">
-                          <label for="time">Time</label>
-                          <input type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
-                        </Form.Group>
-
-
+                        {/* <div className="form-group">
+                          <select className="form-control " id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div> */}
             {/*<div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
               <a className="dropdown-item" >Home Visit</a>
               <a className="dropdown-item" >Clinic Visit</a>
@@ -227,26 +223,26 @@ const submit=()=>{
               <a className="dropdown-item" >Chat</a>
     </div> */}
           </div>
-      {/*    <div className="dropdown mt-4 drp_btn">
+         <div className="dropdown mt-4 drp_btn">
             <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Choose Date
             </a>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a className="dropdown-item" href="#">Action</a>
-              <a className="dropdown-item" href="#">Another action</a>
-              <a className="dropdown-item" href="#">Something else here</a>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" style={{textAlign:"center"}}>
+              <Form.Group className="row" >
+                <input style={{border:"none",fontSize:"20px",paddingLeft:"30%",textAlign:"center"}} className="input_field" type="date"  name="date" onChange={(e)=>{setDate(e.target.value)} } />
+              </Form.Group>
             </div>
-          </div>*/}
-         {/* <div className="dropdown mt-4 drp_btn">
+          </div>
+         <div className="dropdown mt-4 drp_btn">
             <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Choose Time Slot
             </a>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a className="dropdown-item" href="#">Action</a>
-              <a className="dropdown-item" href="#">Another action</a>
-              <a className="dropdown-item" href="#">Something else here</a>
-            </div>
-          </div> */}
+              <Form.Group className="row">
+                <input style={{border:"none",fontSize:"20px",paddingLeft:"30%",textAlign:"center"}} className="input_field" type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
+              </Form.Group>
+            </div>    
+          </div>
           {show==true && usr?
           <div className="mt-4">
             <div className="address">
@@ -266,15 +262,11 @@ const submit=()=>{
               <p>Add a new Address</p>
               <input type="text" > </input>
             </div>
-<<<<<<< HEAD
-          */}</div>:null}
-          <button className="blueButton" onClick={submit}>Request Booking</button>
-=======
+          */}
           </div>:null}
           <Link to="/vetconfirmation">
             <button className="blueButton">Request Booking</button>
           </Link>
->>>>>>> 7f4eb190ba78852a4b55b20e73b3d5b643379e7a
         </div>
         <div className="col-12 col-lg-4" style={{textAlign:"center"}}>
           <img className="add_img" src={Add} />
