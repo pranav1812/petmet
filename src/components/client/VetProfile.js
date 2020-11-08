@@ -14,6 +14,7 @@ import Add from '../pictures/Rectangle 154.png';
 import VetConfirmation from './VetConfirmation';
 import {Link} from 'react-router-dom';
 
+
 const home =
   window.location.protocol + "//" + window.location.host + "/" + "Home/";
 
@@ -48,20 +49,51 @@ export default function Profile() { const classes = useStyles();
   const vid = subComponent;
   const [usr, setUsr] = useState(null);
   const [show, setShow] = useState(false);
-  
-  useEffect(()=>{
-      db.collection("vet").doc(vid).get().then(doc=>{
-      if(doc.exists){
-        setVet(doc.data())
-      }
-    })
-    
-  },[])
+  const [mode, setMode] = useState(null);
+  const [date, setDate] = useState(null);
+  const [time, setTime] = useState(null);
+//  const [usr, setUsr] = useState(null); 
 
-const toggle=()=>{
-  setShow(!show)
+  useEffect(()=>{
+      auth.onAuthStateChanged(user=>{
+        db.collection("vet").doc(vid).get().then(doc=>{
+          if(doc.exists){
+            setVet(doc.data())
+          }
+        }) 
+        if(user){
+          db.collection("user").doc(user.uid).get().then(doc=>{
+            if(doc.exists){
+              setUsr(doc.data())
+            }
+          })
+        }
+
+      })
+     
+      
+  },[mode])
+
+const toggle=(md)=>{
+  //setShow(!show)
+  setMode(md)
+ if (md == 'Home Visit' ){
+   setShow(true)
+  }
+  else{setShow(false)}
 }  
 
+const submit=()=>{
+ var user = auth.currentUser
+ db.collection("user").doc(user.uid).collection("appointments").add({
+   date: date, 
+   mode: mode,
+   time: time,
+   patientId: user.uid,
+   doctorId: vid,
+   }).then(()=>{alert("done")})
+      .catch((err)=>{console.error(err)})  
+}
   return (
   //   <div className="container profile_container">
       
@@ -163,54 +195,74 @@ const toggle=()=>{
         <div className="col-12 col-lg-4 appointment">
           <h4>Book an Appointment</h4>
           <div className="dropdown mt-4 drp_btn">
-            <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+           {/* <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Choose appointment method
-            </a>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a className="dropdown-item" onClick={toggle}>Home Visit</a>
-              <a className="dropdown-item" href="#">Clinic Visit</a>
-              <a className="dropdown-item" href="#">Video Call</a>
-              <a className="dropdown-item" href="#">Chat</a>
-            </div>
+    </a> */}
+                          <Form.Group className="row">
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" style={{backgroundColor:"#e6e6e6",marginLeft:"60px",border:"none",fontSize:"17px"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
+                                <option defaultChecked>Choose appointment method</option>
+                                <option>Home Visit</option>
+                                <option>Clinic Visit</option>
+                                <option>Video Call</option>
+                                <option>Chat</option>
+                            </Form.Control>
+                        </Form.Group>
+                        {/* <div className="form-group">
+                          <select className="form-control " id="exampleFormControlSelect1">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                          </select>
+                        </div> */}
+            {/*<div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a className="dropdown-item" >Home Visit</a>
+              <a className="dropdown-item" >Clinic Visit</a>
+              <a className="dropdown-item" >Video Call</a>
+              <a className="dropdown-item" >Chat</a>
+    </div> */}
           </div>
-          <div className="dropdown mt-4 drp_btn">
+         <div className="dropdown mt-4 drp_btn">
             <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Choose Date
             </a>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a className="dropdown-item" href="#">Action</a>
-              <a className="dropdown-item" href="#">Another action</a>
-              <a className="dropdown-item" href="#">Something else here</a>
+            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" style={{textAlign:"center"}}>
+              <Form.Group className="row" >
+                <input style={{border:"none",fontSize:"20px",paddingLeft:"30%",textAlign:"center"}} className="input_field" type="date"  name="date" onChange={(e)=>{setDate(e.target.value)} } />
+              </Form.Group>
             </div>
           </div>
-          <div className="dropdown mt-4 drp_btn">
+         <div className="dropdown mt-4 drp_btn">
             <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Choose Time Slot
             </a>
             <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a className="dropdown-item" href="#">Action</a>
-              <a className="dropdown-item" href="#">Another action</a>
-              <a className="dropdown-item" href="#">Something else here</a>
-            </div>
+              <Form.Group className="row">
+                <input style={{border:"none",fontSize:"20px",paddingLeft:"30%",textAlign:"center"}} className="input_field" type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
+              </Form.Group>
+            </div>    
           </div>
-          {show==true?
+          {show==true && usr?
           <div className="mt-4">
             <div className="address">
               <div style={{textAlign:"left"}}>
                 <input className="ml-3 mb-2" type="radio" checked></input>
                 <div className="ml-3" style={{textAlign:"left"}}>
-                  <h6>Nishant Saini</h6>
-                  <p>House No. 123, Sector 15 Panchkula, Haryana, India</p>
-                  <p>134113</p>
-                  <p>98998 98998</p>
+          <h6>{usr.name}</h6>
+                  <p>{usr.address}</p>
+          <p>{usr.zip}</p>
+                  <p>{usr.phone}</p>
                   <button className="mr-3 addressbtn">REMOVE</button>
                   <button className="addressbtn">EDIT</button>
                 </div>
               </div>
             </div>
-            <div className="addadd mt-4">
+          {/*  <div className="addadd mt-4">
               <p>Add a new Address</p>
+              <input type="text" > </input>
             </div>
+          */}
           </div>:null}
           <Link to="/vetconfirmation">
             <button className="blueButton">Request Booking</button>

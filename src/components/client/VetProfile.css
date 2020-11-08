@@ -70,6 +70,23 @@
     color: black;
 }
 
+.drp_field:focus, .input_field:active {
+    box-shadow: none;
+    border: none;
+}
+
+.input_field:focus, .input_field:active, .input_field::-moz-focus-outer {
+    border: none;
+}
+
+.input_field {
+    padding: 0px;
+    float: right;
+    text-align: right;
+    margin-left: 40px;
+    margin-top: 10px;
+}
+
 .blueButton {
     background-color: #36A9CC;
     border: 1px solid #36A9CC;
