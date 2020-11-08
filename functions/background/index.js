@@ -7,12 +7,16 @@ var background={};
 background.setAppointentForVet=(user, docData)=>{
     // user parameter is an object that contains necessary info about the user
     return new Promise((resolve, reject)=>{
-        db.collection('vet').doc(docData.vetId).collection('upcomingAppointments').add({
+        var toAdd= {
             customerId: user.id,
             customerName: user.name,
             date: docData.date,
-            time: docData.time
-        }).then(doc=> resolve(doc.id))
+            time: docData.time,
+            key: docData.key,
+            status: 'requested'
+        }
+        db.collection('vet').doc(docData.vetId).collection('appointments').add(toAdd)
+          .then(doc=> resolve(doc.id))
           .catch(error=> reject(`function call rejected: ${error}`))
     }) 
 }

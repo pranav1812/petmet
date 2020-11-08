@@ -16,7 +16,7 @@ sendMail.orderConfirmaion= (orderDetails, mailId)=>{
 
 // appointment confirmation email
 
-sendMail.appointmentConfirmaion= (docData, mailId)=>{
+sendMail.appointmentConfirmation= (docData, mailId)=>{
     return new Promise((resolve, reject)=>{
         db.collection('mail').add(templates.appointmentConfirmation(docData, mailId))
         .then(doc=> resolve(`queued for delivery: ${doc.id}`))
