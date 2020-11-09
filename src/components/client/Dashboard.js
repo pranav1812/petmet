@@ -464,7 +464,7 @@ export default function Dashboard() {
                   <div className="row ml-2 mt-2">
                     <img
                       className="mr-4"
-                      src={Cat}
+                      src={AccountCircleIcon}
                       style={{
                         height: "40px",
                         width: "40px",
@@ -472,7 +472,7 @@ export default function Dashboard() {
                       }}
                     />
                     <div>
-                      <h6>Sartajbir Singh</h6>
+                      <h6>{usr?name:"Guest User"}</h6>
                       <p
                         style={{
                           fontSize: "10px",
@@ -480,7 +480,7 @@ export default function Dashboard() {
                           margin: "0px",
                         }}
                       >
-                        ssingh4_be19@thapar.edu
+                        {usr?usr.email:null}
                       </p>
                     </div>
                   </div>
@@ -489,9 +489,13 @@ export default function Dashboard() {
                       style={{ fontSize: "37px" }}
                       className="mr-4"
                     />
-                    <h6 className="mt-1">Switch Account</h6>
+                    
+                  <Link to="/editProfile"><h6 className="mt-1">Edit Profile</h6></Link>  
                   </div>
                   <hr style={{ margin: "12px 10px" }} />
+                  <button onClick={toLoginPage}>
+                    <h6 className="m-2">Log In</h6>
+                  </button>
                   <button onClick={logout}>
                     <h6 className="m-2">Log Out</h6>
                   </button>

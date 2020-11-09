@@ -93,7 +93,9 @@ const submit=()=>{
    patientId: user.uid,
    doctorId: vid,
    address: address,
-   }).then(()=>{alert("done")})
+   }).then(()=>{
+    window.location= window.location.protocol + "//" + window.location.host + "/" +'vetconfirmation/'
+   })
       .catch((err)=>{console.error(err)})  
 }
   return (
@@ -256,6 +258,8 @@ const submit=()=>{
           <p>{usr.zip}</p>
                   <p>{usr.phone}</p>
                   {/*<button className="mr-3 addressbtn">REMOVE</button>*/}
+                  
+                <p>Please enter your Name, phone and address where you would like schedule Home </p>
                   <input type="text" onChange={(e)=>{setAddress(e.target.value)} } /> 
                   <button className="addressbtn">EDIT</button>
                 </div>
@@ -267,7 +271,7 @@ const submit=()=>{
             </div>
           */}
           </div>:null}
-
+          
           <button className="blueButton" onClick={submit}>Request Booking</button>
         
        
