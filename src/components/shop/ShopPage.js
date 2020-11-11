@@ -256,7 +256,13 @@ const ShopPage = () => {
             <p className="acprize">Rs. 950</p>
             <p className="cprize ml-4">Rs. 1250</p>
           </div>
-          <button className="cartbutton">Add to Cart</button>
+          <button onClick={addToCart} className="cartbutton">
+            Add to Cart
+          </button>
+          {/* .........................rough............ */}
+          <button onClick={addToWishlist} className="cartbutton">
+            Add to wishlist
+          </button>
           <p className="checkdeliver">Check if we Deliver to your Pincode</p>
           <span>
             <input type="text" placeholder="ENTER PINCODE" />

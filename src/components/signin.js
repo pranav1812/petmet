@@ -15,7 +15,9 @@ import * as firebase from "firebase";
 import mainlogo from "./pictures/Final Main Logo PET MET.png";
 import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
 import "./signin.css";
-import fb from "./pictures/fblogo.png";
+
+import fblogo from "./pictures/fblogo.png";
+import googlelogo from "./pictures/googlelogo.png";
 
 const home =
   window.location.protocol + "//" + window.location.host + "/" + "Home/";
@@ -354,13 +356,8 @@ export default function Login() {
                 className="facebookbutton"
                 onClick={newUser ? fbSignup : fbSignin}
               >
-                {newUser
-                  ? (
-                      <img src={fb} style={{ height: "24px", width: "24px" }} />
-                    ) && "Sign Up with facebook"
-                  : (
-                      <img src={fb} style={{ height: "24px", width: "24px" }} />
-                    ) && "Sign In with facebook"}
+                <img className="logosonsignup" src={fblogo} />
+                {newUser ? "Sign Up with facebook" : "Sign In with facebook"}
               </button>
               <button
                 type="button"
@@ -370,6 +367,7 @@ export default function Login() {
                 className=" googlebutton"
                 onClick={newUser ? googleSignup : googleSignin}
               >
+                <img className="logosonsignup" src={googlelogo} />
                 {newUser ? "Sign Up with Google" : "Sign In with Google"}
               </button>
             </span>

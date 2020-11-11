@@ -82,153 +82,156 @@ const ShopProducts = () => {
   };
   return (
     <div>
-      {products
-        ? products.map((pro) => (
-            <div>
-              <span>
-                <div className="products_bothflex">
-                  <div className="products_leftflex">
-                    <p>PRICE</p>
-                    <hr />
+      <span>
+        <div className="products_bothflex">
+          <div className="products_leftflex">
+            <p>PRICE</p>
+            <hr />
 
-                    <button onClick={dropdowndata}>
-                      BRANDS <ArrowDropDownIcon />
-                    </button>
+            <button onClick={dropdowndata}>
+              BRANDS <ArrowDropDownIcon />
+            </button>
 
-                    {dropdownvar && <Dropdownfun />}
+            {dropdownvar && <Dropdownfun />}
 
-                    <hr />
-                    <button onClick={dropdowndata}>
-                      PRODUCT TYPE <ArrowDropDownIcon />
-                    </button>
+            <hr />
+            <button onClick={dropdowndata}>
+              PRODUCT TYPE <ArrowDropDownIcon />
+            </button>
 
-                    {dropdownvar && <Dropdownfun />}
+            {dropdownvar && <Dropdownfun />}
 
-                    <hr />
-                    <button onClick={dropdowndata}>
-                      BREED <ArrowDropDownIcon />
-                    </button>
+            <hr />
+            <button onClick={dropdowndata}>
+              BREED <ArrowDropDownIcon />
+            </button>
 
-                    {dropdownvar && <Dropdownfun />}
+            {dropdownvar && <Dropdownfun />}
 
-                    <hr />
-                    <button onClick={dropdowndata}>
-                      LIFE STAGE <ArrowDropDownIcon />
-                    </button>
+            <hr />
+            <button onClick={dropdowndata}>
+              LIFE STAGE <ArrowDropDownIcon />
+            </button>
 
-                    {dropdownvar && <Dropdownfun />}
+            {dropdownvar && <Dropdownfun />}
 
-                    <hr />
-                    <button onClick={dropdowndata}>
-                      LIFE STAGE <ArrowDropDownIcon />
-                    </button>
+            <hr />
+            <button onClick={dropdowndata}>
+              LIFE STAGE <ArrowDropDownIcon />
+            </button>
 
-                    {dropdownvar && <Dropdownfun />}
+            {dropdownvar && <Dropdownfun />}
 
-                    <hr />
-                  </div>
-                  <div className="products_rightflex">
-                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                      <SquareCard style={{ margin: "31px" }} />
-                    </Link>
-                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                      <SquareCard style={{ margin: "31px" }} />
-                    </Link>
-                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                      <SquareCard style={{ margin: "31px" }} />
-                    </Link>
-                  </div>
+            <hr />
+          </div>
+          {products
+            ? products.map((pro) => (
+                <div className="products_rightflex">
+                  <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                    <SquareCard style={{ margin: "31px" }} />
+                  </Link>
+                  {/* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                    <SquareCard style={{ margin: "31px" }} />
+                  </Link>
+                  <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                    <SquareCard style={{ margin: "31px" }} />
+                  </Link> */}
                 </div>
+              ))
+            : null}
+        </div>
+      </span>
+    </div> /*{" "}
+        <div className="thumb">
+          <Link to={"/ShopPage/" + +"/" + pro.key}>
+            <div className="personalthumb">
+              <div>
+                <img
+                  // style={{ backgroundColor: "#f5f5f5" }}
+                  className="dishpicture"
+                  src={pro.details.url}
+                />
+              </div>
+              <p className="dishnames">{pro.details.name}</p>
+
+              <span>
+                <button type="button" className="optionsbutton">
+                  {pro.details.size}
+                </button>
+              </span>
+              <span>
+                <div className="priceofproduct">₹{pro.details.cost} </div>
               </span>
             </div>
-            // ...................................................................
-            // <div className="bodyleavingnav">
-            /* <span>
-                <hr />
-                <div
-                  style={{ margin: "20px" }}
-                  class="btn-group"
-                  role="group"
-                  aria-label="Button group with nested dropdown"
-                >
-                  <button type="button" class="btn btn-success">
-                    Filter
-                  </button>
-                  <div class="btn-group" role="group">
-                    <button
-                      id="btnGroupDrop2"
-                      type="button"
-                      class="btn btn-success dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    ></button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                      <a class="dropdown-item" href="#">
-                        Dropdown link
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        Dropdown link
-                      </a>
-                    </div>
-                  </div>
-                </div>
+          </Link>
+        </div>{" "}
+        */
+    // ................................................................... //{" "}
+    /* <div className="bodyleavingnav">
+        /*{" "}
+        <span>      
+          <hr />
+          <div
+            // style={{ margin: "20px" }}
+            class="btn-group"
+            role="group"
+            aria-label="Button group with nested dropdown"
+          >
+            <button type="button" class="btn btn-success">
+              Filter
+            </button>
+            <div class="btn-group" role="group">
+              <button
+                id="btnGroupDrop2"
+                type="button"
+                class="btn btn-success dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              ></button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                <a class="dropdown-item" href="#">
+                  Dropdown link
+                </a>
+                <a class="dropdown-item" href="#">
+                  Dropdown link
+                </a>
+              </div>
+            </div>
+          </div>
 
-                <div
-                  class="btn-group"
-                  role="group"
-                  aria-label="Button group with nested dropdown"
-                >
-                  <button type="button" class="btn btn-success">
-                    Sort
-                  </button>
-                  <div class="btn-group" role="group">
-                    <button
-                      id="btnGroupDrop2"
-                      type="button"
-                      class="btn btn-success dropdown-toggle"
-                      data-toggle="dropdown"
-                      aria-haspopup="true"
-                      aria-expanded="false"
-                    ></button>
-                    <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                      <a class="dropdown-item" href="#">
-                        Dropdown link
-                      </a>
-                      <a class="dropdown-item" href="#">
-                        Dropdown link
-                      </a>
-                    </div>
-                  </div>
-                </div>
-              </span> */
-            /* <div className="thumb">
-                <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                  <div className="personalthumb">
-                    <div>
-                      <img
-                        style={{ backgroundColor: "#f5f5f5" }}
-                        className="dishpicture"
-                        src={pro.details.url}
-                      />
-                    </div>
-                    <p className="dishnames">{pro.details.name}</p>
+          <div
+            class="btn-group"
+            role="group"
+            aria-label="Button group with nested dropdown"
+          >
+            <button type="button" class="btn btn-success">
+              Sort
+            </button>
+            <div class="btn-group" role="group">
+              <button
+                id="btnGroupDrop2"
+                type="button"
+                class="btn btn-success dropdown-toggle"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false"
+              ></button>
+              <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
+                <a class="dropdown-item" href="#">
+                  Dropdown link
+                </a>
+                <a class="dropdown-item" href="#">
+                  Dropdown link
+                </a>
+              </div>
+            </div>
+          </div>
+        </span>{" "}
+        */ //{" "}
+    // </div>
 
-                    <span>
-                      <button type="button" className="optionsbutton">
-                        {pro.details.size}
-                      </button>
-                    </span>
-                    <span>
-                      <div className="priceofproduct">₹{pro.details.cost} </div>
-                    </span>
-                  </div>
-                </Link>
-              </div> */
-            // </div>
-          ))
-        : null}
-    </div>
+    // ................................................................................
   );
 };
 

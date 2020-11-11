@@ -1,0 +1,155 @@
+body {
+  margin-top: 100px;
+  padding-top: 100px;
+  justify-content: center;
+}
+.apptitle {
+  width: 257px;
+  height: 23px;
+
+  font-family: Gotham;
+  font-style: normal;
+  display: block;
+  font-weight: 500;
+
+  font-size: 24px;
+  line-height: 23px;
+  text-align: center;
+
+  text-transform: uppercase;
+
+  color: #36a9cc;
+}
+.two_appflex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 33.79px;
+}
+.left_appflex {
+  margin-left: 168.17px;
+  display: flex;
+  width: 311.27px;
+  flex-wrap: wrap;
+  flex-direction: column;
+  background: #ffffff;
+  border: 0.5px solid #cacaca;
+  box-sizing: border-box;
+  border-radius: 2px;
+}
+
+.left_appflex > button {
+  width: 249.2px;
+  height: 37.38px;
+  margin: 12px;
+
+  border: 1px solid #36a9cc;
+  box-sizing: border-box;
+  border-radius: 29px;
+  background-color: transparent;
+
+  font-family: Gotham;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 17px;
+
+  color: #36a9cc;
+}
+.right_appflex {
+  max-width: 749.55px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+.apptile {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: 749.55px;
+  height: 179.31px;
+  margin-left: 38.64px;
+  background: #ffffff;
+  /* 0 Shadow */
+
+  box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.14);
+  border-radius: 2px;
+}
+.apptile > span > img {
+  width: 142.19px;
+  height: 142.19px;
+  margin: 23.95px 16.19px 13.16px 16.26px;
+}
+.apptile_p {
+  margin-top: 23.95px;
+}
+.vetname {
+  width: 99px;
+  height: 16px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #36a9cc;
+}
+.vettype {
+  width: 167px;
+  height: 28px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 28px;
+
+  color: #000000;
+}
+.vetaddress {
+  width: 286px;
+  height: 42px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #b5b5b5;
+}
+.open {
+  width: 31px;
+  height: 15px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+
+  color: #03a300;
+}
+.closevet {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 15px;
+
+  color: #b5b5b5;
+}
+.bookappointment {
+  width: 223.23px;
+  height: 35.31px;
+  background-color: transparent;
+  border: 1px solid #36a9cc;
+  box-sizing: border-box;
+  border-radius: 2px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 16px;
+  justify-content: flex-end;
+  float: right;
+  color: #36a9cc;
+}
