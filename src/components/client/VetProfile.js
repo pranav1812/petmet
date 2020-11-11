@@ -92,7 +92,8 @@ const submit=()=>{
    time: time,
    patientId: user.uid,
    doctorId: vid,
-   address: address,
+   address: usr.address,
+   doctorName: vet.Name,
    }).then(()=>{alert("done")})
       .catch((err)=>{console.error(err)})  
 }
@@ -263,7 +264,7 @@ const submit=()=>{
                   <p>{usr.phone}</p>
                   {/*<button className="mr-3 addressbtn">REMOVE</button>*/}
                   <input type="text" onChange={(e)=>{setAddress(e.target.value)} } /> 
-                  <button className="addressbtn">EDIT</button>
+                  <button className="addressbtn" type="button" onClick={()=>{usr.address=address}}>EDIT</button>
                 </div>
               </div>
             </div>
