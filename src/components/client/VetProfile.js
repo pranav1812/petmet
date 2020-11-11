@@ -194,11 +194,11 @@ const submit=()=>{
         </div>
         <div className="col-12 col-lg-4 appointment">
           <h4>Book an Appointment</h4>
-          <div className="dropdown mt-4 drp_btn">
+          {/* <div className="dropdown mt-4 drp_btn"> */}
            {/* <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Choose appointment method
     </a> */}
-                          <Form.Group className="row">
+                          {/* <Form.Group className="row">
                             <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" style={{backgroundColor:"#e6e6e6",marginLeft:"60px",border:"none",fontSize:"17px"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
                                 <option defaultChecked>Choose appointment method</option>
                                 <option>Home Visit</option>
@@ -207,21 +207,6 @@ const submit=()=>{
                                 <option>Chat</option>
                             </Form.Control>
                         </Form.Group>
-                        {/* <div className="form-group">
-                          <select className="form-control " id="exampleFormControlSelect1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                          </select>
-                        </div> */}
-            {/*<div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <a className="dropdown-item" >Home Visit</a>
-              <a className="dropdown-item" >Clinic Visit</a>
-              <a className="dropdown-item" >Video Call</a>
-              <a className="dropdown-item" >Chat</a>
-    </div> */}
           </div>
          <div className="dropdown mt-4 drp_btn">
             <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -242,9 +227,30 @@ const submit=()=>{
                 <input style={{border:"none",fontSize:"20px",paddingLeft:"30%",textAlign:"center"}} className="input_field" type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
               </Form.Group>
             </div>    
+          </div> */}
+          <div className="col-12">
+            <Form.Group>
+              <Form.Control className="col-12 mt-3" style={{backgroundColor:"#e6e6e6",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
+                  <option defaultChecked>Choose appointment method</option>
+                  <option>Home Visit</option>
+                  <option>Clinic Visit</option>
+                  <option>Video Call</option>
+                  <option>Chat</option>
+              </Form.Control>
+            </Form.Group>
+          </div>
+          <div className="col-12">
+            <Form.Group>
+              <input style={{backgroundColor:"#e6e6e6",marginLeft:"100px",marginBottom:"20px",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px",border:"#bdbdbd solid 1px",color:"#686868",textAlign:"left",paddingLeft:"15px"}} className="input_field" type="date"  name="date" onChange={(e)=>{setDate(e.target.value)} } />
+            </Form.Group>
+          </div>
+          <div className="col-12">
+            <Form.Group>
+              <input style={{backgroundColor:"#e6e6e6",marginLeft:"60px",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px",border:"#bdbdbd solid 1px",color:"#686868",textAlign:"left",paddingLeft:"15px"}} className="input_field" type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
+            </Form.Group>
           </div>
           {show==true && usr?
-          <div className="mt-4">
+          <div className="col-12 mt-4">
             <div className="address">
               <div style={{textAlign:"left"}}>
                 <input className="ml-3 mb-2" type="radio" checked></input>

@@ -95,7 +95,7 @@ const DashboardClient = () => {
   }, []);
   return (
     <div style={{paddingTop: "60px",overflowX: "hidden"}}>
-      <div className="row m-2">
+      <div className="row m-2" style={{padding:"0px 2%"}}>
         <div
           style={{ marginTop: "25px" }}
           className="carousel col-12 col-sm-7" 
@@ -164,9 +164,12 @@ const DashboardClient = () => {
        
         </div> */}
 
-        <h3 className="mt-4" style={{fontWeight: "bold"}}>Our Features</h3>  
+          
 
         <div className="banner">
+            <div>
+              <h3 className="mt-4 main-new-head" style={{fontWeight: "bold",textAlign:"left",marginLeft:"13%"}}>Our Features</h3>
+            </div>
             <div className="row align-items-center">
               <div className="col-12 col-sm-4">
                 <img className="bannerimg" src={Vet} />

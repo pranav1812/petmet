@@ -228,18 +228,16 @@ const Modall = (prop) => {
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const [show, setShow] = useState(false);
   const componentt = useParams().componentt || "Home";
 
   const [name, setName] = useState(null);
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);
+  const [pets, setPets]= useState(null);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -261,7 +259,15 @@ export default function Dashboard() {
             if (doc.exists) setName(doc.data().name);
             else setName(user.displayName);
             console.log(name);
-          });
+          })
+          .catch(err=>console.error(err))
+          db.collection("user").doc(user.uid).collection("pets").onSnapshot(docs=>{
+            var temp=[]
+            docs.forEach(doc=>{
+              temp.push(doc.data())
+            })
+            setPets(temp)
+          })
       }
     });
   }, []);
@@ -328,7 +334,7 @@ export default function Dashboard() {
                 backgroundColor: "#ffffff",
               }}
             >
-              <Nav.Link className="newnavitems" href="/Home/">
+              <Nav.Link className="newnavitems home_nav" href="/Home/">
                 Home
               </Nav.Link>
               <Nav.Link className="newnavitems" href="#link">
@@ -336,14 +342,48 @@ export default function Dashboard() {
                   <button
                     className="ddbtn"
                     type="button"
-                    id="dropdownMenu2"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                    onClick={handleShow}
                   >
                     My Pets
                   </button>
-                  <div
+                </div>
+              </Nav.Link>
+              <Modal show={show} onHide={handleClose} centered>
+                <Modal.Header closeButton>
+                  <Modal.Title>MY PETS</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div style={{ padding: "10px" }} className="form-check">
+                    {
+                      pets? pets.map(pet=>(
+                        <div className="onepet">
+                        <span>
+                        <img className="petimage" src={pet.url} />
+                        <div>
+                          <p className="petname">{pet.name} </p>
+                          
+                          <p className="petdetails">
+                            Category: {pet.category}<br />
+                            Age: {pet.age} years <br /> Breed: {pet.breed}
+                          </p>
+                        </div>
+                      </span>
+                    </div>
+                      )): null
+                    }
+                      <Link to="/Addpet/">
+                        <div className="row">
+                          <GrAdd
+                            className="ml-4 mr-3"
+                            style={{ fontSize: "30px" }}
+                          />
+                          <h6 className="mt-1 mr-3">Add a Pet</h6>
+                        </div>
+                      </Link>
+                    </div>
+                </Modal.Body>
+              </Modal>
+                  {/* <div
                     className="dropdown-menu"
                     aria-labelledby="dropdownMenu2"
                     style={{ width: "210px" }}
@@ -403,13 +443,16 @@ export default function Dashboard() {
                       </Link>
                     </div>
                   </div>
-                </div>
-              </Nav.Link>
+                </div> */}
+              
               <Nav.Link className="newnavitems" href="/Wishlist/">
                 Wishlist
               </Nav.Link>
               <Nav.Link className="newnavitems" href="/Appointment/">
-                Appointment
+                Vets
+              </Nav.Link>
+              <Nav.Link className="newnavitems" href="/Appointment/">
+                Appointments
               </Nav.Link>
               {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                   <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
@@ -435,10 +478,11 @@ export default function Dashboard() {
                 />
                 
               </Form> */}
+            <div className="row nfn">
             <input
               type="text"
               placeholder=" Search Pet food, special toys and many more...."
-              className="newnavsearchbox"
+              className="newnavsearchbox align-self-center"
             />
             <div className="mr-4 mt-4">
               <div>
@@ -506,6 +550,7 @@ export default function Dashboard() {
                 />
               </Link>
               <p className="mt-1">Cart</p>
+            </div>
             </div>
           </Navbar.Collapse>
         </Navbar>

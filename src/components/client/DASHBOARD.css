@@ -120,3 +120,21 @@
   color: #36a9cc;
   font-weight: bold;
 }
+
+@media only screen and (min-width: 1200px) 
+{
+  .home_nav {
+    margin-left: 80px;
+  }
+  .newnavsearchbox {
+    height: 40px;
+  }
+}
+
+@media only screen and (max-width: 1200px)
+{
+  .nfn {
+    width: 100%;
+    background-color: #ffffff;
+  }
+}
