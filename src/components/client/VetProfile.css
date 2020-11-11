@@ -48,8 +48,9 @@
 }
 
 .appointment {
-    padding: 10px 30px;
+    padding: 10px 10px;
     text-align: center;
+    justify-content: center;
 }
 
 .dropdown-menu {
@@ -92,17 +93,17 @@
     border: 1px solid #36A9CC;
     border-radius: 2px;
     color: #ffffff;
-    margin: 25px 35px;
+    margin: 35px 0px;
     margin-right: 0px;
     padding: 7px 120px;
     
 }
 
 .address {
-    margin-left: 35px;
     border: 1px solid #CECECE;
     border-radius: 2px;
     padding: 10px;
+    margin-top: 170px;
 }
 
 .addressbtn {

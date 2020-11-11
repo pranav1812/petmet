@@ -94,15 +94,16 @@ h2,h3 {
   background-repeat: no-repeat;
   background-size: cover;
   height: 650px;
-  padding: 4%;
+  padding: 0 4% 4% 4%;
   text-align: center;
-  padding-top: 12%;
   overflow-x: hidden;
+  margin-top: 80px;
 }
 
 .bannerimg {
   width: 27vw;
   height: 40vh;
+  margin-top: 25%;
 } 
 
 .rec.rec-arrow {
@@ -128,6 +129,9 @@ button.rec-dot:hover {
   box-shadow: 0 0 1px 3px #36a9cc;
 }
 
+.main-new-head {
+  
+}
 
 
 
