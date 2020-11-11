@@ -4,35 +4,23 @@ var db= admin.firestore()
 
 var background={};
 
+
 background.setAppointentForVet=(user, docData)=>{
     // user parameter is an object that contains necessary info about the user
     return new Promise((resolve, reject)=>{
         var toAdd= {
-            customerId: user.id,
-            customerName: user.name,
-            date: docData.date,
-            time: docData.time,
-            key: docData.key,
-            status: 'requested'
+            patientId: user.id,
+            patientName: user.name,
+            status: 'requested',
+            ...docData
         }
-        db.collection('vet').doc(docData.vetId).collection('appointments').add(toAdd)
+        db.collection('vet').doc(docData.doctorId).collection('appointments').doc(docData.key).set(toAdd)
           .then(doc=> resolve(doc.id))
           .catch(error=> reject(`function call rejected: ${error}`))
     }) 
 }
 
-background.confirmOrder= async(orderSummary, userDetails)=>{
-    // since we can't trust users on not tempering with the request
-    // query to be optimized
-    
-    // var orderSummarySchema={products:[
-    //     {
-    //         category: "category name",
-    //         productId: "docId in products subcollection of category",
-    //         units: 20
-    //     }
-    // ]}
-
+const calculateTotal= async(orderSummary)=>{
     totalCost=0
 
     productPromises= []
@@ -49,8 +37,39 @@ background.confirmOrder= async(orderSummary, userDetails)=>{
         console.log(resolvedPromises)
         resolvedPromises.forEach((doc, index)=>{
             totalCost+=Number(doc.data().details.cost)*orderSummary.products[index].units
-            orderSummary.products[index].costPerPc= doc.data().details.cost
+            // orderSummary.products[index].costPerPc= doc.data().details.cost
         })
+        orderSummary.total= totalCost
+        
+        return totalCost
+    }
+    catch(err){
+        console.error("some error occurred")
+        console.log(err)
+    }
+}
+background.confirmOrder= async(orderSummary, params)=>{
+    // since we can't trust users on not tempering with the request
+    // query to be optimized
+    
+    // var orderSummarySchema={
+    //     checkout_details: {
+            // "razorpay_payment_id": "pay_29QQoUBi66xm2f",
+            // "razorpay_order_id": "order_9A33XWu170gUtm",
+            // "razorpay_signature": "9ef4dffbfd84f1318f6739a3ce19f9d85851857ae648f114332d8401e0949a3d"
+            // }, other things stored earlier
+    //}
+
+    /*--------------------abb iski zaroorat nahi kyuki total cost already calculate karli----------------------*/ 
+    
+    try{
+        // comparing signatures
+
+        var generated_signature = hmac_sha256(order_id + "|" + razorpay_payment_id, secret);
+
+        if (generated_signature == razorpay_signature) {
+          //payment is successful
+        }
         orderSummary.total= totalCost,
         orderSummary.user= userDetails.name
 
@@ -64,6 +83,9 @@ background.confirmOrder= async(orderSummary, userDetails)=>{
         console.error("some error occurred")
         console.log(err)
     }
+
+    /*--------------------abb iski zaroorat nahi kyuki total cost already calculate karli----------------------*/
 }
 
+background.calculateTotal= calculateTotal
 module.exports= background

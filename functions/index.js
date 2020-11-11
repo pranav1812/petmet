@@ -1,6 +1,20 @@
 const functions = require('firebase-functions')
 const admin = require('firebase-admin')
+// initialize app hamesha functions aur admin import krne ke baad kar do nahi toh functions pagal ho jate hain
 admin.initializeApp();
+
+const express= require('express')
+var bodyParser= require('body-parser')
+const cors= require('cors') 
+const appRouter= require('./http/index')
+
+
+
+const httpListner= express()
+httpListner.use(cors())
+httpListner.use(bodyParser.json())
+httpListner.use(bodyParser.urlencoded({extended: true}))
+httpListner.use('/payment', appRouter)
 
 const notify= require('./notifications/index')
 const background= require('./background/index')
@@ -18,12 +32,12 @@ exports.fixAppointment= functions.firestore
         var usr= await db.collection('user').doc(context.params.uid).get()
         // var deviceToken= usr.deviceToken[0]
         var user= {
-            name: usr.data().name,
+            name: usr.data().name || usr.data().firstName,
             id: context.params.uid
         }
         var setAppointmentForVetPromise= background.setAppointentForVet(user, {...snap.data(), key: context.params.appId})
         // var notificationPromise= notify.sendAppointmentConfirmationNotification(deviceToken, snap.data())
-        var sendMailPromise= sendMail.appointmentConfirmation(snap.data(), usr.data().mail )
+        var sendMailPromise= sendMail.appointmentConfirmation(snap.data(), usr.data().mail || usr.data().email )
         try{
             // var results= await Promise.all([setAppointmentForVetPromise, notificationPromise, sendMailPromise])
             var results= await Promise.all([setAppointmentForVetPromise, sendMailPromise])
@@ -34,6 +48,7 @@ exports.fixAppointment= functions.firestore
         
 })
 
+// abhi nahi chalega... paid naam ki property store ni krwa rahe
 exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId}')
     .onUpdate(async(change, context)=>{
         if(change.after.data().paid){
@@ -42,17 +57,19 @@ exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId
 })
 
 exports.clientOrderToAllOrders= functions.firestore.document('user/{uid}/orders/{orderId}')
-        .onCreate(async(snap, context)=>{
-            var usr= await db.collection('user').doc(context.params.uid).get()
-            var userDetails= usr.data()
-            background.confirmOrder(snap.data(), userDetails)
+        .onUpdate(async(change, context)=>{
+            var params= {
+                uid: context.params.uid,
+                order: context.params.orderId
+            }
+            background.confirmOrder(change.after.data(), params)
 })
 
 // vet dwara appointment mai kiye changes clien ki collection mai
 exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/appointments/{appId}')
         .onUpdate((change, context)=>{
             if(change.after.data().status != change.before.data().status){
-                let clientRef= db.collection('user').doc(change.after.data().customerId)
+                let clientRef= db.collection('user').doc(change.after.data().patientId)
                 let docRef= clientRef.collection('appointments').doc(change.after.data().key) 
                 docRef.update({
                     status: change.after.data().status
@@ -62,7 +79,9 @@ exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/a
             if(change.after.data().status == 'confirmed'){
                 db.collection('Appointments').add({
                     ...change.after.data(),
-                    vetId: context.params.vid
+                    vetId: context.params.vid              
                 }).then(doc=> console.log(doc.id)).catch(err=> console.log("error aa gya"))
             }
         })
+
+exports.paymentFunction= functions.https.onRequest(httpListner)
