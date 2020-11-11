@@ -52,6 +52,7 @@ export default function Profile() { const classes = useStyles();
   const [mode, setMode] = useState(null);
   const [date, setDate] = useState(null);
   const [time, setTime] = useState(null);
+  const [address, setAddress] = useState(null);
 //  const [usr, setUsr] = useState(null); 
 
   useEffect(()=>{
@@ -91,6 +92,7 @@ const submit=()=>{
    time: time,
    patientId: user.uid,
    doctorId: vid,
+   address: address,
    }).then(()=>{alert("done")})
       .catch((err)=>{console.error(err)})  
 }
@@ -259,7 +261,8 @@ const submit=()=>{
                   <p>{usr.address}</p>
           <p>{usr.zip}</p>
                   <p>{usr.phone}</p>
-                  <button className="mr-3 addressbtn">REMOVE</button>
+                  {/*<button className="mr-3 addressbtn">REMOVE</button>*/}
+                  <input type="text" onChange={(e)=>{setAddress(e.target.value)} } /> 
                   <button className="addressbtn">EDIT</button>
                 </div>
               </div>
@@ -270,9 +273,10 @@ const submit=()=>{
             </div>
           */}
           </div>:null}
-          <Link to="/vetconfirmation">
-            <button className="blueButton">Request Booking</button>
-          </Link>
+
+          <button className="blueButton" onClick={submit}>Request Booking</button>
+        
+       
         </div>
         <div className="col-12 col-lg-4" style={{textAlign:"center"}}>
           <img className="add_img" src={Add} />
