@@ -19,9 +19,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import { Route, Switch, Link, useParams } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import PetsIcon from "@material-ui/icons/Pets";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import StarsIcon from "@material-ui/icons/Stars";
 // import MyLeads from './myLeads';
 import EditProfile from "./Profile";
 import { auth, db } from "../../firebase";
@@ -61,6 +58,7 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
 import VetConfirmation from './VetConfirmation';
+import AllAppointments from './AllAppointments';
 
 const drawerWidth = 240;
 
@@ -403,7 +401,7 @@ export default function Dashboard() {
               <Nav.Link className="newnavitems" href="/Appointment/">
                 Vets
               </Nav.Link>
-              <Nav.Link className="newnavitems" href="/Appointment/">
+              <Nav.Link className="newnavitems" href="/allappointments/">
                 Appointments
               </Nav.Link>
             </Nav>
@@ -628,6 +626,8 @@ export default function Dashboard() {
           <EditProfile />
         ) : componentt == "vetconfirmation" ? (
           <VetConfirmation />
+        ) : componentt == "allappointments" ? (
+          <AllAppointments />
         ) : (
           <Home />
         )}
