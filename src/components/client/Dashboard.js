@@ -316,7 +316,7 @@ export default function Dashboard() {
           noWrap
           className={classes.title}
         > */}
-        <Navbar className="newnavbar" expand="lg">
+        <Navbar className="newnavbar" expand="xl">
           <Navbar.Brand href="#home">
             <img
               className="mainlogoonnav mb-2"

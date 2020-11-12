@@ -88,7 +88,7 @@
   border: 0.75px solid #979797 !important;
   box-sizing: border-box !important;
   border-radius: 2px !important;
-  width: 450px !important;
+  /* width: 380px !important; */
   margin-right: 160px;
 }
 
@@ -138,3 +138,10 @@
     background-color: #ffffff;
   }
 }
+
+@media only screen and (min-width: 1410px)
+{
+  .newnavsearchbox {
+    width: 450px;
+  }
+} 

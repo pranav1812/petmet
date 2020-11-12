@@ -86,7 +86,7 @@ body {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-
+  padding-top: 50px;
   border: none !important;
 }
 .flexbox1 {

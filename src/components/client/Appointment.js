@@ -176,9 +176,9 @@ export default function Appointment() {
                       </span>
                       <div className="apptile_p">
                         <p>
-                          <span className="vetname">Arvind Jain</span>
+                          <span className="vetname">{vet.Name}</span>
 
-                          <span className="closevet">(5 years experience)</span>
+                          <span className="closevet mr-3 ml-3">({vet.experience} years experience)</span>
 
                           <span
                             className="closevet"
@@ -190,21 +190,25 @@ export default function Appointment() {
                         <p className="vettype">
                           Ortho Vet Clinic
                           <div className="vetaddress">
-                            Shop No. 17, Sector 6, Market Road, Chandigarh
+                            {vet.Address}
                           </div>
                         </p>
-                        <p style={{ paddingTop: "23.64px" }}>
-                          <span className="open">Open</span>
-                          <span className="closevet">Closes 9PM</span>
-                          <span>
-                            <button
-                              style={{ float: "right" }}
-                              className="bookappointment"
-                            >
-                              Book Appointment
-                            </button>
-                          </span>
-                        </p>
+                          <div className="row" style={{ paddingTop: "23.64px"}}>
+                            <div className="col-4">
+                              <div className="row ml-3">
+                                <p className="open mr-2">Open</p>
+                                <p className="closevet mr-4">Closes 9PM</p>
+                              </div>
+                            </div>
+                            <div style={{textAlign:"right"}}>
+                              <button
+                                style={{ float: "right" }}
+                                className="bookappointment"
+                              >
+                                Book Appointment
+                              </button>
+                            </div>
+                        </div>
                       </div>
                     </div>
                   </div>
