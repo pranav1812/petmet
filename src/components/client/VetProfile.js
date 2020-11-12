@@ -92,60 +92,15 @@ const submit=()=>{
    time: time,
    patientId: user.uid,
    doctorId: vid,
-   address: address,
+   address: usr.address ,
+   doctorName: vet.Name || vet.name,
+   clinicName: vet.clinicName,
    }).then(()=>{
-    window.location= window.location.protocol + "//" + window.location.host + "/" +'vetconfirmation/'
+    window.location= window.location.protocol + "//" + window.location.host + "/" +'allappointments/'
    })
       .catch((err)=>{console.error(err)})  
 }
   return (
-  //   <div className="container profile_container">
-      
-  //     {vet 
-  //     ? ( <div className="row justify-content-center">
-  //     <div className="col-12 col-md-5 offset-sm-1">
-  //       <h4 className="mt-2 mb-3 head">Name of Vet</h4>
-  //       <img src={vet.imgUrl} className="profile_img" />
-  //       <p style={{color: "#36A9CC"}} className="mt-2">Verified</p>
-  //     </div>
-  //     <div className="col-12 col-md-6">
-  //       <div className="row mt-5 mt-sm-2">
-  //         <strong className="col-6 col-sm-5 col-lg-3">Name:</strong>
-  //         <p className="col">{vet.Name}</p>
-  //       </div>
-  //       <div className="row">
-  //         <strong className="col-6 col-sm-5 col-lg-3">Address:</strong>
-  //         <p className="col">{vet.Address}</p>
-  //       </div>
-  //       <div className="row">
-  //         <strong className="col-6 col-sm-5 col-lg-3">City:</strong>
-  //         <p className="col">{vet.city}</p>
-  //       </div>
-  //       <div className="row">
-  //         <strong className="col-6 col-sm-5 col-lg-3">State:</strong>
-  //         <p className="col">{vet.state}</p>
-  //       </div>
-  //       <div className="row">
-  //         <strong className="col-6 col-sm-5 col-lg-3">Mobile No:</strong>
-  //         <p className="col">{vet.phone}</p>
-  //       </div>
-  //       <div className="row">
-  //         <strong className="col-6 col-sm-5 col-lg-3">Qualification</strong>
-  //         <p className="col">{vet.Qualification}</p>
-  //       </div>
-  //       <div className="row">
-  //         <strong className="col-6 col-sm-5 col-lg-3">Experience:</strong>
-  //         <p className="col">{vet.experience}</p>
-  //       </div>
-  //       <div className="row">
-  //         <strong className="col-6 col-sm-5 col-lg-3">Achievements:</strong>
-  //         <p className="col">{vet.Achievements}</p>
-  //       </div>
-  //     </div>
-  //   </div>
-  //  ):null}
-  //     <Declarations />
-  //   </div>
   <div className="outer">
     {vet ?  (
     <div>
@@ -198,40 +153,7 @@ const submit=()=>{
         </div>
         <div className="col-12 col-lg-4 appointment">
           <h4>Book an Appointment</h4>
-          {/* <div className="dropdown mt-4 drp_btn"> */}
-           {/* <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Choose appointment method
-    </a> */}
-                          {/* <Form.Group className="row">
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" style={{backgroundColor:"#e6e6e6",marginLeft:"60px",border:"none",fontSize:"17px"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
-                                <option defaultChecked>Choose appointment method</option>
-                                <option>Home Visit</option>
-                                <option>Clinic Visit</option>
-                                <option>Video Call</option>
-                                <option>Chat</option>
-                            </Form.Control>
-                        </Form.Group>
-          </div>
-         <div className="dropdown mt-4 drp_btn">
-            <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Choose Date
-            </a>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink" style={{textAlign:"center"}}>
-              <Form.Group className="row" >
-                <input style={{border:"none",fontSize:"20px",paddingLeft:"30%",textAlign:"center"}} className="input_field" type="date"  name="date" onChange={(e)=>{setDate(e.target.value)} } />
-              </Form.Group>
-            </div>
-          </div>
-         <div className="dropdown mt-4 drp_btn">
-            <a className="btn btn-block dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Choose Time Slot
-            </a>
-            <div className="dropdown-menu" aria-labelledby="dropdownMenuLink">
-              <Form.Group className="row">
-                <input style={{border:"none",fontSize:"20px",paddingLeft:"30%",textAlign:"center"}} className="input_field" type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
-              </Form.Group>
-            </div>    
-          </div> */}
+         
           <div className="col-12">
             <Form.Group>
               <Form.Control className="col-12 mt-3" style={{backgroundColor:"#e6e6e6",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
@@ -271,11 +193,6 @@ const submit=()=>{
                 </div>
               </div>
             </div>
-          {/*  <div className="addadd mt-4">
-              <p>Add a new Address</p>
-              <input type="text" > </input>
-            </div>
-          */}
           </div>:null}
           
           <button className="blueButton" onClick={submit}>Request Booking</button>

@@ -33,9 +33,9 @@ const AllAppointments = () => {
             { appoint ? appoint.map( app=>(
                 <div style={{margin:"0px"}}>
                  <div className="outer mb-4">
-                 <h3 className="clinic_name mb-4">ORTHO VET CLINIC</h3>
+                 <h3 className="clinic_name mb-4">{app.clinicName}</h3>
                  <div className="container">
-                     <h6 className="clinic_name mb-4">Dr. Arvind Goyal</h6>
+                     <h6 className="clinic_name mb-4">{app.doctorName}</h6>
                      <div className="row">
                          <div className="col-12 col-md-4">
                              <div className="col-12 sections mb-4">

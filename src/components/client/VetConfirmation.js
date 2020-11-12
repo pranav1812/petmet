@@ -60,9 +60,7 @@ const VetConfirmation = () => {
                              </div>
                          </div>
                          <div className="col-12 col-md-8 sections">
-                             {/*<h6>Nishant Saini</h6>*/}<
-                                 p className="card_text">{app.address}</p>
-                             {/*<p className="card_text">Mobile: 98998 98998</p>*/}
+                             <p className="card_text">{app.address}</p>
                              <div className="row justify-content-end">
                                  <span className="badges_new confirm_pend">Confirmation Pending</span>
                                  <span className="badges_new conf">Booking Confirmed</span>
