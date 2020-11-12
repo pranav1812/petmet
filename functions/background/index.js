@@ -21,7 +21,7 @@ background.setAppointentForVet=(user, docData)=>{
 }
 
 const calculateTotal= async(orderSummary)=>{
-    totalCost=0
+    var totalCost=0
 
     productPromises= []
     console.log(orderSummary.products)
@@ -40,7 +40,7 @@ const calculateTotal= async(orderSummary)=>{
             // orderSummary.products[index].costPerPc= doc.data().details.cost
         })
         orderSummary.total= totalCost
-        
+        console.log("total cost= ---->>>>>>",totalCost)
         return totalCost
     }
     catch(err){

@@ -12,6 +12,10 @@
     ],
     "rewrites": [
       {
+        "source": "/payment/**",
+        "function": "paymentFunction" 
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }

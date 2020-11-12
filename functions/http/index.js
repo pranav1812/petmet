@@ -9,9 +9,10 @@ const appRouter= express.Router()
 
 var db= admin.firestore()
 
+appRouter.get('/order', (req, res)=>res.send("Testing route"))
 appRouter.post('/order', async(req, res)=>{
     var total= await background.calculateTotal({products: req.body.products})
-
+    console.log("total cost that reached= ---->>>>>>",total)
     var options = {
         amount: total*100,  
         currency: "INR",
@@ -23,6 +24,11 @@ appRouter.post('/order', async(req, res)=>{
         key_secret: "0PFGwg69u1f9cNnAYSBCkh8r",
     })
       razorpayInstance.orders.create(options, function(err, order) {
+          if(err){
+              res.json(options)
+              console.log("<-------------yahan error hai------->")
+              return 
+          }
         // create an order in user's order subcollection with order Id as document id and also save the order id 
         db.collection('All_Orders').doc(order.id).set({
             uid: req.body.uid,
