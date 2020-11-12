@@ -1,66 +1,128 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
-import product1 from "../pictures/image 37.png";
-import product2 from "../pictures/image 35.png";
-import product3 from "../pictures/image 34.png";
+import Food from "../pictures/image 360.png";
 
-const home= window.location.protocol + "//" + window.location.host + "/" +'Home/'
+const home =
+  window.location.protocol + "//" + window.location.host + "/" + "Home/";
 
 const CartComponent = () => {
+  const [wish, setWish] = useState(null);
+  const [total, setTotal] = useState(null);
+  const [uid, setUid] = useState(null);
+  const proLink = (_id, category) => {
+    window.location =
+      window.location.protocol +
+      "//" +
+      window.location.host +
+      "/" +
+      "ShopPage" +
+      "/" +
+      category +
+      "/" +
+      _id;
+  };
 
-  const [wish, setWish]= useState(null)
-  const [total, setTotal]= useState(null)
-  const [uid, setUid] = useState(null)
-  const proLink = (_id,category) => {
-    window.location = window.location.protocol + "//" + window.location.host + "/" + "ShopPage" + "/" + category + "/" + _id
-  }
+  const [num, setNum] = useState(0);
+
+  const decrease = () => {
+    if (num > 0) {
+      setNum(num - 1);
+    } else {
+      setNum(0);
+    }
+  };
+
+  const increase = () => {
+    setNum(num + 1);
+  };
+
   const delPro = (key) => {
-    db.collection('user').doc(uid).collection('cart').doc(key).delete()
-    .then(()=>{
-      window.location.reload()
-    })
-  }
-  useEffect(()=>{
-    auth.onAuthStateChanged(user=>{
-      if(user){
-        console.log(user)
-        setUid(user.uid)
-        console.log(uid)
-        db.collection('user').doc(user.uid).collection('cart').get()
-        .then(docs=>{
-          var temp=[]
-          var net=0
-          docs.forEach((doc)=>{
-            temp.push({...doc.data(),key: doc.id,_id: doc.data().key})
-            if(doc.data().cost){
-              net+= Number(doc.data().cost)
-            }
-          })
-          setWish(temp)
-          setTotal(net)
-        })
+    db.collection("user")
+      .doc(uid)
+      .collection("cart")
+      .doc(key)
+      .delete()
+      .then(() => {
+        window.location.reload();
+      });
+  };
+  useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        console.log(user);
+        setUid(user.uid);
+        console.log(uid);
+        db.collection("user")
+          .doc(user.uid)
+          .collection("cart")
+          .get()
+          .then((docs) => {
+            var temp = [];
+            var net = 0;
+            docs.forEach((doc) => {
+              temp.push({ ...doc.data(), key: doc.id, _id: doc.data().key });
+              if (doc.data().cost) {
+                net += Number(doc.data().cost);
+              }
+            });
+            setWish(temp);
+            setTotal(net);
+          });
       }
-    })
-    
-  }, [])
+    });
+  }, []);
 
   return (
-    <div>
-      <div className="bothflexbox">
+    <div style={{backgroundColor:"#e5e5e5"}}>
+      <div style={{marginTop:"-50px"}} className="bothflexbox">
         <div className="flexbox1">
-
-          <div className="heading">
+          {/* <div className="heading">
             <h6 style={{ fontWeight: "bold" }}>
               MY SHOPPING BAG ( 1 ITEM)
-              <br /> <div style={{ color: "#FF5352" }}>TOTAL: {"Rs. "+ total? total*1.3>299? 0+total*1.3 : 150+total*1.3: 0} </div>
+              <br />{" "}
+              <div style={{ color: "#FF5352" }}>
+                TOTAL:{" "}
+                {"Rs. " + total
+                  ? total * 1.3 > 299
+                    ? 0 + total * 1.3
+                    : 150 + total * 1.3
+                  : 0}{" "}
+              </div>
             </h6>
-          </div>
+          </div> */}
           {/* .................... */}
-          {wish? wish.map(wi=> (
-        <div style={{ margin: "10px", width: "40em" }} className="cartproductcard">
-        
-        <p>
+          {wish
+            ? wish.map((wi) => (
+                <div className="cartproductcard">
+                  <img src={Food} alt="" />
+
+                  <span>
+                    <p>HUFT Drizzle Buddy Dog Biscuits</p>
+                    <p>Size: Large</p>
+                    {/* <span>
+                      <span>
+                        <button onClick={increase}>+</button>
+                      </span>
+
+                      <span>
+                        <p>{num}</p>
+                      </span>
+                      <span>
+                        <button onClick={decrease}>-</button>
+                      </span>
+                    </span> */}
+                    <br />
+
+                    <hr />
+                    <span>
+                      <button className="cartremove"> REMOVE</button>
+                      <button className="cartremove">ADD TO WISHLIST</button>
+                    </span>
+                  </span>
+                </div>
+
+                /* <p>
           <img           
             height= "200px"
             width= "150px"
@@ -83,51 +145,68 @@ const CartComponent = () => {
         </button>
         <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
           View Product
-        </button>
-      </div>
-      ) ): null}
-      </div>    
-        
+        </button> */
+
+                // ......................................productcardends....................
+              ))
+            : null}
+        </div>
+
         {/* .............................. */}
         <div className="flexbox2">
           <hr />
           <div className="coupons">
-            <h6 className="availableoffers">Apply coupons</h6>
-            <button type="button" class="btn btnapply">
-              APPLY
-            </button>
+            <p>COUPONS</p>
             <hr />
+            <br />
+            <p>
+              <span className="availableoffers">Apply coupons</span>
+
+              <button type="button" class="applybutton">
+                APPLY
+              </button>
+            </p>
           </div>
           {/* ...................................... */}
           <div className="pricedetails">
-            <h6 className="availableoffers">PRICE DETAILS</h6>
+            <hr />
             <ul>
-              <span>
-                <li>
-                  <p>Bag Total {"Rs."+ total? total: 0} </p>
-                </li>
-              </span>
-              
               <li>
-                <p> GST= {"Rs."+ total? total*0.3: 0} </p>
+                <p>
+                  <span className="pricecategory">Total MRP</span>{" "}
+                  {"Rs." + total ? total : 0}{" "}
+                </p>
+              </li>
+
+              {/* <li>
+                <p> GST= {"Rs." + total ? total * 0.3 : 0} </p>
               </li>
               <li>
-                <p> Delivery Charge {"Rs" + total? total*1.3>299? 0: 150 : 0} </p>
+                <p>
+                  {" "}
+                  Delivery Charge{" "}
+                  {"Rs" + total ? (total * 1.3 > 299 ? 0 : 150) : 0}{" "}
+                </p>
               </li>
+              <hr /> */}
               <hr />
               <li>
-                <p> TOTAL {"Rs" + total? total*1.3>299? 0+total*1.3 : 150+total*1.3: 0}</p>
+                <p>
+                  <span className="pricecategorytotal">Total Amount</span>
+                  <span>
+                    {"₹" + total
+                      ? total * 1.3 > 299
+                        ? 0 + total * 1.3
+                        : 150 + total * 1.3
+                      : 0}
+                  </span>
+                </p>
               </li>
             </ul>
-            <button
-              type="button"
-              style={{ backgroundColor: "#36A9CC" }}
-              class="btn btn-secondary"
-              
-            >
-              PLACE ORDER
-            </button>
           </div>
+          <button type="button" class="placeorderbutton">
+            PLACE ORDER
+          </button>
         </div>
         {/* ................................... */}
       </div>

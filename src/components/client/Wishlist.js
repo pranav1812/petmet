@@ -81,7 +81,7 @@ const WishlistComponent = () => {
   }, [])
 
   return (
-<div  style={{marginTop:"50px",padding:"2%"}} className="wishlistpage">
+<div  style={{padding:"2%",paddingTop:"0px"}} className="wishlistpage">
     <h1>My wishlist</h1>
 {wish? wish.map(wi=> (
 <div className="row" style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">

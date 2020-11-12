@@ -40,7 +40,9 @@ export default function Addpet() {
     storageRef.put(file).then(()=> {
     alert("image uploaded")
     storageRef.getDownloadURL()
-        .then(url=> setUrl(url))
+        .then(url=> {
+          setUrl(url)
+        })
         .catch(err=> console.log(err))
     })
     .catch(err=> console.log(err))
@@ -53,7 +55,8 @@ export default function Addpet() {
       ...pet,
       url: url
     }).then(()=>{
-      window.location= window.location.protocol + "//" + window.location.host + "/" +'myPets/'
+      // window.location= window.location.protocol + "//" + window.location.host + "/" 
+      alert("done")
     })
     
   }
@@ -119,7 +122,7 @@ export default function Addpet() {
                              onBlur={e=>{setPet({...pet, weight: e.target.value})}}>
                              </Form.Control>
                         </Form.Group>
-                        <button className="btn-block blue_btn ml-4 frm-button" onClick={submit} >
+                        <button className="btn-block blue_btn ml-4 frm-button" type="button" onClick={submit} >
                             Submit
                         </button>
                       

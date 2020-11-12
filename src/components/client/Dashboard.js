@@ -19,9 +19,6 @@ import EditIcon from "@material-ui/icons/Edit";
 import { Route, Switch, Link, useParams } from "react-router-dom";
 import MenuIcon from "@material-ui/icons/Menu";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import PetsIcon from "@material-ui/icons/Pets";
-import AccessTimeIcon from "@material-ui/icons/AccessTime";
-import StarsIcon from "@material-ui/icons/Stars";
 // import MyLeads from './myLeads';
 import EditProfile from "./Profile";
 import { auth, db } from "../../firebase";
@@ -61,6 +58,7 @@ import { RiLogoutBoxRFill } from "react-icons/ri";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
 import VetConfirmation from './VetConfirmation';
+import AllAppointments from './AllAppointments';
 
 const drawerWidth = 240;
 
@@ -228,18 +226,16 @@ const Modall = (prop) => {
 
 export default function Dashboard() {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-  const handleDrawerClose = () => {
-    setOpen(false);
-  };
+  const [show, setShow] = useState(false);
   const componentt = useParams().componentt || "Home";
 
   const [name, setName] = useState(null);
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);
+  const [pets, setPets]= useState(null);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
@@ -261,7 +257,15 @@ export default function Dashboard() {
             if (doc.exists) setName(doc.data().name);
             else setName(user.displayName);
             console.log(name);
-          });
+          })
+          .catch(err=>console.error(err))
+          db.collection("user").doc(user.uid).collection("pets").onSnapshot(docs=>{
+            var temp=[]
+            docs.forEach(doc=>{
+              temp.push(doc.data())
+            })
+            setPets(temp)
+          })
       }
     });
   }, []);
@@ -310,7 +314,7 @@ export default function Dashboard() {
           noWrap
           className={classes.title}
         > */}
-        <Navbar className="newnavbar" expand="lg">
+        <Navbar className="newnavbar" expand="xl">
           <Navbar.Brand href="#home">
             <img
               className="mainlogoonnav mb-2"
@@ -328,7 +332,7 @@ export default function Dashboard() {
                 backgroundColor: "#ffffff",
               }}
             >
-              <Nav.Link className="newnavitems" href="/Home/">
+              <Nav.Link className="newnavitems home_nav" href="/Home/">
                 Home
               </Nav.Link>
               <Nav.Link className="newnavitems" href="#link">
@@ -336,58 +340,49 @@ export default function Dashboard() {
                   <button
                     className="ddbtn"
                     type="button"
-                    id="dropdownMenu2"
-                    data-toggle="dropdown"
-                    aria-haspopup="true"
-                    aria-expanded="false"
+                    onClick={handleShow}
                   >
                     My Pets
                   </button>
-                  <div
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenu2"
-                    style={{ width: "210px" }}
-                  >
-                    <div style={{ padding: "10px" }} className="form-check">
-                      <div className="row mb-3">
-                        <img
-                          src={Cat}
-                          className="ml-4 mr-3"
-                          style={{
-                            height: "40px",
-                            width: "40px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                        <Link to={"/myPets/"}>
-                          {" "}
-                          <h6 className="mt-1 mr-3">Rocky</h6>{" "}
-                        </Link>
-                        <input
-                          className="justify-content-end mt-2"
-                          type="radio"
-                          checked
-                        ></input>
+                </div>
+              </Nav.Link>
+              <Modal show={show} onHide={handleClose} style={{marginTop:"40px"}} centered>
+                <Modal.Header closeButton>
+                  <Modal.Title>MY PETS</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <div style={{ padding: "10px"}} className="form-check">
+                    {
+                      pets? pets.map(pet=>(
+                    //     <div className="onepet">
+                       
+                    //     <img className="petimage" src={pet.url} />
+                    //     <div>
+                    //       <p className="petname">{pet.name} </p>
+                          
+                    //       <p className="petdetails">
+                    //         Category: {pet.category}<br />
+                    //         Age: {pet.age} years <br /> Breed: {pet.breed}
+                    //       </p>
+                    //     </div>
+                    // </div>
+                    <div>
+                      <div className="row">
+                        <div className="col-2">
+                          <img className="petimage" src={pet.url} />
+                          <p className="ml-4" style={{textAlign:"center",color:"black",fontWeight:"bold"}}>{pet.name} </p>
+                        </div>
+                        <div className="col-8">
+                          <p className="petdetails">
+                            Category: {pet.category}<br />
+                            Age: {pet.age} years <br /> Breed: {pet.breed}
+                          </p>
+                        </div>
                       </div>
-                      <div className="row mb-3">
-                        <img
-                          src={Cat}
-                          className="ml-4 mr-3"
-                          style={{
-                            height: "40px",
-                            width: "40px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                        <Link to={"/myPets/"}>
-                          {" "}
-                          <h6 className="mt-1 mr-3">Fishes</h6>{" "}
-                        </Link>
-                        <input
-                          className="justify-content-end mt-2"
-                          type="radio"
-                        ></input>
-                      </div>
+                      <hr style={{marginTop:"0px",paddingTop:"0px"}}/>
+                    </div>
+                      )): null
+                    }
                       <Link to="/Addpet/">
                         <div className="row">
                           <GrAdd
@@ -395,50 +390,26 @@ export default function Dashboard() {
                             style={{ fontSize: "30px" }}
                           />
                           <h6 className="mt-1 mr-3">Add a Pet</h6>
-                          <input
-                            className="justify-content-end mt-2"
-                            type="radio"
-                          ></input>
                         </div>
                       </Link>
                     </div>
-                  </div>
-                </div>
-              </Nav.Link>
+                </Modal.Body>
+              </Modal>
               <Nav.Link className="newnavitems" href="/Wishlist/">
                 Wishlist
               </Nav.Link>
               <Nav.Link className="newnavitems" href="/Appointment/">
-                Appointment
+                Vets
               </Nav.Link>
-              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown> */}
+              <Nav.Link className="newnavitems" href="/allappointments/">
+                Appointments
+              </Nav.Link>
             </Nav>
-            {/* <Form>
-                <FormControl
-                  type="text"
-                  className="newnavsearchbox"
-                  placeholder="Search Pet food, special toys and many more...."
-                  className="mr-sm-4"
-                  
-                />
-                
-              </Form> */}
+            <div className="row nfn">
             <input
               type="text"
               placeholder=" Search Pet food, special toys and many more...."
-              className="newnavsearchbox"
+              className="newnavsearchbox align-self-center"
             />
             <div className="mr-4 mt-4">
               <div>
@@ -510,6 +481,7 @@ export default function Dashboard() {
                 />
               </Link>
               <p className="mt-1">Cart</p>
+            </div>
             </div>
           </Navbar.Collapse>
         </Navbar>
@@ -658,6 +630,8 @@ export default function Dashboard() {
           <EditProfile />
         ) : componentt == "vetconfirmation" ? (
           <VetConfirmation />
+        ) : componentt == "allappointments" ? (
+          <AllAppointments />
         ) : (
           <Home />
         )}

@@ -42,7 +42,7 @@ templates.orderConfirmation=(orderDetails, mailId)=>{
 }
 
 templates.appointmentConfirmation=(docData, mailId)=>{
-    var confirmString= `Appointment booked with Dr. ${docData.vetName} on ${docData.date} at ${docData.time}`
+    var confirmString= `Appointment booked with Dr. ${docData.doctorName} on ${docData.date} at ${docData.time}`
     return {
         to: mailId,
         message: {

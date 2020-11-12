@@ -13,6 +13,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import { auth } from "../firebase";
 import * as firebase from "firebase";
 import mainlogo from "./pictures/Final Main Logo PET MET.png";
+import fblogo from "./pictures/fblogo.png";
+import googlelogo from "./pictures/googlelogo.png";
 import picture from "./pictures/undraw_good_doggy_4wfq 1.png";
 import "./signin.css";
 const vMail =
@@ -331,6 +333,7 @@ export default function VetLogin() {
                 className="facebookbutton"
                 onClick={newUser ? fbSignup : fbSignin}
               >
+                <img className="logosonsignup" src={fblogo} />
                 {newUser ? "Sign Up with facebook" : "Sign In with facebook"}
               </button>
               <button
@@ -342,6 +345,7 @@ export default function VetLogin() {
                 className="googlebutton"
                 onClick={newUser ? googleSignup : googleSignin}
               >
+                <img className="logosonsignup" src={googlelogo} />
                 {newUser ? "Sign Up with Google" : "Sign In with Google"}
               </button>
             </span>
