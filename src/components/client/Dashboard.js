@@ -104,32 +104,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100%",
   },
 
-  // drawerPaper: {
-  //   position: "relative",
-  //   whiteSpace: "nowrap",
-  //   width: drawerWidth,
-  //   transition: theme.transitions.create("width", {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.enteringScreen,
-  //   }),
-  // },
-  // drawerPaperClose: {
-  //   overflowX: "hidden",
-  //   transition: theme.transitions.create("width", {
-  //     easing: theme.transitions.easing.sharp,
-  //     duration: theme.transitions.duration.leavingScreen,
-  //   }),
-  //   width: theme.spacing(0),
-  //   [theme.breakpoints.up("sm")]: {
-  //     width: theme.spacing(9),
-  //   },
-  // },
-  // appBarSpacer: theme.mixins.toolbar,
-  // content: {
-  //   flexGrow: 1,
-  //   height: "100vh",
-  //   overflow: "auto",
-  // },
   container: {
     zIndex: theme.zIndex.appBar - 1,
     paddingTop: theme.spacing(0),
@@ -289,31 +263,9 @@ export default function Dashboard() {
 
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
-      {/* <CssBaseline /> */}
       <AppBar
         position="absolute"
-        // className={clsx(classes.appBar, open && classes.appBarShift)}
       >
-        {/* <Toolbar className={classes.toolbar}> */}
-        {/* <IconButton
-            edge="start"
-            color="#282c3f"
-            aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            className={clsx(
-              classes.menuButton,
-              open && classes.menuButtonHidden
-            )}
-          >
-            <MenuIcon />
-          </IconButton> */}
-        {/* <Typography
-          component="h1"
-          variant="h6"
-          color="inherit"
-          noWrap
-          className={classes.title}
-        > */}
         <Navbar className="newnavbar" expand="xl">
           <Navbar.Brand href="#home">
             <img
@@ -354,18 +306,6 @@ export default function Dashboard() {
                     <div style={{ padding: "10px"}} className="form-check">
                     {
                       pets? pets.map(pet=>(
-                    //     <div className="onepet">
-                       
-                    //     <img className="petimage" src={pet.url} />
-                    //     <div>
-                    //       <p className="petname">{pet.name} </p>
-                          
-                    //       <p className="petdetails">
-                    //         Category: {pet.category}<br />
-                    //         Age: {pet.age} years <br /> Breed: {pet.breed}
-                    //       </p>
-                    //     </div>
-                    // </div>
                     <div>
                       <div className="row">
                         <div className="col-2">
@@ -433,15 +373,13 @@ export default function Dashboard() {
                   style={{ minWidth: "250px", height: "auto" }}
                 >
                   <div className="row ml-2 mt-2">
-                    <img
-                      className="mr-4"
-                      src={AccountCircleIcon}
-                      style={{
-                        height: "40px",
-                        width: "40px",
-                        borderRadius: "50%",
-                      }}
-                    />
+                  <MdAccountCircle
+                    style={{
+                      fontSize: "33px",
+                      color: "#36a9cc",
+                      backgroundColor: "#ffffff",
+                    }}
+                  />
                     <div>
                       <h6>{usr?name:"Guest User"}</h6>
                       <p
@@ -464,12 +402,14 @@ export default function Dashboard() {
                   <Link to="/editProfile"><h6 className="mt-1">Edit Profile</h6></Link>  
                   </div>
                   <hr style={{ margin: "12px 10px" }} />
+                  { usr? 
+                  (<button onClick={logout}>
+                    <h6 className="m-2">Log Out</h6>
+                  </button>) : (
                   <button onClick={toLoginPage}>
                     <h6 className="m-2">Log In</h6>
-                  </button>
-                  <button onClick={logout}>
-                    <h6 className="m-2">Log Out</h6>
-                  </button>
+                  </button>)
+                  }
                 </div>
               </div>
               <p>Profile</p>
@@ -486,128 +426,11 @@ export default function Dashboard() {
           </Navbar.Collapse>
         </Navbar>
 
-        {/* <Link to="/Home">
-              <img
-                className="mainlogoonnav"
-                style={{ width: "130px", height: "33px" }}
-                src={MainLogo}
-              />
-            </Link>
-
-            <div
-              style={{ float: "right", display: "inline" }}
-              className="searchicon"
-            >
-              {/* <NotificationsNoneIcon /> */}
-        {/* </div> */}
-        {/*Yaha lagana hai*/}
-
-        {/* <>{name ? <Modall prop={name} /> : <Modall prop={null} />}</>
-
-            <div
-              style={{ float: "right", display: "inline" }}
-              className="searchicon"
-            >
-              <SearchIcon />
-            </div> */}
-
-        {/* <form
-              style={{ float: "right" }}
-              className="form-inline navbarsearch my-2 my-lg-0"
-            >
-              <input
-                class="form-control mr-sm-2"
-                type="text"
-                placeholder="Search"
-              />
-              <button class="btn searchbutton  my-2 my-sm-0" type="submit">
-                Search
-              </button>
-            </form> */}
-        {/* </Typography> */}
-        {/* </Toolbar> */}
+        
       </AppBar>
-      {/* <Drawer
-        variant="permanent"
-        classes={{
-          paper: clsx(classes.drawerPaper, !open && classes.drawerPaperClose),
-        }}
-        open={open}
-      >
-        <div className={classes.toolbarIcon}>
-          <IconButton onClick={handleDrawerClose}>
-            <ChevronLeftIcon />
-          </IconButton>
-        </div>
-        <Divider />
-        <List>
-          <div>
-            <Link to={"/Home/"}>
-              <ListItem button>
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Home" />
-              </ListItem>
-            </Link>
-
-            <Link to={"/myPets/"}>
-              <ListItem button>
-                <ListItemIcon>
-                  <PetsIcon />
-                </ListItemIcon>
-                <ListItemText primary="My Pets" />
-              </ListItem>
-            </Link>
-
-            <Link to={"/Cart/"}>
-              <ListItem button>
-                <ListItemIcon>
-                  <ShoppingCartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Cart" />
-              </ListItem>
-            </Link>
-
-            <Link to={"/Wishlist/"}>
-              <ListItem button>
-                <ListItemIcon>
-                  <StarsIcon />
-                </ListItemIcon>
-                <ListItemText primary="Wishlist" />
-              </ListItem>
-            </Link>
-            <Link to={"/Appointment/"}>
-              <ListItem button>
-                <ListItemIcon>
-                  <AccessTimeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Appointments" />
-              </ListItem>
-            </Link>
-            <Divider />
-            <ListItem button onClick={usr ? logout : toLoginPage}>
-              <ListItemIcon>
-                <AccountCircleIcon />
-              </ListItemIcon>
-              <ListItemText primary={usr ? "Logout" : "Login"} />
-            </ListItem>
-            {usr ? (
-              <Link to="/editProfile">
-                <ListItem button>
-                  <ListItemIcon>
-                    <EditIcon />
-                  </ListItemIcon>
-                  <ListItemText primary="Edit Profile" />
-                </ListItem>
-              </Link>
-            ) : null}
-          </div>
-        </List>
-      </Drawer> */}
+     
       <div className={classes.container}>
-        {/* Chart */}
-
+     
         {componentt == "Home" ? (
           <DashboardClient />
         ) : componentt == "myPets" ? (

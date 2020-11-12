@@ -9,8 +9,8 @@ import rabbit from "../pictures/rabbit.png";
 import cat from "../pictures/cat.png";
 import { Link } from "react-router-dom";
 
-const home =
-  window.location.protocol + "//" + window.location.host + "/" + "Home/";
+const login =
+  window.location.protocol + "//" + window.location.host + "/" + "login/";
 
 const useStyles = makeStyles((theme) => ({
   vet: {
@@ -94,8 +94,7 @@ export default function Appointment() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        alert("login required");
-        window.location = home;
+        window.location = login;
       } else {
         setUsr(user);
         db.collection("user")
@@ -172,7 +171,7 @@ export default function Appointment() {
                   <div className="right_appflex">
                     <div className="apptile">
                       <span>
-                        <img src={vetpic} alt="" />
+                        <img src={vet.imgUrl} alt="" />
                       </span>
                       <div className="apptile_p">
                         <p>
@@ -180,15 +179,9 @@ export default function Appointment() {
 
                           <span className="closevet mr-3 ml-3">({vet.experience} years experience)</span>
 
-                          <span
-                            className="closevet"
-                            style={{ justifyContent: "right" }}
-                          >
-                            5.6km
-                          </span>
                         </p>
                         <p className="vettype">
-                          Ortho Vet Clinic
+                          {vet.clinicName}
                           <div className="vetaddress">
                             {vet.Address}
                           </div>
@@ -201,12 +194,14 @@ export default function Appointment() {
                               </div>
                             </div>
                             <div style={{textAlign:"right"}}>
-                              <button
+                              <Link to={"/VetProfile/"+vet.key}>
+                              <button 
                                 style={{ float: "right" }}
                                 className="bookappointment"
                               >
                                 Book Appointment
                               </button>
+                              </Link>
                             </div>
                         </div>
                       </div>
