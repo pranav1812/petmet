@@ -94,8 +94,8 @@ const DashboardClient = () => {
       .catch((e) => console.log(e));
   }, []);
   return (
-    <div style={{paddingTop: "60px",overflowX: "hidden"}}>
-      <div className="row m-2" style={{padding:"0px 2%"}}>
+    <div style={{overflowX: "hidden"}}>
+      <div className="row m-2 mt-0" style={{padding:"0px 2%"}}>
         <div
           style={{ marginTop: "25px" }}
           className="carousel col-12 col-sm-7" 

@@ -348,26 +348,40 @@ export default function Dashboard() {
                   </button>
                 </div>
               </Nav.Link>
-              <Modal show={show} onHide={handleClose} centered>
+              <Modal show={show} onHide={handleClose} style={{marginTop:"40px"}} centered>
                 <Modal.Header closeButton>
                   <Modal.Title>MY PETS</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div style={{ padding: "10px" }} className="form-check">
+                    <div style={{ padding: "10px"}} className="form-check">
                     {
                       pets? pets.map(pet=>(
-                        <div className="onepet">
-                        <span>
-                        <img className="petimage" src={pet.url} />
-                        <div>
-                          <p className="petname">{pet.name} </p>
+                    //     <div className="onepet">
+                       
+                    //     <img className="petimage" src={pet.url} />
+                    //     <div>
+                    //       <p className="petname">{pet.name} </p>
                           
+                    //       <p className="petdetails">
+                    //         Category: {pet.category}<br />
+                    //         Age: {pet.age} years <br /> Breed: {pet.breed}
+                    //       </p>
+                    //     </div>
+                    // </div>
+                    <div>
+                      <div className="row">
+                        <div className="col-2">
+                          <img className="petimage" src={pet.url} />
+                          <p className="ml-4" style={{textAlign:"center",color:"black",fontWeight:"bold"}}>{pet.name} </p>
+                        </div>
+                        <div className="col-8">
                           <p className="petdetails">
                             Category: {pet.category}<br />
                             Age: {pet.age} years <br /> Breed: {pet.breed}
                           </p>
                         </div>
-                      </span>
+                      </div>
+                      <hr style={{marginTop:"0px",paddingTop:"0px"}}/>
                     </div>
                       )): null
                     }
@@ -383,68 +397,6 @@ export default function Dashboard() {
                     </div>
                 </Modal.Body>
               </Modal>
-                  {/* <div
-                    className="dropdown-menu"
-                    aria-labelledby="dropdownMenu2"
-                    style={{ width: "210px" }}
-                  >
-                    <div style={{ padding: "10px" }} className="form-check">
-                      <div className="row mb-3">
-                        <img
-                          src={Cat}
-                          className="ml-4 mr-3"
-                          style={{
-                            height: "40px",
-                            width: "40px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                        <Link to={"/myPets/"}>
-                          {" "}
-                          <h6 className="mt-1 mr-3">Rocky</h6>{" "}
-                        </Link>
-                        <input
-                          className="justify-content-end mt-2"
-                          type="radio"
-                          checked
-                        ></input>
-                      </div>
-                      <div className="row mb-3">
-                        <img
-                          src={Cat}
-                          className="ml-4 mr-3"
-                          style={{
-                            height: "40px",
-                            width: "40px",
-                            borderRadius: "50%",
-                          }}
-                        />
-                        <Link to={"/myPets/"}>
-                          {" "}
-                          <h6 className="mt-1 mr-3">Fishes</h6>{" "}
-                        </Link>
-                        <input
-                          className="justify-content-end mt-2"
-                          type="radio"
-                        ></input>
-                      </div>
-                      <Link to="/Addpet/">
-                        <div className="row">
-                          <GrAdd
-                            className="ml-4 mr-3"
-                            style={{ fontSize: "30px" }}
-                          />
-                          <h6 className="mt-1 mr-3">Add a Pet</h6>
-                          <input
-                            className="justify-content-end mt-2"
-                            type="radio"
-                          ></input>
-                        </div>
-                      </Link>
-                    </div>
-                  </div>
-                </div> */}
-              
               <Nav.Link className="newnavitems" href="/Wishlist/">
                 Wishlist
               </Nav.Link>
@@ -454,30 +406,7 @@ export default function Dashboard() {
               <Nav.Link className="newnavitems" href="/Appointment/">
                 Appointments
               </Nav.Link>
-              {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-                  <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.2">
-                    Another action
-                  </NavDropdown.Item>
-                  <NavDropdown.Item href="#action/3.3">
-                    Something
-                  </NavDropdown.Item>
-                  <NavDropdown.Divider />
-                  <NavDropdown.Item href="#action/3.4">
-                    Separated link
-                  </NavDropdown.Item>
-                </NavDropdown> */}
             </Nav>
-            {/* <Form>
-                <FormControl
-                  type="text"
-                  className="newnavsearchbox"
-                  placeholder="Search Pet food, special toys and many more...."
-                  className="mr-sm-4"
-                  
-                />
-                
-              </Form> */}
             <div className="row nfn">
             <input
               type="text"
