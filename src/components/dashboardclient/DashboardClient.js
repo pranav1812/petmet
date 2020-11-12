@@ -94,7 +94,7 @@ const DashboardClient = () => {
       .catch((e) => console.log(e));
   }, []);
   return (
-    <div style={{marginTop:"-30px",overflowX: "hidden"}}>
+    <div style={{overflowX: "hidden"}}>
       <div className="row m-2 mt-0" style={{padding:"0px 2%"}}>
         <div
           style={{ marginTop: "25px" }}

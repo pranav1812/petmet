@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
-import product1 from "../pictures/image 37.png";
-import product2 from "../pictures/image 35.png";
-import product3 from "../pictures/image 34.png";
 import Food from "../pictures/image 360.png";
 
 const home =
@@ -77,8 +74,8 @@ const CartComponent = () => {
   }, []);
 
   return (
-    <div style={{backgroundColor:"#e5e5e5",marginTop:"-35px"}}>
-      <div className="bothflexbox">
+    <div style={{backgroundColor:"#e5e5e5"}}>
+      <div style={{marginTop:"-50px"}} className="bothflexbox">
         <div className="flexbox1">
           {/* <div className="heading">
             <h6 style={{ fontWeight: "bold" }}>
