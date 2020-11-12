@@ -60,6 +60,7 @@ export default function Profile() { const classes = useStyles();
         db.collection("vet").doc(vid).get().then(doc=>{
           if(doc.exists){
             setVet(doc.data())
+            setAddress(doc.data().address || doc.data().Address)
           }
         }) 
         if(user){
@@ -92,9 +93,10 @@ const submit=()=>{
    time: time,
    patientId: user.uid,
    doctorId: vid,
-   address: usr.address ,
+   address: mode== "Home Visit"? usr.address : mode== "Clinic Visit" ? address : vet.phone,
    doctorName: vet.Name || vet.name,
    clinicName: vet.clinicName,
+   
    }).then(()=>{
     window.location= window.location.protocol + "//" + window.location.host + "/" +'allappointments/'
    })
