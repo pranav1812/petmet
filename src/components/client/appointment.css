@@ -4,7 +4,7 @@ body {
   justify-content: center;
 }
 .apptitle {
-  font-weight:bold;
+  font-weight: bold;
   font-size: 24px;
   text-align: center;
   color: #36a9cc;
@@ -42,7 +42,9 @@ body {
   color: #36a9cc;
 }
 
-.left_appflex > button:hover, .left_appflex > button:focus, .left_appflex > button:active {
+.left_appflex > button:hover,
+.left_appflex > button:focus,
+.left_appflex > button:active {
   color: #ffffff;
   background-color: #36a9cc;
   border: none;

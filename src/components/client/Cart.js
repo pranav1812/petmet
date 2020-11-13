@@ -74,8 +74,8 @@ const CartComponent = () => {
   }, []);
 
   return (
-    <div style={{backgroundColor:"#e5e5e5"}}>
-      <div style={{marginTop:"-50px"}} className="bothflexbox">
+    <div style={{ backgroundColor: "#e5e5e5" }}>
+      <div style={{ marginTop: "-50px" }} className="bothflexbox">
         <div className="flexbox1">
           {/* <div className="heading">
             <h6 style={{ fontWeight: "bold" }}>
@@ -116,8 +116,10 @@ const CartComponent = () => {
 
                     <hr />
                     <span>
-                      <button className="cartremove"> REMOVE</button>
-                      <button className="cartremove">ADD TO WISHLIST</button>
+                      <button className="cartremovebutton"> REMOVE</button>
+                      <button className="cartremovebutton">
+                        ADD TO WISHLIST
+                      </button>
                     </span>
                   </span>
                 </div>
@@ -156,11 +158,11 @@ const CartComponent = () => {
         <div className="flexbox2">
           <hr />
           <div className="coupons">
-            <p>COUPONS</p>
+            <p className="headingofflex2">COUPONS</p>
             <hr />
             <br />
             <p>
-              <span className="availableoffers">Apply coupons</span>
+              <span className="applycoupontext">Apply coupons</span>
 
               <button type="button" class="applybutton">
                 APPLY
@@ -168,7 +170,39 @@ const CartComponent = () => {
             </p>
           </div>
           {/* ...................................... */}
-          <div className="pricedetails">
+          {/* <div className="pricedetails">
+            <p style={{ marginRight: "205.1px" }} className="headingofflex2">
+              PRICE DETAILS (3 ITEMS)
+            </p>
+            <hr />
+            <div className="totalmrp pricedetailssub">Total MRP</div>
+            <div className="amount">₹1250</div>
+            <div className="discountonmrp pricedetailssub">Discount on MRP</div>
+            <div className="amount">-₹250</div>
+            <div className="coupondiscount pricedetailssub">
+              Coupon Discount
+            </div>
+            <div className="amount">-₹250</div>
+            <hr />
+            <div className="totalamount ">Total Amount</div>
+            <div className="totalamount">₹750</div>
+          </div> */}
+          {/* ......................................................... */}
+          <div className="y">
+            <p className="headingofflex2">PRICE DETAILS (3 ITEMS)</p>
+            <hr />
+            <div style={{ textAlign: "left" }}>Total MRP</div>
+            <div style={{ textAlign: "right" }}>₹1250</div>
+            <div>Discount on MRP</div>
+            <div>-₹250</div>
+            <div>Coupon Discount</div>
+            <div>-₹250</div>
+            <hr />
+            <div>Total Amount</div>
+            <div>₹750</div>
+          </div>
+          {/* .......................................................................... */}
+          {/* <div className="pricedetails">
             <hr />
             <ul>
               <li>
@@ -176,9 +210,9 @@ const CartComponent = () => {
                   <span className="pricecategory">Total MRP</span>{" "}
                   {"Rs." + total ? total : 0}{" "}
                 </p>
-              </li>
+              </li> */}
 
-              {/* <li>
+          {/* <li>
                 <p> GST= {"Rs." + total ? total * 0.3 : 0} </p>
               </li>
               <li>
@@ -189,7 +223,7 @@ const CartComponent = () => {
                 </p>
               </li>
               <hr /> */}
-              <hr />
+          {/* <hr />
               <li>
                 <p>
                   <span className="pricecategorytotal">Total Amount</span>
@@ -203,7 +237,8 @@ const CartComponent = () => {
                 </p>
               </li>
             </ul>
-          </div>
+          </div> */}
+
           <button type="button" class="placeorderbutton">
             PLACE ORDER
           </button>
