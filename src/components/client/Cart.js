@@ -95,32 +95,69 @@ const CartComponent = () => {
           {wish
             ? wish.map((wi) => (
                 <div className="cartproductcard">
-                  <img src={Food} alt="" />
+                  <div className="embedded_cartproductcard">
+                    <img src={Food} alt="khaana" />
+                    <div className="columnembeddedcard">
+                      <p className="amount">HUFT Drizzle Buddy Dog Biscuits</p>
 
+                      <p style={{ marginTop: "6.3px" }} className="self">
+                        Size: Large
+                      </p>
+
+                      <span style={{ marginTop: "47px" }}>
+                        <button
+                          style={{
+                            background: "#FFFFFF",
+                            border: " 1px solid #C4C4C4",
+                            boxSizing: "border-box",
+                            borderRadius: "2px 0px 0px 2px",
+                          }}
+                          onClick={decrease}
+                        >
+                          -
+                        </button>
+                        <button
+                          style={{
+                            background: " #EBFAFF",
+                            border: "1px solid #C4C4C4",
+                            boxSizing: "border-box",
+                          }}
+                        >
+                          {num}
+                        </button>
+                        <button
+                          style={{
+                            background: "#FFFFFF",
+                            border: " 1px solid #C4C4C4",
+                            boxSizing: "border-box",
+                            borderRadius: "2px 0px 0px 2px",
+                          }}
+                          onClick={increase}
+                        >
+                          +
+                        </button>
+                      </span>
+                    </div>
+                    <p style={{ fontWeight: "500" }} className="self2 amount">
+                      ₹23
+                    </p>
+                  </div>
+                  <hr />
                   <span>
-                    <p>HUFT Drizzle Buddy Dog Biscuits</p>
-                    <p>Size: Large</p>
-                    {/* <span>
-                      <span>
-                        <button onClick={increase}>+</button>
-                      </span>
+                    <button
+                      style={{ marginRight: "37.53px" }}
+                      className="cartremovebuttonn"
+                    >
+                      {" "}
+                      REMOVE
+                    </button>
 
-                      <span>
-                        <p>{num}</p>
-                      </span>
-                      <span>
-                        <button onClick={decrease}>-</button>
-                      </span>
-                    </span> */}
-                    <br />
-
-                    <hr />
-                    <span>
-                      <button className="cartremovebutton"> REMOVE</button>
-                      <button className="cartremovebutton">
-                        ADD TO WISHLIST
-                      </button>
-                    </span>
+                    <button
+                      style={{ marginLeft: "37.53px" }}
+                      className="cartremovebuttonn"
+                    >
+                      ADD TO WISHLIST
+                    </button>
                   </span>
                 </div>
 
@@ -170,7 +207,7 @@ const CartComponent = () => {
               </p>
             </div> */}
             <div className="label_price_flex">
-              <div className="amount">Apply Coupons</div>
+              <div className="amount applycouponstext">Apply Coupons</div>
               <div className="price_part amount">
                 <button type="button" className="applybuttonn">
                   APPLY

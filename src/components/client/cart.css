@@ -25,19 +25,20 @@ p {
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
-
+  padding: 29.92px 15.91px 17.14px 0px;
   max-width: 733.29px;
-  height: 225.22px;
-  flex-direction: row;
+  /* max-height: 225.22px; */
+  flex-direction: column;
 }
 .cartproductcard > img {
   width: 142.19px;
   height: 142.19px;
 }
-.cartremovebutton {
-  width: 126.72px;
-  height: 13px;
+.cartremovebuttonn {
+  /* width: 126.72px; */
+
   border: none;
+  background-color: transparent !important;
 
   font-family: Roboto;
   font-style: normal;
@@ -176,4 +177,27 @@ ul {
   justify-content: flex-end;
   text-align: right;
   margin-left: auto;
+}
+.applycouponstext {
+  text-align: left;
+  margin-right: auto;
+}
+.embedded_cartproductcard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.embedded_cartproductcard .self {
+  justify-content: flex-start;
+  margin-right: auto;
+  margin-left: 10px;
+}
+.self2 {
+  text-align: right;
+  margin-left: auto;
+}
+.columnembeddedcard {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
