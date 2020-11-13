@@ -76,7 +76,7 @@ const CartComponent = () => {
   return (
     <div style={{ backgroundColor: "#e5e5e5" }}>
       <div style={{ marginTop: "-50px" }} className="bothflexbox">
-        <div className="flexbox1">
+        <div className="flexbox11">
           {/* <div className="heading">
             <h6 style={{ fontWeight: "bold" }}>
               MY SHOPPING BAG ( 1 ITEM)
@@ -155,51 +155,57 @@ const CartComponent = () => {
         </div>
 
         {/* .............................. */}
-        <div className="flexbox2">
-          <hr />
+        <div className="flexbox22">
           <div className="coupons">
             <p className="headingofflex2">COUPONS</p>
             <hr />
             <br />
-            <p>
-              <span className="applycoupontext">Apply coupons</span>
+            {/* <div>
+              <p>
+                <div className="applycoupontext">Apply coupons</div>
 
-              <button type="button" class="applybutton">
-                APPLY
-              </button>
-            </p>
+                <button type="button" class="applybuttonn">
+                  APPLY
+                </button>
+              </p>
+            </div> */}
+            <div className="label_price_flex">
+              <div className="amount">Apply Coupons</div>
+              <div className="price_part amount">
+                <button type="button" className="applybuttonn">
+                  APPLY
+                </button>
+              </div>
+            </div>
           </div>
           {/* ...................................... */}
-          {/* <div className="pricedetails">
-            <p style={{ marginRight: "205.1px" }} className="headingofflex2">
-              PRICE DETAILS (3 ITEMS)
-            </p>
-            <hr />
-            <div className="totalmrp pricedetailssub">Total MRP</div>
-            <div className="amount">₹1250</div>
-            <div className="discountonmrp pricedetailssub">Discount on MRP</div>
-            <div className="amount">-₹250</div>
-            <div className="coupondiscount pricedetailssub">
-              Coupon Discount
-            </div>
-            <div className="amount">-₹250</div>
-            <hr />
-            <div className="totalamount ">Total Amount</div>
-            <div className="totalamount">₹750</div>
-          </div> */}
+
           {/* ......................................................... */}
-          <div className="y">
+          <div className="pricedetails">
             <p className="headingofflex2">PRICE DETAILS (3 ITEMS)</p>
+            <br />
             <hr />
-            <div style={{ textAlign: "left" }}>Total MRP</div>
-            <div style={{ textAlign: "right" }}>₹1250</div>
-            <div>Discount on MRP</div>
-            <div>-₹250</div>
-            <div>Coupon Discount</div>
-            <div>-₹250</div>
-            <hr />
-            <div>Total Amount</div>
-            <div>₹750</div>
+            <div className="label_price_flex">
+              <div className="amount">Total MRP</div>
+              <div className="price_part amount">₹435 </div>
+            </div>
+            <div className="label_price_flex">
+              <div className="amount">Discount on MRP</div>
+              <div className="price_part amount">-₹435 </div>
+            </div>
+            <div className="label_price_flex">
+              <div className="amount">Coupon Discount</div>
+              <div className="price_part amount">-₹435 </div>
+            </div>
+            <hr style={{ color: "black" }} />
+            <div className="label_price_flex">
+              <div style={{ fontWeight: "500" }} className="amount">
+                Total Amount
+              </div>
+              <div style={{ fontWeight: "500" }} className="price_part amount">
+                ₹435{" "}
+              </div>
+            </div>
           </div>
           {/* .......................................................................... */}
           {/* <div className="pricedetails">
