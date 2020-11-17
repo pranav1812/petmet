@@ -248,9 +248,37 @@ const ShopPage = () => {
             <button className="row-btn">2 kg</button>
           </div>
           <span>
-            <button onClick={increase}>+</button>
-            <p>{num}</p>
-            <button onClick={decrease}>-</button>
+            <button
+              style={{
+                background: "#FFFFFF",
+                border: " 1px solid #C4C4C4",
+                boxSizing: "border-box",
+                borderRadius: "2px 0px 0px 2px",
+              }}
+              onClick={decrease}
+            >
+              -
+            </button>
+            <button
+              style={{
+                background: " #EBFAFF",
+                border: "1px solid #C4C4C4",
+                boxSizing: "border-box",
+              }}
+            >
+              {num}
+            </button>
+            <button
+              style={{
+                background: "#FFFFFF",
+                border: " 1px solid #C4C4C4",
+                boxSizing: "border-box",
+                borderRadius: "2px 0px 0px 2px",
+              }}
+              onClick={increase}
+            >
+              +
+            </button>
           </span>
           <div className="row justify-content-center align-items-center">
             <p className="acprize">Rs. 950</p>

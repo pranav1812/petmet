@@ -158,7 +158,7 @@ const submit=()=>{
          
           <div className="col-12">
             <Form.Group>
-              <Form.Control className="col-12 mt-3" style={{backgroundColor:"#e6e6e6",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
+              <Form.Control className="col-12 mt-3" style={{backgroundColor:"#ffffff",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px",border:"1px solid #bdbdbd"}} as="select" onChange={(e)=>{toggle(e.target.value)}}>
                   <option defaultChecked>Choose appointment method</option>
                   <option>Home Visit</option>
                   <option>Clinic Visit</option>
@@ -169,12 +169,12 @@ const submit=()=>{
           </div>
           <div className="col-12">
             <Form.Group>
-              <input style={{backgroundColor:"#e6e6e6",marginLeft:"100px",marginBottom:"20px",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px",border:"#bdbdbd solid 1px",color:"#686868",textAlign:"left",paddingLeft:"15px"}} className="input_field" type="date"  name="date" onChange={(e)=>{setDate(e.target.value)} } />
+              <input style={{backgroundColor:"#ffffff",marginLeft:"100px",marginBottom:"20px",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px",border:"#bdbdbd solid 1px",color:"#686868",textAlign:"left",paddingLeft:"15px"}} className="input_field" type="date"  name="date" onChange={(e)=>{setDate(e.target.value)} } />
             </Form.Group>
           </div>
           <div className="col-12">
             <Form.Group>
-              <input style={{backgroundColor:"#e6e6e6",marginLeft:"60px",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px",border:"#bdbdbd solid 1px",color:"#686868",textAlign:"left",paddingLeft:"15px"}} className="input_field" type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
+              <input style={{backgroundColor:"#ffffff",marginLeft:"60px",fontSize:"14px",width:"100%",borderRadius:"2px",height:"40px",border:"#bdbdbd solid 1px",color:"#686868",textAlign:"left",paddingLeft:"15px"}} className="input_field" type="time"  name="time" onChange={(e)=>{setTime(e.target.value)} } />
             </Form.Group>
           </div>
           {show==true && usr?
@@ -190,7 +190,7 @@ const submit=()=>{
                   {/*<button className="mr-3 addressbtn">REMOVE</button>*/}
                   
                 <p>Please enter your Name, phone and address where you would like schedule Home </p>
-                  <input type="text" onChange={(e)=>{setAddress(e.target.value)} } /> 
+                  <input type="text" onChange={(e)=>{setAddress(e.target.value)}} /> 
                   <button className="addressbtn" type="button" onClick={()=>{usr.address=address}}>EDIT</button>
                 </div>
               </div>

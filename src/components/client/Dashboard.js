@@ -351,7 +351,7 @@ export default function Dashboard() {
               placeholder=" Search Pet food, special toys and many more...."
               className="newnavsearchbox align-self-center"
             />
-            <div className="mr-4 mt-4">
+            <div className="mr-4">
               <div>
                 <button
                   type="button"
@@ -372,7 +372,7 @@ export default function Dashboard() {
                   className="dropdown-menu dropdown-menu-right"
                   style={{ minWidth: "250px", height: "auto" }}
                 >
-                  <div className="row ml-2 mt-2">
+                  <div className="row ml-2">
                   <MdAccountCircle
                     style={{
                       fontSize: "33px",
@@ -393,7 +393,7 @@ export default function Dashboard() {
                       </p>
                     </div>
                   </div>
-                  <div className="row ml-2 mt-3">
+                  <div className="row ml-2">
                     <HiSwitchHorizontal
                       style={{ fontSize: "37px" }}
                       className="mr-4"
@@ -412,9 +412,9 @@ export default function Dashboard() {
                   }
                 </div>
               </div>
-              <p>Profile</p>
+              <p className="mt-1">Profile</p>
             </div>
-            <div className="mr-4 mt-4">
+            <div className="mr-4">
               <Link to="/Cart/">
                 <MdShoppingCart
                   style={{ fontSize: "33px", color: "#979797" }}

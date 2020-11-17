@@ -26,7 +26,7 @@ function App() {
     console.log("app.js");
   }, []);
   return (
-    <div className="kuchh_aur">
+    <div className="kuchh_aur" style={{marginTop:"-100px"}}>
       <Switch>
         <Route exact path="/" component={Dashboard} />
         <Route exact path="/login" component={Login} />
