@@ -74,9 +74,9 @@ const CartComponent = () => {
   }, []);
 
   return (
-    <div style={{backgroundColor:"#e5e5e5"}}>
-      <div style={{marginTop:"-50px"}} className="bothflexbox">
-        <div className="flexbox1">
+    <div style={{ backgroundColor: "#e5e5e5" }}>
+      <div style={{ marginTop: "-50px" }} className="bothflexbox">
+        <div className="flexbox11">
           {/* <div className="heading">
             <h6 style={{ fontWeight: "bold" }}>
               MY SHOPPING BAG ( 1 ITEM)
@@ -95,30 +95,69 @@ const CartComponent = () => {
           {wish
             ? wish.map((wi) => (
                 <div className="cartproductcard">
-                  <img src={Food} alt="" />
+                  <div className="embedded_cartproductcard">
+                    <img src={Food} alt="khaana" />
+                    <div className="columnembeddedcard">
+                      <p className="amount">HUFT Drizzle Buddy Dog Biscuits</p>
 
+                      <p style={{ marginTop: "6.3px" }} className="self">
+                        Size: Large
+                      </p>
+
+                      <span style={{ marginTop: "47px" }}>
+                        <button
+                          style={{
+                            background: "#FFFFFF",
+                            border: " 1px solid #C4C4C4",
+                            boxSizing: "border-box",
+                            borderRadius: "2px 0px 0px 2px",
+                          }}
+                          onClick={decrease}
+                        >
+                          -
+                        </button>
+                        <button
+                          style={{
+                            background: " #EBFAFF",
+                            border: "1px solid #C4C4C4",
+                            boxSizing: "border-box",
+                          }}
+                        >
+                          {num}
+                        </button>
+                        <button
+                          style={{
+                            background: "#FFFFFF",
+                            border: " 1px solid #C4C4C4",
+                            boxSizing: "border-box",
+                            borderRadius: "2px 0px 0px 2px",
+                          }}
+                          onClick={increase}
+                        >
+                          +
+                        </button>
+                      </span>
+                    </div>
+                    <p style={{ fontWeight: "500" }} className="self2 amount">
+                      ₹23
+                    </p>
+                  </div>
+                  <hr />
                   <span>
-                    <p>HUFT Drizzle Buddy Dog Biscuits</p>
-                    <p>Size: Large</p>
-                    {/* <span>
-                      <span>
-                        <button onClick={increase}>+</button>
-                      </span>
+                    <button
+                      style={{ marginRight: "37.53px" }}
+                      className="cartremovebuttonn"
+                    >
+                      {" "}
+                      REMOVE
+                    </button>
 
-                      <span>
-                        <p>{num}</p>
-                      </span>
-                      <span>
-                        <button onClick={decrease}>-</button>
-                      </span>
-                    </span> */}
-                    <br />
-
-                    <hr />
-                    <span>
-                      <button className="cartremove"> REMOVE</button>
-                      <button className="cartremove">ADD TO WISHLIST</button>
-                    </span>
+                    <button
+                      style={{ marginLeft: "37.53px" }}
+                      className="cartremovebuttonn"
+                    >
+                      ADD TO WISHLIST
+                    </button>
                   </span>
                 </div>
 
@@ -153,22 +192,60 @@ const CartComponent = () => {
         </div>
 
         {/* .............................. */}
-        <div className="flexbox2">
-          <hr />
+        <div className="flexbox22">
           <div className="coupons">
-            <p>COUPONS</p>
+            <p className="headingofflex2">COUPONS</p>
             <hr />
             <br />
-            <p>
-              <span className="availableoffers">Apply coupons</span>
+            {/* <div>
+              <p>
+                <div className="applycoupontext">Apply coupons</div>
 
-              <button type="button" class="applybutton">
-                APPLY
-              </button>
-            </p>
+                <button type="button" class="applybuttonn">
+                  APPLY
+                </button>
+              </p>
+            </div> */}
+            <div className="label_price_flex">
+              <div className="amount applycouponstext">Apply Coupons</div>
+              <div className="price_part amount">
+                <button type="button" className="applybuttonn">
+                  APPLY
+                </button>
+              </div>
+            </div>
           </div>
           {/* ...................................... */}
+
+          {/* ......................................................... */}
           <div className="pricedetails">
+            <p className="headingofflex2">PRICE DETAILS (3 ITEMS)</p>
+            <br />
+            <hr />
+            <div className="label_price_flex">
+              <div className="amount">Total MRP</div>
+              <div className="price_part amount">₹435 </div>
+            </div>
+            <div className="label_price_flex">
+              <div className="amount">Discount on MRP</div>
+              <div className="price_part amount">-₹435 </div>
+            </div>
+            <div className="label_price_flex">
+              <div className="amount">Coupon Discount</div>
+              <div className="price_part amount">-₹435 </div>
+            </div>
+            <hr style={{ color: "black" }} />
+            <div className="label_price_flex">
+              <div style={{ fontWeight: "500" }} className="amount">
+                Total Amount
+              </div>
+              <div style={{ fontWeight: "500" }} className="price_part amount">
+                ₹435{" "}
+              </div>
+            </div>
+          </div>
+          {/* .......................................................................... */}
+          {/* <div className="pricedetails">
             <hr />
             <ul>
               <li>
@@ -176,9 +253,9 @@ const CartComponent = () => {
                   <span className="pricecategory">Total MRP</span>{" "}
                   {"Rs." + total ? total : 0}{" "}
                 </p>
-              </li>
+              </li> */}
 
-              {/* <li>
+          {/* <li>
                 <p> GST= {"Rs." + total ? total * 0.3 : 0} </p>
               </li>
               <li>
@@ -189,7 +266,7 @@ const CartComponent = () => {
                 </p>
               </li>
               <hr /> */}
-              <hr />
+          {/* <hr />
               <li>
                 <p>
                   <span className="pricecategorytotal">Total Amount</span>
@@ -203,7 +280,8 @@ const CartComponent = () => {
                 </p>
               </li>
             </ul>
-          </div>
+          </div> */}
+
           <button type="button" class="placeorderbutton">
             PLACE ORDER
           </button>

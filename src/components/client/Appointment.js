@@ -122,13 +122,11 @@ export default function Appointment() {
   });
   return (
     <div>
-      <p className="apptitle"> Vet Appointment</p>
+      {/* <p className="apptitle"> Vet Appointment</p>
       <div className="two_appflex">
         <div>
           {usr ? (
             <div>
-              {/* <div className="bothappflex"> */}
-
               <div className="left_appflex">
                 <p>Use Filters</p>
                 <button>Visit Clinic</button>
@@ -142,31 +140,6 @@ export default function Appointment() {
         <div>
           {vets
             ? vets.map((vet) => (
-                //     <div className="container ">
-                //       <div className="row ">
-                //         <div className="image">
-                //           <img src={dog} className="profile_img" />
-                //         </div>
-                //         <div className="hi">
-                //           <Link to={"/VetProfile/"+vet.key}>
-                //             <div className="vet">
-                //               <p></p>
-                //               <strong className="col">{vet.Name} </strong>
-                //             </div>
-                //           </Link>
-                //           <div className="open">
-                //             <p className="col">{vet.Qualification} </p>
-                //           </div>
-                //           <div className="open">
-                //             <p className="col">{vet.experience} </p>
-                //           </div>
-                //           <div className="address">
-                //             <p className="col">{vet.Address} </p>
-                //           </div>
-                //         </div>
-                //       </div>
-                //       <hr />
-                // </div>
                 <div>
                   <div className="right_appflex">
                     <div className="apptile">
@@ -211,6 +184,60 @@ export default function Appointment() {
                 </div>
               ))
             : null}
+        </div>
+      </div> */}
+      <h3 className="apptitle">VET APPOINTMENTS</h3>
+      <div className="container">
+        <div className="row">
+          <div className="col-12 col-md-3 left_appflex mb-3">
+                <h6>Use Filters</h6>
+                <button>Visit Clinic</button>
+                <button>Home Visit</button>
+                <button>Video Call</button>
+                <button>Chat</button>
+          </div>
+          <div className="col-12 col-md-9">
+          {vets
+            ? vets.map((vet) => (
+              <div className="col-12 apptile mb-3">
+                <div className="row">
+                  <div className="col-6 col-sm-3">
+                    <img className="apptile_img" src={vet.imgUrl} alt="" />
+                  </div>
+                  <div className="col">
+                    <div className="row mt-2">
+                      <span className="vetname">{vet.Name}</span>
+                      <span className="closevet mr-3 ml-3">({vet.experience} years experience)</span>
+                    </div>
+                    <div className="row mt-1 mb-0">
+                      <p className="vetClinicName">{vet.clinicName}</p>
+                    </div>
+                    <div className="row mt-0">
+                      <p className="clinicAddress">{vet.Address}</p>
+                    </div>
+                    <div className="row mt-0">
+                      <div className="col-12 col-sm-7">
+                        <div className="row align-items-center">
+                          <p className="open mr-2">Open</p>
+                          <p className="closevet">Closes 9PM</p>
+                        </div>
+                      </div>
+                      <div className="col-12 col-sm-5">
+                        <Link to={"/VetProfile/"+vet.key}>
+                                <button 
+                                  className="bookappointment"
+                                >
+                                  Book Appointment
+                                </button>
+                          </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div> 
+            ))
+          :null}
+          </div>
         </div>
       </div>
     </div>

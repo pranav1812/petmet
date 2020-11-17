@@ -401,7 +401,7 @@ export default function Login() {
               </Grid>
             </Grid>
 
-            <Button
+            {/* <Button
               type="button"
               variant="contained"
               style={{
@@ -414,7 +414,7 @@ export default function Login() {
               onClick={goToVet}
             >
               Sign In as vet
-            </Button>
+            </Button> */}
 
             <Box mt={5}>
               <Copyright />

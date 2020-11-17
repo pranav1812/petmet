@@ -1,86 +1,9 @@
-/* .availableoffers {
-  font-weight: 560 !important;
-}
-body {
-  font-family: Roboto;
-  font-style: normal;
-  background-color: rgb(245, 245, 245) !important;
-}
-.flexbox1 {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: column;
-  margin-right: 20px;
-  word-wrap: break-word;
-}
-.bothflexbox {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  background-color: rgb(245, 245, 245) !important;
-  padding-left: 70px;
-  border: none !important;
-}
-.cartproductimage {
-  float: left;
-}
-.availableoffers {
-  padding: 16px;
-}
-.heading {
-  padding: 16px !important;
-}
-.cartproductcard { */
-/* display: flex;
-  flex-wrap: wrap;
-  flex-direction: column; */
-/* padding: 16px;
-  border: 1px solid rgba(0, 0, 0, 0.1); */
-/* width: 538px;
-  height: 275px; */
-/* margin-bottom: 15px;
-} */
-/* .flexbox2 {
-  padding: 16px;
-  padding-top: 0px !important;
-}
-ul {
-  list-style: none;
-  width: 250px;
-}
-li {
-  display: inline !important;
-  tab-size: 16;
-  -moz-tab-size: 16;
-  -o-tab-size: 16;
-}
-
-.btnapply {
-  font-size: 16px !important;
-
-  border: 1px solid #ff5352 !important;
-  background-color: transparent !important;
-  color: #ff5352 !important;
-  margin: 10px;
-}
-.sizeandqty {
-  margin-left: 100px !important;
-  display: flex;
-  flex-direction: row;
-  padding-left: 19px !important;
-}
-.dropdown-toggle {
-  color: #ff5352;
-}
-
-.wishlistpage {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  background-color: rgb(245, 245, 245) !important ;
-} */
 body {
   background-color: #e5e5e5 !important;
+}
+p {
+  margin-top: 0;
+  margin-bottom: 0rem !important;
 }
 .bothflexbox {
   display: flex;
@@ -89,12 +12,12 @@ body {
   padding-top: 50px;
   border: none !important;
 }
-.flexbox1 {
+.flexbox11 {
   display: flex;
   flex-wrap: wrap;
   flex-direction: column;
   width: 733.29px;
-  height: 225.22px;
+
   margin-left: 168.33px;
   word-wrap: break-word;
 }
@@ -102,19 +25,20 @@ body {
   display: flex;
   flex-wrap: wrap;
   background-color: #ffffff;
-
+  padding: 29.92px 15.91px 17.14px 0px;
   max-width: 733.29px;
-  height: 225.22px;
-  flex-direction: row;
+  /* max-height: 225.22px; */
+  flex-direction: column;
 }
 .cartproductcard > img {
   width: 142.19px;
   height: 142.19px;
 }
-.cartremove {
-  width: 126.72px;
-  height: 13px;
+.cartremovebuttonn {
+  /* width: 126.72px; */
+
   border: none;
+  background-color: transparent !important;
 
   font-family: Roboto;
   font-style: normal;
@@ -125,20 +49,21 @@ body {
 
   color: #000000;
 }
-.flexbox2 {
+.flexbox22 {
   display: flex;
   margin-left: 24.61px;
   flex-wrap: wrap;
   flex-direction: column;
   margin-right: 20px;
   word-wrap: break-word;
+  justify-content: flex-start;
 }
 .coupons {
   display: flex;
 
   width: 375.13px;
   height: 91.98px;
-  left: 926.22px;
+  padding: 17.03px;
   flex-wrap: wrap;
   flex-direction: column;
   background-color: #ffffff;
@@ -146,8 +71,9 @@ body {
 .pricedetails {
   display: flex;
   flex-wrap: wrap;
+  padding: 17.03px;
   width: 375.13px;
-  height: 262.97px;
+
   flex-direction: column;
   margin-top: 22px;
   margin-bottom: 22px;
@@ -194,7 +120,7 @@ ul {
 
   color: #ffffff;
 }
-.applybutton {
+.applybuttonn {
   width: 103.94px;
   height: 32.21px;
   font-family: Roboto;
@@ -209,6 +135,69 @@ ul {
   box-sizing: border-box;
   border-radius: 4px;
 }
-.availableoffers {
+
+.headingofflex2 {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 16px;
+
+  color: #000000;
+}
+.pricedetailssub {
+  height: 21px;
+
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #3f3f3f;
+}
+
+.amount {
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 21px;
+
+  color: #000000;
+}
+
+.label_price_flex {
+  display: flex;
+  flex-direction: row;
+  margin-top: 26.5px;
+  height: 21px;
+}
+.price_part {
+  justify-content: flex-end;
+  text-align: right;
+  margin-left: auto;
+}
+.applycouponstext {
   text-align: left;
+  margin-right: auto;
+}
+.embedded_cartproductcard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.embedded_cartproductcard .self {
+  justify-content: flex-start;
+  margin-right: auto;
+  margin-left: 10px;
+}
+.self2 {
+  text-align: right;
+  margin-left: auto;
+}
+.columnembeddedcard {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
 }
