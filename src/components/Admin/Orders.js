@@ -32,7 +32,7 @@ const Orders_List = () => {
     }, [orders])
     return ( 
         <>  
-            <div className="row text-center" style={{marginTop: '100px'}}>
+            {/* {<div className="row text-center" style={{marginTop: '100px'}}>
                 {orders.length? (
                     <Workbook filename="orders.xlsx" element={<button className="btn btn-lg btn-primary">Download as excel</button>}>
                     <Workbook.Sheet data={orders} name="Sheet 1">
@@ -46,7 +46,7 @@ const Orders_List = () => {
                 
                 </Workbook>
                 ): null}
-            </div>
+            </div>} */}
             <Table size="small">
                 <TableHead>
                 <TableRow>
