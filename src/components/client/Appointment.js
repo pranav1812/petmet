@@ -122,70 +122,6 @@ export default function Appointment() {
   });
   return (
     <div>
-      {/* <p className="apptitle"> Vet Appointment</p>
-      <div className="two_appflex">
-        <div>
-          {usr ? (
-            <div>
-              <div className="left_appflex">
-                <p>Use Filters</p>
-                <button>Visit Clinic</button>
-                <button>Home Visit</button>
-                <button>Video Call</button>
-                <button>Chat</button>
-              </div>
-            </div>
-          ) : null}
-        </div>
-        <div>
-          {vets
-            ? vets.map((vet) => (
-                <div>
-                  <div className="right_appflex">
-                    <div className="apptile">
-                      <span>
-                        <img src={vet.imgUrl} alt="" />
-                      </span>
-                      <div className="apptile_p">
-                        <p>
-                          <span className="vetname">{vet.Name}</span>
-
-                          <span className="closevet mr-3 ml-3">({vet.experience} years experience)</span>
-
-                        </p>
-                        <p className="vettype">
-                          {vet.clinicName}
-                          <div className="vetaddress">
-                            {vet.Address}
-                          </div>
-                        </p>
-                          <div className="row" style={{ paddingTop: "23.64px"}}>
-                            <div className="col-4">
-                              <div className="row ml-3">
-                                <p className="open mr-2">Open</p>
-                                <p className="closevet mr-4">Closes 9PM</p>
-                              </div>
-                            </div>
-                            <div style={{textAlign:"right"}}>
-                              <Link to={"/VetProfile/"+vet.key}>
-                              <button 
-                                style={{ float: "right" }}
-                                className="bookappointment"
-                              >
-                                Book Appointment
-                              </button>
-                              </Link>
-                            </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <br />
-                </div>
-              ))
-            : null}
-        </div>
-      </div> */}
       <h3 className="apptitle">VET APPOINTMENTS</h3>
       <div className="container">
         <div className="row">
@@ -215,7 +151,7 @@ export default function Appointment() {
                     <div className="row mt-0">
                       <p className="clinicAddress">{vet.Address}</p>
                     </div>
-                    <div className="row mt-0">
+                    <div className="row mt-3">
                       <div className="col-12 col-sm-7">
                         <div className="row align-items-center">
                           <p className="open mr-2">Open</p>
@@ -225,8 +161,7 @@ export default function Appointment() {
                       <div className="col-12 col-sm-5">
                         <Link to={"/VetProfile/"+vet.key}>
                                 <button 
-                                  className="bookappointment"
-                                >
+                                className="bookappointment">
                                   Book Appointment
                                 </button>
                           </Link>
