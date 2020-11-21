@@ -35,6 +35,26 @@ const ShopProducts = () => {
       setDropdownvar(false);
     }
   };
+
+  const [dropdownvar2, setDropdownvar2] = useState(false);
+  const dropdowndata2 = () => {
+    if (dropdownvar2 == false) {
+      setDropdownvar2(true);
+    } else {
+      setDropdownvar2(false);
+    }
+  };
+
+  const Dropdownfun2 = () => {
+    return (
+      <ul className="ulofsort">
+        <li style={{ marginBottom: "4px" }}>Recommended</li>
+        <li style={{ marginBottom: "4px" }}>Price(low to high)</li>
+        <li style={{ marginBottom: "4px" }}>Price(high to low)</li>
+      </ul>
+    );
+  };
+
   const Dropdownfun = () => {
     return (
       <ul>
@@ -128,39 +148,33 @@ const ShopProducts = () => {
           </div>
           <div className="products_rightflex">
             <div className="start_rightflex">
-              <p>Dog Food</p>
-              <Dropdown className="ddropdown">
-                <Dropdown.Toggle id="dropdown-basic">
-                  SORT BY: Recommended
-                </Dropdown.Toggle>
+              <p className="dogfoodtag">Dog Food</p>
 
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              {/* Showing 1-12 of 130 results */}
+              <button className="ddropdown" onClick={dropdowndata2}>
+                SORT BY: Recommended <ArrowDropDownIcon />
+              </button>
+              {dropdownvar2 && <Dropdownfun2 />}
             </div>
-            {products
-              ? products.map((pro) => (
-                  <div>
+            <div>
+              <p className="showingresults">Showing 1-12 of 130 results</p>
+            </div>
+            <div className="products_rightflex_cardflex">
+              {products
+                ? products.map((pro) => (
                     <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                      <SquareCard style={{ margin: "31px" }} />
+                      <div>
+                        <SquareCard style={{ margin: "31px" }} />
+                      </div>
                     </Link>
-                    {/* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                    /* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
                   </Link>
                   <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
-                  </Link> */}
-                  </div>
-                ))
-              : null}
+                  </Link> */
+                  ))
+                : null}
+            </div>
           </div>
         </div>
       </span>

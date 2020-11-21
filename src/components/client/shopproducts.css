@@ -190,10 +190,22 @@ body {
 .products_rightflex {
   max-width: 987.79px;
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.products_rightflex_cardflex {
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
+
+.showingresults {
+  text-align: center;
+}
+
 .products_bothflex {
   display: flex;
   margin-top: 100px;
@@ -235,9 +247,30 @@ body {
 
   width: 309.3px !important;
   height: 34.61px !important;
-
+  justify-content: flex-end;
+  margin-left: auto;
   background: #ffffff !important;
   border: 0.5px solid #959595 !important;
   box-sizing: border-box !important;
   border-radius: 2px !important;
+}
+
+.ulofsort {
+  background: #ffffff !important;
+  border: 0.5px solid #959595 !important;
+  box-sizing: border-box !important;
+  border-radius: 2px !important;
+}
+.dogfoodtag {
+  width: 120px;
+  margin-left: 28.5px;
+  height: 23px;
+  /* 
+  font-family: Gotham; */
+  font-style: normal;
+  font-weight: normal;
+  font-size: 24px;
+  line-height: 23px;
+
+  color: #000000;
 }
