@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import SquareCard from "../dashboardclient/SquareCard";
 import "./shopproducts.css";
 import { useParams } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
 
 const ShopProducts = () => {
   const [products, setProducts] = useState(null);
@@ -82,6 +83,7 @@ const ShopProducts = () => {
   };
   return (
     <div>
+      Home > Dog Essentials
       <span>
         <div className="products_bothflex">
           <div className="products_leftflex">
@@ -124,21 +126,42 @@ const ShopProducts = () => {
 
             <hr />
           </div>
-          {products
-            ? products.map((pro) => (
-                <div className="products_rightflex">
-                  <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                    <SquareCard style={{ margin: "31px" }} />
-                  </Link>
-                  {/* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+          <div className="products_rightflex">
+            <div className="start_rightflex">
+              <p>Dog Food</p>
+              <Dropdown className="ddropdown">
+                <Dropdown.Toggle id="dropdown-basic">
+                  SORT BY: Recommended
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
+                  <Dropdown.Item href="#/action-2">
+                    Another action
+                  </Dropdown.Item>
+                  <Dropdown.Item href="#/action-3">
+                    Something else
+                  </Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
+              {/* Showing 1-12 of 130 results */}
+            </div>
+            {products
+              ? products.map((pro) => (
+                  <div>
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <SquareCard style={{ margin: "31px" }} />
+                    </Link>
+                    {/* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
                   </Link>
                   <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
                   </Link> */}
-                </div>
-              ))
-            : null}
+                  </div>
+                ))
+              : null}
+          </div>
         </div>
       </span>
     </div> /*{" "}

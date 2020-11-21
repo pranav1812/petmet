@@ -1,5 +1,6 @@
 body {
   background-color: #e5e5e5 !important;
+  justify-content: center;
 }
 p {
   margin-top: 0;
@@ -17,7 +18,7 @@ p {
   flex-wrap: wrap;
   flex-direction: column;
   width: 733.29px;
-
+  margin-bottom: 21px;
   margin-left: 168.33px;
   word-wrap: break-word;
 }
@@ -200,4 +201,20 @@ ul {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+}
+.linebtwbutton {
+  background: transparent;
+  border: none;
+}
+.cart_decreasebutton {
+  background: #ffffff;
+  border: 1px solid #c4c4c4;
+  box-sizing: border-box;
+  border-radius: 2px 0px 0px 2px;
+}
+.embeddedflexforprices {
+  justify-content: right;
+  margin-left: auto;
+  display: flex;
+  flex-direction: column;
 }

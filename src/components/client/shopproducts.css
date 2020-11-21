@@ -224,3 +224,20 @@ body {
   background-color: #ffffff;
   border: none;
 }
+.start_rightflex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+.ddropdown {
+  /* align-self: flex-end;
+  margin-left: auto; */
+
+  width: 309.3px !important;
+  height: 34.61px !important;
+
+  background: #ffffff !important;
+  border: 0.5px solid #959595 !important;
+  box-sizing: border-box !important;
+  border-radius: 2px !important;
+}
