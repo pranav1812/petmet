@@ -73,9 +73,10 @@
 .wishlistpage {
   background-color: #ffffff !important;
 }
-/* .wishlistpage_card {
-  
-} */
+.heading_wishlist {
+  margin-top: 80px;
+  font-size: 36px !important;
+}
 .wishpage_rowflex {
   display: flex;
   flex-direction: row;
@@ -155,4 +156,10 @@
   text-decoration-line: line-through;
 
   color: #b5b5b5;
+}
+.wishlist_mainflex {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
 }

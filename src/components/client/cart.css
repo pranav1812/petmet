@@ -12,6 +12,7 @@ p {
   flex-direction: row;
   padding-top: 50px;
   border: none !important;
+  margin-top: 40px !important;
 }
 .flexbox11 {
   display: flex;

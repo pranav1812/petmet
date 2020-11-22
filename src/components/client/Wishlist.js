@@ -103,54 +103,55 @@ const WishlistComponent = () => {
 
   return (
     <div style={{ padding: "2%", paddingTop: "0px" }} className="wishlistpage">
-      <h1>My wishlist</h1>
-      {wish
-        ? wish.map((wi) => (
-            <div className="wishlistpage_card">
-              <div className="wishpage_rowflex">
-                <div className="dog_price_columnflex">
-                  <img src={dog} className="" />
-                  <p className="cutpricee">
-                    Rs. 950
-                    <span className="previouspricee">Rs. 1250</span>
-                  </p>
-                </div>
-                <div className="wishpage_columnflex">
-                  <div className="wishpage_heading">
-                    HUFT Drizzle Buddy Raincoat- Purpule
+      <h1 className="heading_wishlist">MY WISHLIST</h1>
+      <div className="wishlist_mainflex">
+        {wish
+          ? wish.map((wi) => (
+              <div className="wishlistpage_card">
+                <div className="wishpage_rowflex">
+                  <div className="dog_price_columnflex">
+                    <img src={dog} className="" />
+                    <p className="cutpricee">
+                      Rs. 950
+                      <span className="previouspricee">Rs. 1250</span>
+                    </p>
                   </div>
-                  <div className="wishpage_text">
-                    The Heads Up For Tails Yummy In My Tummy biscuits makes
-                    treat time both nutritious and delicious. loaded with rich
-                    flavours.
-                  </div>
-                  <div>
-                    <div className="wishpage_rectangles">
-                      <img src={Rectangle115}></img>
-                      <span> </span>
-                      <img src={Rectangle116}></img>
-                      <span> </span>
-                      <img src={Rectangle117}></img>
-                      <span> </span>
-                      <img src={Rectangle118}></img>
-                      <span> </span>
-                      <img src={Rectangle119}></img>
-                      <span> </span>
-                      <img src={Rectangle120}></img>{" "}
+                  <div className="wishpage_columnflex">
+                    <div className="wishpage_heading">
+                      HUFT Drizzle Buddy Raincoat- Purpule
                     </div>
+                    <div className="wishpage_text">
+                      The Heads Up For Tails Yummy In My Tummy biscuits makes
+                      treat time both nutritious and delicious. loaded with rich
+                      flavours.
+                    </div>
+                    <div>
+                      <div className="wishpage_rectangles">
+                        <img src={Rectangle115}></img>
+                        <span> </span>
+                        <img src={Rectangle116}></img>
+                        <span> </span>
+                        <img src={Rectangle117}></img>
+                        <span> </span>
+                        <img src={Rectangle118}></img>
+                        <span> </span>
+                        <img src={Rectangle119}></img>
+                        <span> </span>
+                        <img src={Rectangle120}></img>{" "}
+                      </div>
+                    </div>
+                    <span>
+                      <button className="buttonadd">Add to Cart</button>
+                      <button className="buttonbuy">Buy Now</button>
+                    </span>
                   </div>
-                  <span>
-                    <button className="buttonadd">Add to Cart</button>
-                    <button className="buttonbuy">Buy Now</button>
-                  </span>
-                </div>
 
-                <div className="iconspan3">
-                  <BsHeart className="ic" />
+                  <div className="iconspan3">
+                    <BsHeart className="ic" />
+                  </div>
                 </div>
               </div>
-            </div>
-            /* <div className="row" style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
+              /* <div className="row" style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
        
 <p>
   
@@ -224,8 +225,9 @@ textDecorationLine:"line-through",
           Buy Now
         </button>
       </div> */
-          ))
-        : null}
+            ))
+          : null}
+      </div>
     </div>
   );
 };
