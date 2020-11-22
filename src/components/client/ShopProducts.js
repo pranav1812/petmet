@@ -8,6 +8,7 @@ import SquareCard from "../dashboardclient/SquareCard";
 import "./shopproducts.css";
 import { useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
+import ContinuousSlider from "./Slider";
 
 const ShopProducts = () => {
   const [products, setProducts] = useState(null);
@@ -103,57 +104,49 @@ const ShopProducts = () => {
   };
   return (
     <div>
-      Home > Dog Essentials
+      <p className="pathontop">Home > Dog Essentials</p>
       <span>
         <div className="products_bothflex">
           <div className="products_leftflex">
             <p>PRICE</p>
+            <ContinuousSlider />
             <hr />
-
             <button onClick={dropdowndata}>
               BRANDS <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               PRODUCT TYPE <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               BREED <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               LIFE STAGE <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               LIFE STAGE <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
           </div>
           <div className="products_rightflex">
             <div className="start_rightflex">
               <p className="dogfoodtag">Dog Food</p>
-
-              <button className="ddropdown" onClick={dropdowndata2}>
-                SORT BY: Recommended <ArrowDropDownIcon />
-              </button>
-              {dropdownvar2 && <Dropdownfun2 />}
+              <div className="start_rightflex_subcolumn">
+                {" "}
+                <button className="ddropdown" onClick={dropdowndata2}>
+                  SORT BY: Recommended <ArrowDropDownIcon />
+                </button>
+                {dropdownvar2 && <Dropdownfun2 />}
+              </div>
             </div>
             <div>
               <p className="showingresults">Showing 1-12 of 130 results</p>
