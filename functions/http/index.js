@@ -11,7 +11,31 @@ var db= admin.firestore()
 
 appRouter.get('/order', (req, res)=>res.send("Testing route"))
 appRouter.post('/order', async(req, res)=>{
-    var total= await background.calculateTotal({products: req.body.products})
+    var userPromise= db.collection('user').doc(req.body.uid).get()
+    var totalPromise= background.calculateTotal({products: req.body.products})
+    var promoPromise= db.collection('promo').doc(req.body.promo).get()
+    var resolve= Promise.all([userPromise, totalPromise, promoPromise])
+
+    var [user, total, promoInfo]= resolve
+    var usedCode= null
+    if(promoInfo.exists){
+     
+        if(total > Number(promoInfo.data().discountLowerLimit)){
+            var primaryDiscount= total*Number(promoInfo.data().discount)
+            var maxDiscount= Number(promoInfo.data().discountUpperLimit)
+
+            total-= Math.min(primaryDiscount, maxDiscount)
+            usedCode= promoInfo.data().reUsable? null : promoInfo.id            
+        }
+    }
+    
+    var subFromWallet= 0
+
+    if(req.body.useWallet){
+        total-= Math.min(user.data().walletMoney, total*0.1)
+        subFromWallet= Math.min(user.data().walletMoney, total*0.1)
+    }
+
     console.log("total cost that reached= ---->>>>>>",total)
     var options = {
         amount: total*100,  
@@ -35,7 +59,11 @@ appRouter.post('/order', async(req, res)=>{
             paymentVerified: false,
             order_id: order.id,
             products: req.body.products,
-            total: total
+            total: total,
+            mailId: req.body.mail,
+            subFromWallet: subFromWallet,
+            usedCode: usedCode,
+            cashback: Math.min(Number(promoInfo.data().walletCashbackMaxima), total*Number(Number(promoInfo.data().walletCashback)))
         }) 
         res.json(order);
       });
@@ -53,7 +81,10 @@ appRouter.post('/verifyPayment', async(req, res)=>{
         var promise1= ref.update({
             paymentVerified: true
         })
+        
         var orderInfo= await ref.get()
+        // var userInfo= db.collection('user').doc(orderInfo.data().uid).get()
+
         var userRef= db.collection('user').doc(orderInfo.data().uid).collection('orders').doc(orderInfo.data().order_id)
         var promise2= userRef.set({
             ...orderInfo.data(),
@@ -61,7 +92,14 @@ appRouter.post('/verifyPayment', async(req, res)=>{
             paymentVerified: true
         })
 
-        var resolve= await Promise.all([promise1, promise2])
+        var userRef2= db.collection('user').doc(orderInfo.data().uid)
+        var walletChange= orderInfo.data().cashback- orderInfo.data().subFromWallet
+        var promise3= userRef2.update({
+            walletMoney: admin.firestore.FieldValue.increment(walletChange),
+            usedPromo: admin.firestore.FieldValue.arrayUnion(orderInfo.data().usedCode)
+        })
+
+        var resolve= await Promise.all([promise1, promise2, promise3])
         console.log(resolve)
 
     }

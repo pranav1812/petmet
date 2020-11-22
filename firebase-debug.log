@@ -1,0 +1,99 @@
+[debug] [2020-11-22T19:42:07.950Z] ----------------------------------------------------------------------
+[debug] [2020-11-22T19:42:07.955Z] Command:       /home/pranav/.nvm/versions/node/v14.5.0/bin/node /home/pranav/.nvm/versions/node/v14.5.0/bin/firebase deploy --only functions
+[debug] [2020-11-22T19:42:07.956Z] CLI Version:   8.11.2
+[debug] [2020-11-22T19:42:07.956Z] Platform:      linux
+[debug] [2020-11-22T19:42:07.957Z] Node Version:  v14.5.0
+[debug] [2020-11-22T19:42:07.972Z] Time:          Mon Nov 23 2020 01:12:07 GMT+0530 (India Standard Time)
+[debug] [2020-11-22T19:42:07.973Z] ----------------------------------------------------------------------
+[debug] [2020-11-22T19:42:07.974Z] 
+[debug] [2020-11-22T19:42:07.993Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-22T19:42:07.994Z] > authorizing via signed-in user
+[debug] [2020-11-22T19:42:07.995Z] [iam] checking project petmet-268a4 for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2020-11-22T19:42:08.002Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-11-22T19:42:08.002Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-11-22T19:42:08.301Z] <<< HTTP RESPONSE 200 {"date":"Sun, 22 Nov 2020 19:42:08 GMT","expires":"Mon, 01 Jan 1990 00:00:00 GMT","pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-22T19:42:08.314Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/petmet-268a4:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2020-11-22T19:42:09.913Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:09 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1382","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-22T19:42:09.916Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/petmet-268a4/serviceAccounts/petmet-268a4@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2020-11-22T19:42:11.667Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:11 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'petmet-268a4'...
+[info] 
+[info] i  deploying functions 
+[debug] [2020-11-22T19:42:15.564Z] > [functions] package.json contents: {
+  "name": "functions",
+  "description": "Cloud Functions for Firebase",
+  "scripts": {
+    "serve": "firebase emulators:start --only functions",
+    "shell": "firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "12"
+  },
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "firebase-admin": "^8.10.0",
+    "firebase-functions": "^3.6.1",
+    "razorpay": "^2.0.6"
+  },
+  "devDependencies": {
+    "firebase-functions-test": "^0.2.0"
+  },
+  "private": true
+}
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[debug] [2020-11-22T19:42:17.977Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/petmet-268a4/services/cloudfunctions.googleapis.com  
+ 
+[debug] [2020-11-22T19:42:17.979Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/petmet-268a4/services/runtimeconfig.googleapis.com  
+ 
+[debug] [2020-11-22T19:42:17.981Z] >>> HTTP REQUEST GET https://serviceusage.googleapis.com/v1/projects/petmet-268a4/services/cloudbuild.googleapis.com  
+ 
+[debug] [2020-11-22T19:42:19.890Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-22T19:42:19.908Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  functions: required API cloudbuild.googleapis.com is enabled 
+[debug] [2020-11-22T19:42:20.000Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:19 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] ✔  functions: required API cloudfunctions.googleapis.com is enabled 
+[debug] [2020-11-22T19:42:20.002Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/petmet-268a4/adminSdkConfig  
+ 
+[debug] [2020-11-22T19:42:20.771Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:20 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: preparing functions directory for uploading... 
+[debug] [2020-11-22T19:42:20.775Z] >>> HTTP REQUEST GET https://runtimeconfig.googleapis.com/v1beta1/projects/petmet-268a4/configs  
+ 
+[debug] [2020-11-22T19:42:21.310Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:21 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] i  functions: packaged functions (38.04 KB) for uploading 
+[debug] [2020-11-22T19:42:23.057Z] >>> HTTP REQUEST GET https://cloudfunctions.googleapis.com/v1/projects/petmet-268a4/locations/-/functions  
+ 
+[debug] [2020-11-22T19:42:23.931Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:23 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-22T19:42:23.938Z] >>> HTTP REQUEST POST https://cloudfunctions.googleapis.com/v1/projects/petmet-268a4/locations/us-central1/functions:generateUploadUrl  
+ 
+[debug] [2020-11-22T19:42:25.000Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Nov 2020 19:42:24 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2020-11-22T19:42:25.002Z] >>> HTTP REQUEST PUT https://storage.googleapis.com/gcf-upload-us-central1-1d3bfc87-6631-412b-9189-5557bdabbbf9/dc465982-6a92-40f1-82b7-d024f3184166.zip?GoogleAccessId=service-1082201721355@gcf-admin-robot.iam.gserviceaccount.com&Expires=1606075944&Signature=3XTppsyTMF%2BbxvLVZ%2BfQKc0vUlw5dRewD8b9Lg%2Fm3qcd9wvdLWzKGbH2VpmepR5guQOUBhxkUClH14IMWyXzgSQiRVNpnK0BmkkoGlkEmSoMv3Lrl42CIJfLgzLsLtqhbdEhHHmmuA6mJZqltVt2tZaCz3Q%2FHCqyHX%2FqJC7JuB%2BgOiEKgXjjdmf%2FJi9WxqwxavEi%2BQA3wbdbxbItZfqgE1eBbXBaG52Sp9NF%2B2F%2FLAgwuKPfaFhPfc2INHdS87cAUyHmCvKvbI9AVSCcXBK6C6%2BmxMmary1lWGhfKan4gqmlP%2BWFJvrtHV%2B%2FQYMzYSqJKsP6fDPbnyoEVbU36lw9fA%3D%3D  
+ <request body omitted>
+[debug] [2020-11-22T19:42:25.630Z] <<< HTTP RESPONSE 200 {"x-guploader-uploadid":"ABg5-Uzz3Iues09fX4t8S1D3-sp3mUuSpdNPKNt3XShC9rMpHms5OFkBmxryVlHO7X_BU7LIh4jpmLYuRzAboZxZ2kI","etag":"\"3dc66bac8d724e72a24b1963e5204f68\"","x-goog-generation":"1606074145425094","x-goog-metageneration":"1","x-goog-hash":"crc32c=i47Uyg==, md5=PcZrrI1yTnKiSxlj5SBPaA==","x-goog-stored-content-length":"38953","x-goog-stored-content-encoding":"identity","vary":"Origin","content-length":"0","date":"Sun, 22 Nov 2020 19:42:25 GMT","server":"UploadServer","content-type":"text/html; charset=UTF-8","alt-svc":"h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\""}
+[info] ✔  functions: functions folder uploaded successfully 
+[info] i  functions: updating Node.js 12 function fixAppointment(us-central1)... 
+[debug] [2020-11-22T19:42:25.638Z] Trigger is:  {"eventTrigger":{"resource":"projects/petmet-268a4/databases/(default)/documents/user/{uid}/appointments/{appId}","eventType":"providers/cloud.firestore/eventTypes/document.create","service":"firestore.googleapis.com"}}
+[info] i  functions: updating Node.js 12 function orderConfirmationMail(us-central1)... 
+[debug] [2020-11-22T19:42:25.640Z] Trigger is:  {"eventTrigger":{"resource":"projects/petmet-268a4/databases/(default)/documents/All_Orders/{orderId}","eventType":"providers/cloud.firestore/eventTypes/document.update","service":"firestore.googleapis.com"}}
+[info] i  functions: updating Node.js 12 function clientOrderToAllOrders(us-central1)... 
+[debug] [2020-11-22T19:42:25.641Z] Trigger is:  {"eventTrigger":{"resource":"projects/petmet-268a4/databases/(default)/documents/user/{uid}/orders/{orderId}","eventType":"providers/cloud.firestore/eventTypes/document.update","service":"firestore.googleapis.com"}}
+[info] i  functions: updating Node.js 12 function appointmentStatusChangeByVet(us-central1)... 
+[debug] [2020-11-22T19:42:25.642Z] Trigger is:  {"eventTrigger":{"resource":"projects/petmet-268a4/databases/(default)/documents/vet/{vid}/appointments/{appId}","eventType":"providers/cloud.firestore/eventTypes/document.update","service":"firestore.googleapis.com"}}
+[info] i  functions: updating Node.js 12 function paymentFunction(us-central1)... 
+[debug] [2020-11-22T19:42:25.643Z] Trigger is:  {"httpsTrigger":{}}
+[info] 
+The following functions are found in your project but do not exist in your local source code:
+	sendAppointmentConfirmationNotification(us-central1)
+
+If you are renaming a function or changing its region, it is recommended that you create the new function first before deleting the old one to prevent event loss. For more info, visit https://firebase.google.com/docs/functions/manage-functions#modify
+
