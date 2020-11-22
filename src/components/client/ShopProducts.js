@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import SquareCard from "../dashboardclient/SquareCard";
 import "./shopproducts.css";
 import { useParams } from "react-router-dom";
+import { Dropdown } from "react-bootstrap";
+import ContinuousSlider from "./Slider";
 
 const ShopProducts = () => {
   const [products, setProducts] = useState(null);
@@ -34,6 +36,26 @@ const ShopProducts = () => {
       setDropdownvar(false);
     }
   };
+
+  const [dropdownvar2, setDropdownvar2] = useState(false);
+  const dropdowndata2 = () => {
+    if (dropdownvar2 == false) {
+      setDropdownvar2(true);
+    } else {
+      setDropdownvar2(false);
+    }
+  };
+
+  const Dropdownfun2 = () => {
+    return (
+      <ul className="ulofsort">
+        <li style={{ marginBottom: "4px" }}>Recommended</li>
+        <li style={{ marginBottom: "4px" }}>Price(low to high)</li>
+        <li style={{ marginBottom: "4px" }}>Price(high to low)</li>
+      </ul>
+    );
+  };
+
   const Dropdownfun = () => {
     return (
       <ul>
@@ -82,63 +104,71 @@ const ShopProducts = () => {
   };
   return (
     <div>
+      <p className="pathontop">Home > Dog Essentials</p>
       <span>
         <div className="products_bothflex">
           <div className="products_leftflex">
             <p>PRICE</p>
+            <ContinuousSlider />
             <hr />
-
             <button onClick={dropdowndata}>
               BRANDS <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               PRODUCT TYPE <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               BREED <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               LIFE STAGE <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
             <button onClick={dropdowndata}>
               LIFE STAGE <ArrowDropDownIcon />
             </button>
-
             {dropdownvar && <Dropdownfun />}
-
             <hr />
           </div>
-          {products
-            ? products.map((pro) => (
-                <div className="products_rightflex">
-                  <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+          <div className="products_rightflex">
+            <div className="start_rightflex">
+              <p className="dogfoodtag">Dog Food</p>
+              <div className="start_rightflex_subcolumn">
+                {" "}
+                <button className="ddropdown" onClick={dropdowndata2}>
+                  SORT BY: Recommended <ArrowDropDownIcon />
+                </button>
+                {dropdownvar2 && <Dropdownfun2 />}
+              </div>
+            </div>
+            <div>
+              <p className="showingresults">Showing 1-12 of 130 results</p>
+            </div>
+            <div className="products_rightflex_cardflex">
+              {products
+                ? products.map((pro) => (
+                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                      <div>
+                        <SquareCard style={{ margin: "31px" }} />
+                      </div>
+                    </Link>
+                    /* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
                   </Link>
-                  {/* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                    <SquareCard style={{ margin: "31px" }} />
-                  </Link>
                   <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
-                  </Link> */}
-                </div>
-              ))
-            : null}
+                  </Link> */
+                  ))
+                : null}
+            </div>
+          </div>
         </div>
       </span>
     </div> /*{" "}

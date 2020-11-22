@@ -288,9 +288,7 @@ const ShopPage = () => {
             Add to Cart
           </button>
           {/* .........................rough............ */}
-          <button onClick={addToWishlist} className="cartbutton">
-            Add to wishlist
-          </button>
+
           <p className="checkdeliver">Check if we Deliver to your Pincode</p>
           <span>
             <input type="text" placeholder="ENTER PINCODE" />

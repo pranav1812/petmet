@@ -112,6 +112,7 @@ const CartComponent = () => {
                             boxSizing: "border-box",
                             borderRadius: "2px 0px 0px 2px",
                           }}
+                          className="cart_decreasebutton"
                           onClick={decrease}
                         >
                           -
@@ -132,33 +133,42 @@ const CartComponent = () => {
                             boxSizing: "border-box",
                             borderRadius: "2px 0px 0px 2px",
                           }}
+                          className="cart_decreasebutton"
                           onClick={increase}
                         >
                           +
                         </button>
                       </span>
                     </div>
-                    <p style={{ fontWeight: "500" }} className="self2 amount">
-                      ₹23
-                    </p>
+                    <div className="embeddedflexforprices">
+                      <p style={{ fontWeight: "500" }} className="self2 amount">
+                        ₹23
+                      </p>
+                      <p className="self2 ">
+                        ₹22
+                        <span>(12% off )</span>
+                      </p>
+                    </div>
                   </div>
-                  <hr />
-                  <span>
-                    <button
-                      style={{ marginRight: "37.53px" }}
-                      className="cartremovebuttonn"
-                    >
-                      {" "}
-                      REMOVE
-                    </button>
+                  <>
+                    <hr />
+                    <span>
+                      <button
+                        style={{ marginRight: "37.53px" }}
+                        className="cartremovebuttonn"
+                      >
+                        REMOVE
+                      </button>
+                      <button className="linebtwbutton">|</button>
 
-                    <button
-                      style={{ marginLeft: "37.53px" }}
-                      className="cartremovebuttonn"
-                    >
-                      ADD TO WISHLIST
-                    </button>
-                  </span>
+                      <button
+                        style={{ marginLeft: "37.53px" }}
+                        className="cartremovebuttonn"
+                      >
+                        ADD TO WISHLIST
+                      </button>
+                    </span>
+                  </>
                 </div>
 
                 /* <p>

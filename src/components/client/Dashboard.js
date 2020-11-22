@@ -372,7 +372,7 @@ export default function Dashboard() {
                   className="dropdown-menu dropdown-menu-right"
                   style={{ minWidth: "250px", height: "auto" }}
                 >
-                  <div className="row ml-2">
+                  <div className="row mt-2 ml-4">
                   <MdAccountCircle
                     style={{
                       fontSize: "33px",
@@ -380,7 +380,7 @@ export default function Dashboard() {
                       backgroundColor: "#ffffff",
                     }}
                   />
-                    <div>
+                    <div className="ml-4 mb-3">
                       <h6>{usr?name:"Guest User"}</h6>
                       <p
                         style={{
@@ -393,7 +393,7 @@ export default function Dashboard() {
                       </p>
                     </div>
                   </div>
-                  <div className="row ml-2">
+                  <div className="row ml-4">
                     <HiSwitchHorizontal
                       style={{ fontSize: "37px" }}
                       className="mr-4"
@@ -403,11 +403,11 @@ export default function Dashboard() {
                   </div>
                   <hr style={{ margin: "12px 10px" }} />
                   { usr? 
-                  (<button onClick={logout}>
-                    <h6 className="m-2">Log Out</h6>
+                  (<button onClick={logout} className="logoutbtn">
+                    Log Out
                   </button>) : (
-                  <button onClick={toLoginPage}>
-                    <h6 className="m-2">Log In</h6>
+                  <button onClick={toLoginPage} className="logoutbtn">
+                    Log In
                   </button>)
                   }
                 </div>
