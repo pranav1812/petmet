@@ -56,55 +56,61 @@ const ShopProducts = () => {
     );
   };
 
-  const Dropdownfun = () => {
-    return (
-      <ul>
-        <li>
-          <input type="checkbox" />
-          Acana
-        </li>
-        <br />
-        <li>
-          <input type="checkbox" />
-          Arden Grange
-        </li>
-        <br />
-        <li>
-          <input type="checkbox" />
-          Acana
-        </li>
-        <br />
-        <li>
-          <input type="checkbox" />
-          Arden Grange
-        </li>
-        <br />
-        <li>
-          <input type="checkbox" />
-          Acanaa
-        </li>
-        <br />
-        <li>
-          <input type="checkbox" />
-          Arden Gargee
-        </li>
-        <br />
-        <li>
-          <input type="checkbox" />
-          Acana
-        </li>
-        <br />
-        <li>
-          <input type="checkbox" />
-          Ardenr
-        </li>
-        <br />
-      </ul>
-    );
+  const Dropdownfun = (props) => {
+    let numin = 1;
+    if ((numin = { num }))
+      return (
+        <ul>
+          <li>
+            <input type="checkbox" />
+            Acana
+          </li>
+          <br />
+          <li>
+            <input type="checkbox" />
+            Arden Grange
+          </li>
+          <br />
+          <li>
+            <input type="checkbox" />
+            Acana
+          </li>
+          <br />
+          <li>
+            <input type="checkbox" />
+            Arden Grange
+          </li>
+          <br />
+          <li>
+            <input type="checkbox" />
+            Acanaa
+          </li>
+          <br />
+          <li>
+            <input type="checkbox" />
+            Arden Gargee
+          </li>
+          <br />
+          <li>
+            <input type="checkbox" />
+            Acana
+          </li>
+          <br />
+          <li>
+            <input type="checkbox" />
+            Ardenr
+          </li>
+          <br />
+        </ul>
+      );
   };
+
+  let num = 1;
+
   return (
     <div>
-      <p className="pathontop">Home > Dog Essentials</p>
+      <p className="pathontop">Home &gt; Dog Essentials</p>
+      {/* &gt gives > */}
       <span>
         <div className="products_bothflex">
           <div className="products_leftflex">
@@ -114,27 +120,30 @@ const ShopProducts = () => {
             <button onClick={dropdowndata}>
               BRANDS <ArrowDropDownIcon />
             </button>
-            {dropdownvar && <Dropdownfun />}
+
+            {dropdownvar && <Dropdownfun num="1" />}
+
             <hr />
             <button onClick={dropdowndata}>
               PRODUCT TYPE <ArrowDropDownIcon />
             </button>
-            {dropdownvar && <Dropdownfun />}
+            {/* {dropdownvar && <Dropdownfun />} */}
+
             <hr />
             <button onClick={dropdowndata}>
               BREED <ArrowDropDownIcon />
             </button>
-            {dropdownvar && <Dropdownfun />}
+            {/* {dropdownvar && <Dropdownfun />} */}
             <hr />
             <button onClick={dropdowndata}>
               LIFE STAGE <ArrowDropDownIcon />
             </button>
-            {dropdownvar && <Dropdownfun />}
+            {/* {dropdownvar && <Dropdownfun />} */}
             <hr />
             <button onClick={dropdowndata}>
               LIFE STAGE <ArrowDropDownIcon />
             </button>
-            {dropdownvar && <Dropdownfun />}
+            {/* {dropdownvar && <Dropdownfun />} */}
             <hr />
           </div>
           <div className="products_rightflex">

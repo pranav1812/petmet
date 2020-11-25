@@ -262,7 +262,7 @@ export default function Login() {
   return (
     <Grid container component="main" className={classes.root}>
       <CssBaseline />
-      <Grid item xs={false} sm={4} md={7}>
+      <Grid className="leftgrid" item xs={false} sm={4} md={7}>
         <img className={classes.mainlogo} src={mainlogo} />
         <br />
         <img
@@ -272,7 +272,16 @@ export default function Login() {
         />
       </Grid>
 
-      <Grid item xs={12} sm={8} md={5} component={Paper} elevation={6} square>
+      <Grid
+        className="rightgrid"
+        item
+        xs={12}
+        sm={8}
+        md={5}
+        component={Paper}
+        elevation={6}
+        square
+      >
         <div className={classes.paper}>
           {/* <Avatar className={classes.avatar}>
             <LockOutlinedIcon />

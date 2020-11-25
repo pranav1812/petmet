@@ -19,6 +19,7 @@ import Profile from "./components/checkout/Profile";
 import VerifyEmail from "./components/verifyEmail";
 import NewProductDetails from "./components/client/NewProductDetails";
 import ShopPage from "./components/shop/ShopPage";
+import Cart2 from "./components/client/Cart2";
 
 /* --------- trial ------*/
 function App() {
@@ -26,9 +27,10 @@ function App() {
     console.log("app.js");
   }, []);
   return (
-    <div className="kuchh_aur" style={{marginTop:"-100px"}}>
+    <div className="kuchh_aur" style={{ marginTop: "-100px" }}>
       <Switch>
         <Route exact path="/" component={Dashboard} />
+        <Route exact path="/cartsecond" component={Cart2} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/phone" component={Phone} />
         <Route exact path="/vVerifyEmail" component={VVerifyEmail} />

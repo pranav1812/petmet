@@ -61,6 +61,7 @@ body {
 
   background-color: #ffffff;
   border: none;
+  outline: none !important;
 }
 .start_rightflex {
   display: flex;
@@ -118,4 +119,11 @@ body {
   line-height: 16px;
 
   color: #000000;
+}
+
+button:focus {
+  outline: none !important;
+}
+button:active {
+  outline: none !important;
 }
