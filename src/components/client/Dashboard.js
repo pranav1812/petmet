@@ -59,6 +59,7 @@ import { HiSwitchHorizontal } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
 import VetConfirmation from './VetConfirmation';
 import AllAppointments from './AllAppointments';
+import Cart2 from "./Cart2";
 
 const drawerWidth = 240;
 
@@ -447,6 +448,8 @@ export default function Dashboard() {
           <VetProfile />
         ) : componentt == "ShopPage" ? (
           <ShopPage />
+        ) : componentt == "Cart2" ? (
+          <Cart2 />  
         ) : componentt == "Appointment" ? (
           <Appointment />
         ) : componentt == "editProfile" ? (

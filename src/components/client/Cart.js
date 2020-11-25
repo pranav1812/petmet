@@ -2,13 +2,27 @@ import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
 import Food from "../pictures/image 360.png";
+import Cart2 from "./Cart2";
 
 const home =
   window.location.protocol + "//" + window.location.host + "/" + "Home/";
 
 const CartComponent = () => {
   const [wish, setWish] = useState(null);
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(0);
+  const [code, setCode ] = useState(null);
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [inTotal, setInTotal] = useState(0);
+  const[promo, setPromo] = useState({
+    description: "default promo code, 5% cashback to wallet+0 discount",
+    discount: "0",
+    discountLowerLimit: "0",
+    discountUpperLimit: "0",
+    reUsable: true,
+    walletCashback: ".05",
+    walletCashbackMaxima: "150"
+  });
+
   const [uid, setUid] = useState(null);
   const proLink = (_id, category) => {
     window.location =
@@ -63,17 +77,51 @@ const CartComponent = () => {
             docs.forEach((doc) => {
               temp.push({ ...doc.data(), key: doc.id, _id: doc.data().key });
               if (doc.data().cost) {
-                net += Number(doc.data().cost);
+               net += Number(doc.data().cost)*(doc.data().units);
               }
             });
             setWish(temp);
             setTotal(net);
+            setInTotal(net);
+            discount(promo);
+            
           });
       }
     });
   }, []);
 
-  return (
+  const changeQuant= (ind, cost, i)=>{
+    if(wish[ind].units > 0){
+      var temp= wish
+      var net = total
+      temp[ind].units+=i
+      net += i*cost
+      setWish(temp)
+      setTotal(net)
+      setInTotal(net)
+    }
+  }
+
+  const loadPromo= (code)=>{
+    db.collection('promo').doc(code).get().then(doc=>{
+        if(doc.exists){
+        setPromo(doc.data())
+        discount(doc.data());
+       }
+    })	
+  }
+
+  const discount=(promo)=>{
+    var net= inTotal
+    if(net> Number(promo.discountLowerLimit)){
+      var inDis= Number(promo.discount)* net
+      net-= Math.min(inDis, Number(promo.discountUpperLimit))
+      setTotal(net)
+      setCouponDiscount(Math.min(inDis, Number(promo.discountUpperLimit)))
+    }
+  }
+
+    return (
     <div style={{ backgroundColor: "#e5e5e5" }}>
       <p
         style={{
@@ -109,15 +157,15 @@ const CartComponent = () => {
           </div> */}
           {/* .................... */}
           {wish
-            ? wish.map((wi) => (
+            ? wish.map((wi, ind) => (
                 <div className="cartproductcard">
                   <div className="embedded_cartproductcard">
-                    <img src={Food} alt="khaana" />
+                    <img src={wi.url} alt="khaana" />
                     <div className="columnembeddedcard">
-                      <p className="amount">HUFT Drizzle Buddy Dog Biscuits</p>
+                      <p className="amount">{wi.name}</p>
 
                       <p style={{ marginTop: "6.3px" }} className="self">
-                        Size: Large
+                        Size: {wi.size}
                       </p>
 
                       <span style={{ marginTop: "47px" }}>
@@ -129,7 +177,9 @@ const CartComponent = () => {
                             borderRadius: "2px 0px 0px 2px",
                           }}
                           className="cart_decreasebutton"
-                          onClick={decrease}
+                          onClick={()=>{
+                            changeQuant(ind, Number(wi.cost), -1 )
+                          }}
                         >
                           -
                         </button>
@@ -140,7 +190,7 @@ const CartComponent = () => {
                             boxSizing: "border-box",
                           }}
                         >
-                          {num}
+                          {wi.units}
                         </button>
                         <button
                           style={{
@@ -150,7 +200,9 @@ const CartComponent = () => {
                             borderRadius: "2px 0px 0px 2px",
                           }}
                           className="cart_decreasebutton"
-                          onClick={increase}
+                          onClick={()=>{
+                           changeQuant(ind, Number(wi.cost), 1 )                            
+                          }}
                         >
                           +
                         </button>
@@ -158,11 +210,10 @@ const CartComponent = () => {
                     </div>
                     <div className="embeddedflexforprices">
                       <p style={{ fontWeight: "500" }} className="self2 amount">
-                        ₹23
+                        ₹{wi.cost}
                       </p>
                       <p className="self2 ">
-                        ₹22
-                        <span>(12% off )</span>
+                      
                       </p>
                     </div>
                   </div>
@@ -233,9 +284,9 @@ const CartComponent = () => {
               </p>
             </div> */}
             <div className="label_price_flex">
-              <div className="amount applycouponstext">Apply Coupons</div>
+              <div className="amount applycouponstext"><input onChange={(e)=>{setCode(e.target.value)}}/></div>
               <div className="price_part amount">
-                <button type="button" className="applybuttonn">
+                <button type="button" className="applybuttonn" onClick={()=>{loadPromo(code)}}>
                   APPLY
                 </button>
               </div>
@@ -250,7 +301,7 @@ const CartComponent = () => {
             <hr />
             <div className="label_price_flex">
               <div className="amount">Total MRP</div>
-              <div className="price_part amount">₹435 </div>
+              <div className="price_part amount">₹{inTotal} </div>
             </div>
             <div className="label_price_flex">
               <div className="amount">Discount on MRP</div>
@@ -258,7 +309,7 @@ const CartComponent = () => {
             </div>
             <div className="label_price_flex">
               <div className="amount">Coupon Discount</div>
-              <div className="price_part amount">-₹435 </div>
+              <div className="price_part amount">-₹{couponDiscount} </div>
             </div>
             <hr style={{ color: "black" }} />
             <div className="label_price_flex">
@@ -266,7 +317,7 @@ const CartComponent = () => {
                 Total Amount
               </div>
               <div style={{ fontWeight: "500" }} className="price_part amount">
-                ₹435{" "}
+                ₹{total}
               </div>
             </div>
           </div>
