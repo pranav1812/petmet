@@ -12,7 +12,7 @@ const Orders_List = () => {
     const [orders, setOrders]= useState([])
     useEffect(()=>{
         // .where('paid', '==', 'true').. add later
-        db.collection('All_Orders').onSnapshot(docs=>{
+        db.collection('All_Orders').where('paymentVerified', '==', true).onSnapshot(docs=>{
             var temp=[]
             
             docs.forEach(doc=>{
