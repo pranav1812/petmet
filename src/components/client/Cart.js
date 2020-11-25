@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
+import axios from 'axios'
+import paymentRazorpay from './payment'
 import Food from "../pictures/image 360.png";
 import Cart2 from "./Cart2";
 
-const home =
-  window.location.protocol + "//" + window.location.host + "/" + "Home/";
+const home= window.location.protocol + "//" + window.location.host + "/" + "Home/";
 
 const CartComponent = () => {
   const [wish, setWish] = useState(null);
   const [total, setTotal] = useState(0);
-  const [code, setCode ] = useState(null);
+  const [code, setCode ] = useState("no_promo");
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [inTotal, setInTotal] = useState(0);
+  const [user, setUser]= useState(null)
+  const [useWallet, setUseWallet]= useState(false)
+
   const[promo, setPromo] = useState({
     description: "default promo code, 5% cashback to wallet+0 discount",
     discount: "0",
@@ -37,19 +41,35 @@ const CartComponent = () => {
       _id;
   };
 
-  const [num, setNum] = useState(0);
-
-  const decrease = () => {
-    if (num > 0) {
-      setNum(num - 1);
-    } else {
-      setNum(0);
+  const retrieveOrder= async()=>{
+    var endPoint= 'https://petmet.co.in/payment/order'
+    
+    var products= []
+    wish.forEach(pro=>{
+      products.push({
+        category: pro.category,
+        productId: pro.key,
+        units: pro.units
+      })
+    })
+    
+    var reqBody={
+      uid: "x9NJedXFbnOny29oq65urIxC4Kk1",
+      useWallet: useWallet,
+      promo: code,
+      mail: user.mail || user.email,
+      products: products
     }
-  };
 
-  const increase = () => {
-    setNum(num + 1);
-  };
+    try{
+      var response= await axios.post(endPoint, reqBody)
+      console.log(response)
+      paymentRazorpay(response)
+    }catch(err){
+      console.error(err)
+    }
+   
+  } 
 
   const delPro = (key) => {
     db.collection("user")
@@ -58,7 +78,7 @@ const CartComponent = () => {
       .doc(key)
       .delete()
       .then(() => {
-        window.location.reload();
+        console.log('deleted');
       });
   };
   useEffect(() => {
@@ -75,7 +95,7 @@ const CartComponent = () => {
             var temp = [];
             var net = 0;
             docs.forEach((doc) => {
-              temp.push({ ...doc.data(), key: doc.id, _id: doc.data().key });
+              temp.push({ ...doc.data()});
               if (doc.data().cost) {
                net += Number(doc.data().cost)*(doc.data().units);
               }
@@ -86,12 +106,29 @@ const CartComponent = () => {
             discount(promo);
             
           });
+
+          db.collection('user').doc(user.uid).get().then(doc=>{
+            if(doc.exists) setUser(doc.data())
+          })
       }
     });
   }, []);
 
   const changeQuant= (ind, cost, i)=>{
-    if(wish[ind].units > 0){
+    if(wish[ind].units > 1){
+      var temp= wish
+      var net = total
+      temp[ind].units+=i
+      net += i*cost
+      setWish(temp)
+      setTotal(net)
+      setInTotal(net)
+    }
+    else if(wish[ind].units == 1){
+      if(i== -1) {
+        delPro(wish[ind].key)
+        wish.splice(ind, 1)
+      }
       var temp= wish
       var net = total
       temp[ind].units+=i
@@ -141,20 +178,7 @@ const CartComponent = () => {
       </p>
       <div style={{ marginTop: "-30px" }} className="bothflexbox">
         <div className="flexbox11">
-          {/* <div className="heading">
-            <h6 style={{ fontWeight: "bold" }}>
-              MY SHOPPING BAG ( 1 ITEM)
-              <br />{" "}
-              <div style={{ color: "#FF5352" }}>
-                TOTAL:{" "}
-                {"Rs. " + total
-                  ? total * 1.3 > 299
-                    ? 0 + total * 1.3
-                    : 150 + total * 1.3
-                  : 0}{" "}
-              </div>
-            </h6>
-          </div> */}
+          
           {/* .................... */}
           {wish
             ? wish.map((wi, ind) => (
@@ -217,51 +241,10 @@ const CartComponent = () => {
                       </p>
                     </div>
                   </div>
-                  <>
-                    <hr />
-                    <span>
-                      <button
-                        style={{ marginRight: "37.53px" }}
-                        className="cartremovebuttonn"
-                      >
-                        REMOVE
-                      </button>
-                      <button className="linebtwbutton">|</button>
-
-                      <button
-                        style={{ marginLeft: "37.53px" }}
-                        className="cartremovebuttonn"
-                      >
-                        ADD TO WISHLIST
-                      </button>
-                    </span>
-                  </>
+                  
                 </div>
 
-                /* <p>
-          <img           
-            height= "200px"
-            width= "150px"
-            style={{marginRight: "1em"}}
-            className="cartproductimage"
-            src={wi.url || product1}
-            alt="productpicture"
-          
-          />
-          <div style={{ marginLeft: "140px", color: "black" }}>
-            <h4 style={{ fontWeight: "500" }}>{wi.name} </h4>
-            <p>{wi.description} </p>
-            <p>{"Rs. " + wi.cost} </p>
-          </div>
-        </p>
-        
-       <br />
-        <button type="button" class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
-          Remove
-        </button>
-        <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
-          View Product
-        </button> */
+                
 
                 // ......................................productcardends....................
               ))
@@ -274,15 +257,7 @@ const CartComponent = () => {
             <p className="headingofflex2">COUPONS</p>
             <hr />
             <br />
-            {/* <div>
-              <p>
-                <div className="applycoupontext">Apply coupons</div>
-
-                <button type="button" class="applybuttonn">
-                  APPLY
-                </button>
-              </p>
-            </div> */}
+            
             <div className="label_price_flex">
               <div className="amount applycouponstext"><input onChange={(e)=>{setCode(e.target.value)}}/></div>
               <div className="price_part amount">
@@ -321,45 +296,9 @@ const CartComponent = () => {
               </div>
             </div>
           </div>
-          {/* .......................................................................... */}
-          {/* <div className="pricedetails">
-            <hr />
-            <ul>
-              <li>
-                <p>
-                  <span className="pricecategory">Total MRP</span>{" "}
-                  {"Rs." + total ? total : 0}{" "}
-                </p>
-              </li> */}
+          
 
-          {/* <li>
-                <p> GST= {"Rs." + total ? total * 0.3 : 0} </p>
-              </li>
-              <li>
-                <p>
-                  {" "}
-                  Delivery Charge{" "}
-                  {"Rs" + total ? (total * 1.3 > 299 ? 0 : 150) : 0}{" "}
-                </p>
-              </li>
-              <hr /> */}
-          {/* <hr />
-              <li>
-                <p>
-                  <span className="pricecategorytotal">Total Amount</span>
-                  <span>
-                    {"₹" + total
-                      ? total * 1.3 > 299
-                        ? 0 + total * 1.3
-                        : 150 + total * 1.3
-                      : 0}
-                  </span>
-                </p>
-              </li>
-            </ul>
-          </div> */}
-
-          <button type="button" class="placeorderbutton">
+          <button type="button" class="placeorderbutton" onClick={retrieveOrder}>
             PLACE ORDER
           </button>
         </div>

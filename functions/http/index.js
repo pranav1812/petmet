@@ -80,6 +80,7 @@ appRouter.post('/verifyPayment', async(req, res)=>{
     console.log(digest, req.headers['x-razorpay-signature'])
     if (digest== req.headers['x-razorpay-signature']){
         // payment successful...
+        console.log(req.body.payload.payment.entity.order_id)
         var ref= db.collection('All_Orders').doc(req.body.payload.payment.entity.order_id)
         var promise1= ref.update({
             paymentVerified: true
