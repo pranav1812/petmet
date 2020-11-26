@@ -6,7 +6,7 @@ import paymentRazorpay from './payment'
 import Food from "../pictures/image 360.png";
 import Cart2 from "./Cart2";
 
-const home= window.location.protocol + "//" + window.location.host + "/" + "Home/";
+const login= window.location.protocol + "//" + window.location.host + "/" + "login/";
 
 const CartComponent = () => {
   const [wish, setWish] = useState(null);
@@ -313,8 +313,8 @@ export default function Cart() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        alert("login required");
-        window.location = home;
+        
+        window.location = login;
       } else {
         setUsr(user);
       }

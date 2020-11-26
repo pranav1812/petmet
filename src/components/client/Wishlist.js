@@ -16,8 +16,8 @@ import Rectangle117 from "../pictures/Rectangle 117.png";
 import Rectangle118 from "../pictures/Rectangle 118.png";
 import Rectangle119 from "../pictures/Rectangle 119.png";
 import Rectangle120 from "../pictures/Rectangle 120.png";
-const home =
-  window.location.protocol + "//" + window.location.host + "/" + "Home/";
+const login =
+  window.location.protocol + "//" + window.location.host + "/" + "login/";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -237,8 +237,8 @@ export default function Wishlist() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        alert("login required");
-        window.location = home;
+        
+        window.location = login;
       } else {
         setUsr(user);
       }
