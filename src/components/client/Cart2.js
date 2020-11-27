@@ -11,6 +11,20 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 const Cart2 = () => {
   return (
     <div>
+      <p
+        style={{
+          textAlign: "center",
+          marginTop: " 90px",
+        }}
+      >
+        <span style={{ color: "#36A9CC" }}>
+          CART ---------------------------
+        </span>
+        <span style={{ color: "#36A9CC" }}>
+          ADDRESS ---------------------------
+        </span>
+        <span style={{ color: "#FF5352" }}>PAYMENT</span>
+      </p>
       <h2 style={{ marginTop: "26.67px" }}>SELECT DELIVERY ADDRESS</h2>
       <div className="cart2_outerflex">
         <div className="cart2_leftflex">

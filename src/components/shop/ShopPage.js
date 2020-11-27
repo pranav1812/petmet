@@ -314,8 +314,6 @@ const ShopPage = () => {
             <br />
             <li> Always check the ingredient label for possible allerg</li>{" "}
             <br />
-            <li></li> <br />
-            <li></li> <br />
           </ul>
         </div>
         <div className="productDetails_description_insideflex2">

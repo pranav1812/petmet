@@ -77,6 +77,8 @@
   font-size: 16px;
   line-height: 15px;
   color: #a4a4a4 !important;
+  margin-left: -10px;
+  padding-left: 20px !important;
 }
 
 .newnavitems:hover,.newnavitems:focus,.newnavitems:active {
@@ -139,6 +141,10 @@
     width: 100%;
     background-color: #ffffff;
   }
+  .newnavitems {
+    width: 100%;
+    background-color: #ffffff;
+  }
 }
 
 @media only screen and (min-width: 1410px)
@@ -147,6 +153,7 @@
     width: 450px;
   }
 } 
+
 
 .logoutbtn {
   color: #ffffff;

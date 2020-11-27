@@ -29,11 +29,11 @@ const AllAppointments = () => {
       })
     }, [])
     return ( 
-        <div style={{marginTop: "-200px"}}>
+        <div style={{marginTop: "100px"}}>
             { appoint ? appoint.map( app=>(
                 <div style={{margin:"0px"}}>
-                 <div className="outer mb-4">
-                 <h3 className="clinic_name mb-4">{app.clinicName}</h3>
+                 <div className="outer ">
+                 <h3 className="clinic_name mb-2">{app.clinicName}</h3>
                  <div className="container">
                      <h6 className="clinic_name mb-4">{app.doctorName}</h6>
                      <div className="row">
@@ -44,18 +44,17 @@ const AllAppointments = () => {
                              <div className="col-12 sections mb-4">
                                  {app.date}
                              </div>
-                             <div className="col-12 sections">
+                             <div className="col-12 sections mb-4">
                                  {app.time}
                              </div>
                          </div>
-                         <div className="col-12 col-md-8 sections">
-                             {/*<h6>Nishant Saini</h6>*/}
+                         <div className="col-12 col-md-8 sections mb-4">
                              <p className="card_text">{app.address}</p>
-                             {/*<p className="card_text">Mobile: 98998 98998</p>*/}
                              <div className="row justify-content-end">
-                                 <span className="badges_new confirm_pend">Confirmation Pending</span>
-                                 <span className="badges_new conf">Booking Confirmed</span>
-                                 <span className="badges_new track">Track Address</span>
+                               {app.status=="confirmed"||app.status=="accepted"?
+                               <span className="badges_new conf">Booking Confirmed</span>:
+                               app.status=="declined"?<span className="badges_new track">Declined</span>:
+                               <span className="badges_new confirm_pend">Confirmation Pending</span>} 
                              </div>
                          </div>
                      </div>

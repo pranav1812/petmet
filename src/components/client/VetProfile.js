@@ -183,9 +183,9 @@ const submit=()=>{
               <div style={{textAlign:"left"}}>
                 <input className="ml-3 mb-2" style={{float:"left"}} type="radio" checked></input>
                 <div style={{textAlign:"left",marginLeft:"50px"}}>
-          <h6>{usr.name}</h6>
+                  <h6>{usr.name}</h6>
                   <p>{usr.address}</p>
-          <p>{usr.zip}</p>
+                  <p>{usr.zip}</p>
                   <p>{usr.phone}</p>
                   {/*<button className="mr-3 addressbtn">REMOVE</button>*/}
                 </div>
