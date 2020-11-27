@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Form,Button} from 'react-bootstrap';
 import './Admin.css';
 import {db, storage} from '../../firebase'
+import { arrayIncludes } from '@material-ui/pickers/_helpers/utils';
 
 class AddProduct extends Component {
     constructor(props) {
@@ -9,13 +10,16 @@ class AddProduct extends Component {
         this.state = { 
             name: null,
             description: null,
+            guaranteedAnalysis: null,
             cost: null,
+            mrp: null,
             size: null,
             quantity: null,
             category: null, 
             ingriedients: null,
             addInfo: null,
-            url: null
+            url: null,
+            urlList: null,
          }
     }
 
@@ -31,12 +35,29 @@ class AddProduct extends Component {
         .catch(err=> console.log(err))
     }
 
+    sendImgArr=(e)=>{
+      var files= e.target.files
+        console.log(files)
+        alert(typeof(files))
+        var temp= []
+        Array.prototype.forEach.call(files, (file,ind)=>{
+            var storageRef= storage.ref('itemImages/'+file.name)
+        storageRef.put(file).then(()=> {
+
+        storageRef.getDownloadURL()
+            .then(url=> temp.push(url))
+            .catch(err=> console.log(err))
+        })
+        .catch(err=> console.log(err))
+        })
+        this.setState({urlList:temp})
+    }
+
     
-    
-    submit=()=>{
+        submit=()=>{
         // console.log(this.state)
-        var {category, name, size, cost, quantity, url}= this.state
-        if(category && name && size && cost && quantity && url)
+        var {category, name, size, cost, mrp, quantity, guaranteedAnalysis, url}= this.state
+        if(category && name && size && cost && mrp && quantity && guaranteedAnalysis && url)
         {
             var ref =db.collection('items').doc(category)
             ref.get().then(doc=>{
@@ -69,8 +90,9 @@ class AddProduct extends Component {
             // alert("Done.... Refresh the page to add new product")
         }
         else{
-            alert("category, name, size, cost, quantity, imageField .... required")
+            alert("category, name, size, cost,mrp, quantity, imageField .... required")
         }
+
         
         
     }
@@ -84,6 +106,10 @@ class AddProduct extends Component {
                             <Form.Label className="col-3">Image of Product</Form.Label>
                             <input className="col-7 col-sm-8 offset-sm-0 offset-1" type="file" onChange={this.sendImg} />
                         </div>
+                        <div className="row mb-3">
+                            <Form.Label className="col-3">Extra Images</Form.Label>
+                            <input className="col-7 col-sm-8 offset-sm-0 offset-1"  type="file" multiple onChange={this.sendImgArr} />
+                        </div>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Name</Form.Label>
                             <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({name: e.target.value})}}></Form.Control>
@@ -92,9 +118,18 @@ class AddProduct extends Component {
                             <Form.Label className="col-3">Description</Form.Label>
                             <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({description: e.target.value })}} />
                         </Form.Group>
+                        
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">guaranteedAnalysis</Form.Label>
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({guaranteedAnalysis: e.target.value })}} />
+                        </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Cost</Form.Label>
                             <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({cost: e.target.value})}}></Form.Control>
+                        </Form.Group>
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">mrp</Form.Label>
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="input" onBlur={(e)=>{this.setState({mrp: e.target.value})}}></Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Category</Form.Label>
@@ -112,14 +147,7 @@ class AddProduct extends Component {
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Size</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="select" onChange={(e)=>{this.setState({size: e.target.value })}}>
-                                <option defaultChecked>--Add Size--</option>
-                                <option>S</option>
-                                <option>M</option>
-                                <option>L</option>
-                                <option>XL</option>
-                                <option>Other</option>
-                            </Form.Control>
+                            <Form.Control id="size" className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({size: e.target.value.split(' ') })}} />
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Quantity</Form.Label>

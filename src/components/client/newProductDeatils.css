@@ -1,14 +1,10 @@
 body {
   background-color: white !important;
+  overflow-x: hidden;
 }
 
 .productDetails_title {
-  width: 567.51px;
-  height: 31.1px;
   padding-top: 80.25px;
-  margin-left: auto;
-  margin-right: auto;
-  justify-content: center;
 }
 .productDetails_title > p {
   font-family: Roboto;
@@ -27,7 +23,7 @@ body {
   margin-bottom: 51.4px;
   max-width: 1500px;
   justify-content: center;
-  margin-top: 185.88px;
+  margin-top: 145.88px;
   /* height: 486.98px; */
 }
 
@@ -69,7 +65,7 @@ body {
 
 .productDetails_insideflex3 {
   height: 466.3px;
-  width: 434.55px;
+  max-width: 434.55px;
   margin-right: 53.65px;
 }
 .productDetails_insideflex3 > span > input {
@@ -91,15 +87,15 @@ body {
   color: #000000;
 }
 .description {
-  width: 434.55px;
-  height: 124.45px;
+  max-width: 434.55px;
+  /* height: 124.45px; */
   margin-bottom: 30.03px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
   font-size: 19px;
   line-height: 22px;
-
+  padding: 5px;
   color: #000000;
 }
 .checkbutton {
@@ -127,8 +123,8 @@ body {
 }
 .productDetails_description_insideflex1 {
   text-align: left;
-  width: 835.99px;
-  height: 372.88px;
+  max-width: 835.99px;
+  /* height: 372.88px; */
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -138,9 +134,6 @@ body {
   color: #000000;
 }
 .productdescriptiontitle {
-  width: 265px;
-  height: 28px;
-
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -152,8 +145,6 @@ body {
   color: #000000;
 }
 .productDetails_description_insideflex1 > ul {
-  width: 835.99px;
-  height: 372.88px;
   font-family: Roboto;
   font-style: normal;
   font-weight: normal;
@@ -172,4 +163,39 @@ body {
 .productDetails_description_insideflex2 > img {
   width: 414.33px;
   height: 414.33px;
+}
+
+@media only screen and (max-width: 1255px) {
+  .productDetails_insideflex1 {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 883px) {
+  .productDetails_insideflex3 {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 5px;
+  }
+  .productDetails_flex {
+    margin-top: 15.88px;
+  }
+  .description,
+  ul {
+    font-size: 18px;
+  }
+}
+@media only screen and (max-width: 409px) {
+  .productDetails_insideflex3 {
+    width: 309px;
+  }
+  .cartbutton {
+    width: 309px;
+  }
+  .productDetails_insideflex2 {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

@@ -14,11 +14,12 @@ appRouter.post('/order', async(req, res)=>{
     var userPromise= db.collection('user').doc(req.body.uid).get()
     var totalPromise= background.calculateTotal({products: req.body.products})
     var promoPromise= db.collection('promo').doc(req.body.promo).get()
-    var resolve= Promise.all([userPromise, totalPromise, promoPromise])
+    var resolve= await Promise.all([userPromise, totalPromise, promoPromise])
 
     var [user, total, promoInfo]= resolve
     var usedCode= null
-    if(promoInfo.exists){
+    // can not reuse non-reusable promo-codes
+    if(promoInfo.exists && !user.data().usedPromo.includes(promoInfo.id)){
      
         if(total > Number(promoInfo.data().discountLowerLimit)){
             var primaryDiscount= total*Number(promoInfo.data().discount)
@@ -51,6 +52,8 @@ appRouter.post('/order', async(req, res)=>{
           if(err){
               res.json(options)
               console.log("<-------------yahan error hai------->")
+              console.log(err)
+              console.log("<----ERROR---->")
               return 
           }
         // create an order in user's order subcollection with order Id as document id and also save the order id 
@@ -77,6 +80,7 @@ appRouter.post('/verifyPayment', async(req, res)=>{
     console.log(digest, req.headers['x-razorpay-signature'])
     if (digest== req.headers['x-razorpay-signature']){
         // payment successful...
+        console.log(req.body.payload.payment.entity.order_id)
         var ref= db.collection('All_Orders').doc(req.body.payload.payment.entity.order_id)
         var promise1= ref.update({
             paymentVerified: true

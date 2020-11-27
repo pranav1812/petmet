@@ -91,12 +91,15 @@
   height: 195.13px;
   width: 146.59px;
   margin-top: 34.56px;
+  margin-left: 21px;
+  margin-bottom: 27px;
 }
 .wishpage_columnflex {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
   max-width: 397.35px;
+  margin-left: 63px;
 }
 .wishpage_heading {
   margin-bottom: 9.8px;
@@ -144,8 +147,9 @@
   font-weight: 500;
   font-size: 23px;
   line-height: 33px;
-
+  margin-left: 21px;
   color: #ff5352;
+  padding-bottom: 21.83px;
 }
 .previouspricee {
   font-family: Roboto;
@@ -162,4 +166,55 @@
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+}
+@media only screen and (max-width: 435px) {
+  .buttonadd {
+    width: 130px;
+    height: 20.18px;
+  }
+  .buttonbuy {
+    width: 130px;
+    height: 20.18px;
+  }
+  .wishpage_rowflex {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .wishpage_rowflex > div > img {
+    height: 165.13px;
+    width: 116.59px;
+    margin-top: 24.56px;
+    margin-left: 11px;
+    margin-bottom: 17px;
+  }
+  .wishpage_heading {
+    margin-bottom: 3.8px;
+
+    font-size: 16px;
+    line-height: 16px;
+    text-align: left;
+    margin-top: 24.56px;
+
+    color: #2b3b47;
+  }
+  .wishpage_text {
+    margin-bottom: 10.23px;
+
+    font-size: 12px;
+    line-height: 11px;
+
+    color: #000000;
+  }
+  .wishpage_columnflex {
+    margin-left: 13px;
+  }
+
+  .dog_price_columnflex {
+    justify-content: left;
+    margin: 10px;
+  }
+  .cutpricee {
+    padding-bottom: 0%;
+  }
 }

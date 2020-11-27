@@ -1,14 +1,33 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
+import axios from "axios";
+import paymentRazorpay from "./payment";
 import Food from "../pictures/image 360.png";
+import Cart2 from "./Cart2";
 
-const home =
-  window.location.protocol + "//" + window.location.host + "/" + "Home/";
+const login =
+  window.location.protocol + "//" + window.location.host + "/" + "login/";
 
 const CartComponent = () => {
   const [wish, setWish] = useState(null);
-  const [total, setTotal] = useState(null);
+  const [total, setTotal] = useState(0);
+  const [code, setCode] = useState("no_promo");
+  const [couponDiscount, setCouponDiscount] = useState(0);
+  const [inTotal, setInTotal] = useState(0);
+  const [user, setUser] = useState(null);
+  const [useWallet, setUseWallet] = useState(false);
+
+  const [promo, setPromo] = useState({
+    description: "default promo code, 5% cashback to wallet+0 discount",
+    discount: "0",
+    discountLowerLimit: "0",
+    discountUpperLimit: "0",
+    reUsable: true,
+    walletCashback: ".05",
+    walletCashbackMaxima: "150",
+  });
+
   const [uid, setUid] = useState(null);
   const proLink = (_id, category) => {
     window.location =
@@ -23,18 +42,33 @@ const CartComponent = () => {
       _id;
   };
 
-  const [num, setNum] = useState(0);
+  const retrieveOrder = async () => {
+    var endPoint = "https://petmet.co.in/payment/order";
 
-  const decrease = () => {
-    if (num > 0) {
-      setNum(num - 1);
-    } else {
-      setNum(0);
+    var products = [];
+    wish.forEach((pro) => {
+      products.push({
+        category: pro.category,
+        productId: pro.key,
+        units: pro.units,
+      });
+    });
+
+    var reqBody = {
+      uid: "x9NJedXFbnOny29oq65urIxC4Kk1",
+      useWallet: useWallet,
+      promo: code,
+      mail: user.mail || user.email,
+      products: products,
+    };
+
+    try {
+      var response = await axios.post(endPoint, reqBody);
+      console.log(response);
+      paymentRazorpay(response);
+    } catch (err) {
+      console.error(err);
     }
-  };
-
-  const increase = () => {
-    setNum(num + 1);
   };
 
   const delPro = (key) => {
@@ -44,7 +78,7 @@ const CartComponent = () => {
       .doc(key)
       .delete()
       .then(() => {
-        window.location.reload();
+        console.log("deleted");
       });
   };
   useEffect(() => {
@@ -61,47 +95,102 @@ const CartComponent = () => {
             var temp = [];
             var net = 0;
             docs.forEach((doc) => {
-              temp.push({ ...doc.data(), key: doc.id, _id: doc.data().key });
+              temp.push({ ...doc.data() });
               if (doc.data().cost) {
-                net += Number(doc.data().cost);
+                net += Number(doc.data().cost) * doc.data().units;
               }
             });
             setWish(temp);
             setTotal(net);
+            setInTotal(net);
+            discount(promo);
+          });
+
+        db.collection("user")
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            if (doc.exists) setUser(doc.data());
           });
       }
     });
   }, []);
 
+  const changeQuant = (ind, cost, i) => {
+    if (wish[ind].units > 1) {
+      var temp = wish;
+      var net = total;
+      temp[ind].units += i;
+      net += i * cost;
+      setWish(temp);
+      setTotal(net);
+      setInTotal(net);
+    } else if (wish[ind].units == 1) {
+      if (i == -1) {
+        delPro(wish[ind].key);
+        wish.splice(ind, 1);
+      }
+      var temp = wish;
+      var net = total;
+      temp[ind].units += i;
+      net += i * cost;
+      setWish(temp);
+      setTotal(net);
+      setInTotal(net);
+    }
+  };
+
+  const loadPromo = (code) => {
+    db.collection("promo")
+      .doc(code)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setPromo(doc.data());
+          discount(doc.data());
+        }
+      });
+  };
+
+  const discount = (promo) => {
+    var net = inTotal;
+    if (net > Number(promo.discountLowerLimit)) {
+      var inDis = Number(promo.discount) * net;
+      net -= Math.min(inDis, Number(promo.discountUpperLimit));
+      setTotal(net);
+      setCouponDiscount(Math.min(inDis, Number(promo.discountUpperLimit)));
+    }
+  };
+
   return (
-    <div style={{ backgroundColor: "#e5e5e5",marginTop:"-50px" }}>
-      <div style={{ marginTop: "-50px" }} className="bothflexbox">
+    <div style={{ backgroundColor: "#e5e5e5" }}>
+      <p
+        style={{
+          textAlign: "center",
+          marginTop: " 90px",
+        }}
+      >
+        <span style={{ color: "#36A9CC" }}>
+          CART ---------------------------
+        </span>
+        <span style={{ color: "#FF5352" }}>
+          ADDRESS ---------------------------
+        </span>
+        <span style={{ color: "#FF5352" }}>PAYMENT</span>
+      </p>
+      <div style={{ marginTop: "-30px" }} className="bothflexbox">
         <div className="flexbox11">
-          {/* <div className="heading">
-            <h6 style={{ fontWeight: "bold" }}>
-              MY SHOPPING BAG ( 1 ITEM)
-              <br />{" "}
-              <div style={{ color: "#FF5352" }}>
-                TOTAL:{" "}
-                {"Rs. " + total
-                  ? total * 1.3 > 299
-                    ? 0 + total * 1.3
-                    : 150 + total * 1.3
-                  : 0}{" "}
-              </div>
-            </h6>
-          </div> */}
           {/* .................... */}
           {wish
-            ? wish.map((wi) => (
+            ? wish.map((wi, ind) => (
                 <div className="cartproductcard">
                   <div className="embedded_cartproductcard">
-                    <img src={Food} alt="khaana" />
+                    <img src={wi.url} alt="khaana" />
                     <div className="columnembeddedcard">
-                      <p className="amount">HUFT Drizzle Buddy Dog Biscuits</p>
+                      <p className="amount">{wi.name}</p>
 
                       <p style={{ marginTop: "6.3px" }} className="self">
-                        Size: Large
+                        Size: {wi.size}
                       </p>
 
                       <span style={{ marginTop: "47px" }}>
@@ -113,7 +202,9 @@ const CartComponent = () => {
                             borderRadius: "2px 0px 0px 2px",
                           }}
                           className="cart_decreasebutton"
-                          onClick={decrease}
+                          onClick={() => {
+                            changeQuant(ind, Number(wi.cost), -1);
+                          }}
                         >
                           -
                         </button>
@@ -124,7 +215,7 @@ const CartComponent = () => {
                             boxSizing: "border-box",
                           }}
                         >
-                          {num}
+                          {wi.units}
                         </button>
                         <button
                           style={{
@@ -134,7 +225,9 @@ const CartComponent = () => {
                             borderRadius: "2px 0px 0px 2px",
                           }}
                           className="cart_decreasebutton"
-                          onClick={increase}
+                          onClick={() => {
+                            changeQuant(ind, Number(wi.cost), 1);
+                          }}
                         >
                           +
                         </button>
@@ -142,59 +235,12 @@ const CartComponent = () => {
                     </div>
                     <div className="embeddedflexforprices">
                       <p style={{ fontWeight: "500" }} className="self2 amount">
-                        ₹23
+                        ₹{wi.cost}
                       </p>
-                      <p className="self2 ">
-                        ₹22
-                        <span>(12% off )</span>
-                      </p>
+                      <p className="self2 "></p>
                     </div>
                   </div>
-                  <>
-                    <hr />
-                    <span>
-                      <button
-                        style={{ marginRight: "37.53px" }}
-                        className="cartremovebuttonn"
-                      >
-                        REMOVE
-                      </button>
-                      <button className="linebtwbutton">|</button>
-
-                      <button
-                        style={{ marginLeft: "37.53px" }}
-                        className="cartremovebuttonn"
-                      >
-                        ADD TO WISHLIST
-                      </button>
-                    </span>
-                  </>
                 </div>
-
-                /* <p>
-          <img           
-            height= "200px"
-            width= "150px"
-            style={{marginRight: "1em"}}
-            className="cartproductimage"
-            src={wi.url || product1}
-            alt="productpicture"
-          
-          />
-          <div style={{ marginLeft: "140px", color: "black" }}>
-            <h4 style={{ fontWeight: "500" }}>{wi.name} </h4>
-            <p>{wi.description} </p>
-            <p>{"Rs. " + wi.cost} </p>
-          </div>
-        </p>
-        
-       <br />
-        <button type="button" class="btn btnapply" onClick={()=>{delPro(wi.key)}}>
-          Remove
-        </button>
-        <button type="button" class="btn btnapply" onClick={()=>{proLink(wi._id,wi.category)}}>
-          View Product
-        </button> */
 
                 // ......................................productcardends....................
               ))
@@ -207,19 +253,23 @@ const CartComponent = () => {
             <p className="headingofflex2">COUPONS</p>
             <hr />
             <br />
-            {/* <div>
-              <p>
-                <div className="applycoupontext">Apply coupons</div>
 
-                <button type="button" class="applybuttonn">
-                  APPLY
-                </button>
-              </p>
-            </div> */}
             <div className="label_price_flex">
-              <div className="amount applycouponstext">Apply Coupons</div>
+              <div className="amount applycouponstext">
+                <input
+                  onChange={(e) => {
+                    setCode(e.target.value);
+                  }}
+                />
+              </div>
               <div className="price_part amount">
-                <button type="button" className="applybuttonn">
+                <button
+                  type="button"
+                  className="applybuttonn"
+                  onClick={() => {
+                    loadPromo(code);
+                  }}
+                >
                   APPLY
                 </button>
               </div>
@@ -234,7 +284,7 @@ const CartComponent = () => {
             <hr />
             <div className="label_price_flex">
               <div className="amount">Total MRP</div>
-              <div className="price_part amount">₹435 </div>
+              <div className="price_part amount">₹{inTotal} </div>
             </div>
             <div className="label_price_flex">
               <div className="amount">Discount on MRP</div>
@@ -242,7 +292,7 @@ const CartComponent = () => {
             </div>
             <div className="label_price_flex">
               <div className="amount">Coupon Discount</div>
-              <div className="price_part amount">-₹435 </div>
+              <div className="price_part amount">-₹{couponDiscount} </div>
             </div>
             <hr style={{ color: "black" }} />
             <div className="label_price_flex">
@@ -250,49 +300,16 @@ const CartComponent = () => {
                 Total Amount
               </div>
               <div style={{ fontWeight: "500" }} className="price_part amount">
-                ₹435{" "}
+                ₹{total}
               </div>
             </div>
           </div>
-          {/* .......................................................................... */}
-          {/* <div className="pricedetails">
-            <hr />
-            <ul>
-              <li>
-                <p>
-                  <span className="pricecategory">Total MRP</span>{" "}
-                  {"Rs." + total ? total : 0}{" "}
-                </p>
-              </li> */}
 
-          {/* <li>
-                <p> GST= {"Rs." + total ? total * 0.3 : 0} </p>
-              </li>
-              <li>
-                <p>
-                  {" "}
-                  Delivery Charge{" "}
-                  {"Rs" + total ? (total * 1.3 > 299 ? 0 : 150) : 0}{" "}
-                </p>
-              </li>
-              <hr /> */}
-          {/* <hr />
-              <li>
-                <p>
-                  <span className="pricecategorytotal">Total Amount</span>
-                  <span>
-                    {"₹" + total
-                      ? total * 1.3 > 299
-                        ? 0 + total * 1.3
-                        : 150 + total * 1.3
-                      : 0}
-                  </span>
-                </p>
-              </li>
-            </ul>
-          </div> */}
-
-          <button type="button" class="placeorderbutton">
+          <button
+            type="button"
+            class="placeorderbutton"
+            onClick={retrieveOrder}
+          >
             PLACE ORDER
           </button>
         </div>
@@ -307,8 +324,7 @@ export default function Cart() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        alert("login required");
-        window.location = home;
+        window.location = login;
       } else {
         setUsr(user);
       }

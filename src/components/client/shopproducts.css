@@ -2,8 +2,6 @@ body {
   justify-content: center;
 }
 .products_leftflex {
-  width: 311.27px;
-  height: 772.84px;
   padding: 17.28px 20.54px;
   justify-content: center;
   margin-left: 47.25px;
@@ -36,7 +34,6 @@ body {
   display: flex;
   margin-top: 20px;
   flex-direction: row;
-  flex-wrap: wrap;
 }
 .products_leftflex > ul > li {
   font-family: Gotham;
@@ -50,7 +47,7 @@ body {
 .products_leftflex > ul > li > input {
   margin-right: 14.25px;
 }
-.products_leftflex > button {
+.newpagebutton {
   font-family: Gotham;
   font-style: normal;
   font-weight: normal;
@@ -61,6 +58,7 @@ body {
 
   background-color: #ffffff;
   border: none;
+  outline: none !important;
 }
 .start_rightflex {
   display: flex;
@@ -118,4 +116,56 @@ body {
   line-height: 16px;
 
   color: #000000;
+}
+
+button:focus {
+  outline: none !important;
+}
+button:active {
+  outline: none !important;
+}
+
+@media only screen and (max-width: 819px) {
+  .products_leftflex {
+    display: none;
+  }
+  .ddropdown {
+    width: 100.3px !important;
+  }
+  .dogfoodtag {
+    display: none;
+  }
+  .bigscreensort {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 819px) {
+  .shopproducts_filterbutton {
+    display: none;
+  }
+  .smallscreensort {
+    display: none;
+  }
+}
+
+/* a:hover {
+  text-decoration: none;
+} */
+
+a:link {
+  text-decoration: none !important;
+}
+
+a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  opacity: 0.8;
+  text-decoration: none !important;
+}
+
+a:active {
+  text-decoration: none;
 }

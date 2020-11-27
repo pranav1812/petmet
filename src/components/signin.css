@@ -52,3 +52,40 @@ body {
   align-items: left;
   margin-right: 18px;
 }
+@media only screen and (max-width: 1211px) {
+  .leftgrid {
+    display: none;
+  }
+  body {
+    justify-content: center;
+    margin-right: auto;
+    margin-left: auto;
+  }
+  .rightgrid {
+    display: block !important;
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+}
+
+@media only screen and (max-width: 1411px) {
+  .googlebutton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  .facebookbutton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

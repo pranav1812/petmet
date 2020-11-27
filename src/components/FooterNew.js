@@ -6,7 +6,8 @@ import Logo from './pictures/Final Main Logo PET MET.png'
 import './Footer.css';
 import Play from './pictures/playstore.png';
 import App from './pictures/appstore.png';
-
+import Home from "./client/Home";
+import {Link} from "react-router-dom";
 class Footer extends Component {
     state = {  }
     render() { 
@@ -26,7 +27,7 @@ class Footer extends Component {
                         <div className="col-12 col-sm-3">
                             <h5 style={{color: "#000000",fontWeight: "bold"}}>Useful Links</h5>
                             <ul className="list-unstyled">
-                                <li>Home</li><br />
+                                <Link to ="Home"><li>Home</li><br /></Link>
                                 <li>About Us</li><br />
                                 <li>Contact Us</li><br />
                                 <li>Privacy Policy</li><br />
