@@ -25,15 +25,6 @@ p {
   word-wrap: break-word;
 }
 
-@media only screen and (max-width: 415px) {
-  .embedded_cartproductcard > img {
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
-  }
-}
-
 .cartproductcard {
   display: flex;
   flex-wrap: wrap;
@@ -251,4 +242,26 @@ ul {
 
 hr {
   size: 12px;
+}
+@media only screen and (max-width: 415px) {
+  .embedded_cartproductcard > img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+  }
+  .pricedetails {
+    padding: 12.03px;
+    width: 345.13px;
+
+    margin-top: 12px;
+    margin-bottom: 12px;
+    background-color: #ffffff;
+  }
+  .bothflexbox {
+    justify-content: center !important;
+
+    margin-left: auto;
+    margin-right: auto;
+  }
 }

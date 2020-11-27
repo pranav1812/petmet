@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
-import axios from 'axios'
-import paymentRazorpay from './payment'
+import axios from "axios";
+import paymentRazorpay from "./payment";
 import Food from "../pictures/image 360.png";
 import Cart2 from "./Cart2";
 
-const login= window.location.protocol + "//" + window.location.host + "/" + "login/";
+const login =
+  window.location.protocol + "//" + window.location.host + "/" + "login/";
 
 const CartComponent = () => {
   const [wish, setWish] = useState(null);
   const [total, setTotal] = useState(0);
-  const [code, setCode ] = useState("no_promo");
+  const [code, setCode] = useState("no_promo");
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [inTotal, setInTotal] = useState(0);
-  const [user, setUser]= useState(null)
-  const [useWallet, setUseWallet]= useState(false)
+  const [user, setUser] = useState(null);
+  const [useWallet, setUseWallet] = useState(false);
 
-  const[promo, setPromo] = useState({
+  const [promo, setPromo] = useState({
     description: "default promo code, 5% cashback to wallet+0 discount",
     discount: "0",
     discountLowerLimit: "0",
     discountUpperLimit: "0",
     reUsable: true,
     walletCashback: ".05",
-    walletCashbackMaxima: "150"
+    walletCashbackMaxima: "150",
   });
 
   const [uid, setUid] = useState(null);
@@ -41,35 +42,34 @@ const CartComponent = () => {
       _id;
   };
 
-  const retrieveOrder= async()=>{
-    var endPoint= 'https://petmet.co.in/payment/order'
-    
-    var products= []
-    wish.forEach(pro=>{
+  const retrieveOrder = async () => {
+    var endPoint = "https://petmet.co.in/payment/order";
+
+    var products = [];
+    wish.forEach((pro) => {
       products.push({
         category: pro.category,
         productId: pro.key,
-        units: pro.units
-      })
-    })
-    
-    var reqBody={
+        units: pro.units,
+      });
+    });
+
+    var reqBody = {
       uid: "x9NJedXFbnOny29oq65urIxC4Kk1",
       useWallet: useWallet,
       promo: code,
       mail: user.mail || user.email,
-      products: products
-    }
+      products: products,
+    };
 
-    try{
-      var response= await axios.post(endPoint, reqBody)
-      console.log(response)
-      paymentRazorpay(response)
-    }catch(err){
-      console.error(err)
+    try {
+      var response = await axios.post(endPoint, reqBody);
+      console.log(response);
+      paymentRazorpay(response);
+    } catch (err) {
+      console.error(err);
     }
-   
-  } 
+  };
 
   const delPro = (key) => {
     db.collection("user")
@@ -78,7 +78,7 @@ const CartComponent = () => {
       .doc(key)
       .delete()
       .then(() => {
-        console.log('deleted');
+        console.log("deleted");
       });
   };
   useEffect(() => {
@@ -95,70 +95,74 @@ const CartComponent = () => {
             var temp = [];
             var net = 0;
             docs.forEach((doc) => {
-              temp.push({ ...doc.data()});
+              temp.push({ ...doc.data() });
               if (doc.data().cost) {
-               net += Number(doc.data().cost)*(doc.data().units);
+                net += Number(doc.data().cost) * doc.data().units;
               }
             });
             setWish(temp);
             setTotal(net);
             setInTotal(net);
             discount(promo);
-            
           });
 
-          db.collection('user').doc(user.uid).get().then(doc=>{
-            if(doc.exists) setUser(doc.data())
-          })
+        db.collection("user")
+          .doc(user.uid)
+          .get()
+          .then((doc) => {
+            if (doc.exists) setUser(doc.data());
+          });
       }
     });
   }, []);
 
-  const changeQuant= (ind, cost, i)=>{
-    if(wish[ind].units > 1){
-      var temp= wish
-      var net = total
-      temp[ind].units+=i
-      net += i*cost
-      setWish(temp)
-      setTotal(net)
-      setInTotal(net)
-    }
-    else if(wish[ind].units == 1){
-      if(i== -1) {
-        delPro(wish[ind].key)
-        wish.splice(ind, 1)
+  const changeQuant = (ind, cost, i) => {
+    if (wish[ind].units > 1) {
+      var temp = wish;
+      var net = total;
+      temp[ind].units += i;
+      net += i * cost;
+      setWish(temp);
+      setTotal(net);
+      setInTotal(net);
+    } else if (wish[ind].units == 1) {
+      if (i == -1) {
+        delPro(wish[ind].key);
+        wish.splice(ind, 1);
       }
-      var temp= wish
-      var net = total
-      temp[ind].units+=i
-      net += i*cost
-      setWish(temp)
-      setTotal(net)
-      setInTotal(net)
+      var temp = wish;
+      var net = total;
+      temp[ind].units += i;
+      net += i * cost;
+      setWish(temp);
+      setTotal(net);
+      setInTotal(net);
     }
-  }
+  };
 
-  const loadPromo= (code)=>{
-    db.collection('promo').doc(code).get().then(doc=>{
-        if(doc.exists){
-        setPromo(doc.data())
-        discount(doc.data());
-       }
-    })	
-  }
+  const loadPromo = (code) => {
+    db.collection("promo")
+      .doc(code)
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setPromo(doc.data());
+          discount(doc.data());
+        }
+      });
+  };
 
-  const discount=(promo)=>{
-    var net= inTotal
-    if(net> Number(promo.discountLowerLimit)){
-      var inDis= Number(promo.discount)* net
-      net-= Math.min(inDis, Number(promo.discountUpperLimit))
-      setTotal(net)
-      setCouponDiscount(Math.min(inDis, Number(promo.discountUpperLimit)))
+  const discount = (promo) => {
+    var net = inTotal;
+    if (net > Number(promo.discountLowerLimit)) {
+      var inDis = Number(promo.discount) * net;
+      net -= Math.min(inDis, Number(promo.discountUpperLimit));
+      setTotal(net);
+      setCouponDiscount(Math.min(inDis, Number(promo.discountUpperLimit)));
     }
-  }
+  };
 
-    return (
+  return (
     <div style={{ backgroundColor: "#e5e5e5" }}>
       <p
         style={{
@@ -176,7 +180,6 @@ const CartComponent = () => {
       </p>
       <div style={{ marginTop: "-30px" }} className="bothflexbox">
         <div className="flexbox11">
-          
           {/* .................... */}
           {wish
             ? wish.map((wi, ind) => (
@@ -199,8 +202,8 @@ const CartComponent = () => {
                             borderRadius: "2px 0px 0px 2px",
                           }}
                           className="cart_decreasebutton"
-                          onClick={()=>{
-                            changeQuant(ind, Number(wi.cost), -1 )
+                          onClick={() => {
+                            changeQuant(ind, Number(wi.cost), -1);
                           }}
                         >
                           -
@@ -222,8 +225,8 @@ const CartComponent = () => {
                             borderRadius: "2px 0px 0px 2px",
                           }}
                           className="cart_decreasebutton"
-                          onClick={()=>{
-                           changeQuant(ind, Number(wi.cost), 1 )                            
+                          onClick={() => {
+                            changeQuant(ind, Number(wi.cost), 1);
                           }}
                         >
                           +
@@ -234,15 +237,10 @@ const CartComponent = () => {
                       <p style={{ fontWeight: "500" }} className="self2 amount">
                         ₹{wi.cost}
                       </p>
-                      <p className="self2 ">
-                      
-                      </p>
+                      <p className="self2 "></p>
                     </div>
                   </div>
-                  
                 </div>
-
-                
 
                 // ......................................productcardends....................
               ))
@@ -255,11 +253,23 @@ const CartComponent = () => {
             <p className="headingofflex2">COUPONS</p>
             <hr />
             <br />
-            
+
             <div className="label_price_flex">
-              <div className="amount applycouponstext"><input onChange={(e)=>{setCode(e.target.value)}}/></div>
+              <div className="amount applycouponstext">
+                <input
+                  onChange={(e) => {
+                    setCode(e.target.value);
+                  }}
+                />
+              </div>
               <div className="price_part amount">
-                <button type="button" className="applybuttonn" onClick={()=>{loadPromo(code)}}>
+                <button
+                  type="button"
+                  className="applybuttonn"
+                  onClick={() => {
+                    loadPromo(code);
+                  }}
+                >
                   APPLY
                 </button>
               </div>
@@ -294,9 +304,12 @@ const CartComponent = () => {
               </div>
             </div>
           </div>
-          
 
-          <button type="button" class="placeorderbutton" onClick={retrieveOrder}>
+          <button
+            type="button"
+            class="placeorderbutton"
+            onClick={retrieveOrder}
+          >
             PLACE ORDER
           </button>
         </div>
@@ -311,7 +324,6 @@ export default function Cart() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        
         window.location = login;
       } else {
         setUsr(user);

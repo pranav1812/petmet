@@ -110,20 +110,22 @@ const WishlistComponent = () => {
               <div className="wishlistpage_card">
                 <div className="wishpage_rowflex">
                   <div className="dog_price_columnflex">
-                    <img src={dog} className="" />
+                    <img src={wi.url || product1} className="" />
                     <p className="cutpricee">
                       Rs. 950
-                      <span className="previouspricee">Rs. 1250</span>
+                      <span className="previouspricee">{"Rs. " + wi.cost}</span>
                     </p>
                   </div>
                   <div className="wishpage_columnflex">
                     <div className="wishpage_heading">
-                      HUFT Drizzle Buddy Raincoat- Purpule
+                      {/* HUFT Drizzle Buddy Raincoat- Purpule */}
+                      {wi.name}
                     </div>
                     <div className="wishpage_text">
-                      The Heads Up For Tails Yummy In My Tummy biscuits makes
+                      {/* The Heads Up For Tails Yummy In My Tummy biscuits makes
                       treat time both nutritious and delicious. loaded with rich
-                      flavours.
+                      flavours. */}
+                      {wi.description}
                     </div>
                     <div>
                       <div className="wishpage_rectangles">
@@ -141,8 +143,22 @@ const WishlistComponent = () => {
                       </div>
                     </div>
                     <span>
-                      <button className="buttonadd">Add to Cart</button>
-                      <button className="buttonbuy">Buy Now</button>
+                      <button
+                        className="buttonadd"
+                        onClick={() => {
+                          delPro(wi.key);
+                        }}
+                      >
+                        Add to Cart
+                      </button>
+                      <button
+                        className="buttonbuy"
+                        onClick={() => {
+                          proLink(wi._id, wi.category);
+                        }}
+                      >
+                        Buy Now
+                      </button>
                     </span>
                   </div>
 
@@ -237,7 +253,6 @@ export default function Wishlist() {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (!user) {
-        
         window.location = login;
       } else {
         setUsr(user);
