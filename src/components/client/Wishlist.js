@@ -102,7 +102,7 @@ const WishlistComponent = () => {
   }, []);
 
   return (
-    <div style={{ padding: "2%", paddingTop: "0px" }} className="wishlistpage">
+    <div style={{ padding: "2%", marginTop: "-100px" }} className="wishlistpage">
       <h1 className="heading_wishlist">MY WISHLIST</h1>
       <div className="wishlist_mainflex">
         {wish

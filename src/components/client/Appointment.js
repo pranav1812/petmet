@@ -137,7 +137,7 @@ export default function Appointment() {
             ? vets.map((vet) => (
               <div className="col-12 apptile mb-3">
                 <div className="row">
-                  <div className="col-6 col-sm-3">
+                  <div className="col-5 col-sm-3">
                     <img className="apptile_img" src={vet.imgUrl} alt="" />
                   </div>
                   <div className="col">
