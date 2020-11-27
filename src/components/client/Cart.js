@@ -74,7 +74,7 @@ const CartComponent = () => {
   }, []);
 
   return (
-    <div style={{ backgroundColor: "#e5e5e5" }}>
+    <div style={{ backgroundColor: "#e5e5e5",marginTop:"-50px" }}>
       <div style={{ marginTop: "-50px" }} className="bothflexbox">
         <div className="flexbox11">
           {/* <div className="heading">
