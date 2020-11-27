@@ -125,14 +125,14 @@ export default function Appointment() {
       <h3 className="apptitle">VET APPOINTMENTS</h3>
       <div className="container">
         <div className="row">
-          <div className="col-12 col-md-3 left_appflex mb-3">
+          <div className="col-12 col-lg-3 left_appflex mb-3">
                 <h6>Use Filters</h6>
                 <button>Visit Clinic</button>
                 <button>Home Visit</button>
                 <button>Video Call</button>
                 <button>Chat</button>
           </div>
-          <div className="col-12 col-md-9">
+          <div className="col-12 col-lg-9">
           {vets
             ? vets.map((vet) => (
               <div className="col-12 apptile mb-3">
