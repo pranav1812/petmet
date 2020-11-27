@@ -41,11 +41,12 @@ exports.fixAppointment= functions.firestore
         }
         var setAppointmentForVetPromise= background.setAppointentForVet(user, {...snap.data(), key: context.params.appId})
         var setAppointmentForAdminPromise= background.setAppointentForVet(user, {...snap.data(), key: context.params.appId})
+        var addKeyPromise= db.collection('user').doc(context.params.uid).collection('appointments').doc(context.params.appId).update({key: context.params.appId, status: 'pending'})
         // var notificationPromise= notify.sendAppointmentConfirmationNotification(deviceToken, snap.data())
         var sendMailPromise= sendMail.appointmentConfirmation(snap.data(), usr.data().mail || usr.data().email )
         try{
             // var results= await Promise.all([setAppointmentForVetPromise, notificationPromise, sendMailPromise])
-            return Promise.all([notifiactionPromise, vetNotificationPromise, setAppointmentForVetPromise, setAppointmentForAdminPromise, sendMailPromise])
+            return Promise.all([notifiactionPromise, vetNotificationPromise, setAppointmentForVetPromise, setAppointmentForAdminPromise, sendMailPromise, addKeyPromise])
                 
         }catch(error){
             console.log(error)
@@ -73,7 +74,7 @@ exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId
 
 // vet dwara appointment mai kiye changes client ki collection mai
 exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/appointments/{appId}')
-        .onUpdate((change, context)=>{
+        .onUpdate(async(change, context)=>{
 
             var doctorPromise= db.collection('user').doc(context.params.vid).get()
             var usrPromise= db.collection('vet').doc(change.after.data().patientId).get()
@@ -115,7 +116,7 @@ exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/a
 
 exports.cancelAppointment= functions.firestore
     .document('user/{uid}/appointments/{appId}')
-    .onChange(async(change, context)=>{
+    .onUpdate(async(change, context)=>{
 
         if(change.after.data().status =='cancelled' && change.after.data().status != change.before.data().status){
             var usrPromise= db.collection('user').doc(context.params.uid).get()
