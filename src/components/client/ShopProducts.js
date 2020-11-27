@@ -9,6 +9,7 @@ import "./shopproducts.css";
 import { useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ContinuousSlider from "./Slider";
+import ShopProductsarray from "./ShopProductsarray";
 
 const ShopProducts = () => {
   const [products, setProducts] = useState(null);
@@ -28,14 +29,6 @@ const ShopProducts = () => {
         console.log(temp.length);
       });
   }, []);
-  const [dropdownvar, setDropdownvar] = useState(false);
-  const dropdowndata = () => {
-    if (dropdownvar == false) {
-      setDropdownvar(true);
-    } else {
-      setDropdownvar(false);
-    }
-  };
 
   const [dropdownvar2, setDropdownvar2] = useState(false);
   const dropdowndata2 = () => {
@@ -56,56 +49,7 @@ const ShopProducts = () => {
     );
   };
 
-  const Dropdownfun = (props) => {
-    let numin = 1;
-    if ((numin = { num }))
-      return (
-        <ul>
-          <li>
-            <input type="checkbox" />
-            Acana
-          </li>
-          <br />
-          <li>
-            <input type="checkbox" />
-            Arden Grange
-          </li>
-          <br />
-          <li>
-            <input type="checkbox" />
-            Acana
-          </li>
-          <br />
-          <li>
-            <input type="checkbox" />
-            Arden Grange
-          </li>
-          <br />
-          <li>
-            <input type="checkbox" />
-            Acanaa
-          </li>
-          <br />
-          <li>
-            <input type="checkbox" />
-            Arden Gargee
-          </li>
-          <br />
-          <li>
-            <input type="checkbox" />
-            Acana
-          </li>
-          <br />
-          <li>
-            <input type="checkbox" />
-            Ardenr
-          </li>
-          <br />
-        </ul>
-      );
-  };
-
-  let num = 1;
+  const listarray = [1, 2, 3, 4, 5, 4];
 
   return (
     <div>
@@ -117,43 +61,38 @@ const ShopProducts = () => {
             <p>PRICE</p>
             <ContinuousSlider />
             <hr />
-            <button onClick={dropdowndata}>
-              BRANDS <ArrowDropDownIcon />
-            </button>
 
-            {dropdownvar && <Dropdownfun num="1" />}
-
-            <hr />
-            <button onClick={dropdowndata}>
-              PRODUCT TYPE <ArrowDropDownIcon />
-            </button>
-            {/* {dropdownvar && <Dropdownfun />} */}
-
-            <hr />
-            <button onClick={dropdowndata}>
-              BREED <ArrowDropDownIcon />
-            </button>
-            {/* {dropdownvar && <Dropdownfun />} */}
-            <hr />
-            <button onClick={dropdowndata}>
-              LIFE STAGE <ArrowDropDownIcon />
-            </button>
-            {/* {dropdownvar && <Dropdownfun />} */}
-            <hr />
-            <button onClick={dropdowndata}>
-              LIFE STAGE <ArrowDropDownIcon />
-            </button>
-            {/* {dropdownvar && <Dropdownfun />} */}
-            <hr />
+            {listarray.map((num) => {
+              return (
+                <div>
+                  {" "}
+                  <ShopProductsarray id={num} title="BRAND" />
+                  <hr />
+                </div>
+              );
+            })}
           </div>
+
           <div className="products_rightflex">
             <div className="start_rightflex">
               <p className="dogfoodtag">Dog Food</p>
+              <button className="shopproducts_filterbutton ddropdown">
+                FILTER
+              </button>
               <div className="start_rightflex_subcolumn">
-                {" "}
-                <button className="ddropdown" onClick={dropdowndata2}>
+                <button
+                  className="ddropdown bigscreensort"
+                  onClick={dropdowndata2}
+                >
                   SORT BY: Recommended <ArrowDropDownIcon />
                 </button>
+                <button
+                  className="ddropdown smallscreensort"
+                  onClick={dropdowndata2}
+                >
+                  SORT BY:
+                </button>
+
                 {dropdownvar2 && <Dropdownfun2 />}
               </div>
             </div>

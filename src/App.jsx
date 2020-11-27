@@ -30,7 +30,7 @@ function App() {
     <div className="kuchh_aur" style={{ marginTop: "-100px" }}>
       <Switch>
         <Route exact path="/" component={Dashboard} />
-       
+
         <Route exact path="/login" component={Login} />
         <Route exact path="/phone" component={Phone} />
         <Route exact path="/vVerifyEmail" component={VVerifyEmail} />

@@ -57,8 +57,8 @@ import {
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { HiSwitchHorizontal } from "react-icons/hi";
 import { GrAdd } from "react-icons/gr";
-import VetConfirmation from './VetConfirmation';
-import AllAppointments from './AllAppointments';
+import VetConfirmation from "./VetConfirmation";
+import AllAppointments from "./AllAppointments";
 import Cart2 from "./Cart2";
 
 const drawerWidth = 240;
@@ -207,7 +207,7 @@ export default function Dashboard() {
   const [name, setName] = useState(null);
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);
-  const [pets, setPets]= useState(null);
+  const [pets, setPets] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
@@ -233,14 +233,17 @@ export default function Dashboard() {
             else setName(user.displayName);
             console.log(name);
           })
-          .catch(err=>console.error(err))
-          db.collection("user").doc(user.uid).collection("pets").onSnapshot(docs=>{
-            var temp=[]
-            docs.forEach(doc=>{
-              temp.push(doc.data())
-            })
-            setPets(temp)
-          })
+          .catch((err) => console.error(err));
+        db.collection("user")
+          .doc(user.uid)
+          .collection("pets")
+          .onSnapshot((docs) => {
+            var temp = [];
+            docs.forEach((doc) => {
+              temp.push(doc.data());
+            });
+            setPets(temp);
+          });
       }
     });
   }, []);
@@ -264,9 +267,7 @@ export default function Dashboard() {
 
   return (
     <div style={{ backgroundColor: "#ffffff" }}>
-      <AppBar
-        position="absolute"
-      >
+      <AppBar position="absolute">
         <Navbar className="newnavbar" expand="xl">
           <Navbar.Brand href="#home">
             <img
@@ -290,50 +291,63 @@ export default function Dashboard() {
               </Nav.Link>
               <Nav.Link className="newnavitems" href="#link">
                 <div className="dropdown">
-                  <button
-                    className="ddbtn"
-                    type="button"
-                    onClick={handleShow}
-                  >
+                  <button className="ddbtn" type="button" onClick={handleShow}>
                     My Pets
                   </button>
                 </div>
               </Nav.Link>
-              <Modal show={show} onHide={handleClose} style={{marginTop:"40px"}} centered>
+              <Modal
+                show={show}
+                onHide={handleClose}
+                style={{ marginTop: "40px" }}
+                centered
+              >
                 <Modal.Header closeButton>
                   <Modal.Title>MY PETS</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <div style={{ padding: "10px"}} className="form-check">
-                    {
-                      pets? pets.map(pet=>(
-                    <div>
+                  <div style={{ padding: "10px" }} className="form-check">
+                    {pets
+                      ? pets.map((pet) => (
+                          <div>
+                            <div className="row">
+                              <div className="col-2">
+                                <img className="petimage" src={pet.url} />
+                                <p
+                                  className="ml-4"
+                                  style={{
+                                    textAlign: "center",
+                                    color: "black",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {pet.name}{" "}
+                                </p>
+                              </div>
+                              <div className="col-8">
+                                <p className="petdetails">
+                                  Category: {pet.category}
+                                  <br />
+                                  Age: {pet.age} years <br /> Breed: {pet.breed}
+                                </p>
+                              </div>
+                            </div>
+                            <hr
+                              style={{ marginTop: "0px", paddingTop: "0px" }}
+                            />
+                          </div>
+                        ))
+                      : null}
+                    <Link to="/Addpet/">
                       <div className="row">
-                        <div className="col-2">
-                          <img className="petimage" src={pet.url} />
-                          <p className="ml-4" style={{textAlign:"center",color:"black",fontWeight:"bold"}}>{pet.name} </p>
-                        </div>
-                        <div className="col-8">
-                          <p className="petdetails">
-                            Category: {pet.category}<br />
-                            Age: {pet.age} years <br /> Breed: {pet.breed}
-                          </p>
-                        </div>
+                        <GrAdd
+                          className="ml-4 mr-3"
+                          style={{ fontSize: "30px" }}
+                        />
+                        <h6 className="mt-1 mr-3">Add a Pet</h6>
                       </div>
-                      <hr style={{marginTop:"0px",paddingTop:"0px"}}/>
-                    </div>
-                      )): null
-                    }
-                      <Link to="/Addpet/">
-                        <div className="row">
-                          <GrAdd
-                            className="ml-4 mr-3"
-                            style={{ fontSize: "30px" }}
-                          />
-                          <h6 className="mt-1 mr-3">Add a Pet</h6>
-                        </div>
-                      </Link>
-                    </div>
+                    </Link>
+                  </div>
                 </Modal.Body>
               </Modal>
               <Nav.Link className="newnavitems" href="/Wishlist/">
@@ -347,91 +361,91 @@ export default function Dashboard() {
               </Nav.Link>
             </Nav>
             <div className="row nfn">
-            <input
-              type="text"
-              placeholder=" Search Pet food, special toys and many more...."
-              className="newnavsearchbox align-self-center"
-            />
-            <div className="mr-4">
-              <div>
-                <button
-                  type="button"
-                  className="togglebtn"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
-                >
-                  <MdAccountCircle
-                    style={{
-                      fontSize: "33px",
-                      color: "#36a9cc",
-                      backgroundColor: "#ffffff",
-                    }}
-                  />
-                </button>
-                <div
-                  className="dropdown-menu dropdown-menu-right"
-                  style={{ minWidth: "250px", height: "auto" }}
-                >
-                  <div className="row mt-2 ml-4">
-                  <MdAccountCircle
-                    style={{
-                      fontSize: "33px",
-                      color: "#36a9cc",
-                      backgroundColor: "#ffffff",
-                    }}
-                  />
-                    <div className="ml-4 mb-3">
-                      <h6>{usr?name:"Guest User"}</h6>
-                      <p
-                        style={{
-                          fontSize: "10px",
-                          padding: "0px",
-                          margin: "0px",
-                        }}
-                      >
-                        {usr?usr.email:null}
-                      </p>
-                    </div>
-                  </div>
-                  <div className="row ml-4">
-                    <HiSwitchHorizontal
-                      style={{ fontSize: "37px" }}
-                      className="mr-4"
+              <input
+                type="text"
+                placeholder=" Search Pet food, special toys and many more...."
+                className="newnavsearchbox align-self-center"
+              />
+              <div className="mr-4">
+                <div>
+                  <button
+                    type="button"
+                    className="togglebtn"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
+                  >
+                    <MdAccountCircle
+                      style={{
+                        fontSize: "33px",
+                        color: "#36a9cc",
+                        backgroundColor: "#ffffff",
+                      }}
                     />
-                    
-                  <Link to="/editProfile"><h6 className="mt-1">Edit Profile</h6></Link>  
+                  </button>
+                  <div
+                    className="dropdown-menu dropdown-menu-right"
+                    style={{ minWidth: "250px", height: "auto" }}
+                  >
+                    <div className="row mt-2 ml-4">
+                      <MdAccountCircle
+                        style={{
+                          fontSize: "33px",
+                          color: "#36a9cc",
+                          backgroundColor: "#ffffff",
+                        }}
+                      />
+                      <div className="ml-4 mb-3">
+                        <h6>{usr ? name : "Guest User"}</h6>
+                        <p
+                          style={{
+                            fontSize: "10px",
+                            padding: "0px",
+                            margin: "0px",
+                          }}
+                        >
+                          {usr ? usr.email : null}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="row ml-4">
+                      <HiSwitchHorizontal
+                        style={{ fontSize: "37px" }}
+                        className="mr-4"
+                      />
+
+                      <Link to="/editProfile">
+                        <h6 className="mt-1">Edit Profile</h6>
+                      </Link>
+                    </div>
+                    <hr style={{ margin: "12px 10px" }} />
+                    {usr ? (
+                      <button onClick={logout} className="logoutbtn">
+                        Log Out
+                      </button>
+                    ) : (
+                      <button onClick={toLoginPage} className="logoutbtn">
+                        Log In
+                      </button>
+                    )}
                   </div>
-                  <hr style={{ margin: "12px 10px" }} />
-                  { usr? 
-                  (<button onClick={logout} className="logoutbtn">
-                    Log Out
-                  </button>) : (
-                  <button onClick={toLoginPage} className="logoutbtn">
-                    Log In
-                  </button>)
-                  }
                 </div>
+                <p className="mt-1">Profile</p>
               </div>
-              <p className="mt-1">Profile</p>
-            </div>
-            <div className="mr-4">
-              <Link to="/Cart/">
-                <MdShoppingCart
-                  style={{ fontSize: "33px", color: "#979797" }}
-                />
-              </Link>
-              <p className="mt-1">Cart</p>
-            </div>
+              <div className="mr-4">
+                <Link to="/Cart/">
+                  <MdShoppingCart
+                    style={{ fontSize: "33px", color: "#979797" }}
+                  />
+                </Link>
+                <p className="mt-1">Cart</p>
+              </div>
             </div>
           </Navbar.Collapse>
         </Navbar>
-
-        
       </AppBar>
-     
+
       <div className={classes.container}>
-     
         {componentt == "Home" ? (
           <DashboardClient />
         ) : componentt == "myPets" ? (
@@ -449,7 +463,7 @@ export default function Dashboard() {
         ) : componentt == "ShopPage" ? (
           <ShopPage />
         ) : componentt == "Cart2" ? (
-          <Cart2 />  
+          <Cart2 />
         ) : componentt == "Appointment" ? (
           <Appointment />
         ) : componentt == "editProfile" ? (
