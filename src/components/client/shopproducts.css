@@ -125,6 +125,13 @@ button:active {
   outline: none !important;
 }
 
+@media only screen and (min-width: 1300px) {
+  .products_rightflex_cardflex {
+    justify-content: left;
+    width: 1060px;
+  }
+}
+
 @media only screen and (max-width: 819px) {
   .products_leftflex {
     display: none;
@@ -137,6 +144,11 @@ button:active {
   }
   .bigscreensort {
     display: none;
+  }
+  .filterbuttonflex {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
   }
 }
 

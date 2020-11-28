@@ -46,11 +46,12 @@ p {
 
   font-family: Roboto;
   font-style: normal;
-  font-weight: normal;
+  font-weight: 500;
   font-size: 14px;
   line-height: 16px;
   text-align: center;
-
+  margin-left: 36.5px;
+  margin-right: 37px;
   color: #000000;
 }
 .flexbox22 {
@@ -59,14 +60,14 @@ p {
   flex-wrap: wrap;
   flex-direction: column;
   margin-right: 20px;
-  word-wrap: break-word;
-  justify-content: flex-start;
+
+  /* justify-content: flex-start; */
 }
 .coupons {
   display: flex;
-
+  margin-bottom: 21.8px;
   width: 375.13px;
-  height: 91.98px;
+  /* height: 131.98px; */
   padding: 17.03px;
   flex-wrap: wrap;
   flex-direction: column;
@@ -132,6 +133,7 @@ ul {
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
+  margin-left: 10px;
 
   color: #ff5352;
 
@@ -146,7 +148,8 @@ ul {
   font-weight: normal;
   font-size: 14px;
   line-height: 16px;
-
+  padding-right: 10px;
+  justify-content: center;
   color: #000000;
 }
 .pricedetailssub {
@@ -174,17 +177,20 @@ ul {
 .label_price_flex {
   display: flex;
   flex-direction: row;
-  margin-top: 26.5px;
-  height: 21px;
+  align-content: center;
+  height: 40px;
   flex-wrap: wrap;
 }
 .price_part {
   justify-content: flex-end;
-  text-align: right;
+  text-align: center;
   margin-left: auto;
+  margin-bottom: 20px !important;
 }
 .applycouponstext {
-  text-align: left;
+  text-align: right;
+  justify-content: center;
+  align-self: center;
   margin-right: auto;
 }
 .embedded_cartproductcard {
@@ -240,16 +246,30 @@ ul {
   }
 }
 
-hr {
-  size: 12px;
+.cartimage {
+  width: 142.19px;
+  height: 142.19px;
+  margin-right: 30.51px;
 }
+
+.incresedecreasespan {
+  margin-top: 47px;
+}
+
 @media only screen and (max-width: 415px) {
-  .embedded_cartproductcard > img {
+  /* .embedded_cartproductcard > img {
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+  } */
+
+  .cartimage {
+    width: 92.19px !important;
+    height: 92.19px !important;
+    margin-right: 10px;
   }
+
   .pricedetails {
     padding: 12.03px;
     width: 345.13px;
@@ -258,10 +278,57 @@ hr {
     margin-bottom: 12px;
     background-color: #ffffff;
   }
+  .cartproductcard {
+    width: 345.13px;
+  }
+
+  .coupons {
+    width: 345.13px;
+  }
+  .applybuttonn {
+    margin-left: 2px;
+    width: 83px;
+    align-self: center;
+    height: 32.2px;
+  }
+
   .bothflexbox {
     justify-content: center !important;
 
     margin-left: auto;
     margin-right: auto;
   }
+  .toppath {
+    font-size: 12px;
+  }
+  .cartremovebuttonn {
+    margin-right: 3px;
+    margin-left: 3px;
+  }
+  .placeorderbutton {
+    width: 345.13px;
+  }
+  .incresedecreasespan {
+    margin-top: 13px;
+  }
+  .flexbox11 {
+    justify-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 345.13px;
+  }
+}
+
+button,
+input {
+  overflow: hidden !important;
+}
+hr {
+  margin-top: 0.6rem !important;
+  margin-bottom: 0.9rem !important;
+  border: 0;
+  width: 50%;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  text-align: left;
+  margin-left: 0 !important;
 }

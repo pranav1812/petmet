@@ -50,6 +50,7 @@ const ShopProducts = () => {
   };
 
   const listarray = [1, 2, 3, 4, 5, 4];
+  const [isFilterOpen, setFilterState] = useState(false);
 
   return (
     <div>
@@ -76,9 +77,29 @@ const ShopProducts = () => {
           <div className="products_rightflex">
             <div className="start_rightflex">
               <p className="dogfoodtag">Dog Food</p>
-              <button className="shopproducts_filterbutton ddropdown">
-                FILTER
-              </button>
+              <div className="filterbuttonflex">
+                <button
+                  onClick={() => setFilterState(!isFilterOpen)}
+                  className="shopproducts_filterbutton ddropdown"
+                >
+                  FILTER
+                </button>
+                {isFilterOpen ? (
+                  <div>
+                    {" "}
+                    {listarray.map((num) => {
+                      return (
+                        <div>
+                          {" "}
+                          <ShopProductsarray id={num} title="BRAND" />
+                          <hr />
+                        </div>
+                      );
+                    })}{" "}
+                  </div>
+                ) : null}
+              </div>
+
               <div className="start_rightflex_subcolumn">
                 <button
                   className="ddropdown bigscreensort"

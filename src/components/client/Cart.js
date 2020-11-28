@@ -165,17 +165,14 @@ const CartComponent = () => {
   return (
     <div style={{ backgroundColor: "#e5e5e5" }}>
       <p
+        className="toppath"
         style={{
           textAlign: "center",
           marginTop: " 90px",
         }}
       >
-        <span style={{ color: "#36A9CC" }}>
-          CART ---------------------------
-        </span>
-        <span style={{ color: "#FF5352" }}>
-          ADDRESS ---------------------------
-        </span>
+        <span style={{ color: "#36A9CC" }}>CART ---------------------</span>
+        <span style={{ color: "#FF5352" }}>ADDRESS ------------------</span>
         <span style={{ color: "#FF5352" }}>PAYMENT</span>
       </p>
       <div style={{ marginTop: "-30px" }} className="bothflexbox">
@@ -185,7 +182,7 @@ const CartComponent = () => {
             ? wish.map((wi, ind) => (
                 <div className="cartproductcard">
                   <div className="embedded_cartproductcard">
-                    <img src={wi.url} alt="khaana" />
+                    <img className="cartimage" src={wi.url} alt="khaana" />
                     <div className="columnembeddedcard">
                       <p className="amount">{wi.name}</p>
 
@@ -193,7 +190,7 @@ const CartComponent = () => {
                         Size: {wi.size}
                       </p>
 
-                      <span style={{ marginTop: "47px" }}>
+                      <span className="incresedecreasespan">
                         <button
                           style={{
                             background: "#FFFFFF",
@@ -240,6 +237,14 @@ const CartComponent = () => {
                       <p className="self2 "></p>
                     </div>
                   </div>
+                  <hr />
+                  <span>
+                    <button className="cartremovebuttonn">REMOVE</button>
+                    <button className="linebtwbutton">|</button>
+                    <button className="cartremovebuttonn">
+                      ADD TO WISHLIST
+                    </button>
+                  </span>
                 </div>
 
                 // ......................................productcardends....................
@@ -250,9 +255,10 @@ const CartComponent = () => {
         {/* .............................. */}
         <div className="flexbox22">
           <div className="coupons">
-            <p className="headingofflex2">COUPONS</p>
-            <hr />
-            <br />
+            <p className="headingofflex2">
+              COUPONS
+              <hr />
+            </p>
 
             <div className="label_price_flex">
               <div className="amount applycouponstext">
@@ -262,7 +268,7 @@ const CartComponent = () => {
                   }}
                 />
               </div>
-              <div className="price_part amount">
+              <div className=" amount">
                 <button
                   type="button"
                   className="applybuttonn"

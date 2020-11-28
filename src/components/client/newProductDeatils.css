@@ -186,9 +186,12 @@ body {
     font-size: 18px;
   }
 }
-@media only screen and (max-width: 409px) {
+@media only screen and (max-width: 419px) {
   .productDetails_insideflex3 {
-    width: 309px;
+    width: 329px;
+  }
+  .description {
+    font-size: 14px;
   }
   .cartbutton {
     width: 309px;
@@ -197,5 +200,8 @@ body {
     justify-content: center;
     margin-left: auto;
     margin-right: auto;
+  }
+  .productDetails_title {
+    font-size: 22px;
   }
 }
