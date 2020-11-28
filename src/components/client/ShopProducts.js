@@ -85,13 +85,15 @@ const ShopProducts = () => {
                   FILTER
                 </button>
                 {isFilterOpen ? (
-                  <div>
-                    {" "}
+                  <div className="filterpopup">
                     {listarray.map((num) => {
                       return (
-                        <div>
-                          {" "}
-                          <ShopProductsarray id={num} title="BRAND" />
+                        <div style={{ height: "28.71px" }}>
+                          <ShopProductsarray
+                            style={{ fontSize: "12px" }}
+                            id={num}
+                            title="BRAND"
+                          />
                           <hr />
                         </div>
                       );
