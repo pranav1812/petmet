@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
+import "./cart2.css";
 import axios from "axios";
 import paymentRazorpay from "./payment";
 import Food from "../pictures/image 360.png";
 import Cart2 from "./Cart2";
+import {Form, Modal} from 'react-bootstrap';
+import AddIcon from "@material-ui/icons/Add";
+import Radio from "@material-ui/core/Radio";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const login =
   window.location.protocol + "//" + window.location.host + "/" + "login/";
@@ -17,6 +22,9 @@ const CartComponent = () => {
   const [inTotal, setInTotal] = useState(0);
   const [user, setUser] = useState(null);
   const [useWallet, setUseWallet] = useState(false);
+  const [showMain, setShowMain] = useState(false);
+  const [showAddress, setShowAddress ] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
 
   const [promo, setPromo] = useState({
     description: "default promo code, 5% cashback to wallet+0 discount",
@@ -27,6 +35,33 @@ const CartComponent = () => {
     walletCashback: ".05",
     walletCashbackMaxima: "150",
   });
+
+  const handleCloseMain = () => {
+    setShowMain(false)
+  }
+
+  const handleShowMain = () => {
+    setShowAddress(false)
+    setShowMain(true)
+  }
+
+  const handleShowAddress = () => {
+    setShowMain(false)
+    setShowAddress(true)
+  }
+
+  const handleCloseAddress = () => {
+    setShowAddress(false)
+  }
+
+  const handleShowSummary = () => {
+    setShowMain(false)
+    setShowSummary(true)
+  }
+
+  const handleCloseSummary = () => {
+    setShowSummary(false)
+  }
 
   const [uid, setUid] = useState(null);
   const proLink = (_id, category) => {
@@ -163,7 +198,7 @@ const CartComponent = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#e5e5e5" }}>
+    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-200px" }}>
       <p
         className="toppath"
         style={{
@@ -180,7 +215,7 @@ const CartComponent = () => {
           {/* .................... */}
           {wish
             ? wish.map((wi, ind) => (
-                <div className="cartproductcard">
+                <div className="cartproductcard mb-4">
                   <div className="embedded_cartproductcard">
                     <img className="cartimage" src={wi.url} alt="khaana" />
                     <div className="columnembeddedcard">
@@ -314,13 +349,158 @@ const CartComponent = () => {
           <button
             type="button"
             class="placeorderbutton"
-            onClick={retrieveOrder}
+            // onClick={retrieveOrder}
+            onClick={handleShowMain}
           >
             PLACE ORDER
           </button>
         </div>
         {/* ................................... */}
       </div>
+      
+      <Modal size="lg" show={showMain} onHide={handleCloseMain} centered>
+        <Modal.Header style={{borderColor:"black"}} closeButton>
+          <Modal.Title style={{color:"black"}}>SELECT DELIVERY ADDRESS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="cart2_leftflex">
+            <div className="cart2_addresscard">
+              <div>
+                <p className="defaulttag">DEFAULT</p>
+                <p className="cart2_name">
+                  <FormControlLabel value="female" control={<Radio />} />
+                  Nishant Jindal
+                </p>
+              </div>
+              <div style={{ marginLeft: "46px" }}>
+                <p>Shnati Nagar, Jungle Baag, Kitchlu Nagar</p>
+                <p>131152</p>
+                <p>9814368838</p>
+              </div>
+              <span style={{ justifyContent: "right", marginLeft: "auto" }}>
+                <button className="cart2_removebutton">REMOVE</button>
+                <button className="cart2_removebutton">EDIT</button>
+              </span>
+            </div>
+            <div className="cart2_addaddress" style={{cursor:"pointer"}}>
+              <p className="cart2_addaddresstext" onClick={handleShowAddress}>
+                <AddIcon />
+                Add New Address
+              </p>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer style={{border:"none"}}>
+          <button className="cartModalButtons" onClick={handleCloseMain}>
+            Cancel
+          </button>
+          <button className="cartModalButtons" onClick={handleShowSummary}>
+            Next
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showAddress} onHide={handleCloseAddress} centered>
+        <Modal.Header style={{borderColor:"black"}} closeButton>
+          <Modal.Title style={{color:"black"}}>ADD NEW ADDRESS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
+            <div className="row mb-3">
+              <Form.Control placeholder="Name*"></Form.Control>
+            </div>
+            <div className="row mb-3">
+              <Form.Control placeholder="Mobile*"></Form.Control>
+            </div>
+            <div className="row mb-3">
+              <Form.Control className="col-5" placeholder="Pincode*"></Form.Control>
+              <Form.Control className="col-6 offset-1" placeholder="State*"></Form.Control>
+            </div>
+            <div className="row mb-3">
+              <Form.Control placeholder="Address (House no., Building, Street, Area)"></Form.Control>
+            </div>
+            <div className="row mb-3">
+              <Form.Control placeholder="Locality/Town*"></Form.Control>
+            </div>
+            <div className="row mb-4">
+              <Form.Control placeholder="City/District"></Form.Control>
+            </div>
+            <div>
+              <p className="mb-2" style={{color:"black"}}><strong>Type of address*</strong></p>
+              <div className="row ml-2">
+                <Form.Check 
+                  type="radio"
+                  label="Home"
+                  className="mr-4"
+                />
+                <Form.Check 
+                  type="radio"
+                  label="Office"
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer style={{border:"none"}}>
+          <button className="cartModalButtons" onClick={handleCloseAddress}>
+            Cancel
+          </button>
+          <button className="cartModalButtons" onClick={handleShowMain}>
+            Save
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showSummary} onHide={handleCloseSummary} style={{marginTop:"40px"}} centered>
+        <Modal.Header style={{borderColor:"black"}} closeButton>
+          <Modal.Title style={{color:"black"}}>REVIEW YOUR ORDER</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
+            <div className="mb-3">
+              <h6>
+                Item Details:
+              </h6>
+              <p>Name of Item<br/>
+              Quantity<br/>
+              Cost<br/>
+              </p>
+            </div>
+            <div className="mb-3">
+              <h6>
+                Shipping Address:
+              </h6>
+              <p>Name<br/>
+              Address<br/>
+              City<br/>
+              State<br/>
+              Pincode<br/>
+              Phone Number<br/>
+              </p>
+            </div>
+            <div className="mb-3">
+              <h6>
+                Billing Details:
+              </h6>
+              <p>Coupons Applied<br/>
+              Total MRP<br/>
+              Discount on MRP<br/>
+              Coupon Discount<br/>
+              Total Amount<br/>
+              </p>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer style={{border:"none"}}>
+          <button className="cartModalButtons" onClick={handleCloseSummary}>
+            Cancel
+          </button>
+          <button className="cartModalButtons" onClick={retrieveOrder}>
+            Proceed to Payment
+          </button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 };
