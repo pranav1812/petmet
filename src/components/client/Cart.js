@@ -171,11 +171,13 @@ const CartComponent = () => {
     if (wish[ind].units > 1) {
       var temp = wish;
       var net = total;
+      var net1 = inTotal;
       temp[ind].units += i;
       net += i * cost;
+      net1 += i * cost;
       setWish(temp);
       setTotal(net);
-      setInTotal(net);
+      setInTotal(net1);
     } else if (wish[ind].units == 1) {
       if (i == -1) {
         delPro(wish[ind].key);
@@ -183,11 +185,13 @@ const CartComponent = () => {
       }
       var temp = wish;
       var net = total;
+      var net1 = inTotal;
       temp[ind].units += i;
       net += i * cost;
+      net1 += i * cost;
       setWish(temp);
       setTotal(net);
-      setInTotal(net);
+      setInTotal(net1);
     }
   };
 
@@ -204,6 +208,7 @@ const CartComponent = () => {
   };
 
   const discount = (promo) => {
+    console.log(total,inTotal)
     var net = inTotal;
     setTotal(inTotal)
     if (user && !user.usedPromo.includes(code)) {
