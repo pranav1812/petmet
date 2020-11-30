@@ -27,10 +27,10 @@ class Footer extends Component {
                         <div className="col-12 col-sm-3">
                             <h5 style={{color: "#000000",fontWeight: "bold"}}>Useful Links</h5>
                             <ul className="list-unstyled">
-                                <Link to ="Home"><li>Home</li><br /></Link>
+                                <Link to ="/"><li>Home</li><br /></Link>
                                 <li>About Us</li><br />
                                 <li>Contact Us</li><br />
-                                <li>Privacy Policy</li><br />
+                                <Link to="privacyPolicy"><li>Privacy Policy</li><br /></Link>
                             </ul>
                         </div>
                         <div className="col-12 col-sm-4">
@@ -43,9 +43,9 @@ class Footer extends Component {
                             </div>
                         </div>
                     </div>
-                    <hr></hr>
+                    <hr style={{width:"100%"}}></hr>
                     <div className="row justify-content-center">
-                        <p style={{color: "#C4C4C4"}}>Copyright &copy; 2020 PetMet India, Inc. All rights reserved.</p>
+                        <p style={{color: "#C4C4C4",paddingBottom:"20px"}}>Copyright &copy; 2020 PetMet India, Inc. All rights reserved.</p>
                     </div>
                 </div>
             </div>
