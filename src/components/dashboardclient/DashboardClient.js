@@ -142,8 +142,9 @@ const DashboardClient = () => {
           style={{ marginTop: "25px" }}
           className="carousel col-12 col-sm-7" 
         >
-          <TopCarousel />
           
+          <TopCarousel />
+    
         </div>
         <div className="col-12 col-sm-5">
           <img 

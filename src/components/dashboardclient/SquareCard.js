@@ -62,7 +62,7 @@ const SquareCard = (props) => {
     <button className="row-btn">2 kg</button>*/}
           </div>
           
-          <div className="row justify-content-center align-items-center">
+    <div className="row justify-content-center align-items-center">
   <p className="acprize">Rs. {props.cost}</p>
   <p className="cprize ml-4">Rs. {props.mrp}</p>
           </div>
