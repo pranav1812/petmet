@@ -22,6 +22,7 @@ import Dogs from '../pictures/fc1.png';
 import SmallAnimals from '../pictures/fc2.png';
 import Cats from '../pictures/fc3.png';
 import Birds from '../pictures/fc4.png';
+import { propTypes } from "react-bootstrap/esm/Image";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -41,6 +42,9 @@ const DashboardClient = () => {
   const [categories, setCategories] = useState(null);
   const [bestSellers, setBestSellers] = useState(null);
   const [accessories, setAccessories] = useState(null);
+  const [cats, setCats] = useState(null);
+  const [food, setFood] = useState(null);
+  const [groomer, setGroomer] = useState(null);
   const [toys, setToys] = useState(null);
   useEffect(() => {
     db.collection("items")
@@ -51,12 +55,13 @@ const DashboardClient = () => {
           if (
             doc.id != "Best Sellers" &&
             doc.id != "Accessories" &&
-            doc.id != "Special Toys"
+            doc.id != "Special Toys" 
           ) {
             temp.push({ name: doc.id, img: doc.data().img });
           }
         });
         setCategories(temp);
+        console.log(categories)
       })
       .catch((e) => console.log(e));
 
@@ -72,7 +77,18 @@ const DashboardClient = () => {
       .catch((e) => console.log(e));
 
     db.collection("items")
-      .doc("bestSellers")
+    .doc("Grooming")
+    .collection("products")
+    .get()
+    .then((docs) => {
+      var temp = [];
+      docs.forEach((doc) => temp.push(doc.data()));
+      setGroomer(temp);
+    })
+    .catch((e) => console.log(e));
+
+    db.collection("items")
+      .doc("Best Sellers")
       .collection("products")
       .get()
       .then((docs) => {
@@ -81,6 +97,32 @@ const DashboardClient = () => {
         setBestSellers(temp);
       })
       .catch((e) => console.log(e));
+
+      
+    db.collection("items")
+    .doc("Food")
+    .collection("products")
+    .get()
+    .then((docs) => {
+      var temp = [];
+      docs.forEach((doc) => temp.push(doc.data()));
+      setFood(temp);
+    })
+    .catch((e) => console.log(e));
+
+    db.collection("items")
+    .doc("Cat Essentials")
+    .collection("products")
+    .get()
+    .then((docs) => {
+      var temp = [];
+      docs.forEach((doc) => temp.push({...doc.data(), key:doc.id }));
+      setCats(temp);
+      console.log(cats)
+      console.log(temp)
+    })
+    .catch((e) => console.log(e));
+    
 
     db.collection("items")
       .doc("Special Toys")
@@ -194,10 +236,24 @@ const DashboardClient = () => {
             : null}
           </div>
         </div>
-        <h2 className="mt-4" style={{paddingBottom: "20px"}}>DOG ESSENTIALS</h2>
+        <h2 className="mt-4" style={{paddingBottom: "20px"}}>GROOMING</h2>
         <div className="carousel-styling" style={{justifyContent: "center",paddingBottom: "40px"}} >
               <Carousel breakPoints={breakPoints}>
                 <item>
+                  
+                  {groomer ? (
+                  groomer.map((groom) =>
+                     
+                  <SquareCard _id={groom.key} info={groom.details} title={groom.details.name} image={groom.details.url} size={groom.details.size} cost={groom.details.cost} mrp={groom.details.mrp}/> 
+                  )
+                 ) : (
+                   <h5>grooming arriving</h5>
+                 )
+                 }
+                 </item>
+                 
+                
+               {/* <item>
                   <SquareCard />
                 </item>
                 <item>
@@ -205,16 +261,27 @@ const DashboardClient = () => {
                 </item>
                 <item>
                   <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-                </item>
+               </item>*/}
               </Carousel>
         </div>
         <h2 className="mt-4" style={{paddingBottom: "20px"}}>CAT ESSENTIALS</h2>
         <div style={{justifyContent: "center",paddingBottom: "40px"}}>
+                
               <Carousel breakPoints={breakPoints}>
-                <item>
+              
+                 {cats ? (
+                  cats.map((ca) => <item>       
+                  <SquareCard _id={ca.key} info={ca.details} title={ca.details.name} image={ca.details.url} size={ca.details.size} cost={ca.details.cost} mrp={ca.details.mrp}/>
+                  </item>
+                  )
+                 ) : (
+                   <h5>Cat Essentials arriving</h5>
+                 )
+                 }
+               
+                 
+                
+{/*                <item>
                   <SquareCard />
                 </item>
                 <item>
@@ -223,10 +290,8 @@ const DashboardClient = () => {
                 <item>
                   <SquareCard />
                 </item>
-                <item>
-                  <SquareCard />
-                </item>
-              </Carousel>
+*/}              </Carousel>
+                
         </div>
         <h3 className="mt-4" style={{fontWeight: "bold",paddingBottom:"20px"}}>FEATURED CATEGORIES</h3>
         <div className="row justify-content-center" style={{paddingBottom: "30px"}}>
@@ -247,10 +312,21 @@ const DashboardClient = () => {
             <h4 className="mt-3" style={{fontWeight: "bold"}}>Birds</h4>
           </div>
         </div>
-        <h2 className="mt-4" style={{paddingBottom: "20px"}}>CAT ESSENTIALS</h2>
+        <h2 className="mt-4" style={{paddingBottom: "20px"}}>FOOD</h2>
         <div style={{justifyContent: "center",paddingBottom: "40px"}}>
               <Carousel breakPoints={breakPoints}>
-                <item>
+                
+                  
+      {food ? (
+        food.map((food) => <item>
+        <SquareCard _id={food.key} info={food.details} title={food.details.name} image={food.details.url} cost={food.details.cost} mrp={food.details.mrp} size={food.details.size} />
+        </item>
+        )
+      ) : (
+        <h5>food arriving</h5>
+      )}
+                
+                {/*<item>
                   <SquareCard />
                 </item>
                 <item>
@@ -258,10 +334,7 @@ const DashboardClient = () => {
                 </item>
                 <item>
                   <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-                </item>
+                </item>*/}
               </Carousel>
         </div>
   </div>
