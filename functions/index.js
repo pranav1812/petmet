@@ -33,14 +33,14 @@ exports.fixAppointment= functions.firestore
         var doctorPromise= db.collection('vet').doc(snap.data().doctorId).get()
 
         var [usr, doctor]= await Promise.all([usrPromise, doctorPromise])
-        var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...snap.data(), doctorName: doctor.data().name || doctor.data().firstName + doctor.data().lastName}, 'appointment_registered')
-        var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...snap.data(), patientName: usr.data().name || usr.data().firstName + usr.data().lastName}, 'appointmentReverse_registered')
+        var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...snap.data(), doctorName: doctor.data().name || `${doctor.data().firstName} ${doctor.data().lastName}`}, 'appointment_registered')
+        var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...snap.data(), patientName: usr.data().name || `${usr.data().firstName} ${usr.data().lastName}`}, 'appointmentReverse_registered')
         var user= {
             name: usr.data().name || usr.data().firstName,
             id: context.params.uid
         }
         var setAppointmentForVetPromise= background.setAppointentForVet(user, {...snap.data(), key: context.params.appId})
-        var setAppointmentForAdminPromise= background.setAppointentForVet(user, {...snap.data(), key: context.params.appId})
+        var setAppointmentForAdminPromise= background.setAppointentForAdmin(user, {...snap.data(), key: context.params.appId})
         var addKeyPromise= db.collection('user').doc(context.params.uid).collection('appointments').doc(context.params.appId).update({key: context.params.appId, status: 'pending'})
         // var notificationPromise= notify.sendAppointmentConfirmationNotification(deviceToken, snap.data())
         var sendMailPromise= sendMail.appointmentConfirmation(snap.data(), usr.data().mail || usr.data().email )
@@ -76,15 +76,15 @@ exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId
 exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/appointments/{appId}')
         .onUpdate(async(change, context)=>{
 
-            var doctorPromise= db.collection('user').doc(context.params.vid).get()
-            var usrPromise= db.collection('vet').doc(change.after.data().patientId).get()
+            var doctorPromise= db.collection('vet').doc(context.params.vid).get()
+            var usrPromise= db.collection('user').doc(change.after.data().patientId).get()
 
             var [usr, doctor]= await Promise.all([usrPromise, doctorPromise])
 
             var purpose1= 'appointment_'+change.after.data().status
             // var purpose2= 'appointmentReverse_'+change.after.data().status
-            var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...snap.data(), doctorName: doctor.data().name || doctor.data().firstName + doctor.data().lastName}, purpose1)
-            // var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...snap.data(), patientName: usr.data().name || usr.data().firstName + usr.data().lastName}, purpose2)
+            var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...change.after.data(), doctorName: doctor.data().name || `${doctor.data().firstName} ${doctor.data().lastName}`}, purpose1)
+            // var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...change.after.data(), patientName: usr.data().name || usr.data().firstName + usr.data().lastName}, purpose2)
 
             if(change.after.data().status != change.before.data().status && !change.after.data().cancelledByUser){
 
@@ -124,7 +124,7 @@ exports.cancelAppointment= functions.firestore
 
             var [usr, doctor]= await Promise.all([usrPromise, doctorPromise])
             
-            var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...change.after.data(), patientName: usr.data().name || usr.data().firstName + usr.data().lastName}, 'appointmentReverse_cancelled')
+            var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...change.after.data(), patientName: usr.data().name || `${usr.data().firstName} ${usr.data().lastName}`}, 'appointmentReverse_cancelled')
             
 
             let clientRef= db.collection('vet').doc(change.after.data().doctorId)
@@ -143,10 +143,10 @@ exports.cancelAppointment= functions.firestore
                 cancelledByUser: true
             })
             // var notificationPromise= notify.sendAppointmentConfirmationNotification(deviceToken, snap.data())
-            var sendMailPromise= sendMail.appointmentConfirmation(snap.data(), usr.data().mail || usr.data().email )
+            // var sendMailPromise= sendMail.appointmentConfirmation(change.after.data(), usr.data().mail || usr.data().email )
             try{
                 // var results= await Promise.all([setAppointmentForVetPromise, notificationPromise, sendMailPromise])
-                return Promise.all([vetNotificationPromise, vetChangePromise, adminChangePromise, sendMailPromise])
+                return Promise.all([vetNotificationPromise, vetChangePromise, adminChangePromise])
                     
             }catch(error){
                 console.log(error)
