@@ -212,14 +212,14 @@ const DashboardClient = () => {
             <div>
               <h3 className="mt-4 main-new-head" style={{fontWeight: "bold",textAlign:"left",marginLeft:"13%"}}>Our Features</h3>
             </div>
-            <div className="row align-items-center">
-              <div className="col-12 col-sm-4">
+            <div className="row align-items-center ban_img_div">
+              <div className="col-12 col-lg-4">
                 <img className="bannerimg" src={Vet} />
               </div>
-              <div className="col-12 col-sm-4">
+              <div className="col-12 col-lg-4">
                 <img className="bannerimg" src={Vet} />
               </div>
-              <div className="col-12 col-sm-4">
+              <div className="col-12 col-lg-4">
                 <img className="bannerimg" src={Vet} />
               </div>
             </div>

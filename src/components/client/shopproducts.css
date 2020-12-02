@@ -14,8 +14,9 @@ body {
   max-width: 987.79px;
   display: flex;
   flex-direction: column;
+  position: sticky;
+
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 .products_rightflex_cardflex {
@@ -162,16 +163,17 @@ button:active {
 
     border: 0.3px solid black;
     z-index: 100;
-  }
+  } */
   ul {
     padding-left: 3px;
     z-index: 500;
+    font-size: 14px;
   }
   .newpagebutton {
-    font-size: 12px;
+    font-size: 14px;
     text-align: left;
     justify-content: left;
-  } */
+  }
 }
 
 @media only screen and (min-width: 819px) {

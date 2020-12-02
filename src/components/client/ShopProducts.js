@@ -88,7 +88,7 @@ const ShopProducts = () => {
                   <div className="filterpopup">
                     {listarray.map((num) => {
                       return (
-                        <div style={{ height: "28.71px" }}>
+                        <div>
                           <ShopProductsarray
                             style={{ fontSize: "12px" }}
                             id={num}

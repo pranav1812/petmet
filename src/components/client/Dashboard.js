@@ -60,6 +60,7 @@ import { GrAdd } from "react-icons/gr";
 import VetConfirmation from "./VetConfirmation";
 import AllAppointments from "./AllAppointments";
 import Cart2 from "./Cart2";
+import PrivacyPolicy from './PrivacyPolicy';
 
 const drawerWidth = 240;
 
@@ -286,10 +287,10 @@ export default function Dashboard() {
                 backgroundColor: "#ffffff",
               }}
             >
-              <Nav.Link className="newnavitems home_nav" href="/Home/">
+              <Nav.Link className="newnavitems home_nav" href="/">
                 Home
               </Nav.Link>
-              <Nav.Link className="newnavitems" href="#link">
+              <Nav.Link className="newnavitems">
                 <div className="dropdown">
                   <button className="ddbtn" type="button" onClick={handleShow}>
                     My Pets
@@ -472,6 +473,8 @@ export default function Dashboard() {
           <VetConfirmation />
         ) : componentt == "allappointments" ? (
           <AllAppointments />
+        ) : componentt == "privacyPolicy" ? (
+          <PrivacyPolicy />
         ) : (
           <Home />
         )}

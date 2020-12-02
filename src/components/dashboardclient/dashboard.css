@@ -100,11 +100,39 @@ h2,h3 {
   margin-top: 80px;
 }
 
+.ban_img_div {
+  margin-top: 2.3%;
+}
+
 .bannerimg {
-  width: 27vw;
-  height: 40vh;
+  width: 100%;
+  height: 100%;
   margin-top: 25%;
 } 
+
+@media only screen and (max-width: 570px)
+{
+  .ban_img_div {
+    margin-top: 13%;
+  }
+  .bannerimg {
+    width: 70%;
+    height: 100%;
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (min-width: 750px) and (max-width: 992px)
+{
+  .ban_img_div {
+    margin-top: 5%;
+  }
+  .bannerimg {
+    width: 43%;
+    height: 100%;
+    margin-top: 10px;
+  }
+}
 
 .rec.rec-arrow {
   border-radius: 0;

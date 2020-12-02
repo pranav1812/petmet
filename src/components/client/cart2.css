@@ -15,7 +15,7 @@ body {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  margin-right: 24.61px;
+  margin-right: 10%;
   margin-bottom: 20px;
 }
 .cart2_addresscard {
@@ -102,4 +102,18 @@ body {
   .cart2_addaddress {
     width: auto;
   }
+}
+
+.cartModalButtons {
+  color: #ffffff;
+  background-color: #36a9cc;
+  border-color: #36a9cc;
+  border-radius: 3px;
+  padding:3px 7px;
+}
+
+.cartModalButtons:hover,.cartModalButtons:focus {
+  color: #36a9cc;
+  background-color: #ffffff;
+  border-color: #36a9cc;
 }

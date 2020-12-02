@@ -4,6 +4,7 @@ var crypto= require('crypto')
 
 const Razorpay= require('razorpay')
 const background= require('../background/index')
+const { request } = require('http')
 const appRouter= express.Router()
 
 
@@ -66,6 +67,7 @@ appRouter.post('/order', async(req, res)=>{
             mailId: req.body.mail,
             subFromWallet: subFromWallet,
             usedCode: usedCode,
+            deliveryAddress: req.body.deliveryAddress,
             cashback: Math.min(Number(promoInfo.data().walletCashbackMaxima), total*Number(Number(promoInfo.data().walletCashback)))
         }) 
         res.json(order);

@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { auth, db } from "../../firebase";
 import "./cart.css";
+import "./cart2.css";
 import axios from "axios";
 import paymentRazorpay from "./payment";
 import Food from "../pictures/image 360.png";
 import Cart2 from "./Cart2";
+import {Form, Modal} from 'react-bootstrap';
+import AddIcon from "@material-ui/icons/Add";
+import Radio from "@material-ui/core/Radio";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const login =
   window.location.protocol + "//" + window.location.host + "/" + "login/";
@@ -17,6 +22,10 @@ const CartComponent = () => {
   const [inTotal, setInTotal] = useState(0);
   const [user, setUser] = useState(null);
   const [useWallet, setUseWallet] = useState(false);
+  const [showMain, setShowMain] = useState(false);
+  const [showAddress, setShowAddress ] = useState(false);
+  const [showSummary, setShowSummary] = useState(false);
+  const [deliveryAddress, setDeliveryAddress] = useState(null);
 
   const [promo, setPromo] = useState({
     description: "default promo code, 5% cashback to wallet+0 discount",
@@ -27,6 +36,34 @@ const CartComponent = () => {
     walletCashback: ".05",
     walletCashbackMaxima: "150",
   });
+
+  const handleCloseMain = () => {
+    setShowMain(false)
+  }
+
+  const handleShowMain = () => {
+    setShowAddress(false)
+    setShowMain(true)
+  }
+
+  const handleShowAddress = () => {
+    setShowMain(false)
+    setShowAddress(true)
+  }
+
+  const handleCloseAddress = () => {
+    setShowAddress(false)
+  }
+
+  const handleShowSummary = () => {
+    setShowMain(false)
+    setShowAddress(false)
+    setShowSummary(true)
+  }
+
+  const handleCloseSummary = () => {
+    setShowSummary(false)
+  }
 
   const [uid, setUid] = useState(null);
   const proLink = (_id, category) => {
@@ -55,7 +92,8 @@ const CartComponent = () => {
     });
 
     var reqBody = {
-      uid: "x9NJedXFbnOny29oq65urIxC4Kk1",
+      uid: uid,
+      deliveryAddress: deliveryAddress,
       useWallet: useWallet,
       promo: code,
       mail: user.mail || user.email,
@@ -110,7 +148,20 @@ const CartComponent = () => {
           .doc(user.uid)
           .get()
           .then((doc) => {
-            if (doc.exists) setUser(doc.data());
+            if (doc.exists) 
+            {
+              var temp=doc.data()
+              setUser(temp)
+              setDeliveryAddress({
+                address: temp.address,
+                phone: temp.phone,
+                name: temp.name || temp.firstName + temp.lastName,
+                zip: temp.zip,
+                city: temp.city,
+                state: temp.state,
+                default: true,
+              })
+            };
           });
       }
     });
@@ -120,11 +171,13 @@ const CartComponent = () => {
     if (wish[ind].units > 1) {
       var temp = wish;
       var net = total;
+      var net1 = inTotal;
       temp[ind].units += i;
       net += i * cost;
+      net1 += i * cost;
       setWish(temp);
       setTotal(net);
-      setInTotal(net);
+      setInTotal(net1);
     } else if (wish[ind].units == 1) {
       if (i == -1) {
         delPro(wish[ind].key);
@@ -132,11 +185,13 @@ const CartComponent = () => {
       }
       var temp = wish;
       var net = total;
+      var net1 = inTotal;
       temp[ind].units += i;
       net += i * cost;
+      net1 += i * cost;
       setWish(temp);
       setTotal(net);
-      setInTotal(net);
+      setInTotal(net1);
     }
   };
 
@@ -153,17 +208,23 @@ const CartComponent = () => {
   };
 
   const discount = (promo) => {
+    console.log(total,inTotal)
     var net = inTotal;
-    if (net > Number(promo.discountLowerLimit)) {
-      var inDis = Number(promo.discount) * net;
-      net -= Math.min(inDis, Number(promo.discountUpperLimit));
-      setTotal(net);
-      setCouponDiscount(Math.min(inDis, Number(promo.discountUpperLimit)));
+    setTotal(inTotal)
+    if (user && !user.usedPromo.includes(code)) {
+      if (net > Number(promo.discountLowerLimit)) {
+        var inDis = Number(promo.discount) * net;
+        net -= Math.min(inDis, Number(promo.discountUpperLimit));
+        setTotal(net);
+        setCouponDiscount(Math.min(inDis, Number(promo.discountUpperLimit)));
+      }
     }
+    else if (user)
+      alert(`${code} can't be used again. Try another one.`)
   };
 
   return (
-    <div style={{ backgroundColor: "#e5e5e5" }}>
+    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-200px" }}>
       <p
         className="toppath"
         style={{
@@ -180,7 +241,7 @@ const CartComponent = () => {
           {/* .................... */}
           {wish
             ? wish.map((wi, ind) => (
-                <div className="cartproductcard">
+                <div className="cartproductcard mb-4">
                   <div className="embedded_cartproductcard">
                     <img className="cartimage" src={wi.url} alt="khaana" />
                     <div className="columnembeddedcard">
@@ -292,10 +353,10 @@ const CartComponent = () => {
               <div className="amount">Total MRP</div>
               <div className="price_part amount">₹{inTotal} </div>
             </div>
-            <div className="label_price_flex">
+            {/* <div className="label_price_flex">
               <div className="amount">Discount on MRP</div>
               <div className="price_part amount">-₹435 </div>
-            </div>
+            </div> */}
             <div className="label_price_flex">
               <div className="amount">Coupon Discount</div>
               <div className="price_part amount">-₹{couponDiscount} </div>
@@ -313,14 +374,149 @@ const CartComponent = () => {
 
           <button
             type="button"
-            class="placeorderbutton"
-            onClick={retrieveOrder}
+            className="placeorderbutton"
+            onClick={handleShowMain}
           >
             PLACE ORDER
           </button>
         </div>
         {/* ................................... */}
       </div>
+      
+      <Modal size="lg" show={showMain} onHide={handleCloseMain} centered>
+        <Modal.Header style={{borderColor:"black"}} closeButton>
+          <Modal.Title style={{color:"black"}}>SELECT DELIVERY ADDRESS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="cart2_leftflex">
+            <div className="cart2_addresscard">
+              <div>
+                <p className="defaulttag">DEFAULT</p>
+                <p className="cart2_name">
+                  <FormControlLabel value="female" control={<Radio />} />
+                  {user? user.name || user.firstName + user.lastName:"loading"}
+                </p>
+              </div>
+              <div style={{ marginLeft: "46px" }}>
+                <p>{user? user.address:"loading"}</p>
+                <p>{user? user.zip:"loading"}</p>
+                <p>{user? user.phone:"loading"}</p>
+              </div>
+              <span style={{ justifyContent: "right", marginLeft: "auto" }}>
+                {/* <button className="cart2_removebutton">REMOVE</button> */}
+                <button className="cart2_removebutton" onClick={handleShowAddress}>EDIT</button>
+              </span>
+            </div>
+            <div className="cart2_addaddress" style={{cursor:"pointer"}}>
+              <p className="cart2_addaddresstext" onClick={handleShowAddress}>
+                <AddIcon />
+                Add New Address
+              </p>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer style={{border:"none"}}>
+          <button className="cartModalButtons" onClick={handleCloseMain}>
+            Cancel
+          </button>
+          <button className="cartModalButtons" onClick={handleShowSummary}>
+            Next
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showAddress} onHide={handleCloseAddress} centered>
+        <Modal.Header style={{borderColor:"black"}} closeButton>
+          <Modal.Title style={{color:"black"}}>ADD NEW ADDRESS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
+            <div className="row mb-3">
+              <Form.Control placeholder="Name*" onBlur={(e) => setDeliveryAddress({...deliveryAddress, name: e.target.value, default: false})}></Form.Control>
+            </div>
+            <div className="row mb-3">
+              <Form.Control placeholder="Mobile*" onBlur={(e) => setDeliveryAddress({...deliveryAddress, phone: e.target.value, default: false})}></Form.Control>
+            </div>
+            <div className="row mb-3">
+              <Form.Control className="col-5" placeholder="Pincode*" onBlur={(e) => setDeliveryAddress({...deliveryAddress, zip: e.target.value, default: false})}></Form.Control>
+              <Form.Control className="col-6 offset-1" placeholder="State*" onBlur={(e) => setDeliveryAddress({...deliveryAddress, state: e.target.value, default: false})}></Form.Control>
+            </div>
+            <div className="row mb-3">
+              <Form.Control placeholder="Address (House no., Building, Street, Area)" onBlur={(e) => setDeliveryAddress({...deliveryAddress, address: e.target.value, default: false})}></Form.Control>
+            </div>
+            <div className="row mb-4">
+              <Form.Control placeholder="City/District" onBlur={(e) => setDeliveryAddress({...deliveryAddress, city: e.target.value, default: false})}></Form.Control>
+            </div>
+            <div>
+              <p className="mb-2" style={{color:"black"}}><strong>Type of address*</strong></p>
+              <div className="row ml-2">
+                <Form.Check 
+                  type="radio"
+                  label="Home"
+                  name="type"
+                  className="mr-4"
+                  onSelect={() => setDeliveryAddress({...deliveryAddress, type: "home", default: false})}
+                />
+                <Form.Check 
+                  type="radio"
+                  label="Office"
+                  name="type"
+                  onSelect={() => setDeliveryAddress({...deliveryAddress, type: "office", default: false})}
+                />
+              </div>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer style={{border:"none"}}>
+          <button className="cartModalButtons" onClick={handleCloseAddress}>
+            Cancel
+          </button>
+          <button className="cartModalButtons" onClick={handleShowSummary}>
+            Next
+          </button>
+        </Modal.Footer>
+      </Modal>
+
+      <Modal show={showSummary} onHide={handleCloseSummary} style={{marginTop:"40px"}} centered>
+        <Modal.Header style={{borderColor:"black"}} closeButton>
+          <Modal.Title style={{color:"black"}}>REVIEW YOUR ORDER</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div className="container">
+            <div className="mb-3">
+              <h6 style={{fontWeight:"bold",color:"black"}}>
+                Shipping Details:
+              </h6>
+              <p>{deliveryAddress?deliveryAddress.name:user?user.name||user.firstName + user.lastName:"loading"}<br/>
+              {deliveryAddress?deliveryAddress.address:user?user.address:"loading"}<br/>
+              {deliveryAddress?deliveryAddress.city:user?user.city:"loading"}<br/>
+              {deliveryAddress?deliveryAddress.state:user?user.state:"loading"}<br/>
+              {deliveryAddress?deliveryAddress.zip:user?user.zip:"loading"}<br/>
+              {deliveryAddress?deliveryAddress.phone:user?user.phone:"loading"}<br/>
+              </p>
+            </div>
+            <div className="mb-3">
+              <h6 style={{fontWeight:"bold",color:"black"}}>
+                Billing Details:
+              </h6>
+              <p><strong>Coupons Applied: </strong>{code}<br/>
+              <strong>Total MRP: </strong>{inTotal}<br/>
+              <strong>Coupon Discount: </strong>{couponDiscount}<br/>
+              <strong>Total Amount: </strong>{total}<br/>
+              </p>
+            </div>
+          </div>
+        </Modal.Body>
+        <Modal.Footer style={{border:"none"}}>
+          <button className="cartModalButtons" onClick={handleCloseSummary}>
+            Cancel
+          </button>
+          <button className="cartModalButtons" onClick={retrieveOrder}>
+            Proceed to Payment
+          </button>
+        </Modal.Footer>
+      </Modal>
+
     </div>
   );
 };
