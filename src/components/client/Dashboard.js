@@ -108,7 +108,7 @@ const useStyles = makeStyles((theme) => ({
 
   container: {
     zIndex: theme.zIndex.appBar - 1,
-    paddingTop: theme.spacing(0),
+    // paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(0),
   },
   paper: {

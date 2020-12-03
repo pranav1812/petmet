@@ -29,7 +29,7 @@ const AllAppointments = () => {
       })
     }, [])
     return ( 
-        <div style={{marginTop: "100px"}}>
+        <div>
             { appoint ? appoint.map( app=>(
                 <div style={{margin:"0px"}}>
                  <div className="outer ">
