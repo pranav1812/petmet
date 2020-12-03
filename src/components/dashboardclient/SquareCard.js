@@ -4,14 +4,37 @@ import "./squarecard.css";
 import { Button, Card } from "react-bootstrap";
 import { BsHeart } from "react-icons/bs";
 import { db, auth } from "../../firebase";
+import { Link } from "react-router-dom";
 
 const SquareCard = (props) => {
-
+  var temp = props.size?props.size[0]:null
+  const [ userSelectedSize, setUserSelectedSize ] = useState(temp)
+  const [ color, setColor] = useState(false);
+  const [ cart, setCart] = useState(false)
   useEffect(()=>{
-    console.log(props._id)    
+    console.log(props.info)    
 
 })
   
+const addToWishlist = () => {
+  var user = auth.currentUser;
+  if (user) {
+    db.collection("user")
+      .doc(user.uid)
+      .collection("wishlist")
+      .doc(props._id)
+      .set({
+        ...props.info,
+        key: props._id,
+        units: 1,
+        userSelectedSize: userSelectedSize,
+      })
+      .then(() => setColor(true));
+  } else {
+    prompt("Need to login");
+  }
+};
+
   const addToCart = () => {
     var user = auth.currentUser;
     if (user) {
@@ -22,9 +45,10 @@ const SquareCard = (props) => {
         .set({
           ...props.info,
           key: props._id,
-          units: 1
+          units: 1,
+          userSelectedSize: userSelectedSize
         })
-        .then(() => alert("Product Added to Cart"));
+        .then(() => setCart(true));
     } else {
       prompt("Need to login");
     }
@@ -46,9 +70,13 @@ const SquareCard = (props) => {
       </div> */}
       <Card className="outCard">
         <div className="crdImg">
+          {props.userSelectedSize?(<div><span>Selected Size:</span>
+          <button className="row-btn" > {userSelectedSize} </button></div>):null}
+          <Link to={"/ShopPage/" + props.info.category + "/" + props._id}>
           <Card.Img src={props.image} className="dishImg" />
+          </Link>
           <span className="iconspan">
-            <BsHeart className="ic" />
+            <BsHeart style= {color?{backgroundColor: "red"} : null} onClick={addToWishlist} className="ic" />
           </span>
         </div>
         <div>
@@ -56,7 +84,9 @@ const SquareCard = (props) => {
             {props.title}
           </Card.Title>
           <div className="row justify-content-center mb-1">
-            <button className="row-btn">{props.size}</button>
+            {props.size?(props.size.map((s)=>
+            <button onClick= {()=>{setUserSelectedSize(s)}} className="row-btn">{s}</button>
+            )):null}
             {/*<button className="row-btn">800 gm</button>
             <button className="row-btn">1 kg</button>
     <button className="row-btn">2 kg</button>*/}
@@ -75,7 +105,7 @@ const SquareCard = (props) => {
               borderRadius: "3px",
             }}
           >
-            Add to Cart
+            {cart? "Added to cart": "Add to Cart"}
           </button>
         </div>
       </Card>

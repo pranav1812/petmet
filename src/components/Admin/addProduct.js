@@ -16,7 +16,7 @@ class AddProduct extends Component {
             size: null,
             quantity: null,
             category: null, 
-            ingriedients: null,
+            ingredients: null,
             addInfo: null,
             url: null,
             urlList: null,
@@ -156,7 +156,7 @@ class AddProduct extends Component {
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Ingredients</Form.Label>
-                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({ingriedients: e.target.value })}} />
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({ingredients: e.target.value })}} />
                         </Form.Group>
                         <Form.Group className="row">
                             <Form.Label className="col-3">Additional Information</Form.Label>

@@ -125,11 +125,11 @@ const ShopProducts = () => {
             <div className="products_rightflex_cardflex">
               {products
                 ? products.map((pro) => (
-                    <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+    //                <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                       <div>
-                        <SquareCard style={{ margin: "31px" }} />
+                        <SquareCard title={pro.details.name} size={pro.details.size} cost={pro.details.cost} mrp={pro.details.mrp} _id={pro.key} info={pro.details} image={pro.details.url}  style={{ margin: "31px" }} />
                       </div>
-                    </Link>
+      //              </Link>
                     /* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
                   </Link>

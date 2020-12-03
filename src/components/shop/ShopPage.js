@@ -96,6 +96,7 @@ const ShopPage = () => {
       .get()
       .then((doc) => {
         setInfo(doc.data().details);
+        console.log(doc.data().details)
         // setTotalPrice(doc.data().details.cost)
       });
   }, [qty]);
@@ -329,7 +330,7 @@ const ShopPage = () => {
         className="carousel-styling"
         style={{ justifyContent: "center", paddingBottom: "40px" }}
       >
-        <Carousel breakPoints={breakPoints}>
+       {/* <Carousel breakPoints={breakPoints}>
           <item>
             <SquareCard />
           </item>
@@ -343,7 +344,7 @@ const ShopPage = () => {
             <SquareCard />
           </item>
         </Carousel>
-      </div>
+            */}      </div>
     </div>
     // <div>
     //   {info?(
