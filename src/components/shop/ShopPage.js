@@ -135,6 +135,7 @@ const ShopPage = () => {
         .set({
           ...info,
           key: productId,
+          units: 1
         })
         .then(() => alert("Product Added to Cart"));
     } else {
@@ -152,6 +153,7 @@ const ShopPage = () => {
         .set({
           ...info,
           key: productId,
+          units: 1
         })
         .then(() => alert("Product Added to Wishlist"));
     } else {
