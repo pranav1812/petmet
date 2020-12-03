@@ -2,7 +2,7 @@ import React from 'react';
 
 const PrivacyPolicy = () => {
     return ( 
-        <div style={{paddingTop:"100px",paddingLeft:"3%",paddingRight:"3%", color:"black"}}>
+        <div style={{paddingLeft:"3%",paddingRight:"3%", color:"black"}}>
             <h3 className="mb-2" style={{fontWeight:"bold", color:"black"}}>PRIVACY POLICY</h3>
             <h5 className="mb-4" style={{ color:"black",textAlign:"center"}}>Privacy Polciy (Version 1.0, Effective date: October 13, 2020)</h5>
             <p className="mb-3">This Privacy Policy is a part of and incorporated within and is to be read along with the Terms of Website Use (“Terms”) . The capitalized terms used in this Privacy Policy, but not defined herein, shall have the meaning given to such terms in the Terms.</p>

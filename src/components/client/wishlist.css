@@ -74,7 +74,6 @@
   background-color: #ffffff !important;
 }
 .heading_wishlist {
-  margin-top: 80px;
   font-size: 36px !important;
 }
 .wishpage_rowflex {
@@ -109,8 +108,6 @@
   font-size: 22px;
   line-height: 26px;
   text-align: left;
-  margin-top: 34.56px;
-
   color: #2b3b47;
 }
 .wishpage_text {

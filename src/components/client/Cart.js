@@ -224,7 +224,7 @@ const CartComponent = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-200px" }}>
+    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-28px" }}>
       <p
         className="toppath"
         style={{
