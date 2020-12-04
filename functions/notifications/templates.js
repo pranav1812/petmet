@@ -18,7 +18,6 @@ templates.generatePayload= (docData, purposeId)=>{
         },
         appointmentReverse: {
             registered: `you have an appointment request`,
-            confirmed: `${docData.patientName} has requested an appointment on ${docData.date} at ${docData.time}`,
             cancelled: `${docData.patientName} cancelled the request`
         },     
     }
@@ -39,7 +38,6 @@ templates.generatePayload= (docData, purposeId)=>{
         },
         appointmentReverse: {
             registered: `you have an appointment request`,
-            confirmed: `${docData.patientName} has requested an appointment on ${docData.date} at ${docData.time}`,
             cancelled: `${docData.patientName} cancelled the request that was scheduled for ${docData.date} at ${docData.time}`
         }        
     }

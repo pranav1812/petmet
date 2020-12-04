@@ -33,8 +33,8 @@ exports.fixAppointment= functions.firestore
         var doctorPromise= db.collection('vet').doc(snap.data().doctorId).get()
 
         var [usr, doctor]= await Promise.all([usrPromise, doctorPromise])
-        var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...snap.data(), doctorName: doctor.data().name || `${doctor.data().firstName} ${doctor.data().lastName}`}, 'appointment_registered')
-        var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...snap.data(), patientName: usr.data().name || `${usr.data().firstName} ${usr.data().lastName}`}, 'appointmentReverse_registered')
+        var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...snap.data(), doctorName: doctor.data().Name || `${doctor.data().firstName} ${doctor.data().lastName}`}, 'appointment_registered', 'user', usr.id)
+        var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...snap.data(), patientName: usr.data().name || `${usr.data().firstName} ${usr.data().lastName}`}, 'appointmentReverse_registered', 'vet', doctor.id)
         var user= {
             name: usr.data().name || usr.data().firstName,
             id: context.params.uid
@@ -83,7 +83,7 @@ exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/a
 
             var purpose1= 'appointment_'+change.after.data().status
             // var purpose2= 'appointmentReverse_'+change.after.data().status
-            var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...change.after.data(), doctorName: doctor.data().name || `${doctor.data().firstName} ${doctor.data().lastName}`}, purpose1)
+            var notifiactionPromise= notify.sendToSingleUser(usr.data().deviceToken, {...change.after.data(), doctorName: doctor.data().Name} , purpose1, 'user', usr.id )
             // var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...change.after.data(), patientName: usr.data().name || usr.data().firstName + usr.data().lastName}, purpose2)
 
             if(change.after.data().status != change.before.data().status && !change.after.data().cancelledByUser){
@@ -124,7 +124,7 @@ exports.cancelAppointment= functions.firestore
 
             var [usr, doctor]= await Promise.all([usrPromise, doctorPromise])
             
-            var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...change.after.data(), patientName: usr.data().name || `${usr.data().firstName} ${usr.data().lastName}`}, 'appointmentReverse_cancelled')
+            var vetNotificationPromise= notify.sendToSingleUser(doctor.data().deviceToken, {...change.after.data(), patientName: usr.data().name || "name field missing in patient" }, 'appointmentReverse_cancelled', 'vet', doctor.id)
             
 
             let clientRef= db.collection('vet').doc(change.after.data().doctorId)

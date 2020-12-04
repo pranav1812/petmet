@@ -68,6 +68,7 @@ appRouter.post('/order', async(req, res)=>{
             subFromWallet: subFromWallet,
             usedCode: usedCode,
             deliveryAddress: req.body.deliveryAddress,
+            deliveryStatus: "payment not verified",
             cashback: Math.min(Number(promoInfo.data().walletCashbackMaxima), total*Number(Number(promoInfo.data().walletCashback)))
         }) 
         res.json(order);
@@ -85,6 +86,7 @@ appRouter.post('/verifyPayment', async(req, res)=>{
         console.log(req.body.payload.payment.entity.order_id)
         var ref= db.collection('All_Orders').doc(req.body.payload.payment.entity.order_id)
         var promise1= ref.update({
+            deliveryStatus: "delivering within 2-3 working days",
             paymentVerified: true
         })
         
@@ -95,14 +97,27 @@ appRouter.post('/verifyPayment', async(req, res)=>{
         var promise2= userRef.set({
             ...orderInfo.data(),
             paymentDetails: req.body,
+            deliveryStatus: "delivering within 2-3 working days",
             paymentVerified: true
         })
 
         var userRef2= db.collection('user').doc(orderInfo.data().uid)
         var walletChange= orderInfo.data().cashback- orderInfo.data().subFromWallet
+        var dateobj = new Date()
+        var dateStr= dateobj.toISOString()
         var promise3= userRef2.update({
             walletMoney: admin.firestore.FieldValue.increment(walletChange),
-            usedPromo: admin.firestore.FieldValue.arrayUnion(orderInfo.data().usedCode)
+            usedPromo: admin.firestore.FieldValue.arrayUnion(orderInfo.data().usedCode),
+            walletHistory: admin.firestore.FieldValue.arrayUnion({
+                amount: orderInfo.data().cashback,
+                type: 'add',
+                date: dateStr
+            },
+            {
+                amount: orderInfo.data().subFromWallet,
+                type: 'sub',
+                date: dateStr
+            })
         })
 
         var resolve= await Promise.all([promise1, promise2, promise3])
@@ -110,6 +125,60 @@ appRouter.post('/verifyPayment', async(req, res)=>{
 
     }
     res.json({status: 'ok'})
+})
+
+appRouter.post('/servicePayment', async(req, res)=>{
+    var coll= req.body.type
+    var docId= req.body._id
+    var vet= await db.collection(coll).doc(docId).get()
+    var fee= vet.data().fee
+
+    var options = {
+        amount: Number(fee)*100,  
+        currency: "INR",
+        receipt: "order_rcptid_11"
+      };
+
+    var razorpayInstance= new Razorpay({
+        key_id: "rzp_test_HpdJifpKFyBE1U",
+        key_secret: "0PFGwg69u1f9cNnAYSBCkh8r",
+    })
+    razorpayInstance.orders.create(options, function(err, order) {
+          if(err){
+              res.json(options)
+              console.log("<-------------yahan error hai------->")
+              console.log(err)
+              console.log("<----ERROR---->")
+              return 
+          }
+        db.collection('AppointmentRecord').doc(order.id).set({
+            doctorId: req.body._id,
+            appId: req.body.appId
+        })
+        res.json(order);
+      })
+})
+
+appRouter.post('/verifyServicePayment', async(req, res)=>{
+    var shasum= crypto.createHmac('sha256', 'pEtMetR@z0RPayS3cRet6969')
+    shasum.update(JSON.stringify(req.body))
+    var digest= shasum.digest('hex')
+
+    console.log(digest, req.headers['x-razorpay-signature'])
+    if (digest== req.headers['x-razorpay-signature']){
+        // payment successful...
+        var app= await db.collection('AppointmentRecord').doc(req.body.payload.payment.entity.order_id).get()
+        
+        if(app.exists){
+            var doctorId= app.data().doctorId
+            var appId= app.data().appId
+            var ref= db.collection('vet').doc(doctorId).collection('appointments').doc(appId)
+            ref.update({
+                status: "confirmed"
+            })
+        }
+        res.json({status: 'ok'})
+    }
 })
 
 module.exports= appRouter
