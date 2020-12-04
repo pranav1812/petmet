@@ -100,9 +100,9 @@ const WishlistComponent = () => {
       }
     });
   }, []);
-
+  
   return (
-    <div style={{ padding: "2%", marginTop: "-100px" }} className="wishlistpage">
+    <div style={{ padding: "2%", marginTop: "-200px" }} className="wishlistpage">
       <h1 className="heading_wishlist">MY WISHLIST</h1>
       <div className="wishlist_mainflex">
         {wish
@@ -112,7 +112,7 @@ const WishlistComponent = () => {
                   <div className="dog_price_columnflex">
                     <img src={wi.url || product1} className="" />
                     <p className="cutpricee">
-                      Rs. 950
+                      {wi.cost}
                       <span className="previouspricee">{"Rs. " + wi.cost}</span>
                     </p>
                   </div>
@@ -149,7 +149,7 @@ const WishlistComponent = () => {
                           delPro(wi.key);
                         }}
                       >
-                        Add to Cart
+                        Remove
                       </button>
                       <button
                         className="buttonbuy"
@@ -157,15 +157,15 @@ const WishlistComponent = () => {
                           proLink(wi._id, wi.category);
                         }}
                       >
-                        Buy Now
+                        View Product
                       </button>
                     </span>
                   </div>
 
-                  <div className="iconspan3">
+       {/*           <div className="iconspan3">
                     <BsHeart className="ic" />
                   </div>
-                </div>
+                      */}       </div>
               </div>
               /* <div className="row" style={{ margin: "10px", width: "40em",backgroundColor:"#ffffff" }} className="cartproductcard">
        
@@ -259,6 +259,7 @@ export default function Wishlist() {
       }
     });
   });
+  
   return (
     <div>
       {usr ? (

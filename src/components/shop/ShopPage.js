@@ -96,6 +96,7 @@ const ShopPage = () => {
       .get()
       .then((doc) => {
         setInfo(doc.data().details);
+        console.log(doc.data().details)
         // setTotalPrice(doc.data().details.cost)
       });
   }, [qty]);
@@ -135,6 +136,7 @@ const ShopPage = () => {
         .set({
           ...info,
           key: productId,
+          units: 1
         })
         .then(() => alert("Product Added to Cart"));
     } else {
@@ -152,6 +154,7 @@ const ShopPage = () => {
         .set({
           ...info,
           key: productId,
+          units: 1
         })
         .then(() => alert("Product Added to Wishlist"));
     } else {
@@ -327,7 +330,7 @@ const ShopPage = () => {
         className="carousel-styling"
         style={{ justifyContent: "center", paddingBottom: "40px" }}
       >
-        <Carousel breakPoints={breakPoints}>
+       {/* <Carousel breakPoints={breakPoints}>
           <item>
             <SquareCard />
           </item>
@@ -341,7 +344,7 @@ const ShopPage = () => {
             <SquareCard />
           </item>
         </Carousel>
-      </div>
+            */}      </div>
     </div>
     // <div>
     //   {info?(

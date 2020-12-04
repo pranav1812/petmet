@@ -14,7 +14,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 const login =
   window.location.protocol + "//" + window.location.host + "/" + "login/";
 
-const CartComponent = () => {
+const CartComponent = (props) => {
   const [wish, setWish] = useState(null);
   const [total, setTotal] = useState(0);
   const [code, setCode] = useState("no_promo");
@@ -78,6 +78,25 @@ const CartComponent = () => {
       "/" +
       _id;
   };
+
+  
+const addToWishlist = () => {
+  var user = auth.currentUser;
+  if (user) {
+    db.collection("user")
+      .doc(user.uid)
+      .collection("wishlist")
+      .doc(props._id)
+      .set({
+        ...props.info,
+        key: props._id,
+        units: 1
+      })
+      .then(() => alert("Product Added to Wishlist"));
+  } else {
+    prompt("Need to login");
+  }
+};
 
   const retrieveOrder = async () => {
     var endPoint = "https://petmet.co.in/payment/order";
@@ -224,7 +243,7 @@ const CartComponent = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-200px" }}>
+    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-28px" }}>
       <p
         className="toppath"
         style={{
@@ -302,7 +321,7 @@ const CartComponent = () => {
                   <span>
                     <button className="cartremovebuttonn">REMOVE</button>
                     <button className="linebtwbutton">|</button>
-                    <button className="cartremovebuttonn">
+                    <button onClick={addToWishlist} className="cartremovebuttonn">
                       ADD TO WISHLIST
                     </button>
                   </span>
