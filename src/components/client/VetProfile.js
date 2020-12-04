@@ -87,7 +87,9 @@ const toggle=(md)=>{
 
 const submit=()=>{
  var user = auth.currentUser
- db.collection("user").doc(user.uid).collection("appointments").add({
+ var dateObj= new Date()
+ var dateStr= dateObj.toISOString()
+ db.collection("user").doc(user.uid).collection("appointments").doc(dateStr).set({
    date: date, 
    mode: mode,
    time: time,
