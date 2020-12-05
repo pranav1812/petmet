@@ -109,11 +109,27 @@ body {
   background-color: #36a9cc;
   border-color: #36a9cc;
   border-radius: 3px;
-  padding:3px 7px;
+  padding: 3px 7px;
 }
 
-.cartModalButtons:hover,.cartModalButtons:focus {
+.cartModalButtons:hover,
+.cartModalButtons:focus {
   color: #36a9cc;
   background-color: #ffffff;
   border-color: #36a9cc;
+}
+
+@media only screen and (max-width: 1000px) {
+  .cart2_addresscard,
+  .cart2_name,
+  .cart2_addaddress {
+    max-width: 450px;
+  }
+  .defaulttag {
+    max-width: 400px;
+    margin-left: 0;
+  }
+  .cart2_addresscard {
+    overflow-x: hidden;
+  }
 }
