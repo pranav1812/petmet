@@ -41,7 +41,13 @@ const Cart2 = () => {
               <p>131152</p>
               <p>9814368838</p>
             </div>
-            <span style={{ justifyContent: "right", marginLeft: "auto" }}>
+
+            <span
+              style={{
+                justifyContent: "right",
+                marginLeft: "auto",
+              }}
+            >
               <button className="cart2_removebutton">REMOVE</button>
               <button className="cart2_removebutton">EDIT</button>
             </span>

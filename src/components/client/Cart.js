@@ -243,18 +243,17 @@ const addToWishlist = () => {
   };
 
   return (
-    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-28px" }}>
-      <p
+    <div style={{ backgroundColor: "#e5e5e5", marginTop:"-228px",paddingTop:"100px" }}>
+      {/* <p
         className="toppath"
         style={{
           textAlign: "center",
-          marginTop: " 90px",
         }}
       >
         <span style={{ color: "#36A9CC" }}>CART ---------------------</span>
         <span style={{ color: "#FF5352" }}>ADDRESS ------------------</span>
         <span style={{ color: "#FF5352" }}>PAYMENT</span>
-      </p>
+      </p> */}
       <div style={{ marginTop: "-30px" }} className="bothflexbox">
         <div className="flexbox11">
           {/* .................... */}

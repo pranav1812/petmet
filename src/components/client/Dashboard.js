@@ -61,6 +61,7 @@ import VetConfirmation from "./VetConfirmation";
 import AllAppointments from "./AllAppointments";
 import Cart2 from "./Cart2";
 import PrivacyPolicy from './PrivacyPolicy';
+import OrderCompleted from './OrderCompleted';
 
 const drawerWidth = 240;
 
@@ -475,6 +476,8 @@ export default function Dashboard() {
           <AllAppointments />
         ) : componentt == "privacyPolicy" ? (
           <PrivacyPolicy />
+        ) : componentt == "orderCompleted" ? (
+          <OrderCompleted />
         ) : (
           <Home />
         )}
