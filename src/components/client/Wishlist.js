@@ -9,6 +9,7 @@ import Carousel from "react-elastic-carousel";
 import SquareCard from "./SquareCard";
 import dog from "../pictures/image 29.png";
 import { BsHeart } from "react-icons/bs";
+import FeaturedCarousel from './featuredCarousel';
 
 import Rectangle115 from "../pictures/Rectangle 115.png";
 import Rectangle116 from "../pictures/Rectangle 116.png";
@@ -27,34 +28,6 @@ const breakPoints = [
   { width: 1200, itemsToShow: 4 },
 ];
 
-const CarouselComp = () => {
-  return (
-    <div>
-      <h2 className="mt-4" style={{ paddingBottom: "20px" }}>
-        DOG ESSENTIALS
-      </h2>
-      <div
-        className="carousel-styling"
-        style={{ justifyContent: "center", paddingBottom: "40px" }}
-      >
-        <Carousel breakPoints={breakPoints}>
-          <item>
-            <SquareCard />
-          </item>
-          <item>
-            <SquareCard />
-          </item>
-          <item>
-            <SquareCard />
-          </item>
-          <item>
-            <SquareCard />
-          </item>
-        </Carousel>
-      </div>
-    </div>
-  );
-};
 const WishlistComponent = () => {
   const [wish, setWish] = useState(null);
   const [uid, setUid] = useState(null);
@@ -102,7 +75,7 @@ const WishlistComponent = () => {
   }, []);
   
   return (
-    <div style={{ padding: "2%", marginTop: "-200px" }} className="wishlistpage">
+    <div style={{ padding: "2%", marginTop: "-100px" }} className="wishlistpage">
       <h1 className="heading_wishlist">MY WISHLIST</h1>
       <div className="wishlist_mainflex">
         {wish
@@ -265,7 +238,7 @@ export default function Wishlist() {
       {usr ? (
         <div>
           {" "}
-          <WishlistComponent /> <CarouselComp />
+          <WishlistComponent /> <FeaturedCarousel />
         </div>
       ) : null}
     </div>
