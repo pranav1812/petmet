@@ -34,8 +34,8 @@ appRouter.post('/order', async(req, res)=>{
     var subFromWallet= 0
 
     if(req.body.useWallet){
-        total-= Math.min(user.data().walletMoney, total*0.1)
         subFromWallet= Math.min(user.data().walletMoney, total*0.1)
+        total-= subFromWallet       
     }
 
     console.log("total cost that reached= ---->>>>>>",total)
@@ -103,8 +103,9 @@ appRouter.post('/verifyPayment', async(req, res)=>{
 
         var userRef2= db.collection('user').doc(orderInfo.data().uid)
         var walletChange= orderInfo.data().cashback- orderInfo.data().subFromWallet
-        var dateobj = new Date()
-        var dateStr= dateobj.toISOString()
+        var dateObj = new Date()
+        var str= dateObj.toISOString()
+        var dateStr= str.slice(0, str.length-1)+'+5:30'
         var promise3= userRef2.update({
             walletMoney: admin.firestore.FieldValue.increment(walletChange),
             usedPromo: admin.firestore.FieldValue.arrayUnion(orderInfo.data().usedCode),

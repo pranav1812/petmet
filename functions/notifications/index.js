@@ -15,7 +15,8 @@ notify.sendToSingleUser= (deviceTokenSent, docData, purposeId, coll, docId)=>{
     return new Promise((resolve, reject)=>{
         if(deviceToken){
             var dateObj= new Date()
-            var dateStr= dateObj.toISOString()
+            var str= dateObj.toISOString()
+            var dateStr= str.slice(0, str.length-1)+'+5:30'
             var p1= fcm.send(message)
             var p2= db.collection(coll).doc(docId).collection('notifications').doc(dateStr).set({message: message.notification.title})
             //fcm.send(message).then((messageId)=>resolve(messageId))
