@@ -76,7 +76,7 @@ const ShopProducts = () => {
 
           <div className="products_rightflex">
             <div className="start_rightflex">
-              <p className="dogfoodtag">Dog Food</p>
+              <p className="dogfoodtag">{subComponent}</p>
               <div className="filterbuttonflex">
                 <button
                   onClick={() => setFilterState(!isFilterOpen)}
