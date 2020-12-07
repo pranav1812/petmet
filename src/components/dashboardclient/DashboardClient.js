@@ -123,7 +123,7 @@ const DashboardClient = () => {
     })
     .catch((e) => console.log(e));
     
-
+  
     db.collection("items")
       .doc("Special Toys")
       .collection("products")
@@ -239,20 +239,18 @@ const DashboardClient = () => {
         <h2 className="mt-4" style={{paddingBottom: "20px"}}>GROOMING</h2>
         <div className="carousel-styling" style={{justifyContent: "center",paddingBottom: "40px"}} >
               <Carousel breakPoints={breakPoints}>
-                <item>
-                  
+                                  
                   {groomer ? (
                   groomer.map((groom) =>
-                     
+                     <item>
                   <SquareCard _id={groom.key} info={groom.details} title={groom.details.name} image={groom.details.url} size={groom.details.size} cost={groom.details.cost} mrp={groom.details.mrp}/> 
+                  </item>
                   )
                  ) : (
                    <h5>grooming arriving</h5>
                  )
                  }
-                 </item>
                  
-                
                {/* <item>
                   <SquareCard />
                 </item>

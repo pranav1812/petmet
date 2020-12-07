@@ -97,6 +97,7 @@ const ShopPage = () => {
       .then((doc) => {
         setInfo(doc.data().details);
         console.log(doc.data().details)
+        console.log(productId)
         // setTotalPrice(doc.data().details.cost)
       });
   }, [qty]);
@@ -216,41 +217,43 @@ const ShopPage = () => {
   return (
     <div>
       <div className="productDetails_title">
-        <p>HUFT Drizzle Buddy Raincoat- Purpule</p>
+        <p>{info ? info.name : null}</p>
         <p>Available in multiple colors</p>
       </div>
       <div className="productDetails_flex">
         <div className="productDetails_insideflex1">
+          {info ? info.urlList.map((m)=>( 
+            <img src={m} alt="imageofproduct" />
+          )):null}
+          
+         {/* <img src={Product} alt="imageofproduct" />
           <img src={Product} alt="imageofproduct" />
           <img src={Product} alt="imageofproduct" />
-          <img src={Product} alt="imageofproduct" />
-          <img src={Product} alt="imageofproduct" />
-          <img src={Product} alt="imageofproduct" />
+  <img src={Product} alt="imageofproduct" />*/}
         </div>
 
         <div className="productDetails_insideflex2">
-          <img src={Product} alt="imageofproduct" />
+          <img src={info? info.url:null} alt="imageofproduct" />
         </div>
         <div className="productDetails_insideflex3">
-          <p className="description">
-            The Heads Up For Tails Yummy In My Tummy biscuits makes treat time
-            both nutritious and delicious. loaded with rich flavours from
-            farm-fresh chicken and other high-quality human-grade
-            ingredients,...
+          <p className="description">{
+            info ? info.ingredients : null}
           </p>
           <span>
-            <p onClick={showfunction}>Read More</p>
-            <p>{showreadmore && <Box />}</p>
+         {/*   <p onClick={showfunction}>Read More</p>
+            <p>{showreadmore && <Box />}</p>*/}
           </span>
           <p>Size:</p>
 
           <div className="row justify-content-center mb-1">
-            <button className="row-btn">320 gm</button>
-            <button className="row-btn">800 gm</button>
+            {info?(info.size.map((s)=>
+             <button className="row-btn">{s}</button>
+            )):null}
+            {/*<button className="row-btn">800 gm</button>
             <button className="row-btn">1 kg</button>
-            <button className="row-btn">2 kg</button>
+            <button className="row-btn">2 kg</button>*/}
           </div>
-          <span>
+          {/*<span>
             <button
               style={{
                 background: "#FFFFFF",
@@ -283,9 +286,9 @@ const ShopPage = () => {
               +
             </button>
           </span>
-          <div className="row justify-content-center align-items-center">
-            <p className="acprize">Rs. 950</p>
-            <p className="cprize ml-4">Rs. 1250</p>
+          */}<div className="row justify-content-center align-items-center">
+            <p className="acprize">Rs. {info ? info.cost :null}</p>
+            <p className="cprize ml-4">Rs. {info ? info.mrp :null}</p>
           </div>
           <button onClick={addToCart} className="cartbutton">
             Add to Cart
@@ -303,8 +306,8 @@ const ShopPage = () => {
       <div className="productDetails_description_flex">
         <div className="productDetails_description_insideflex1">
           <p className="productdescriptiontitle">PRODUCT DESCRIPTION</p>
-          <p>Features:</p>
-          <ul className="ul">
+          <p>{info ? info.description :null}</p>
+         {/* <ul className="ul">
             <li>Cookies for dogs</li> <br />
             <li> Suitable for all dogs</li> <br />
             <li> Made from rice and chickpea flour</li> <br />
@@ -315,17 +318,17 @@ const ShopPage = () => {
               Never feed above recommended quantities unless prescribed by a vet
             </li>
             <br />
-            <li> Always check the ingredient label for possible allerg</li>{" "}
+            <li> Always check the ingredient label for possible allergy</li>{" "}
             <br />
-          </ul>
+        </ul> */}
         </div>
         <div className="productDetails_description_insideflex2">
           <img src={Productdescription} alt="hry" />
         </div>
       </div>
 
-      <h2 className="mt-4">DOG ESSENTIALS</h2>
-
+      {/*<h2 className="mt-4">DOG ESSENTIALS</h2>
+*/}
       <div
         className="carousel-styling"
         style={{ justifyContent: "center", paddingBottom: "40px" }}

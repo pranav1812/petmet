@@ -12,7 +12,7 @@ const SquareCard = (props) => {
   const [ color, setColor] = useState(false);
   const [ cart, setCart] = useState(false)
   useEffect(()=>{
-    console.log(props.info)    
+    console.log(props._id)    
 
 })
   
