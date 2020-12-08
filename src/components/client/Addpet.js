@@ -62,7 +62,7 @@ export default function Addpet() {
   }
 
   return (
-    <div style={{backgroundColor:"#36a9cc",marginTop:"0px",height:"100vh",paddingTop:"30px",overflowX:"hidden"}}>
+    <div style={{backgroundColor:"#36a9cc",height:"100vh",paddingTop:"30px",overflowX:"hidden",marginTop:"-100px"}}>
       <div className="row justify-content-center">
         <Link to="/Home/"><button className="mt-2 mr-sm-4 backbtn">Back</button></Link>
         <h1 style={{textAlign:"center",color:"white",marginLeft:"50px"}} >COMPLETE THE PROFILE OF YOUR PETS</h1>
