@@ -10,6 +10,14 @@ import TableRow from '@material-ui/core/TableRow';
 
 const Orders_List = () => {
     const [orders, setOrders]= useState([])
+    const setDelivered= async(key)=>{
+
+        console.log("started")
+        await db.collection('All_Orders').doc(key).update({
+            deliveryStatus: 'delivered'
+        })
+        console.log("done")
+    }
     useEffect(()=>{
         // .where('paid', '==', 'true').. add later
         db.collection('All_Orders').where('paymentVerified', '==', true).onSnapshot(docs=>{
@@ -18,18 +26,28 @@ const Orders_List = () => {
             docs.forEach(doc=>{
                 var productString='';
                 var info= doc.data()
-                console.log(info.name)
-                info.products.forEach(pro=>{
-                    productString+= `"cat: ${pro.category}, id: ${pro.productId}, units:${pro.units}"; `
-                })
+                if(info.deliveryStatus!='delivered'){
+                    console.log(info.name)
+                    info.products.forEach(pro=>{
+                        productString+= `"cat: ${pro.category}, id: ${pro.productId}, units:${pro.units}"; `
+                    })
+                    
+                    try {
+                        var {name, phone, address}= info.deliveryAddress
+                    } catch (error) {
+                        var name= "unknown"
+                        var phone= "unknown"
+                        var address= "unknown"
+                        console.log("name, phone, address undefined")
+                    }
+                    temp.push({...info, key: doc.id, productString: productString, name: name, phone: phone, address: address})
+                }
                 
-
-                temp.push({...info, key: doc.id, productString: productString})
             })
             setOrders(temp)
         })
         console.log(orders)
-    }, [orders])
+    }, [])
     return ( 
         <>  
             {/* {<div className="row text-center" style={{marginTop: '100px'}}>
@@ -50,10 +68,13 @@ const Orders_List = () => {
             <Table size="small">
                 <TableHead>
                 <TableRow>
-                    <TableCell>order_id</TableCell>
-                    <TableCell>uid</TableCell>
-                    <TableCell>products</TableCell>   
-                    <TableCell>total</TableCell>      
+                    <TableCell>Order ID</TableCell>
+                    <TableCell>Name</TableCell>
+                    <TableCell>Products</TableCell>   
+                    <TableCell>Total</TableCell>  
+                    <TableCell>Address</TableCell>  
+                    <TableCell>Phone</TableCell>   
+                    <TableCell>Set Delivered</TableCell> 
                     
                 </TableRow>
                 </TableHead>
@@ -61,10 +82,12 @@ const Orders_List = () => {
                 {orders.length? orders.map((row) => (
                     <TableRow key={row.key}>
                     <TableCell>{row.key}</TableCell>
-                    <TableCell>{row.uid}</TableCell>
+                    <TableCell>{row.name}</TableCell>
                     <TableCell> {row.productString} </TableCell>
                     <TableCell>{row.total}</TableCell>
-                    
+                    <TableCell>{row.address}</TableCell>
+                    <TableCell>{row.phone}</TableCell>
+                    <TableCell><button type= "button" onClick={()=>setDelivered(row.key)} >Set delivered</button></TableCell>
                     </TableRow>
                 )): null}
                 </TableBody>

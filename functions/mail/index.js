@@ -33,4 +33,12 @@ sendMail.offerPromotion= (offerDetails, mailIdArray)=>{
     })
 }
 
+sendMail.orderDelivered= (mailId)=>{
+    return new Promise((resolve, reject)=>{
+        db.collection('mail').add(templates.orderDelivered(mailId))
+        .then(doc=> resolve(`queued for delivery: ${doc.id}`))
+        .catch(err=> reject(`some error occurred: ${err}`))
+    })
+}
+
 module.exports= sendMail

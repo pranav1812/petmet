@@ -83,4 +83,25 @@ templates.offerPromotion=(offerDetails, mailIdArray)=>{
     }
 }
 
+templates.orderDelivered= (mailId)=>{
+    var confirmString= `Your order was delivered successfully. Thanks for shopping with us`
+    return {
+        to: mailId,
+        message: {
+            subject: 'Order Delivered',
+            text: 'Order Delivered...',
+            html: `
+                <div>
+                <pre>
+                Dear User,
+                    ${confirmString}\n
+                    Regards,
+                    Team petmet
+                </pre>
+                </div>
+            `
+        }
+    }
+}
+
 module.exports= templates

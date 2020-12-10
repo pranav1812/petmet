@@ -61,17 +61,6 @@ exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId
         }
 })
 
-// no longer required as reverse process is followed
-
-// // exports.clientOrderToAllOrders= functions.firestore.document('user/{uid}/orders/{orderId}')
-// //         .onUpdate(async(change, context)=>{
-// //             var params= {
-// //                 uid: context.params.uid,
-// //                 order: context.params.orderId
-// //             }
-// //             background.confirmOrder(change.after.data(), params)
-// // })
-
 // vet dwara appointment mai kiye changes client ki collection mai
 exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/appointments/{appId}')
         .onUpdate(async(change, context)=>{
@@ -153,5 +142,25 @@ exports.cancelAppointment= functions.firestore
         }
     }
         
-})  
+}) 
+
+exports.orderDelivered= functions.firestore
+    .document('All_Orders/{order_id}')
+    .onUpdate(async(change, context)=>{
+        if(change.after.data()!= change.before.data() && change.after.data().deliveryStatus=='delivered'){
+            var info= change.after.data()
+            var uid= info.uid
+            var order_id= context.params.order_id
+            var ref= db.collection('user').doc(uid).collection('orders').doc(order_id)
+            
+            var userUpdatePromise= ref.update({
+                deliveryStatus: 'delivered'
+            })
+            
+            var userMailPromise= sendMail.appointmentConfirmation(info.mailId)
+
+            return Promise.all([userUpdatePromise, userMailPromise])
+        }
+    })
+
 exports.paymentFunction= functions.https.onRequest(httpListner)
