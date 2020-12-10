@@ -17,6 +17,7 @@ class Footer extends Component {
                     <div className="row">
                         <div className="col-12 col-sm-5">
                             <img className="footer_img" src={Logo} alt="logo"></img>
+                            <p className="mt-4"><strong>PETMET SOLUTIONS PRIVATE LIMITED</strong></p>
                             <p className="mt-3">Petmet is the one stop destination for all the needs of your pets.</p>
                             <div className="row ml-4">
                                 <span className="facebook social"><FaFacebookSquare /></span>
@@ -35,8 +36,8 @@ class Footer extends Component {
                         </div>
                         <div className="col-12 col-sm-4">
                             <h5 style={{color: "#000000",fontWeight: "bold"}}>Contact Info.</h5>
-                            <p><span className="footer_icon"><MdEmail /></span> petmet@gmail.com</p>
-                            <p><span className="footer_icon"><FaPhoneAlt /></span> +91 9832577388</p>
+                            <p><span className="footer_icon"><MdEmail /></span> info.petmet@gmail.com</p>
+                            <p><span className="footer_icon"><FaPhoneAlt /></span> +91 90239 16940</p>
                             <div className="row" style={{paddingTop: "40px"}}>
                                 <img src={Play} className="mr-2" />
                                 <img src={App} />

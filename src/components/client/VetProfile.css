@@ -134,7 +134,18 @@
     box-sizing: border-box;
     border-radius: 22px;
     padding: 2px 8px;
-    margin: 5px 5px;
+    /* margin-top: 13.5%; */
+    margin-bottom: 0px;
+    margin-right: 2%;
+    margin-top: 20px;
+}
+
+@media only screen and (min-width:500px) {
+    .badges_new {
+        position: absolute;
+        bottom: 20px;
+        margin-top: 10px;
+    }
 }
 
 .confirm_pend
@@ -145,7 +156,10 @@
 
 .conf {
     border: 1px solid #03A300;
-    color: #03A300;
+    background-color: #03A300;
+    border-radius: 0px;
+    color: #ffffff;
+    padding: 3px 15px;
 }
 
 .track {
