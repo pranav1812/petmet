@@ -20,9 +20,26 @@ class AddProduct extends Component {
             addInfo: null,
             url: null,
             urlList: null,
+            brandList: null,
+            categoryList: null,
+            brand: null
          }
     }
 
+    componentDidMount(){
+        db.collection('homepage').doc('filter').get().then(doc=>{
+            if(doc.exists){
+                this.setState({brandList: doc.data().brand})
+            }
+        })
+        db.collection('items').get().then(docs=>{
+            var temp= []
+            docs.forEach(doc=>{
+                temp.push(doc.id)
+            })
+            this.setState({categoryList: temp})            
+        })
+    }
     sendImg=(e)=>{
         var file= e.target.files[0]
         var storageRef= storage.ref('itemImages/'+file.name)
@@ -67,19 +84,35 @@ class AddProduct extends Component {
                         img: url
                     }).then(()=>{
                         ref.collection('products').add({
-                            details: this.state
+                            details: this.state,
+                            filterInfo: {
+                                brand: this.state.brand,
+                                cost: this.state.cost
+                            }
                         }).then((doc)=>{
                             db.collection('All_Products').doc(doc.id).set({
-                                details: this.state
+                                details: this.state,
+                                filterInfo: {
+                                    brand: this.state.brand,
+                                    cost: this.state.cost
+                                }
                             }).then(()=>{window.location.reload()})
                         })
                     })
                 }else{
                     ref.collection('products').add({
-                        details: this.state
+                        details: this.state,
+                        filterInfo: {
+                            brand: this.state.brand,
+                            cost: this.state.cost
+                        }
                     }).then((doc)=>{
                         db.collection('All_Products').doc(doc.id).set({
-                            details: this.state
+                            details: this.state,
+                            filterInfo: {
+                                brand: this.state.brand,
+                                cost: this.state.cost
+                            }
                         }).then(()=>{window.location.reload()})
                     })
                 }
@@ -135,16 +168,23 @@ class AddProduct extends Component {
                             <Form.Label className="col-3">Category</Form.Label>
                             <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="select" onChange={(e)=>{this.setState({category: e.target.value })}}>
                                 <option defaultChecked>--Add Category--</option>
-                                <option>Food</option>
-                                <option>Harness</option>
-                                <option>Grooming</option>
-                                <option>Cat Essentials</option>
-                                <option>Clothing</option>
-                                <option>Litter Management</option>
-                                <option>Chewss</option>
-                                <option>Toys</option>
+                                {
+                                    this.state.categoryList? this.state.categoryList.map(cat=><option>{cat}</option>): null
+                                }
                             </Form.Control>
                         </Form.Group>
+
+                        <Form.Group className="row">
+                            <Form.Label className="col-3">Brand</Form.Label>
+                            
+                            <Form.Control className="col-7 col-sm-8 offset-sm-0 offset-1" as="select" onChange={(e)=>{this.setState({brand: e.target.value })}}>
+                                <option defaultChecked>--Select Brand--</option>
+                                {
+                                    this.state.brandList? this.state.brandList.map(brand=><option>{brand}</option>): null
+                                }
+                            </Form.Control>
+                        </Form.Group>
+
                         <Form.Group className="row">
                             <Form.Label className="col-3">Size</Form.Label>
                             <Form.Control id="size" className="col-7 col-sm-8 offset-sm-0 offset-1" as="textarea" rows="3" onBlur={(e)=>{this.setState({size: e.target.value.split(' ') })}} />
