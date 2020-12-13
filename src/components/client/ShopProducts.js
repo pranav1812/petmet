@@ -13,6 +13,10 @@ import ShopProductsarray from "./ShopProductsarray";
 
 const ShopProducts = () => {
   const [products, setProducts] = useState(null);
+  const [brandFilter, setBrandFilter] = useState(null);
+  const [costFilter, setCostFilter] = useState(null);
+  const [selectedBrands, setSelectedBrands]= useState(null)
+  const [selectedCost, setSelectedCost]= useState(null)
   const { subComponent } = useParams();
   useEffect(() => {
     db.collection("items")
@@ -28,7 +32,28 @@ const ShopProducts = () => {
         setProducts(temp);
         console.log(temp.length);
       });
+    
+    db.collection('homepage').doc('filter').get().then(doc=>{
+      if(doc.exists){
+        setCostFilter(doc.data().cost)
+        setBrandFilter(doc.data().brand)
+      }
+    })
   }, []);
+
+  const applyFilter=()=>{
+    if(products){
+      var temp= []
+      products.forEach(pro=>{
+        if(pro.filter){
+          if(Number(pro.filter.cost)< selectedCost && selectedBrands.includes(pro.filter.brand) ){
+            temp.push(pro)
+          }
+          setProducts(temp)
+        }
+      })
+    }
+  }
 
   const [dropdownvar2, setDropdownvar2] = useState(false);
   const dropdowndata2 = () => {
