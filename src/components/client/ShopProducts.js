@@ -10,13 +10,14 @@ import { useParams } from "react-router-dom";
 import { Dropdown } from "react-bootstrap";
 import ContinuousSlider from "./Slider";
 import ShopProductsarray from "./ShopProductsarray";
+import Dropdownfun from "./Dropdownfun";
 
 const ShopProducts = () => {
   const [products, setProducts] = useState(null);
   const [brandFilter, setBrandFilter] = useState(null);
   const [costFilter, setCostFilter] = useState(null);
-  const [selectedBrands, setSelectedBrands]= useState(null)
-  const [selectedCost, setSelectedCost]= useState(null)
+  const [selectedBrands, setSelectedBrands] = useState([]);
+  const [selectedCost, setSelectedCost] = useState(null);
   const { subComponent } = useParams();
   useEffect(() => {
     db.collection("items")
@@ -32,28 +33,42 @@ const ShopProducts = () => {
         setProducts(temp);
         console.log(temp.length);
       });
-    
-    db.collection('homepage').doc('filter').get().then(doc=>{
-      if(doc.exists){
-        setCostFilter(doc.data().cost)
-        setBrandFilter(doc.data().brand)
-      }
-    })
+
+    db.collection("homepage")
+      .doc("filter")
+      .get()
+      .then((doc) => {
+        if (doc.exists) {
+          setCostFilter(doc.data().cost);
+          setBrandFilter(doc.data().brand);
+        }
+      });
   }, []);
 
-  const applyFilter=()=>{
-    if(products){
-      var temp= []
-      products.forEach(pro=>{
-        if(pro.filter){
-          if(Number(pro.filter.cost)< selectedCost && selectedBrands.includes(pro.filter.brand) ){
-            temp.push(pro)
+  const applyFilter = () => {
+    console.log(selectedBrands);
+    console.log(selectedCost);
+    if (products) {
+      var temp = [];
+      products.forEach((pro) => {
+        if (pro.filter) {
+          if (
+            Number(pro.filter.cost) < selectedCost &&
+            selectedBrands.includes(pro.filter.brand)
+          ) {
+            temp.push(pro);
           }
-          setProducts(temp)
+          setProducts(temp);
         }
-      })
+      });
     }
-  }
+  };
+
+  const addToBrands = (val) => {
+    var temp = selectedBrands;
+    temp.push(val);
+    setSelectedBrands(temp);
+  };
 
   const [dropdownvar2, setDropdownvar2] = useState(false);
   const dropdowndata2 = () => {
@@ -74,7 +89,7 @@ const ShopProducts = () => {
     );
   };
 
-  const listarray = [1, 2, 3, 4, 5, 4];
+  const listarray = [1, 2];
   const [isFilterOpen, setFilterState] = useState(false);
 
   return (
@@ -83,20 +98,46 @@ const ShopProducts = () => {
       {/* &gt gives > */}
       <span>
         <div className="products_bothflex">
-          <div className="products_leftflex">
-            <p>PRICE</p>
-            <ContinuousSlider />
-            <hr />
-
-            {listarray.map((num) => {
-              return (
-                <div>
-                  {" "}
-                  <ShopProductsarray id={num} title="BRAND" />
-                  <hr />
-                </div>
-              );
-            })}
+          <div className="products_leftflex products_leftflexdisplay">
+            <h5>BRAND</h5>
+            <ul>
+              {brandFilter
+                ? brandFilter.map((brand) => (
+                    <li>
+                      <input
+                        onClick={(e) => {
+                          addToBrands(e.target.value);
+                        }}
+                        style={{ marginRight: "14px" }}
+                        type="checkbox"
+                        value={brand}
+                      />
+                      {brand}
+                    </li>
+                  ))
+                : null}
+            </ul>
+            <h5>PRICE</h5>
+            <ul>
+              {costFilter
+                ? costFilter.map((cost) => (
+                    <li>
+                      <input
+                        onClick={() => {
+                          setSelectedCost(cost);
+                        }}
+                        style={{ marginRight: "14px" }}
+                        value={cost}
+                        type="checkbox"
+                      />
+                      {cost}
+                    </li>
+                  ))
+                : null}
+            </ul>
+            <button className="newapplyy" onClick={applyFilter}>
+              Apply
+            </button>
           </div>
 
           <div className="products_rightflex">
@@ -110,19 +151,48 @@ const ShopProducts = () => {
                   FILTER
                 </button>
                 {isFilterOpen ? (
-                  <div className="filterpopup">
-                    {listarray.map((num) => {
-                      return (
-                        <div>
-                          <ShopProductsarray
-                            style={{ fontSize: "12px" }}
-                            id={num}
-                            title="BRAND"
-                          />
-                          <hr />
-                        </div>
-                      );
-                    })}{" "}
+                  <div>
+                    <div>
+                      <h5>BRAND</h5>
+                      <ul>
+                        {brandFilter
+                          ? brandFilter.map((brand) => (
+                              <li>
+                                <input
+                                  onClick={(e) => {
+                                    addToBrands(e.target.value);
+                                  }}
+                                  style={{ marginRight: "14px" }}
+                                  type="checkbox"
+                                  value={brand}
+                                />
+                                {brand}
+                              </li>
+                            ))
+                          : null}
+                      </ul>
+                      <h5>PRICE</h5>
+                      <ul>
+                        {costFilter
+                          ? costFilter.map((cost) => (
+                              <li>
+                                <input
+                                  onClick={() => {
+                                    setSelectedCost(cost);
+                                  }}
+                                  style={{ marginRight: "14px" }}
+                                  value={cost}
+                                  type="checkbox"
+                                />
+                                {cost}
+                              </li>
+                            ))
+                          : null}
+                      </ul>
+                      <button className="newapplyy" onClick={applyFilter}>
+                        Apply
+                      </button>
+                    </div>
                   </div>
                 ) : null}
               </div>
@@ -150,11 +220,20 @@ const ShopProducts = () => {
             <div className="products_rightflex_cardflex">
               {products
                 ? products.map((pro) => (
-    //                <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                      <div>
-                        <SquareCard title={pro.details.name} size={pro.details.size} cost={pro.details.cost} mrp={pro.details.mrp} _id={pro.key} info={pro.details} image={pro.details.url}  style={{ margin: "31px" }} />
-                      </div>
-      //              </Link>
+                    //                <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
+                    <div>
+                      <SquareCard
+                        title={pro.details.name}
+                        size={pro.details.size}
+                        cost={pro.details.cost}
+                        mrp={pro.details.mrp}
+                        _id={pro.key}
+                        info={pro.details}
+                        image={pro.details.url}
+                        style={{ margin: "31px" }}
+                      />
+                    </div>
+                    //              </Link>
                     /* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <SquareCard style={{ margin: "31px" }} />
                   </Link>

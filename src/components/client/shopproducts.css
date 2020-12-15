@@ -5,10 +5,12 @@ body {
   padding: 17.28px 20.54px;
   justify-content: center;
   margin-left: 47.25px;
+  height: 350px;
   background: #ffffff;
   border: 0.5px solid #cacaca;
   box-sizing: border-box;
   border-radius: 2px;
+  margin-top: 84px;
 }
 .products_rightflex {
   max-width: 987.79px;
@@ -17,6 +19,13 @@ body {
   position: sticky;
 
   flex-wrap: wrap;
+}
+.newapplyy {
+  color: #5a5a5a;
+  background-color: transparent;
+  border: 1px solid #5a5a5a;
+  justify-content: center;
+  width: 90px;
 }
 
 .products_rightflex_cardflex {
@@ -36,7 +45,7 @@ body {
   margin-top: 20px;
   flex-direction: row;
 }
-.products_leftflex > ul > li {
+.yes {
   font-family: Gotham;
   font-style: normal;
   font-weight: normal;
@@ -54,9 +63,7 @@ body {
   font-weight: normal;
   font-size: 18px;
   line-height: 17px;
-
   color: #797979;
-
   background-color: #ffffff;
   border: none;
   outline: none !important;
@@ -67,13 +74,8 @@ body {
   flex-wrap: wrap;
 }
 .ddropdown {
-  /* align-self: flex-end;
-  margin-left: auto; */
-
   width: 309.3px !important;
   height: 34.61px !important;
-  /* justify-content: flex-end;
-  margin-left: auto; */
   background: #ffffff !important;
   border: 0.5px solid #959595 !important;
   box-sizing: border-box !important;
@@ -90,13 +92,10 @@ body {
   width: 120px;
   margin-left: 28.5px;
   height: 23px;
-  /* 
-  font-family: Gotham; */
   font-style: normal;
   font-weight: normal;
   font-size: 24px;
   line-height: 23px;
-
   color: #000000;
 }
 
@@ -109,13 +108,11 @@ body {
 }
 .pathontop {
   margin-top: 80px;
-
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
   font-size: 14px;
   line-height: 16px;
-
   color: #000000;
 }
 
@@ -124,6 +121,10 @@ button:focus {
 }
 button:active {
   outline: none !important;
+}
+
+ul {
+  padding-inline-start: 10px !important;
 }
 
 @media only screen and (min-width: 1300px) {
@@ -150,6 +151,9 @@ button:active {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+  }
+  .products_leftflexdisplay {
+    display: none;
   }
 
   .ulofsort {
@@ -181,6 +185,9 @@ button:active {
     display: none;
   }
   .smallscreensort {
+    display: none;
+  }
+  .filterbuttonflex {
     display: none;
   }
 }
