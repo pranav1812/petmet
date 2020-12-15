@@ -94,7 +94,7 @@ const ShopProducts = () => {
 
   return (
     <div>
-      <p className="pathontop">Home &gt; Dog Essentials</p>
+      <p className="pathontop">Home &gt; {subComponent}</p>
       {/* &gt gives > */}
       <span>
         <div className="products_bothflex">
