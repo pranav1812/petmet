@@ -216,6 +216,7 @@ const ShopPage = () => {
 
   return (
     <div>
+      
       <div className="productDetails_title">
         <p>{info ? info.name : null}</p>
         <p>Available in multiple colors</p>
