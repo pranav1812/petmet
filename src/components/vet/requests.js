@@ -45,8 +45,7 @@ export default function Requests(props) {
     })
   },[])
 
-  
-  // console.log(state.slots.length)
+
   return (
     <div>
         

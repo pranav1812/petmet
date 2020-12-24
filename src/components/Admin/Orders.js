@@ -12,11 +12,9 @@ const Orders_List = () => {
     const [orders, setOrders]= useState([])
     const setDelivered= async(key)=>{
 
-        console.log("started")
         await db.collection('All_Orders').doc(key).update({
             deliveryStatus: 'delivered'
         })
-        console.log("done")
     }
     useEffect(()=>{
         // .where('paid', '==', 'true').. add later
@@ -27,7 +25,6 @@ const Orders_List = () => {
                 var productString='';
                 var info= doc.data()
                 if(info.deliveryStatus!='delivered'){
-                    console.log(info.name)
                     info.products.forEach(pro=>{
                         productString+= `"cat: ${pro.category}, id: ${pro.productId}, units:${pro.units}"; `
                     })
@@ -46,25 +43,9 @@ const Orders_List = () => {
             })
             setOrders(temp)
         })
-        console.log(orders)
-    }, [])
+    }, [orders])
     return ( 
         <>  
-            {/* {<div className="row text-center" style={{marginTop: '100px'}}>
-                {orders.length? (
-                    <Workbook filename="orders.xlsx" element={<button className="btn btn-lg btn-primary">Download as excel</button>}>
-                    <Workbook.Sheet data={orders} name="Sheet 1">
-                        
-                        <Workbook.Column label="order_id" value="order_id"/>
-                        <Workbook.Column label="uid" value="uid"/>
-                        <Workbook.Column label="products" value="products"/>
-                        <Workbook.Column label="total" value="total"/>
-                        
-                    </Workbook.Sheet>
-                
-                </Workbook>
-                ): null}
-            </div>} */}
             <Table size="small">
                 <TableHead>
                 <TableRow>
@@ -93,21 +74,6 @@ const Orders_List = () => {
                 </TableBody>
             </Table>
             <hr />
-            {/* {<div className="row">
-            <div className="container">
-                {
-                    orders.length? orders.map(order=>(
-                        <div>                           
-                        <div className="col-12 col-md-6 col-lg-3">
-                            <Orders data={order}  />
-                        </div>
-                        </div>
-                    )):null
-                }
-                
-                    
-            </div>
-            </div>} */}
         </>
      );
 }

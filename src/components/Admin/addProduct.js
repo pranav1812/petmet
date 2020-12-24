@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import {Form,Button} from 'react-bootstrap';
 import './Admin.css';
 import {db, storage} from '../../firebase'
-import { arrayIncludes } from '@material-ui/pickers/_helpers/utils';
 
 class AddProduct extends Component {
     constructor(props) {
@@ -54,7 +53,6 @@ class AddProduct extends Component {
 
     sendImgArr=(e)=>{
       var files= e.target.files
-        console.log(files)
         alert(typeof(files))
         var temp= []
         Array.prototype.forEach.call(files, (file,ind)=>{
@@ -72,7 +70,6 @@ class AddProduct extends Component {
 
     
         submit=()=>{
-        // console.log(this.state)
         var {category, name, size, cost, mrp, quantity, guaranteedAnalysis, url}= this.state
         if(category && name && size && cost && mrp && quantity && guaranteedAnalysis && url)
         {
@@ -118,9 +115,6 @@ class AddProduct extends Component {
                 }
             })
             
-            
-            
-            // alert("Done.... Refresh the page to add new product")
         }
         else{
             alert("category, name, size, cost,mrp, quantity, imageField .... required")

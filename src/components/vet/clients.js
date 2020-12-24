@@ -45,7 +45,6 @@ export default function Clients(props) {
       });
   }, []);
 
-  // console.log(state.clients.length)
   return (
     <div>
       <h1>Clients</h1>

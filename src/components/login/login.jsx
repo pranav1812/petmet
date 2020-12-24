@@ -39,8 +39,6 @@ export class Login extends React.Component {
       });
     }
     else{
-      // put the location of home page and in home page use the same logic to redirect 
-      // the user to signup page if user is not verified
       window.location="https://www.youtube.com/"
       
     }
@@ -50,8 +48,6 @@ export class Login extends React.Component {
   googleSignup=()=>{
     var provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider).then(function(result) {
-      var user = result.user;
-      console.log(user)
     }).catch(function(error) {
       var errorMessage = error.message;
       console.log(errorMessage)
@@ -62,8 +58,6 @@ export class Login extends React.Component {
   fbSignup=()=>{
     var provider = new firebase.auth.FacebookAuthProvider();
     auth.signInWithPopup(provider).then(function(result) {
-      var user = result.user;
-      console.log(user)
     }).catch(function(error) {
       var errorMessage = error.message;
       console.log(errorMessage)

@@ -16,7 +16,6 @@ class VerifyVet extends Component {
                     })
                 })
                 this.setState({vets: temp})
-                console.log(this.state)
             })
             
     }

@@ -65,8 +65,6 @@ export default function AddSlot(props) {
     
   }
 
-  
-  console.log(state.slots)
   return (
     <div>
       

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { db } from "../../firebase";
 import "./topcarousel.css";
-import { Carousel } from "react-bootstrap";
 
 const TopCarousel = () => {
   const [images, setImages] = useState(null);

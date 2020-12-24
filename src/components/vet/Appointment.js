@@ -48,7 +48,6 @@ export default function Appointments(props) {
   },[])
 
   
-  // console.log(state.slots.length)
   return (
     <div>
       

@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
       
     },[])
   
-        console.log(state)
     return (
       <div className="container profile_container">
         <div className="row justify-content-center">
