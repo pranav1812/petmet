@@ -5,9 +5,9 @@ templates.generatePayload= (docData, purposeId)=>{
     var titles= {
         appointment: {
             registered: `initiated procedure for scheduling appointment with Dr. ${docData.doctorName}`,
-            confirmed: `appointment confirmed with Dr. ${docData.doctorName}`,
-            accepted: `Dr. ${docData.doctorName} accepted your appointment request`,
-            declined: `Dr. ${docData.doctorName} declined your appointment request`
+            confirmed: `appointment confirmed with Dr. ${docData.doctorName} that was scheduled for ${docData.date} at ${docData.time}`,
+            accepted: `Dr. ${docData.doctorName} accepted your appointment request that was scheduled for ${docData.date} at ${docData.time}`,
+            declined: `Dr. ${docData.doctorName} declined your appointment request that was scheduled for ${docData.date} at ${docData.time}`
         },
         order: {
             placed: "order paced"
@@ -18,16 +18,16 @@ templates.generatePayload= (docData, purposeId)=>{
         },
         appointmentReverse: {
             registered: `you have an appointment request`,
-            cancelled: `${docData.patientName} cancelled the request`
+            cancelled: `${docData.patientName} cancelled the request that was scheduled for ${docData.date} at ${docData.time}`
         },     
     }
 
     var bodies= {
         appointment: {
             registered: `initiated procedure for scheduling appointment with Dr. ${docData.doctorName}`,
-            confirmed: `appointment confirmed with Dr. ${docData.doctorName}`,
-            accepted: `Dr. ${docData.doctorName} accepted your appointment request`,
-            declined: `Dr. ${docData.doctorName} declined your appointment request`
+            confirmed: `appointment confirmed with Dr. ${docData.doctorName} that was scheduled for ${docData.date} at ${docData.time}`,
+            accepted: `Dr. ${docData.doctorName} accepted your appointment request that was scheduled for ${docData.date} at ${docData.time}`,
+            declined: `Dr. ${docData.doctorName} declined your appointment request that was scheduled for ${docData.date} at ${docData.time}`
         },
         order: {
             placed: "order paced"
@@ -37,15 +37,28 @@ templates.generatePayload= (docData, purposeId)=>{
             topic: `${docData.description}`
         },
         appointmentReverse: {
-            registered: `you have an appointment request`,
+            registered: `You have an appointment request from ${docData.patientName}`,
             cancelled: `${docData.patientName} cancelled the request that was scheduled for ${docData.date} at ${docData.time}`
         }        
+    }
+    var screen= {
+        appointment: "appointment",
+        appointmentReverse: "appointment",
+        order: "order"
     }
 
     var payload= {
         notification:{
             title: titles[main][sub],
             body: bodies[main][sub]
+        },
+        data: {
+            title: titles[main][sub],
+            body: bodies[main][sub],
+            click_action: "FLUTTER_NOTIFICATION_CLICK",
+            id: "1",
+            status: "done",
+            screen: screen[main]
         }
     }
     return payload

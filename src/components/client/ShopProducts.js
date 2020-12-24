@@ -63,7 +63,13 @@ const ShopProducts = () => {
 
   const addToBrands = (val) => {
     var temp = selectedBrands;
-    temp.push(val);
+    if(selectedBrands.includes(val)){
+      temp.splice(temp.indexOf(val), 1)
+    }else{
+      temp.push(val);
+    }
+    console.log(temp)
+    console.log(selectedCost)
     setSelectedBrands(temp);
   };
 
@@ -119,12 +125,14 @@ const ShopProducts = () => {
                 ? costFilter.map((cost) => (
                     <li>
                       <input
+                        name= "costtt"
+                        value={cost}
+                        type="radio"
                         onClick={() => {
                           setSelectedCost(cost);
                         }}
                         style={{ marginRight: "14px" }}
-                        value={cost}
-                        type="checkbox"
+                        
                       />
                       {cost}
                     </li>
@@ -173,12 +181,14 @@ const ShopProducts = () => {
                           ? costFilter.map((cost) => (
                               <li>
                                 <input
+                                  name= "costtt"
+                                  value={cost}
+                                  type="radio"
                                   onClick={() => {
                                     setSelectedCost(cost);
                                   }}
                                   style={{ marginRight: "14px" }}
-                                  value={cost}
-                                  type="checkbox"
+                                                                   
                                 />
                                 {cost}
                               </li>
