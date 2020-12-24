@@ -61,6 +61,10 @@ exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId
         }
 })
 
+<<<<<<< HEAD
+=======
+// vet dwara appointment mai kiye changes client ki collection mai
+>>>>>>> a4ca49dd7c49730610b8e5f4d083ddc83014f061
 exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/appointments/{appId}')
         .onUpdate(async(change, context)=>{
 
@@ -138,5 +142,25 @@ exports.cancelAppointment= functions.firestore
         }
     }
         
-})  
+}) 
+
+exports.orderDelivered= functions.firestore
+    .document('All_Orders/{order_id}')
+    .onUpdate(async(change, context)=>{
+        if(change.after.data()!= change.before.data()){
+            var info= change.after.data()
+            var uid= info.uid
+            var order_id= context.params.order_id
+            var ref= db.collection('user').doc(uid).collection('orders').doc(order_id)
+            
+            var userUpdatePromise= ref.update({
+                deliveryStatus: info.deliveryStatus
+            })
+            if(info.deliveryStatus== 'delivered') 
+                sendMail.orderDelivered(info.mailId)
+            
+            return Promise.all([userUpdatePromise])
+        }
+    })
+
 exports.paymentFunction= functions.https.onRequest(httpListner)

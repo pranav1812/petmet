@@ -6,17 +6,9 @@ import Dropdownfun from "./Dropdownfun";
 function ShopProductsarray({ title }) {
   //title, type, id
 
-  const [isDropdownOpen, setDropdownState] = useState(false);
-
   return (
     <div>
-      <button
-        className="newpagebutton"
-        onClick={() => setDropdownState(!isDropdownOpen)}
-      >
-        {title} {isDropdownOpen ? <ArrowDropUpIcon /> : <ArrowDropDownIcon />}
-      </button>
-      {isDropdownOpen ? <Dropdownfun /> : null}
+      <Dropdownfun />
     </div>
   );
 }

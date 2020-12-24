@@ -46,8 +46,8 @@ appRouter.post('/order', async(req, res)=>{
       };
 
     var razorpayInstance= new Razorpay({
-        key_id: "rzp_test_HpdJifpKFyBE1U",
-        key_secret: "0PFGwg69u1f9cNnAYSBCkh8r",
+        key_id: "rzp_test_WXBY1uT9ZE10OW",
+        key_secret: "WllqLWzS1DqbcWoQS3sXAoea",
     })
       razorpayInstance.orders.create(options, function(err, order) {
           if(err){
@@ -83,46 +83,61 @@ appRouter.post('/verifyPayment', async(req, res)=>{
     console.log(digest, req.headers['x-razorpay-signature'])
     if (digest== req.headers['x-razorpay-signature']){
         // payment successful...
-        console.log(req.body.payload.payment.entity.order_id)
-        var ref= db.collection('All_Orders').doc(req.body.payload.payment.entity.order_id)
-        var promise1= ref.update({
-            deliveryStatus: "delivering within 2-3 working days",
-            paymentVerified: true
-        })
+
+        var app= await db.collection('AppointmentRecord').doc(req.body.payload.payment.entity.order_id).get()
         
-        var orderInfo= await ref.get()
-        // var userInfo= db.collection('user').doc(orderInfo.data().uid).get()
-
-        var userRef= db.collection('user').doc(orderInfo.data().uid).collection('orders').doc(orderInfo.data().order_id)
-        var promise2= userRef.set({
-            ...orderInfo.data(),
-            paymentDetails: req.body,
-            deliveryStatus: "delivering within 2-3 working days",
-            paymentVerified: true
-        })
-
-        var userRef2= db.collection('user').doc(orderInfo.data().uid)
-        var walletChange= orderInfo.data().cashback- orderInfo.data().subFromWallet
-        var dateObj = new Date()
-        var str= dateObj.toISOString()
-        var dateStr= str.slice(0, str.length-1)+'+5:30'
-        var promise3= userRef2.update({
-            walletMoney: admin.firestore.FieldValue.increment(walletChange),
-            usedPromo: admin.firestore.FieldValue.arrayUnion(orderInfo.data().usedCode),
-            walletHistory: admin.firestore.FieldValue.arrayUnion({
-                amount: orderInfo.data().cashback,
-                type: 'add',
-                date: dateStr
-            },
-            {
-                amount: orderInfo.data().subFromWallet,
-                type: 'sub',
-                date: dateStr
+        if(app.exists){
+            var doctorId= app.data().doctorId
+            var appId= app.data().appId
+            var ref= db.collection('vet').doc(doctorId).collection('appointments').doc(appId)
+            ref.update({
+                status: "confirmed"
             })
-        })
+        }
+        else{
+            console.log(req.body.payload.payment.entity.order_id)
+            var ref= db.collection('All_Orders').doc(req.body.payload.payment.entity.order_id)
+            var promise1= ref.update({
+                deliveryStatus: "delivering within 2-3 working days",
+                paymentVerified: true
+            })
+            
+            var orderInfo= await ref.get()
+            // var userInfo= db.collection('user').doc(orderInfo.data().uid).get()
 
-        var resolve= await Promise.all([promise1, promise2, promise3])
-        console.log(resolve)
+            var userRef= db.collection('user').doc(orderInfo.data().uid).collection('orders').doc(orderInfo.data().order_id)
+            var promise2= userRef.set({
+                ...orderInfo.data(),
+                paymentDetails: req.body,
+                deliveryStatus: "delivering within 2-3 working days",
+                paymentVerified: true
+            })
+
+            var userRef2= db.collection('user').doc(orderInfo.data().uid)
+            var walletChange= orderInfo.data().cashback- orderInfo.data().subFromWallet
+            var dateObj = new Date()
+            var str= dateObj.toISOString()
+            var dateStr= str.slice(0, str.length-1)+'+5:30'
+            var promise3= userRef2.update({
+                walletMoney: admin.firestore.FieldValue.increment(walletChange),
+                usedPromo: admin.firestore.FieldValue.arrayUnion(orderInfo.data().usedCode),
+                walletHistory: admin.firestore.FieldValue.arrayUnion({
+                    amount: orderInfo.data().cashback,
+                    type: 'add',
+                    date: dateStr,
+                    order_id: orderInfo.data().order_id
+                },
+                {
+                    amount: orderInfo.data().subFromWallet,
+                    type: 'sub',
+                    date: dateStr,
+                    order_id: orderInfo.data().order_id
+                })
+            })
+
+            var resolve= await Promise.all([promise1, promise2, promise3])
+            console.log(resolve)
+            }
 
     }
     res.json({status: 'ok'})
@@ -141,8 +156,8 @@ appRouter.post('/servicePayment', async(req, res)=>{
       };
 
     var razorpayInstance= new Razorpay({
-        key_id: "rzp_test_HpdJifpKFyBE1U",
-        key_secret: "0PFGwg69u1f9cNnAYSBCkh8r",
+        key_id: "rzp_test_WXBY1uT9ZE10OW",
+        key_secret: "WllqLWzS1DqbcWoQS3sXAoea",
     })
     razorpayInstance.orders.create(options, function(err, order) {
           if(err){
@@ -160,6 +175,7 @@ appRouter.post('/servicePayment', async(req, res)=>{
       })
 })
 
+// useless ho gya
 appRouter.post('/verifyServicePayment', async(req, res)=>{
     var shasum= crypto.createHmac('sha256', 'pEtMetR@z0RPayS3cRet6969')
     shasum.update(JSON.stringify(req.body))

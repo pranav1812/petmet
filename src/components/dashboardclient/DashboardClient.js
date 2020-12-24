@@ -29,6 +29,7 @@ const styles = {
 
 const DashboardClient = () => {
   const [categories, setCategories] = useState(null);
+  const [categoriess, setCategoriess] = useState(null);
   const [bestSellers, setBestSellers] = useState(null);
   const [accessories, setAccessories] = useState(null);
   const [cats, setCats] = useState(null);
@@ -51,6 +52,25 @@ const DashboardClient = () => {
         });
         setCategories(temp);
         console.log(categories)
+      })
+      .catch((e) => console.log(e));
+
+      db.collection("items")
+      .get()
+      .then((docs) => {
+        var temp = [];
+        docs.forEach((doc) => {
+          if (
+            doc.id != "Best Sellers" &&
+            doc.id != "Accessories" &&
+            doc.id != "Litter Management"&&
+            doc.id != "Toys" 
+          ) {
+            temp.push({ name: doc.id, img: doc.data().img });
+          }
+        });
+        setCategoriess(temp);
+        console.log(categoriess)
       })
       .catch((e) => console.log(e));
 
@@ -214,22 +234,35 @@ const DashboardClient = () => {
         </div>
         <h3 className="mt-4" style={{fontWeight: "bold",paddingBottom:"20px"}}>FEATURED CATEGORIES</h3>
         <div className="row justify-content-center" style={{paddingBottom: "30px"}}>
-          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+         {/* <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
             <img src={Dogs} />
-            <h4 className="mt-3" style={{fontWeight: "bold"}}>Dogs</h4>
+          
+            <h4 className="mt-3" style={{fontWeight: "bold"}}>Cat Essentials</h4>
           </div>
           <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
             <img src={SmallAnimals} />
             <h4 className="mt-3" style={{fontWeight: "bold"}}>Small Animals</h4>
           </div>
-          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
-            <img src={Cats} />
-            <h4 className="mt-3" style={{fontWeight: "bold"}}>Cats</h4>
-          </div>
-          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+*/}
+          {categoriess
+            ? categoriess.map((cat) => (
+                <Link to={"/ShopProducts/" + cat.name}>
+                    <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+          
+                <img src={cat.img} />
+            <h4 className="mt-3" style={{fontWeight: "bold"}}>{cat.name}</h4>
+            </div>
+              
+                </Link>
+              ))
+            : null}
+
+                      
+          
+          {/*<div className="col-10 col-lg-3" style={{textAlign: "center"}}>
             <img src={Birds} />
             <h4 className="mt-3" style={{fontWeight: "bold"}}>Birds</h4>
-          </div>
+          </div>*/}
         </div>
         <h2 className="mt-4" style={{paddingBottom: "20px"}}>FOOD</h2>
         <div style={{justifyContent: "center",paddingBottom: "40px"}}>
