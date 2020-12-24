@@ -61,10 +61,6 @@ exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId
         }
 })
 
-<<<<<<< HEAD
-=======
-// vet dwara appointment mai kiye changes client ki collection mai
->>>>>>> a4ca49dd7c49730610b8e5f4d083ddc83014f061
 exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/appointments/{appId}')
         .onUpdate(async(change, context)=>{
 

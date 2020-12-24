@@ -243,10 +243,10 @@ const DashboardClient = () => {
           {categoriess
             ? categoriess.map((cat) => (
                 <Link to={"/ShopProducts/" + cat.name}>
-                    <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
+                    <div className="col-10 col-lg-3 featuredCategories">
           
                 <img src={cat.img} />
-            <h4 className="mt-3" style={{fontWeight: "bold"}}>{cat.name}</h4>
+                <h4 className="mt-3 fcname">{cat.name}</h4>
             </div>
               
                 </Link>

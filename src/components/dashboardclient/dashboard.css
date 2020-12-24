@@ -157,10 +157,32 @@ button.rec-dot:hover {
   box-shadow: 0 0 1px 3px #36a9cc;
 }
 
-.main-new-head {
-  
-}
+/* .featuredCategories img {
+  width: 100%;
+  height: 100%;
+} */
 
+.featuredCategories img {
+  border-radius: 50%;
+  width: 250px;
+  height: 250px;
+  }
 
+  .featuredCategories{
+    text-align: center;
+  }
+
+  .fcname {
+    font-weight: bold;
+    text-align: center;
+    padding-left: 100%;
+  }
+
+  @media only screen and (max-width: 570px)
+  {
+    .fcname {
+      padding-left: 12%;
+    }
+  }
 
 
