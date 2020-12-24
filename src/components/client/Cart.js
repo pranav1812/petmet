@@ -119,7 +119,6 @@ const addToWishlist = () => {
 
     try {
       var response = await axios.post(endPoint, reqBody);
-      console.log(response);
       paymentRazorpay(response);
     } catch (err) {
       console.error(err);
@@ -139,9 +138,7 @@ const addToWishlist = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user);
         setUid(user.uid);
-        console.log(uid);
         db.collection("user")
           .doc(user.uid)
           .collection("cart")
@@ -225,7 +222,6 @@ const addToWishlist = () => {
   };
 
   const discount = (promo) => {
-    console.log(total,inTotal)
     var net = inTotal;
     setTotal(inTotal)
     if (user && !user.usedPromo.includes(code)) {

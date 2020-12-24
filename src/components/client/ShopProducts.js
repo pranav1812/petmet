@@ -31,7 +31,6 @@ const ShopProducts = () => {
         });
 
         setProducts(temp);
-        console.log(temp.length);
       });
 
     db.collection("homepage")
@@ -46,8 +45,6 @@ const ShopProducts = () => {
   }, []);
 
   const applyFilter = () => {
-    console.log(selectedBrands);
-    console.log(selectedCost);
     if (products) {
       var temp = [];
       products.forEach((pro) => {
@@ -95,7 +92,6 @@ const ShopProducts = () => {
   return (
     <div>
       <p className="pathontop">Home &gt; {subComponent}</p>
-      {/* &gt gives > */}
       <span>
         <div className="products_bothflex">
           <div className="products_leftflex products_leftflexdisplay">
@@ -220,7 +216,6 @@ const ShopProducts = () => {
             <div className="products_rightflex_cardflex">
               {products
                 ? products.map((pro) => (
-                    //                <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
                     <div>
                       <SquareCard
                         title={pro.details.name}
@@ -233,110 +228,13 @@ const ShopProducts = () => {
                         style={{ margin: "31px" }}
                       />
                     </div>
-                    //              </Link>
-                    /* <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                    <SquareCard style={{ margin: "31px" }} />
-                  </Link>
-                  <Link to={"/ShopPage/" + subComponent + "/" + pro.key}>
-                    <SquareCard style={{ margin: "31px" }} />
-                  </Link> */
                   ))
                 : null}
             </div>
           </div>
         </div>
       </span>
-    </div> /*{" "}
-        <div className="thumb">
-          <Link to={"/ShopPage/" + +"/" + pro.key}>
-            <div className="personalthumb">
-              <div>
-                <img
-                  // style={{ backgroundColor: "#f5f5f5" }}
-                  className="dishpicture"
-                  src={pro.details.url}
-                />
-              </div>
-              <p className="dishnames">{pro.details.name}</p>
-
-              <span>
-                <button type="button" className="optionsbutton">
-                  {pro.details.size}
-                </button>
-              </span>
-              <span>
-                <div className="priceofproduct">₹{pro.details.cost} </div>
-              </span>
-            </div>
-          </Link>
-        </div>{" "}
-        */
-    // ................................................................... //{" "}
-    /* <div className="bodyleavingnav">
-        /*{" "}
-        <span>      
-          <hr />
-          <div
-            // style={{ margin: "20px" }}
-            class="btn-group"
-            role="group"
-            aria-label="Button group with nested dropdown"
-          >
-            <button type="button" class="btn btn-success">
-              Filter
-            </button>
-            <div class="btn-group" role="group">
-              <button
-                id="btnGroupDrop2"
-                type="button"
-                class="btn btn-success dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              ></button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="btn-group"
-            role="group"
-            aria-label="Button group with nested dropdown"
-          >
-            <button type="button" class="btn btn-success">
-              Sort
-            </button>
-            <div class="btn-group" role="group">
-              <button
-                id="btnGroupDrop2"
-                type="button"
-                class="btn btn-success dropdown-toggle"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false"
-              ></button>
-              <div class="dropdown-menu" aria-labelledby="btnGroupDrop2">
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-                <a class="dropdown-item" href="#">
-                  Dropdown link
-                </a>
-              </div>
-            </div>
-          </div>
-        </span>{" "}
-        */ //{" "}
-    // </div>
-
-    // ................................................................................
+    </div> 
   );
 };
 

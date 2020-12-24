@@ -11,8 +11,7 @@ const SquareCard = (props) => {
   const [ userSelectedSize, setUserSelectedSize ] = useState(temp)
   const [ color, setColor] = useState(false);
   const [ cart, setCart] = useState(false)
-  useEffect(()=>{
-    console.log(props._id)    
+  useEffect(()=>{  
 
 })
   

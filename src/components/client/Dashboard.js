@@ -82,7 +82,6 @@ const Modall = (prop) => {
   const handleShow = () => setShow(true);
   const [usr, setUsr] = useState(null);
   useEffect(() => {
-    console.log(prop);
     var user = auth.currentUser;
     if (user) {
       setUsr(user);
@@ -171,7 +170,6 @@ export default function Dashboard() {
       if (user) {
         setUid(user.uid);
         setUsr(user);
-        console.log(user);
         db.collection("user")
           .doc(user.uid)
           .get()
@@ -186,7 +184,6 @@ export default function Dashboard() {
             }
             if (doc.exists) setName(doc.data().name);
             else setName(user.displayName);
-            console.log(name);
           })
           .catch((err) => console.error(err));
         db.collection("user")

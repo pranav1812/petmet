@@ -56,7 +56,6 @@ const WishlistComponent = () => {
   useEffect(() => {
     auth.onAuthStateChanged((user) => {
       if (user) {
-        console.log(user);
         setUid(user.uid);
         db.collection("user")
           .doc(user.uid)
@@ -68,7 +67,6 @@ const WishlistComponent = () => {
               temp.push({ ...doc.data(), key: doc.id, _id: doc.data().key });
             });
             setWish(temp);
-            console.log(wish);
           });
       }
     });

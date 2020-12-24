@@ -23,8 +23,6 @@ const FeaturedCarousel = () => {
           var temp = [];
           docs.forEach((doc) => temp.push({...doc.data(), key:doc.id }));
           setCats(temp);
-          console.log(cats)
-          console.log(temp)
         })
         .catch((e) => console.log(e));
     },[]);

@@ -12,11 +12,9 @@ const Orders_List = () => {
     const [orders, setOrders]= useState([])
     const setDelivered= async(key)=>{
 
-        console.log("started")
         await db.collection('All_Orders').doc(key).update({
             deliveryStatus: 'delivered'
         })
-        console.log("done")
     }
     useEffect(()=>{
         // .where('paid', '==', 'true').. add later
@@ -27,7 +25,6 @@ const Orders_List = () => {
                 var productString='';
                 var info= doc.data()
                 if(info.deliveryStatus!='delivered'){
-                    console.log(info.name)
                     info.products.forEach(pro=>{
                         productString+= `"cat: ${pro.category}, id: ${pro.productId}, units:${pro.units}"; `
                     })

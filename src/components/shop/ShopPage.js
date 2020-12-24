@@ -96,9 +96,6 @@ const ShopPage = () => {
       .get()
       .then((doc) => {
         setInfo(doc.data().details);
-        console.log(doc.data().details)
-        console.log(productId)
-        // setTotalPrice(doc.data().details.cost)
       });
   }, [qty]);
 
@@ -227,10 +224,7 @@ const ShopPage = () => {
             <img src={m} alt="imageofproduct" />
           )):null}
           
-         {/* <img src={Product} alt="imageofproduct" />
-          <img src={Product} alt="imageofproduct" />
-          <img src={Product} alt="imageofproduct" />
-  <img src={Product} alt="imageofproduct" />*/}
+         
         </div>
 
         <div className="productDetails_insideflex2">
@@ -241,8 +235,7 @@ const ShopPage = () => {
             info ? info.ingredients : null}
           </p>
           <span>
-         {/*   <p onClick={showfunction}>Read More</p>
-            <p>{showreadmore && <Box />}</p>*/}
+         
           </span>
           <p>Size:</p>
 
@@ -250,44 +243,9 @@ const ShopPage = () => {
             {info?(info.size.map((s)=>
              <button className="row-btn">{s}</button>
             )):null}
-            {/*<button className="row-btn">800 gm</button>
-            <button className="row-btn">1 kg</button>
-            <button className="row-btn">2 kg</button>*/}
+           
           </div>
-          {/*<span>
-            <button
-              style={{
-                background: "#FFFFFF",
-                border: " 1px solid #C4C4C4",
-                boxSizing: "border-box",
-                borderRadius: "2px 0px 0px 2px",
-              }}
-              onClick={decrease}
-            >
-              -
-            </button>
-            <button
-              style={{
-                background: " #EBFAFF",
-                border: "1px solid #C4C4C4",
-                boxSizing: "border-box",
-              }}
-            >
-              {num}
-            </button>
-            <button
-              style={{
-                background: "#FFFFFF",
-                border: " 1px solid #C4C4C4",
-                boxSizing: "border-box",
-                borderRadius: "2px 0px 0px 2px",
-              }}
-              onClick={increase}
-            >
-              +
-            </button>
-          </span>
-          */}<div className="row justify-content-center align-items-center">
+          <div className="row justify-content-center align-items-center">
             <p className="acprize">Rs. {info ? info.cost :null}</p>
             <p className="cprize ml-4">Rs. {info ? info.mrp :null}</p>
           </div>
@@ -308,200 +266,21 @@ const ShopPage = () => {
         <div className="productDetails_description_insideflex1">
           <p className="productdescriptiontitle">PRODUCT DESCRIPTION</p>
           <p>{info ? info.description :null}</p>
-         {/* <ul className="ul">
-            <li>Cookies for dogs</li> <br />
-            <li> Suitable for all dogs</li> <br />
-            <li> Made from rice and chickpea flour</li> <br />
-            <li> Made with real chicken</li> <br />
-            <li> Treats should always be given in moderation</li> <br />
-            <li> Always have fresh water available for your pet</li> <br />
-            <li>
-              Never feed above recommended quantities unless prescribed by a vet
-            </li>
-            <br />
-            <li> Always check the ingredient label for possible allergy</li>{" "}
-            <br />
-        </ul> */}
+         
         </div>
         <div className="productDetails_description_insideflex2">
           <img src={Productdescription} alt="hry" />
         </div>
       </div>
 
-      {/*<h2 className="mt-4">DOG ESSENTIALS</h2>
-*/}
+      
       <div
         className="carousel-styling"
         style={{ justifyContent: "center", paddingBottom: "40px" }}
       >
-       {/* <Carousel breakPoints={breakPoints}>
-          <item>
-            <SquareCard />
-          </item>
-          <item>
-            <SquareCard />
-          </item>
-          <item>
-            <SquareCard />
-          </item>
-          <item>
-            <SquareCard />
-          </item>
-        </Carousel>
-            */}      </div>
+     </div>
     </div>
-    // <div>
-    //   {info?(
-    //     <div className="carouselanddetails">
-    //     <div>
-    //       <img
-    //         src={info.url}
-    //         height="200px"
-    //         width="180px"
-    //         alt= {info.name}
-    //       />
-    //     </div>
-    //     <div className="details">
-    //       <p
-    //         className="openedproductname"
-    //         style={{ fontSize: 20, fontWeight: 500, marginBottom: "5px" }}
-    //       >
-    //         {info.name}
-    //       </p>
-    //       <p
-    //         className="openedproductname"
-    //         style={{ fontSize: 19, fontWeight: 500, marginBottom: "10px" }}
-    //       >
-    //         Rs {info.cost}
-    //       </p>
-    //       <hr style={{ color: "rgba(0,0,0,0.1" }} />
-
-    //       {/*<Rating
-    //         style={{ marginTop: "20px" }}
-    //         name="read-only"
-    //         value={value}
-    //         readOnly
-    //       />*/}
-    //       <p style={{ fontSize: 14, marginTop: "20px" }}>
-    //         {info.description}
-    //         <br /> <div>Product Type: {subComponent} <br />
-    //               {info.ingriedients}
-    //         </div>
-
-    //       </p>
-    //       <button onClick={addToCart} >Add to Cart</button>
-    //       <button onClick={addToWishlist} >Add to Wishlist</button>
-    //       <button onClick={handleShow1}>Buy Now</button>
-    //     </div>
-
-    //   <hr style={{ color: "rgba(0,0,0,0.1" }} />
-
-    //   <Modal show={confirmShow} centered>
-    //     <Modal.Header >
-    //       <Modal.Title>Order Placed</Modal.Title>
-    //     </Modal.Header>
-    //     <Modal.Body>Woohoo, your order has been placed</Modal.Body>
-    //     <Modal.Footer>
-    //       <Link to='/Home'>
-    //       <Button variant="secondary">
-    //         Okay
-    //       </Button>
-    //       </Link>
-    //     </Modal.Footer>
-    //   </Modal>
-
-    //   <Modal show={show} onHide={handleClose1} centered>
-    //       <Modal.Header closeButton>
-    //         <Modal.Title>Order Item</Modal.Title>
-    //       </Modal.Header>
-    //       <Modal.Body>
-    //         <h3>Order Details</h3>
-    //         <div className="row">
-    //           <div className="col-12 col-sm-6 mt-5" style={{textAlign: "center"}}>
-    //             <img
-    //             src={info.url}
-    //             height="200px"
-    //             width="90%"
-    //             alt= {info.name}></img>
-    //           </div>
-    //           <div className="col-12 col-sm-6">
-    //             <div className="row mt-3 mb-3 justify-content-center">
-    //               <h5><strong>{info.name}</strong></h5>
-    //             </div>
-    //             <div className="row">
-    //               <strong className="col-8">Quantity</strong>
-    //               <input className="col-4" type="number" min="1" max={info.quantity} defaultValue="1" onChange={(e)=>{
-    //                 setTotalPrice(Number(e.target.value)*Number(info.cost)*1.3)
-    //                 setQty(Number(e.target.value))
-
-    //                 }}></input>
-    //             </div>
-    //             <div className="row">
-    //               <strong className="col-8">Cost of 1 Product</strong>
-    //               <p>Rs. {info.cost}</p>
-    //             </div>
-    //             <div className="row">
-    //               <strong className="col-8">Cost of Products</strong>
-    //               <p>Rs. {info.cost*qty}</p>
-    //             </div>
-    //             <div className="row">
-    //               <strong className="col-8">GST</strong>
-    //               <p>Rs. {0.3*info.cost*qty}</p>
-    //             </div>
-    //             <div className="row">
-    //               <strong className="col-8">Delivery Charges</strong>
-    //               <p>Rs. {1.3*info.cost*qty>300 ? 0: 150}</p>
-    //             </div>
-    //             <div className="row">
-    //               <strong className="col-8">Total Cost</strong>
-    //               <p>Rs. {1.3*info.cost*qty>300 ? 1.3*info.cost*qty: 150+ 1.3*info.cost*qty}</p>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </Modal.Body>
-    //       <Modal.Footer>
-    //         <button onClick={handleShow2} className="pink_out">Next</button>
-    //         <button onClick={handleClose1} className="pink_out">Cancel</button>
-    //       </Modal.Footer>
-    //   </Modal>
-
-    //   <Modal size="lg" show={showw} onHide={()=>{setShoww(false)}} centered>
-    //       <Modal.Header closeButton>
-    //         <Modal.Title>Order Item</Modal.Title>
-    //       </Modal.Header>
-    //       <Modal.Body>
-    //         <div className="container">
-    //           <div className="row mb-4">
-    //             <h6 className="col-4"><strong>Delivery Address: {userInfo? userInfo.address: null} </strong></h6>
-    //             <h6>Another Address</h6>
-    //             <input type="text" placeholder={userInfo? userInfo.address: null} onBlur={(e)=>{e.target.value.trim!=" "? setNewDeliveryAddress(e.target.value): setNewDeliveryAddress(userInfo.address)}} />
-    //           </div>
-    //           <div>
-    //             <h5><strong>Payment Options</strong></h5>
-    //             <Form>
-
-    //               <select onChange={(e)=>{setPaymentMode(e.target.value)}}>
-    //                 <option value="nb" >Net Banking</option>
-    //                 <option value="cod" >Cash on Delivery</option>
-    //                 <option value="upi" >UPI Payment</option>
-    //                 <option value="card" >Debit/Credit/ATM Card</option>
-    //               </select>
-
-    //             </Form>
-    //           </div>
-    //         </div>
-    //       </Modal.Body>
-    //       <Modal.Footer>
-    //         <button className="pink_out" onClick={confirmOrder} >Confirm Order</button>
-    //         <button className="pink_out" onClick={()=>{setShoww(false)}}>Cancel</button>
-    //       </Modal.Footer>
-    //   </Modal>
-
-    //   </div>
-
-    //   ): null}
-
-    // </div>
+  
   );
 };
 export default ShopPage;

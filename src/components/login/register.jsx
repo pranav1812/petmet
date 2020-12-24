@@ -25,14 +25,11 @@ export class Register extends React.Component {
       // the user to signup page if user is not verified
       window.location="https://www.youtube.com/"
     }
-    console.log(user)
   }
 
   googleSignup=()=>{
     var provider = new firebase.auth.GoogleAuthProvider();
     auth.signInWithPopup(provider).then(function(result) {
-      var user = result.user;
-      console.log(user)
     }).catch(function(error) {
       var errorMessage = error.message;
       console.log(errorMessage)
@@ -42,8 +39,6 @@ export class Register extends React.Component {
   fbSignup=()=>{
     var provider = new firebase.auth.FacebookAuthProvider();
     auth.signInWithPopup(provider).then(function(result) {
-      var user = result.user;
-      console.log(user)
     }).catch(function(error) {
       var errorMessage = error.message;
       console.log(errorMessage)

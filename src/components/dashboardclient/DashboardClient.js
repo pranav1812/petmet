@@ -51,7 +51,6 @@ const DashboardClient = () => {
           }
         });
         setCategories(temp);
-        console.log(categories)
       })
       .catch((e) => console.log(e));
 
@@ -70,7 +69,6 @@ const DashboardClient = () => {
           }
         });
         setCategoriess(temp);
-        console.log(categoriess)
       })
       .catch((e) => console.log(e));
 
@@ -127,8 +125,6 @@ const DashboardClient = () => {
       var temp = [];
       docs.forEach((doc) => temp.push({...doc.data(), key:doc.id }));
       setCats(temp);
-      console.log(cats)
-      console.log(temp)
     })
     .catch((e) => console.log(e));
     
