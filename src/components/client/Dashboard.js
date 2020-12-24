@@ -23,11 +23,7 @@ import { MdAccountCircle, MdShoppingCart } from "react-icons/md";
 import {
   Modal,
   Navbar,
-  Nav,
-  NavDropdown,
-  Form,
-  FormControl,
-  Dropdown,
+  Nav
 } from "react-bootstrap";
 import { RiLogoutBoxRFill } from "react-icons/ri";
 import { HiSwitchHorizontal } from "react-icons/hi";
@@ -37,6 +33,7 @@ import AllAppointments from "./AllAppointments";
 import Cart2 from "./Cart2";
 import PrivacyPolicy from './PrivacyPolicy';
 import OrderCompleted from './OrderCompleted';
+import SearchResults from './searchResults';
 
 const drawerWidth = 240;
 
@@ -362,15 +359,14 @@ export default function Dashboard() {
             </Nav>
             <div className="row nfn">
               <input onBlur={(e)=> setSearch(e.target.value)}
-                 type="text"
+                type="text"
                 placeholder=" Search Pet food, special toys and many more...."
                 className="newnavsearchbox align-self-center"
               />
               <button
                     type="button"
-                    
-                   
                     onClick={()=>searchProducts(search)}
+                    className="navbtn"
                   >
                     Go
                   </button>
@@ -484,6 +480,8 @@ export default function Dashboard() {
           <PrivacyPolicy />
         ) : componentt == "orderCompleted" ? (
           <OrderCompleted />
+        ) : componentt == "searchResults" ? (
+          <SearchResults />
         ) : (
           <Home />
         )}

@@ -230,16 +230,6 @@ const DashboardClient = () => {
         </div>
         <h3 className="mt-4" style={{fontWeight: "bold",paddingBottom:"20px"}}>FEATURED CATEGORIES</h3>
         <div className="row justify-content-center" style={{paddingBottom: "30px"}}>
-         {/* <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
-            <img src={Dogs} />
-          
-            <h4 className="mt-3" style={{fontWeight: "bold"}}>Cat Essentials</h4>
-          </div>
-          <div className="col-10 col-lg-3" style={{textAlign: "center"}}>
-            <img src={SmallAnimals} />
-            <h4 className="mt-3" style={{fontWeight: "bold"}}>Small Animals</h4>
-          </div>
-*/}
           {categoriess
             ? categoriess.map((cat) => (
                 <Link to={"/ShopProducts/" + cat.name}>
@@ -252,13 +242,6 @@ const DashboardClient = () => {
                 </Link>
               ))
             : null}
-
-                      
-          
-          {/*<div className="col-10 col-lg-3" style={{textAlign: "center"}}>
-            <img src={Birds} />
-            <h4 className="mt-3" style={{fontWeight: "bold"}}>Birds</h4>
-          </div>*/}
         </div>
         <h2 className="mt-4" style={{paddingBottom: "20px"}}>FOOD</h2>
         <div style={{justifyContent: "center",paddingBottom: "40px"}}>

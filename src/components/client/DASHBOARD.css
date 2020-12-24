@@ -91,7 +91,7 @@
   box-sizing: border-box !important;
   border-radius: 2px !important;
   /* width: 380px !important; */
-  margin-right: 160px;
+  margin-right: 10px;
 }
 
 .togglebtn:focus,.togglebtn:active {
@@ -163,3 +163,30 @@
   margin: 10px 6%;
   padding: 3px 5px;
 }
+
+.navbtn {
+  margin-right: 100px;
+  height: 40px;
+  margin-top: 10px;
+  padding: 0px 10px;
+  background-color: #36a9cc;
+  border-radius: 3px;
+  border: none;
+  color: #ffffff;
+}
+
+.navbtn:hover {
+  color: #36a9cc;
+  background-color: #ffffff;
+  border: 1px solid #36a9cc;
+}
+
+@media only screen and (max-width: 1200px)
+{
+  .navbtn {
+    height: 40px;
+    margin-top: 10px;
+    margin-right: 80px;
+  }
+}
+
