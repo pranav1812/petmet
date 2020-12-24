@@ -128,6 +128,7 @@ const Modall = (prop) => {
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
   const [usr, setUsr] = useState(null);
+  
   useEffect(() => {
     console.log(prop);
     var user = auth.currentUser;
@@ -210,46 +211,90 @@ export default function Dashboard() {
   const [uid, setUid] = useState(null);
   const [usr, setUsr] = useState(null);
   const [pets, setPets] = useState(null);
+  const [allProducts, setAllProducts] = useState(null);
+  const [search, setSearch] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   useEffect(() => {
-    auth.onAuthStateChanged((user) => {
-      if (user) {
-        setUid(user.uid);
-        setUsr(user);
-        console.log(user);
-        db.collection("user")
-          .doc(user.uid)
-          .get()
-          .then((doc) => {
-            if (user.emailVerified && !doc.exists) {
-              db.collection("user")
-                .doc(user.uid)
-                .set({
-                  name: user.displayName || "Guest",
-                  profileCompleted: false,
-                });
-            }
-            if (doc.exists) setName(doc.data().name);
-            else setName(user.displayName);
-            console.log(name);
-          })
-          .catch((err) => console.error(err));
-        db.collection("user")
-          .doc(user.uid)
-          .collection("pets")
-          .onSnapshot((docs) => {
-            var temp = [];
-            docs.forEach((doc) => {
-              temp.push(doc.data());
+
+    try {
+      auth.onAuthStateChanged((user) => {
+        if (user) {
+          setUid(user.uid);
+          setUsr(user);
+          console.log(user);
+          db.collection("user")
+            .doc(user.uid)
+            .get()
+            .then((doc) => {
+              if (user.emailVerified && !doc.exists) {
+                db.collection("user")
+                  .doc(user.uid)
+                  .set({
+                    name: user.displayName || "Guest",
+                    profileCompleted: false,
+                  });
+              }
+              if (doc.exists) setName(doc.data().name);
+              else setName(user.displayName);
+              console.log(name);
+            })
+            .catch((err) => console.error(err));
+          db.collection("user")
+            .doc(user.uid)
+            .collection("pets")
+            .onSnapshot((docs) => {
+              var temp = [];
+              docs.forEach((doc) => {
+                temp.push(doc.data());
+              });
+              setPets(temp);
             });
-            setPets(temp);
-          });
-      }
-    });
+        }
+      });
+      db.collection('All_Products').get().then(products=>{
+        var temp= []
+        try {
+          products.forEach(pro=>{
+          
+            var {category, name}= pro.data().details
+            temp.push({
+              category: category,
+              name: name,
+              key: pro.id
+            })
+          })
+          setAllProducts(temp)
+          console.log(temp)
+          
+        } catch (error) {
+          console.log(error)
+        }
+        
+        
+      })
+    } catch (error) {
+      console.error(error)
+    }
+    
   }, []);
 
+  const searchProducts=(name)=>{
+    try{
+      var found= false
+      var foundProducts= []
+      allProducts.forEach(pro=>{
+        if(pro.name== name){
+          found= true
+          foundProducts.push(pro)
+        }  
+    })
+    console.log(foundProducts)
+    }catch(error){
+      console.log(error)
+    }   
+  }
   const logout = () => {
     auth
       .signOut()
@@ -363,11 +408,25 @@ export default function Dashboard() {
               </Nav.Link>
             </Nav>
             <div className="row nfn">
-              <input
-                type="text"
+              <input onBlur={(e)=> setSearch(e.target.value)}
+                 type="text"
                 placeholder=" Search Pet food, special toys and many more...."
                 className="newnavsearchbox align-self-center"
               />
+              <button
+                    type="button"
+                    
+                   
+                    onClick={()=>searchProducts(search)}
+                  >
+                    <SearchIcon 
+                      style={{
+                        fontSize: "33px",
+                        color: "#36a9cc",
+                        backgroundColor: "#ffffff",
+                      }}
+                    />
+                  </button>
               <div className="mr-4">
                 <div>
                   <button
