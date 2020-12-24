@@ -1,34 +1,12 @@
 import React, { useState, useEffect } from "react";
-import clsx from "clsx";
 import "./DASHBOARD.css";
 import { makeStyles } from "@material-ui/core/styles";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Drawer from "@material-ui/core/Drawer";
-import Box from "@material-ui/core/Box";
 import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
-import Paper from "@material-ui/core/Paper";
 import AccountCircleIcon from "@material-ui/icons/AccountCircle";
-import EditIcon from "@material-ui/icons/Edit";
 import { Route, Switch, Link, useParams } from "react-router-dom";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-// import MyLeads from './myLeads';
 import EditProfile from "./Profile";
 import { auth, db } from "../../firebase";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import HomeIcon from "@material-ui/icons/Home";
 import DashboardClient from "../dashboardclient/DashboardClient";
-// import Lead from './lead'
 import MainLogo from "../pictures/Logo WT Tagline PET MET.png";
 import Addpet from "./Addpet";
 import MyPets from "./MyPets";
@@ -36,14 +14,11 @@ import Cart from "./Cart";
 import Wishlist from "./Wishlist";
 import Appointment from "./Appointment";
 import Home from "./Home";
-import SearchIcon from "@material-ui/icons/Search";
-import NotificationsNoneIcon from "@material-ui/icons/NotificationsNone";
 import ShopPage from "../shop/ShopPage";
 import ShopProducts from "./ShopProducts";
 import Footer from "../FooterNew";
 import VetProfile from "./VetProfile";
 import { Button } from "@material-ui/core";
-import Cat from "../pictures/cat.png";
 import { MdAccountCircle, MdShoppingCart } from "react-icons/md";
 import {
   Modal,
@@ -69,19 +44,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     display: "flex",
   },
-  // toolbar: {
-  //   paddingRight: 24,
-  //   backgroundColor: "#F1F1F1",
-  // },
-  // toolbarIcon: {
-  //   display: "flex",
-  //   alignItems: "center",
-  //   justifyContent: "flex-end",
-  //   padding: "0 8px",
-  //   ...theme.mixins.toolbar,
-  // },
   appBar: {
-    // zIndex: theme.zIndex.drawer + 1,
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
@@ -109,18 +72,8 @@ const useStyles = makeStyles((theme) => ({
 
   container: {
     zIndex: theme.zIndex.appBar - 1,
-    // paddingTop: theme.spacing(0),
     paddingBottom: theme.spacing(0),
   },
-  paper: {
-    // padding: theme.spacing(0),
-    // display: "flex",
-    // overflow: "auto",
-    // flexDirection: "column",
-  },
-  // fixedHeight: {
-  //   height: 240,
-  // },
 }));
 
 const Modall = (prop) => {

@@ -87,7 +87,6 @@ export default function Login() {
   useEffect(() => {
     // alert(auth.currentUser)
     auth.onAuthStateChanged((user) => {
-      if (user) console.log(user);
       if (user && user.emailVerified) {
         window.location = home;
       }
@@ -129,14 +128,12 @@ export default function Login() {
         .signInWithPopup(provider)
         .then(function (result) {
           var user = result.user;
-          // new line
           if (user) {
             window.location = rCheck;
           }
         })
         .catch(function (error) {
           var errorMessage = error.message;
-          console.log(errorMessage);
         });
     }
   };
@@ -148,13 +145,10 @@ export default function Login() {
       .then((result) => {
         var user = result.user;
         if (user) {
-          console.log(user);
-          // window.location= rCheck
         }
       })
       .catch((error) => {
         var errorMessage = error.message;
-        console.log(errorMessage);
       });
   };
 
@@ -170,7 +164,6 @@ export default function Login() {
       })
       .catch((error) => {
         var errorMessage = error.message;
-        console.log(errorMessage);
       });
   };
 
@@ -198,7 +191,6 @@ export default function Login() {
         })
         .catch(function (error) {
           var errorMessage = error.message;
-          console.log(errorMessage);
         });
 
       auth.onAuthStateChanged((user) => {
@@ -213,7 +205,6 @@ export default function Login() {
     if (mail && pass) {
       auth.signInWithEmailAndPassword(mail, pass).catch(function (error) {
         var errorMessage = error.message;
-        console.error("errorMessage");
       });
 
       auth.onAuthStateChanged((user) => {
@@ -230,7 +221,6 @@ export default function Login() {
                   "/admin/" +
                   "verifyVet/";
               } else {
-                console.log("user");
                 if (user) {
                   if (!user.emailVerified) {
                     window.location = vMail;

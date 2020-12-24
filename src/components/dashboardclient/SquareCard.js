@@ -56,18 +56,6 @@ const addToWishlist = () => {
 
   return (
     <div>
-      {/* <div className="personalthumb">
-        <div>
-          <img
-            style={{ backgroundColor: "#f5f5f5" }}
-            className="dishpicture"
-            src={props.image}
-          />
-        </div>
-        <p className="dishnames">HUFT Drizzle Chicken Liver Dog Biscuits</p>
-        <div className="priceofproduct">₹250</div>
-        <Button className="btn btn-block mt-4 m-2">Add to Cart</Button>
-      </div> */}
       <Card className="outCard">
         <div className="crdImg">
           {props.userSelectedSize?(<div><span>Selected Size:</span>
@@ -87,9 +75,7 @@ const addToWishlist = () => {
             {props.size?(props.size.map((s)=>
             <button onClick= {()=>{setUserSelectedSize(s)}} className="row-btn">{s}</button>
             )):null}
-            {/*<button className="row-btn">800 gm</button>
-            <button className="row-btn">1 kg</button>
-    <button className="row-btn">2 kg</button>*/}
+            
           </div>
           
     <div className="row justify-content-center align-items-center">

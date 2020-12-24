@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { auth, db } from "../../firebase";
 import "./cart.css";
 import "./cart2.css";
 import AddIcon from "@material-ui/icons/Add";
-import Food from "../pictures/image 360.png";
 import Radio from "@material-ui/core/Radio";
-import RadioGroup from "@material-ui/core/RadioGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 
 const Cart2 = () => {

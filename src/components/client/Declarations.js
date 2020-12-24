@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-// import { Container } from "react-bootstrap/Container";
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import "./declarations.css";
 import { BiClinic } from "react-icons/bi";
@@ -32,7 +31,6 @@ const Declarations = (props) => {
       <Modal
             isOpen={modal}
             toggle={toggle}
-            // onClosed={closeAll ? toggle : undefined}
             centered
           >
             <ModalHeader>BOOK AN APPOINTMENT</ModalHeader>

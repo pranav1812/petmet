@@ -8,7 +8,7 @@ const Orders = (props) => {
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    useEffect(()=>{console.log(data)},[])
+    useEffect(()=>{},[])
     const onDelivery=()=>{
         db.collection('All_Orders').doc(data.key).update({
             deliveryStatus: 'done'

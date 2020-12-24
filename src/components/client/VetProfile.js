@@ -190,7 +190,6 @@ const submit=()=>{
                   <p>{usr.address}</p>
                   <p>{usr.zip}</p>
                   <p>{usr.phone}</p>
-                  {/*<button className="mr-3 addressbtn">REMOVE</button>*/}
                 </div>
               </div>
             </div>

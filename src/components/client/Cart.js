@@ -4,8 +4,6 @@ import "./cart.css";
 import "./cart2.css";
 import axios from "axios";
 import paymentRazorpay from "./payment";
-import Food from "../pictures/image 360.png";
-import Cart2 from "./Cart2";
 import {Form, Modal} from 'react-bootstrap';
 import AddIcon from "@material-ui/icons/Add";
 import Radio from "@material-ui/core/Radio";
@@ -244,19 +242,8 @@ const addToWishlist = () => {
 
   return (
     <div style={{ backgroundColor: "#e5e5e5", marginTop:"-228px",paddingTop:"100px" }}>
-      {/* <p
-        className="toppath"
-        style={{
-          textAlign: "center",
-        }}
-      >
-        <span style={{ color: "#36A9CC" }}>CART ---------------------</span>
-        <span style={{ color: "#FF5352" }}>ADDRESS ------------------</span>
-        <span style={{ color: "#FF5352" }}>PAYMENT</span>
-      </p> */}
       <div style={{ marginTop: "-30px" }} className="bothflexbox">
         <div className="flexbox11">
-          {/* .................... */}
           {wish
             ? wish.map((wi, ind) => (
                 <div className="cartproductcard mb-4">
@@ -331,7 +318,6 @@ const addToWishlist = () => {
             : null}
         </div>
 
-        {/* .............................. */}
         <div className="flexbox22">
           <div className="coupons">
             <p className="headingofflex2">
@@ -371,10 +357,6 @@ const addToWishlist = () => {
               <div className="amount">Total MRP</div>
               <div className="price_part amount">₹{inTotal} </div>
             </div>
-            {/* <div className="label_price_flex">
-              <div className="amount">Discount on MRP</div>
-              <div className="price_part amount">-₹435 </div>
-            </div> */}
             <div className="label_price_flex">
               <div className="amount">Coupon Discount</div>
               <div className="price_part amount">-₹{couponDiscount} </div>

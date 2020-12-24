@@ -146,13 +146,6 @@ export default function VetLogin() {
           console.log(errorMessage);
         });
 
-      // if(newUser){
-      //   auth.onAuthStateChanged(user=>{
-      //     if(user){
-      //       window.location= 'http://localhost:3000/checkout'
-      //     }
-      //   })
-      // }
     }
   };
 
@@ -223,7 +216,6 @@ export default function VetLogin() {
       });
 
       auth.onAuthStateChanged((user) => {
-        console.log(user);
         if (user) {
           if (!user.emailVerified) {
             window.location = vMail;

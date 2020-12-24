@@ -24,7 +24,6 @@ import Cart2 from "./components/client/Cart2";
 /* --------- trial ------*/
 function App() {
   useEffect(() => {
-    console.log("app.js");
   }, []);
   return (
     <div className="kuchh_aur" style={{ marginTop: "-100px" }}>

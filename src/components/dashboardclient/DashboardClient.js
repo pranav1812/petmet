@@ -1,28 +1,17 @@
 import React, { useEffect, useState } from "react";
 import RoundCard from "./RoundCard";
 import SquareCard from "./SquareCard";
-//import Navbar from "../../navbar.js";
 import "./dashboard.css";
 import TopCarousel from "./TopCarousel";
-import BestSellers from "./BestSellers.js";
 import Carousel from 'react-elastic-carousel';
-//import AppBar from "@material-ui/core/AppBar";
-//import catessentials from "../pictures/image 3.png";
-//import harness from "../pictures/image 4.png";
-//import grooming from "../pictures/image 5.png";
-
-//import food from "../pictures/image 6.png";
 import { db } from "../../firebase";
 
 import { Router, Link } from "react-router-dom";
-import Button from "@material-ui/core/Button";
-import ButtonGroup from "@material-ui/core/Button";
 import Vet from '../pictures/vet_img.png';
 import Dogs from '../pictures/fc1.png';
 import SmallAnimals from '../pictures/fc2.png';
 import Cats from '../pictures/fc3.png';
 import Birds from '../pictures/fc4.png';
-import { propTypes } from "react-bootstrap/esm/Image";
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -157,56 +146,6 @@ const DashboardClient = () => {
         </div>
       </div>
 
- {/*<div className="topmostbuttonss">
-          <Link to="/Addpet/">
-            <Button className="dashboardbuttons1">Add Pet</Button>
-          </Link>
-          
-  </div>*/}
-
-      {/*<div className="cards">
-        {categories
-          ? categories.map((cat) => (
-              <Link to={"/ShopProducts/" + cat.name}>
-                <RoundCard title={cat.name} image={cat.img} />
-              </Link>
-            ))
-          : null}
-      </div>
-
-      <h2 className="headers">BEST SELLERS</h2>
-      <div className="productcards">
-       
-        {bestSellers ? (
-          bestSellers.map((bs) => <SquareCard title={bs.name} image={bs.img} />)
-        ) : (
-          <h5>best sellers arriving</h5>
-        )}
-       
-      </div>
-
-      <h2 className="headers">ACCESSORIES</h2>
-      <div className="productcards">
-        
-        {accessories ? (
-          accessories.map((as) => <SquareCard title={as.name} image={as.img} />)
-        ) : (
-          <h5>accessiories arriving</h5>
-        )}
-        
-      </div>
-      <h2 className="headers">SPECIAL TOYS</h2>
-      <div className="productcards">
-        
-        {toys ? (
-          toys.map((toy) => <SquareCard title={toy.name} image={toy.img} />)
-        ) : (
-          <h5>special toys arriving</h5>
-        )}
-       
-        </div> */}
-
-          
 
         <div className="banner">
             <div>
@@ -251,15 +190,6 @@ const DashboardClient = () => {
                  )
                  }
                  
-               {/* <item>
-                  <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-               </item>*/}
               </Carousel>
         </div>
         <h2 className="mt-4" style={{paddingBottom: "20px"}}>CAT ESSENTIALS</h2>
@@ -279,16 +209,7 @@ const DashboardClient = () => {
                
                  
                 
-{/*                <item>
-                  <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-                </item>
-*/}              </Carousel>
+              </Carousel>
                 
         </div>
         <h3 className="mt-4" style={{fontWeight: "bold",paddingBottom:"20px"}}>FEATURED CATEGORIES</h3>
@@ -324,15 +245,6 @@ const DashboardClient = () => {
         <h5>food arriving</h5>
       )}
                 
-                {/*<item>
-                  <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-                </item>
-                <item>
-                  <SquareCard />
-                </item>*/}
               </Carousel>
         </div>
   </div>

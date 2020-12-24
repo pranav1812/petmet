@@ -61,18 +61,6 @@ exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId
         }
 })
 
-// no longer required as reverse process is followed
-
-// // exports.clientOrderToAllOrders= functions.firestore.document('user/{uid}/orders/{orderId}')
-// //         .onUpdate(async(change, context)=>{
-// //             var params= {
-// //                 uid: context.params.uid,
-// //                 order: context.params.orderId
-// //             }
-// //             background.confirmOrder(change.after.data(), params)
-// // })
-
-// vet dwara appointment mai kiye changes client ki collection mai
 exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/appointments/{appId}')
         .onUpdate(async(change, context)=>{
 
@@ -142,10 +130,7 @@ exports.cancelAppointment= functions.firestore
                 key: change.after.data().key,
                 cancelledByUser: true
             })
-            // var notificationPromise= notify.sendAppointmentConfirmationNotification(deviceToken, snap.data())
-            // var sendMailPromise= sendMail.appointmentConfirmation(change.after.data(), usr.data().mail || usr.data().email )
             try{
-                // var results= await Promise.all([setAppointmentForVetPromise, notificationPromise, sendMailPromise])
                 return Promise.all([vetNotificationPromise, vetChangePromise, adminChangePromise])
                     
             }catch(error){
