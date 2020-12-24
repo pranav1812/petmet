@@ -242,6 +242,7 @@ export default function Dashboard() {
           foundProducts.push(pro)
         }  
     })
+    console.log(foundProducts)
     
     }catch(error){
       console.log(error)
@@ -371,13 +372,7 @@ export default function Dashboard() {
                    
                     onClick={()=>searchProducts(search)}
                   >
-                    <SearchIcon 
-                      style={{
-                        fontSize: "33px",
-                        color: "#36a9cc",
-                        backgroundColor: "#ffffff",
-                      }}
-                    />
+                    Go
                   </button>
               <div className="mr-4">
                 <div>
