@@ -487,7 +487,7 @@ export default function Dashboard() {
         ) : componentt == "orderCompleted" ? (
           <OrderCompleted />
         ) : componentt == "searchResults" ? (
-          <SearchResults results= {}/>
+          <SearchResults />
         ) : (
           <Home />
         )}
