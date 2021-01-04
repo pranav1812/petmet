@@ -7,7 +7,7 @@ const express= require('express')
 var bodyParser= require('body-parser')
 const cors= require('cors') 
 const appRouter= require('./http/index')
-
+const api= require('./http/api')
 
 
 const httpListner= express()
@@ -15,6 +15,7 @@ httpListner.use(cors())
 httpListner.use(bodyParser.json())
 httpListner.use(bodyParser.urlencoded({extended: true}))
 httpListner.use('/payment', appRouter)
+httpListner.use('/api', api)
 
 const notify= require('./notifications/index')
 const background= require('./background/index')
@@ -254,3 +255,5 @@ exports.orderDelivered= functions.firestore
     })
 
 exports.paymentFunction= functions.https.onRequest(httpListner)
+
+exports.adminApi= functions.https.onRequest(httpListner)

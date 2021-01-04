@@ -16,6 +16,10 @@
         "function": "paymentFunction" 
       },
       {
+        "source": "/api/**",
+        "function": "adminApi" 
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
