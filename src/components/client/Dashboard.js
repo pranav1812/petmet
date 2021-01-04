@@ -34,6 +34,7 @@ import Cart2 from "./Cart2";
 import PrivacyPolicy from './PrivacyPolicy';
 import OrderCompleted from './OrderCompleted';
 import SearchResults from './searchResults';
+import ProductTile from './ProductTile'
 
 const drawerWidth = 240;
 
@@ -164,7 +165,10 @@ export default function Dashboard() {
   const [search, setSearch] = useState(null);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const [showSearch, setShowSearch]= useState(false)
+  const [searchResults, setSearchResults]= useState(null)
 
+  // <SquareCard _id={groom.key} info={groom.details} title={groom.details.name} image={groom.details.url} size={groom.details.size} cost={groom.details.cost} mrp={groom.details.mrp}/>
   useEffect(() => {
 
     try {
@@ -234,11 +238,13 @@ export default function Dashboard() {
       var found= false
       var foundProducts= []
       allProducts.forEach(pro=>{
-        if(pro.name== name){
+        if(pro.name.includes(name)){
           found= true
           foundProducts.push(pro)
         }  
     })
+    setSearchResults(foundProducts)
+    setShowSearch(true)
     console.log(foundProducts)
     
     }catch(error){
@@ -481,7 +487,7 @@ export default function Dashboard() {
         ) : componentt == "orderCompleted" ? (
           <OrderCompleted />
         ) : componentt == "searchResults" ? (
-          <SearchResults />
+          <SearchResults results= {}/>
         ) : (
           <Home />
         )}
