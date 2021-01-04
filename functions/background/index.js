@@ -5,7 +5,7 @@ var db= admin.firestore()
 var background={};
 
 
-background.setAppointentForVet=(user, docData)=>{
+background.setAppointentForVet=(user, docData, type)=>{
     // user parameter is an object that contains necessary info about the user
     return new Promise((resolve, reject)=>{
         var toAdd= {
@@ -15,16 +15,17 @@ background.setAppointentForVet=(user, docData)=>{
             cancelledByUser: false,
             ...docData
         }
-        db.collection('vet').doc(docData.doctorId).collection('appointments').doc(docData.key).set(toAdd)
+        db.collection(type).doc(docData.doctorId).collection('appointments').doc(docData.key).set(toAdd)
           .then(doc=> resolve(doc.id))
           .catch(error=> reject(`function call rejected: ${error}`))
     }) 
 }
 
-background.setAppointentForAdmin=(user, docData)=>{
+background.setAppointentForAdmin=(user, docData, type)=>{
     // user parameter is an object that contains necessary info about the user
     return new Promise((resolve, reject)=>{
         var toAdd= {
+            type: type,
             patientId: user.id,
             patientName: user.name,
             status: 'pending',

@@ -83,16 +83,16 @@ class AddProduct extends Component {
                         ref.collection('products').add({
                             details: this.state,
                             filterInfo: {
-                                brand: this.state.brand,
-                                cost: this.state.cost
-                            }
+                                brand: this.state.brand    
+                            },
+                            cost: Number(this.state.cost)
                         }).then((doc)=>{
                             db.collection('All_Products').doc(doc.id).set({
                                 details: this.state,
                                 filterInfo: {
-                                    brand: this.state.brand,
-                                    cost: this.state.cost
-                                }
+                                    brand: this.state.brand
+                                },
+                                cost: Number(this.state.cost)
                             }).then(()=>{window.location.reload()})
                         })
                     })

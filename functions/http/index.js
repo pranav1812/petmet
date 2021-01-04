@@ -87,9 +87,10 @@ appRouter.post('/verifyPayment', async(req, res)=>{
         var app= await db.collection('AppointmentRecord').doc(req.body.payload.payment.entity.order_id).get()
         
         if(app.exists){
+            var coll= app.data().type
             var doctorId= app.data().doctorId
             var appId= app.data().appId
-            var ref= db.collection('vet').doc(doctorId).collection('appointments').doc(appId)
+            var ref= db.collection(coll).doc(doctorId).collection('appointments').doc(appId)
             ref.update({
                 status: "confirmed"
             })
@@ -146,8 +147,27 @@ appRouter.post('/verifyPayment', async(req, res)=>{
 appRouter.post('/servicePayment', async(req, res)=>{
     var coll= req.body.type
     var docId= req.body._id
-    var vet= await db.collection(coll).doc(docId).get()
-    var fee= vet.data().fee
+    var appointmentPromise= db.collection(coll).doc(docId).collection('appointments').doc(req.body.appId).get()
+    var vetPromise=  db.collection(coll).doc(docId).get()
+
+    var [vet, appointment]= await Promise.all([vetPromise, appointmentPromise])
+
+    var fee= 0
+    if (coll=='vet'){
+        fee= vet.data().cost
+    }else{
+        try {
+            vet.data().packages.forEach(pack=>{
+                if(pack.packageName== appointment.data().packageName){
+                    fee= appointment.data().mode=='HomeVisit' ||  appointment.data().mode=='Home Visit'? pack.homeVisitCharges + pack.cost : pack.cost
+                }
+            })
+        } catch (error) {
+            console.error(error, "package cost laane mai error aaya")
+        }
+        
+    }
+    
 
     var options = {
         amount: Number(fee)*100,  
@@ -168,6 +188,7 @@ appRouter.post('/servicePayment', async(req, res)=>{
               return 
           }
         db.collection('AppointmentRecord').doc(order.id).set({
+            type: coll,
             doctorId: req.body._id,
             appId: req.body.appId
         })
