@@ -211,11 +211,14 @@ export default function Dashboard() {
         try {
           products.forEach(pro=>{
           
-            var {category, name}= pro.data().details
+            var {category, name, url, cost, mrp}= pro.data().details
             temp.push({
               category: category,
               name: name,
-              key: pro.id
+              key: pro.id,
+              url: url,
+              cost: cost,
+              mrp: mrp
             })
           })
           setAllProducts(temp)
