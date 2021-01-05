@@ -14,43 +14,43 @@ const SquareCard = (props) => {
 
 })
   
-const addToWishlist = () => {
-  var user = auth.currentUser;
-  if (user) {
-    db.collection("user")
-      .doc(user.uid)
-      .collection("wishlist")
-      .doc(props._id)
-      .set({
-        ...props.info,
-        key: props._id,
-        units: 1,
-        userSelectedSize: userSelectedSize,
-      })
-      .then(() => setColor(true));
-  } else {
-    prompt("Need to login");
-  }
-};
+// const addToWishlist = () => {
+//   var user = auth.currentUser;
+//   if (user) {
+//     db.collection("user")
+//       .doc(user.uid)
+//       .collection("wishlist")
+//       .doc(props._id)
+//       .set({
+//         ...props.info,
+//         key: props._id,
+//         units: 1,
+//         userSelectedSize: userSelectedSize,
+//       })
+//       .then(() => setColor(true));
+//   } else {
+//     prompt("Need to login");
+//   }
+// };
 
-  const addToCart = () => {
-    var user = auth.currentUser;
-    if (user) {
-      db.collection("user")
-        .doc(user.uid)
-        .collection("cart")
-        .doc(props._id)
-        .set({
-          ...props.info,
-          key: props._id,
-          units: 1,
-          userSelectedSize: userSelectedSize
-        })
-        .then(() => setCart(true));
-    } else {
-      prompt("Need to login");
-    }
-  };
+//   const addToCart = () => {
+//     var user = auth.currentUser;
+//     if (user) {
+//       db.collection("user")
+//         .doc(user.uid)
+//         .collection("cart")
+//         .doc(props._id)
+//         .set({
+//           ...props.info,
+//           key: props._id,
+//           units: 1,
+//           userSelectedSize: userSelectedSize
+//         })
+//         .then(() => setCart(true));
+//     } else {
+//       prompt("Need to login");
+//     }
+//   };
 
   return (
     <div>
@@ -97,18 +97,14 @@ const addToWishlist = () => {
     <Link to={"/ShopPage/" + props.info.category + "/" + props._id}>  
       <div>
         <div className="container">
-          <div className="row">
+        <div className="row mb-2">
             <div className="col-4">
-              <img src={props.image} className="dishImg" />
-              <h6 style={{ fontWeight: "bold" }}>
-                {props.title}
-              </h6>
-              <h6 style={{ fontWeight: "bold" }}>
-                {props._id}
-              </h6>
-              <h6 style={{ fontWeight: "bold" }}>
-                {props.mrp}
-              </h6>
+              <img src={props.image} className="dishImgs" />
+            </div>
+            <div className="col-8">
+              <h6 className="productName mb-2">{props.title}</h6>
+              <p className="productCost">{"Rs. " + props.cost}</p>
+              <p className="productMRP">{"Rs. " + props.mrp}</p>
             </div>
           </div>
         </div>

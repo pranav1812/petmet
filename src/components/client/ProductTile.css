@@ -1,0 +1,22 @@
+.dishImgs {
+    width: 90%;
+    height: 80px;
+}
+
+.productName {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.productCost {
+    font-weight: 500;
+    font-size: 18px;
+    color: #FF5352;
+}
+
+.productMRP {
+    font-weight: 500;
+    font-size: 16px;
+    text-decoration-line: line-through;
+    color: #B5B5B5;
+}
