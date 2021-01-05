@@ -336,7 +336,7 @@ export default function Dashboard() {
                               </div>
                             </div>
                             <hr
-                              style={{ marginTop: "0px", paddingTop: "0px" }}
+                              style={{ marginTop: "0px", paddingTop: "0px",width:"100%" }}
                             />
                           </div>
                         ))
@@ -454,6 +454,36 @@ export default function Dashboard() {
           </Navbar.Collapse>
         </Navbar>
       </AppBar>
+
+      <Modal
+        show={showSearch}
+        onHide={() => {
+          setShowSearch(false)
+        }}
+        // size="lg"
+        style={{ marginTop: "40px" }}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>SEARCH RESULTS</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {searchResults ? searchResults.map((product)=> (
+            <div>
+              <ProductTile 
+              _id={product.key} 
+              info={product} 
+              title={product.name} 
+              image={product.url} 
+              size={product.size} 
+              cost={product.cost} 
+              mrp={product.mrp}
+              />
+            </div>
+          ))
+        :null }
+        </Modal.Body>
+      </Modal>
 
       <div className={classes.container}>
         {componentt == "Home" ? (

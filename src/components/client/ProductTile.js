@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from "react";
-import Dog from "../pictures/image 15.png";
-import "./squarecard.css";
-import { Button, Card } from "react-bootstrap";
+import "./ProductTile.css";
+import { Card } from "react-bootstrap";
 import { BsHeart } from "react-icons/bs";
 import { db, auth } from "../../firebase";
 import { Link } from "react-router-dom";
@@ -55,7 +54,7 @@ const addToWishlist = () => {
 
   return (
     <div>
-      <Card className="outCard">
+      {/* <Card className="outCard">
         <div className="crdImg">
           {props.userSelectedSize?(<div><span>Selected Size:</span>
           <button className="row-btn" > {userSelectedSize} </button></div>):null}
@@ -93,7 +92,29 @@ const addToWishlist = () => {
             {cart? "Added to cart": "Add to Cart"}
           </button>
         </div>
-      </Card>
+      </Card> */}
+
+    <Link to={"/ShopPage/" + props.info.category + "/" + props._id}>  
+      <div>
+        <div className="container">
+          <div className="row">
+            <div className="col-4">
+              <img src={props.image} className="dishImg" />
+              <h6 style={{ fontWeight: "bold" }}>
+                {props.title}
+              </h6>
+              <h6 style={{ fontWeight: "bold" }}>
+                {props._id}
+              </h6>
+              <h6 style={{ fontWeight: "bold" }}>
+                {props.mrp}
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </Link>
+
     </div>
   );
 };
