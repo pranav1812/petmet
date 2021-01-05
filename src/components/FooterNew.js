@@ -9,6 +9,10 @@ import App from './pictures/appstore.png';
 import Home from "./client/Home";
 import {Link} from "react-router-dom";
 class Footer extends Component {
+    showUrl= ()=>{
+        //alert(window.location.protocol)
+        window.location= window.location.protocol+ '//' +window.location.host + '/privacyPolicy'
+    }
     state = {  }
     render() { 
         return ( 
@@ -31,7 +35,7 @@ class Footer extends Component {
                                 <Link to ="/"><li>Home</li><br /></Link>
                                 <li>About Us</li><br />
                                 <li>Contact Us</li><br />
-                                <Link to="privacyPolicy"><li>Privacy Policy</li><br /></Link>
+                                <li onClick= {this.showUrl} >Privacy Policy</li><br />
                             </ul>
                         </div>
                         <div className="col-12 col-sm-4">

@@ -43,7 +43,7 @@ const Orders_List = () => {
             })
             setOrders(temp)
         })
-    }, [orders])
+    }, [])
     return ( 
         <>  
             <Table size="small">

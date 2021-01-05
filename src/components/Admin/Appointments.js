@@ -4,19 +4,20 @@ import {db} from '../../firebase'
 const Orders_List = () => {
     const [arr, setArr]= useState([])
     useEffect(()=>{
+        console.log('qwerty')
         db.collection('Appointments').where('status', '==', 'pending').onSnapshot(snap=>{
             var temp=[]
             snap.forEach(doc=>{
                 temp.push({
                     key: doc.id,
-                    vet: doc.data().vet,
-                    customer: doc.data().customer,
+                    vet: doc.data().doctorId,
+                    customer: doc.data().patientName,
                     status: doc.data().status
                 })
             })
             setArr(temp)
         })
-    }, [arr])
+    }, [])
     return ( 
         <div>
             <div className="row">
