@@ -92,12 +92,19 @@ const ShopProducts = () => {
     );
   };
 
+  const linkToHome = () => {
+    window.location = window.location.protocol + '//' + window.location.host + '/Home'
+  }
+
   const listarray = [1, 2];
   const [isFilterOpen, setFilterState] = useState(false);
 
   return (
     <div>
-      <p className="pathontop">Home &gt; {subComponent}</p>
+      <div className="row pathontop ml-3">
+        <p onClick={linkToHome} className="linkToHome">Home</p>
+        <p> &gt; {subComponent}</p>
+      </div>
       <span>
         <div className="products_bothflex">
           <div className="products_leftflex products_leftflexdisplay">

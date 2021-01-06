@@ -33,8 +33,12 @@ import OutOfStock from './OutofStock';
 import AddCategory from './AddCategory';
 import PastAppointments from './PastAppointments';
 import {db, auth} from '../../firebase'
+import AdoptionRequests from './AdoptionRequests';
+import GroomerRequests from './GroomerRequests';
+import TrainerRequests from './TrainerRequests';
+import WalkerRequests from './walkerRequests';
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,9 +87,9 @@ function ResponsiveDrawer(props) {
   };
 
   const drawer = (
-    <div>
+    <div className="sidebarMain">
       <div className={classes.toolbar} />
-      <Divider />
+      <Divider style={{width:"100%"}} />
       <List style={{width: "235px"}}>
         {
           sideBar=="e-commerce"?(
@@ -134,6 +138,7 @@ function ResponsiveDrawer(props) {
           ):
           (
             <div>
+              <h6>VET</h6>
               <Link to={"/admin/verifyVet"}>
               <ListItem button>
                 <ListItemIcon>
@@ -158,12 +163,52 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary="Past Appointments" />
               </ListItem>
             </Link>
+            <Divider style={{width:"100%"}} />
+            <h6>ADOPTION</h6>
+            <Link to={"/admin/adoptionRequests"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaClock className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Adoption Requests" />
+              </ListItem>
+            </Link>
+            <Divider style={{width:"100%"}} />
+            <h6>TRAINER</h6>
+            <Link to={"/admin/trainerRequests"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaClock className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Trainer Requests" />
+              </ListItem>
+            </Link>
+            <Divider style={{width:"100%"}} />
+            <h6>GROOMER</h6>
+            <Link to={"/admin/groomerRequests"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaClock className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Groomer Requests" />
+              </ListItem>
+            </Link>
+            <Divider style={{width:"100%"}} />
+            <h6>WALKER</h6>
+            <Link to={"/admin/walkerRequests"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaClock className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Walker Requests" />
+              </ListItem>
+            </Link>
           </div>
           )
         }
             
-            <Divider />
-            {sideBar=="e-commerce"?<Link to="/admin/verifyVet"><Button className="btn btn-block mt-2" onClick={()=>{setSideBar("vet")}}>VET</Button></Link>:<Link to="/admin/orders"><Button className="btn btn-block mt-2" onClick={()=>{setSideBar("e-commerce")}}>E-COMMERCE</Button></Link>} 
+            <Divider style={{width:"100%"}} />
+            {sideBar=="e-commerce"?<Link to="/admin/verifyVet"><Button className="btn btn-block mt-2" onClick={()=>{setSideBar("vet")}}>SERVICES</Button></Link>:<Link to="/admin/orders"><Button className="btn btn-block mt-2" onClick={()=>{setSideBar("e-commerce")}}>E-COMMERCE</Button></Link>} 
         </List>
     </div>
   );
@@ -225,7 +270,7 @@ function ResponsiveDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div className="container">
-          {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />:component=='orders'?<Orders_List/>:component=='appointments'?<Appointments/>:component=='outofstock'?<OutOfStock/>:component=='addcategory'?<AddCategory/>:component=='pastappointments'?<PastAppointments/>: null}
+          {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />:component=='orders'?<Orders_List/>:component=='appointments'?<Appointments/>:component=='outofstock'?<OutOfStock/>:component=='addcategory'?<AddCategory/>:component=='pastappointments'?<PastAppointments/>: component=='adoptionRequests'? <AdoptionRequests />: component=='trainerRequests'? <TrainerRequests />: component=='walkerRequests'? <WalkerRequests />: component=='groomerRequests'? <GroomerRequests />: null}
         </div>
         <Footer />    
       </main>

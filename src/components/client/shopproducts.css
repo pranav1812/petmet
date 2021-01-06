@@ -212,3 +212,7 @@ a:hover {
 a:active {
   text-decoration: none;
 }
+
+.linkToHome {
+  cursor: pointer;
+}

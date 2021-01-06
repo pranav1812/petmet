@@ -35,7 +35,7 @@ class Footer extends Component {
                                 <Link to ="/"><li>Home</li><br /></Link>
                                 <li>About Us</li><br />
                                 <li>Contact Us</li><br />
-                                <li onClick= {this.showUrl} >Privacy Policy</li><br />
+                                <li style={{cursor:"pointer"}} onClick= {this.showUrl} >Privacy Policy</li><br />
                             </ul>
                         </div>
                         <div className="col-12 col-sm-4">
