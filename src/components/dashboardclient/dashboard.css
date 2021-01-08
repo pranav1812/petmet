@@ -101,34 +101,45 @@ h2,h3 {
 }
 
 .ban_img_div {
-  margin-top: 2.3%;
+  margin-top: 2.8%;
 }
 
 .bannerimg {
-  width: 100%;
+  width: 95%;
   height: 100%;
-  margin-top: 25%;
+  padding-top: 25%;
 } 
 
 @media only screen and (max-width: 570px)
 {
-  .ban_img_div {
-    margin-top: 13%;
+
+  .banner {
+    height: 300px;
   }
+
+  .ban_img_div {
+    margin-top: 11%;
+  }
+
   .bannerimg {
-    width: 70%;
+    width: 99%;
     height: 100%;
-    margin-top: 30px;
+    padding-top: 30px;
   }
 }
 
 @media only screen and (min-width: 750px) and (max-width: 992px)
 {
   .ban_img_div {
-    margin-top: 5%;
+    margin-top: 2%;
   }
+
+  .banner {
+    height: 450px;
+  }
+
   .bannerimg {
-    width: 43%;
+    width: 96%;
     height: 100%;
     margin-top: 10px;
   }

@@ -8,10 +8,7 @@ import { db } from "../../firebase";
 
 import { Router, Link } from "react-router-dom";
 import Vet from '../pictures/vet_img.png';
-import Dogs from '../pictures/fc1.png';
-import SmallAnimals from '../pictures/fc2.png';
-import Cats from '../pictures/fc3.png';
-import Birds from '../pictures/fc4.png';
+import PetMetFeaturesCarousel from '../client/PetMetFeaturesCarousel';
 
 const breakPoints = [
   { width: 1, itemsToShow: 1 },
@@ -165,9 +162,9 @@ const DashboardClient = () => {
 
         <div className="banner">
             <div>
-              <h3 className="mt-4 main-new-head" style={{fontWeight: "bold",textAlign:"left",marginLeft:"13%"}}>Our Features</h3>
+              <h3 className="mt-0 mt-sm-4 main-new-head" style={{fontWeight: "bold",textAlign:"left",marginLeft:"13%"}}>Our Features</h3>
             </div>
-            <div className="row align-items-center ban_img_div">
+            {/* <div className="row align-items-center ban_img_div">
               <div className="col-12 col-lg-4">
                 <img className="bannerimg" src={Vet} />
               </div>
@@ -177,6 +174,9 @@ const DashboardClient = () => {
               <div className="col-12 col-lg-4">
                 <img className="bannerimg" src={Vet} />
               </div>
+            </div> */}
+            <div className="ban_img_div">
+              <PetMetFeaturesCarousel />
             </div>
         </div>
         <h3 className="mt-4" style={{fontWeight: "bold"}}>For all your pet's needs</h3>
