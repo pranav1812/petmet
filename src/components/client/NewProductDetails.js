@@ -65,12 +65,6 @@ function NewProductDetails() {
             ingredients,...
           </p>
           <p>Size:</p>
-          {/* <span>
-            <button>320gm</button>
-            <button>320gm</button>
-            <button>320gm</button>
-            <button>320gm</button>
-          </span> */}
           <div className="row justify-content-center mb-1">
             <button className="row-btn">320 gm</button>
             <button className="row-btn">800 gm</button>
