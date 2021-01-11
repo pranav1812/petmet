@@ -34,10 +34,10 @@ class DoctorCard extends Component {
             <div className="card-verify">
                 <Card className="verify_card">
                     <div className="row">
-                        <div className="col-12 col-sm-4 align-self-center mt-3">
-                            <Card.Img className="card_img" src="https://firebasestorage.googleapis.com/v0/b/petmet-268a4.appspot.com/o/itemImages%2Fimage%203.png?alt=media&token=e46c6b3a-2110-46c1-8902-4b2b838660d9" />
+                        <div className="col-12 col-sm-4 mt-3">
+                            <img className="cards_img" src="https://firebasestorage.googleapis.com/v0/b/petmet-268a4.appspot.com/o/itemImages%2Fimage%203.png?alt=media&token=e46c6b3a-2110-46c1-8902-4b2b838660d9" />
                         </div>
-                        <div className="col-12 col-sm-8 mb-4 mb-xl-3">
+                        <div className="col-12 col-sm-8 mb-4">
                             <Card.Body>
                                 <Card.Title>{data.Name}</Card.Title>
                                 <Card.Text>
