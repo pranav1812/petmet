@@ -32,9 +32,10 @@ exports.fixAppointment= functions.firestore
         var coll="vet"
         if(snap.data().isGroomer){
             coll="groomers"
-        }else if(snap.data().isTrainer){
-            coll="trainers"
         }
+        // else if(snap.data().isTrainer){
+        //     coll="trainers"
+        // }
         var usrPromise= db.collection('user').doc(context.params.uid).get()
         var doctorPromise= db.collection(coll).doc(snap.data().doctorId).get()
 
@@ -149,6 +150,7 @@ exports.appointmentStatusChangeByGroomer= functions.firestore.document('/groomer
             
 })
 
+// useless ho gya
 exports.appointmentStatusChangeByTrainer= functions.firestore.document('trainers/{vid}/appointments/{appId}')
         .onUpdate(async(change, context)=>{
 
@@ -199,7 +201,9 @@ exports.cancelAppointment= functions.firestore
             var coll="vet"
             if(change.after.data().isGroomer){
                 coll="groomers"
-            }else if(change.after.data().isTrainer){
+            }
+            // else if wali condition kabhi true nahi hogi
+            else if(change.after.data().isTrainer){
                 coll="trainers"
             }
             var usrPromise= db.collection('user').doc(context.params.uid).get()

@@ -90,10 +90,19 @@ appRouter.post('/verifyPayment', async(req, res)=>{
             var coll= app.data().type
             var doctorId= app.data().doctorId
             var appId= app.data().appId
-            var ref= db.collection(coll).doc(doctorId).collection('appointments').doc(appId)
-            ref.update({
-                status: "confirmed"
-            })
+
+            if (coll== 'vet' || type== 'groomers'){
+                var ref= db.collection(coll).doc(doctorId).collection('appointments').doc(appId)
+                ref.update({
+                    status: "confirmed"
+                })
+            }
+            else{
+                // admin panel mai yahi se show kar denge: walkers aur trainers k liye-> user id se user fetch krna padega bass
+                db.collection('AppointmentRecord').doc(req.body.payload.payment.entity.order_id).update({
+                    paymentVerified: true
+                })
+            }    
         }
         else{
             console.log(req.body.payload.payment.entity.order_id)
@@ -153,9 +162,17 @@ appRouter.post('/servicePayment', async(req, res)=>{
     var [vet, appointment]= await Promise.all([vetPromise, appointmentPromise])
 
     var fee= 0
-    if (coll=='vet'){
+    if (coll=='vet' || coll=='dogWalkerPackages'){
         fee= vet.data().cost
-    }else{
+    }
+    else if(coll=='trainerPackages'){
+        //var pack= await db.collection('trainers').doc(docId).collection('packages').doc(req.body.packageId).get()
+        // if(pack.exists){
+        //     fee= pack.data()[req.body.mode]
+        // }
+        fee= vet.data()[req.body.mode]
+    }
+    else{
         try {
             vet.data().packages.forEach(pack=>{
                 if(pack.packageName== appointment.data().packageName){
@@ -190,7 +207,8 @@ appRouter.post('/servicePayment', async(req, res)=>{
         db.collection('AppointmentRecord').doc(order.id).set({
             type: coll,
             doctorId: req.body._id,
-            appId: req.body.appId
+            appId: req.body.appId,
+            uid: req.body.uid || 'NA'
         })
         res.json(order);
       })
