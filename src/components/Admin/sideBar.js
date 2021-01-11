@@ -118,14 +118,14 @@ function ResponsiveDrawer(props) {
               <ListItemText primary="Products" />
             </ListItem>
           </Link>
-          <Link to={"/admin/outofstock"}>
+          {/* <Link to={"/admin/outofstock"}>
             <ListItem button>
               <ListItemIcon>
                 <ImCross className="menu_icons"/>
               </ListItemIcon>
               <ListItemText primary="Out of Stock" />
             </ListItem>
-          </Link>
+          </Link> */}
           <Link to={"/admin/orders"}>
             <ListItem button>
               <ListItemIcon>
@@ -155,14 +155,14 @@ function ResponsiveDrawer(props) {
                 <ListItemText primary="Pending Appointments" />
               </ListItem>
             </Link>
-            <Link to={"/admin/pastappointments"}>
+            {/* <Link to={"/admin/pastappointments"}>
               <ListItem button>
                 <ListItemIcon>
                   <FaClock className="menu_icons"/>
                 </ListItemIcon>
                 <ListItemText primary="Past Appointments" />
               </ListItem>
-            </Link>
+            </Link> */}
             <Divider style={{width:"100%"}} />
             <h6>ADOPTION</h6>
             <Link to={"/admin/adoptionRequests"}>
