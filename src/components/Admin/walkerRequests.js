@@ -1,15 +1,65 @@
-import React, { useState, useEffect } from "react";
-import WalkerCard from "./WalkerCard";
+import React, {useState, useEffect} from 'react';
+import TrainerCard from './TrainerCard';
+import {db} from '../../firebase'
 
-const walkerRequests = () => {
-  return (
-    <div>
-      <div className="row">
-        <div className="col-12 col-md-6">
-          <WalkerCard />
+const WalkerRequests = () => {
+    const [arr, setArr]= useState([])
+    useEffect(async()=>{
+        console.log('qwerty')
+        db.collection('AppointmentRecord').onSnapshot(async(snap)=>{
+            var temp=[]
+            var userPromises= []
+            var packagePromises= []
+            snap.forEach(doc=>{
+                if(doc.data().type=='dogWalkerPackages')
+                {
+                    temp.push({
+                        ...doc.data()
+                    })
+                    var userRef= db.collection('user').doc(doc.data().uid).get()
+                    var packageRef= db.collection(doc.data().type).doc(doc.data().doctorId).get()
+                    userPromises.push(userRef)
+                    packagePromises.push(packageRef)
+                }
+            })
+            var users= await Promise.all(userPromises)
+            var packages= await Promise.all(packagePromises)
+            users.forEach((user, ind)=>{
+                if(user.exists){
+                    temp[ind]['userInfo']= user.data()
+                }else{
+                    temp[ind]['userInfo']= {
+                        name: "Wrong User",
+                        phone: "wrong user"
+                    }
+                }
+            })
+            packages.forEach((pack, ind)=>{
+                if(pack.exists){
+                    temp[ind]['packInfo']= pack.data()
+                }else{
+                    temp[ind]['packInfo']= {
+                        name: "Wrong pack",
+                        phone: "wrong pack"
+                    }
+                }
+            })
+            setArr(temp)
+        })
+    }, [])
+    return ( 
+        <div>
+            <div className="row">
+                {arr.length? arr.map(app=>(
+                    <div className="col-12 col-md-6">
+                        <TrainerCard data={app} />
+                    </div>
+                )): null}
+                
+                
+            </div>
         </div>
-      </div>
-    </div>
-  );
-};
-export default walkerRequests;
+     );
+}
+ 
+export default WalkerRequests;
