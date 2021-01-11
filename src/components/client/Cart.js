@@ -12,7 +12,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 const login =
   window.location.protocol + "//" + window.location.host + "/" + "login/";
 
-const CartComponent = (props) => {
+const CartComponent = () => {
   const [wish, setWish] = useState(null);
   const [total, setTotal] = useState(0);
   const [code, setCode] = useState("no_promo");
@@ -78,16 +78,16 @@ const CartComponent = (props) => {
   };
 
   
-const addToWishlist = () => {
+const addToWishlist = (props) => {
   var user = auth.currentUser;
+  
   if (user) {
     db.collection("user")
       .doc(user.uid)
       .collection("wishlist")
-      .doc(props._id)
+      .doc(props.key)
       .set({
-        ...props.info,
-        key: props._id,
+        ...props,
         units: 1
       })
       .then(() => alert("Product Added to Wishlist"));
@@ -132,7 +132,7 @@ const addToWishlist = () => {
       .doc(key)
       .delete()
       .then(() => {
-        console.log("deleted");
+        window.location.reload()
       });
   };
   useEffect(() => {
@@ -301,9 +301,11 @@ const addToWishlist = () => {
                   </div>
                   <hr />
                   <span>
-                    <button className="cartremovebuttonn">REMOVE</button>
+                    <button className="cartremovebuttonn" onClick={()=>{delPro(wi.key);}}>
+                    REMOVE
+                    </button>
                     <button className="linebtwbutton">|</button>
-                    <button onClick={addToWishlist} className="cartremovebuttonn">
+                    <button onClick={()=>{addToWishlist(wi)}} className="cartremovebuttonn">
                       ADD TO WISHLIST
                     </button>
                   </span>
