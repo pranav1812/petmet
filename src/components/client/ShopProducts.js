@@ -63,13 +63,13 @@ const ShopProducts = () => {
 
   const addToBrands = (val) => {
     var temp = selectedBrands;
-    if(selectedBrands.includes(val)){
-      temp.splice(temp.indexOf(val), 1)
-    }else{
+    if (selectedBrands.includes(val)) {
+      temp.splice(temp.indexOf(val), 1);
+    } else {
       temp.push(val);
     }
-    console.log(temp)
-    console.log(selectedCost)
+    console.log(temp);
+    console.log(selectedCost);
     setSelectedBrands(temp);
   };
 
@@ -92,12 +92,27 @@ const ShopProducts = () => {
     );
   };
 
+  const linkToHome = () => {
+    window.location =
+      window.location.protocol + "//" + window.location.host + "/Home";
+  };
+  const linkTosubComponent = () => {
+    window.location = window.location.href;
+  };
+
   const listarray = [1, 2];
   const [isFilterOpen, setFilterState] = useState(false);
 
   return (
     <div>
-      <p className="pathontop">Home &gt; {subComponent}</p>
+      <div className="row pathontop ml-3">
+        <p onClick={linkToHome} className="linkToHome">
+          Home
+        </p>
+        <p onClick={linkTosubComponent} className="linkToHome">
+          &gt; {subComponent}
+        </p>
+      </div>
       <span>
         <div className="products_bothflex">
           <div className="products_leftflex products_leftflexdisplay">
@@ -125,14 +140,13 @@ const ShopProducts = () => {
                 ? costFilter.map((cost) => (
                     <li>
                       <input
-                        name= "costtt"
+                        name="costtt"
                         value={cost}
                         type="radio"
                         onClick={() => {
                           setSelectedCost(cost);
                         }}
                         style={{ marginRight: "14px" }}
-                        
                       />
                       {cost}
                     </li>
@@ -181,14 +195,13 @@ const ShopProducts = () => {
                           ? costFilter.map((cost) => (
                               <li>
                                 <input
-                                  name= "costtt"
+                                  name="costtt"
                                   value={cost}
                                   type="radio"
                                   onClick={() => {
                                     setSelectedCost(cost);
                                   }}
                                   style={{ marginRight: "14px" }}
-                                                                   
                                 />
                                 {cost}
                               </li>
@@ -244,7 +257,7 @@ const ShopProducts = () => {
           </div>
         </div>
       </span>
-    </div> 
+    </div>
   );
 };
 

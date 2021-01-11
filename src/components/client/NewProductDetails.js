@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SquareCard from "../dashboardclient/SquareCard";
 import "./newProductDeatils.css";
 import Carousel from "react-elastic-carousel";
 import Product from "../pictures/image 15.png";
+import { useParams } from "react-router-dom";
 import Productdescription from "../pictures/image 35.png";
 
 const breakPoints = [
@@ -20,8 +21,26 @@ const styles = {
 };
 
 function NewProductDetails() {
+  const { subComponent } = useParams();
+  const linkToHome = () => {
+    window.location =
+      window.location.protocol + "//" + window.location.host + "/Home";
+  };
+  const linkTosubComponent = () => {
+    window.location = window.location.href;
+  };
+
   return (
     <div>
+      <div className="row pathontop ml-3">
+        <p onClick={linkToHome} className="linkToHome">
+          Home
+        </p>
+        <p onClick={linkTosubComponent} className="linkToHome">
+          &gt; {subComponent}
+        </p>
+      </div>
+
       <div className="productDetails_title">
         <p>HUFT Drizzle Buddy Raincoat- Purpule</p>
         <p>Available in multiple colors</p>

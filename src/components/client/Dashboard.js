@@ -472,16 +472,17 @@ export default function Dashboard() {
         </Modal.Header>
         <Modal.Body>
           {searchResults ? searchResults.map((product)=> (
-            <div>
+            <div
+            onClick={()=>{setShowSearch(false)}}>
               <ProductTile 
               _id={product.key} 
               info={product} 
               title={product.name} 
               image={product.url} 
-              size={product.size} 
               cost={product.cost} 
               mrp={product.mrp}
               />
+              <hr style={{width:"100%"}}></hr>
             </div>
           ))
         :null }

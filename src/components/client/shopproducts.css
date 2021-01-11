@@ -107,7 +107,7 @@ body {
   flex-wrap: nowrap;
 }
 .pathontop {
-  margin-top: 80px;
+  margin-top: -20px;
   font-family: Roboto;
   font-style: normal;
   font-weight: 500;
@@ -211,4 +211,8 @@ a:hover {
 
 a:active {
   text-decoration: none;
+}
+
+.linkToHome {
+  cursor: pointer;
 }
