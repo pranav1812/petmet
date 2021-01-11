@@ -5,7 +5,7 @@ const GroomerRequests = () => {
     const [arr, setArr]= useState([])
     useEffect(()=>{
         console.log('qwerty')
-        db.collection('Appointments').where('isGroomer', '==', true).where('isTrainer', '==', false).where('status', '==', 'pending').onSnapshot(snap=>{
+        db.collection('Appointments').where('isGroomer', '==', true).where('status', '==', 'pending').get().then(snap=>{
             var temp=[]
             snap.forEach(doc=>{
                 temp.push({

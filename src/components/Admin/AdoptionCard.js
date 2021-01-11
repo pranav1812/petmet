@@ -7,29 +7,38 @@ const AdoptionCard = (props) => {
     <div>
       <Card className="mb-2">
         <Card.Body>
+        <h3> Pet name: {props.data.petInfo.name} </h3>
           <div className="row">
+          
             <div className="col-12 col-lg-6">
+
               <ul className="list-unstyled">
                 <li>
-                  <strong>Customer Name: </strong> <br />{" "}
+                  <strong>Current Owner: </strong> {props.data.ownerInfo.name} <br />{" "}
                 </li>
-                {/*<li><strong>Pet Name: </strong>abc@test.com <br /></li>
-                                                <li><strong>Time-Slot: </strong>12/9/2020 9:00pm <br /></li>*/}
                 <li>
-                  <strong>Mode: </strong> <br />{" "}
+                  <strong>Current Owner Phone: </strong> {props.data.ownerInfo.phone} <br />{" "}
+                </li>
+                <li>
+                  <strong>Current Owner Address: </strong> {props.data.ownerInfo.address} <br />{" "}
                 </li>
               </ul>
             </div>
             <div className="col-12 col-lg-6">
               <ul className="list-unstyled">
                 <li>
-                  <strong>Walker ID: </strong>
+                  <strong>New Owner: </strong>{props.data.buyerInfo.name}
                   <br />
                 </li>
-                {/*<li><strong>Clinic: </strong>Pranav Vet Clinic <br /> </li>*/}
                 <li>
-                  <strong>Package: </strong> <br />{" "}
+                  <strong>New Owner Phone: </strong> {props.data.buyerInfo.phone}
+                  <br />
                 </li>
+                <li>
+                  <strong>New Owner Address: </strong> {props.data.buyerInfo.address}
+                  <br />
+                </li>
+
               </ul>
             </div>
           </div>

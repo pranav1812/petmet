@@ -4,9 +4,9 @@ import {db} from '../../firebase'
 
 const WalkerRequests = () => {
     const [arr, setArr]= useState([])
-    useEffect(async()=>{
+    useEffect(()=>{
         console.log('qwerty')
-        db.collection('AppointmentRecord').onSnapshot(async(snap)=>{
+        db.collection('AppointmentRecord').get().then(async(snap)=>{
             var temp=[]
             var userPromises= []
             var packagePromises= []
