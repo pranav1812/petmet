@@ -71,7 +71,7 @@ export default function Addpet() {
           <div className="row justify-content-center">
             <div className="col-11 col-sm-5 order-sm-last img-cont">
               <h6 className="mb-3">Add Pet Image</h6>
-              <div className="img-container">
+              <div className="img-container mb-3">
                 <p>Add a Pet Image</p>
                 <input className="ml-sm-4" onChange={addImg} type="file"  id="group_image"/>
                 <img id="target"/>
@@ -80,7 +80,7 @@ export default function Addpet() {
             <div className="col-12 col-sm-6">
               <Form className="addProduct_form">
                         <Form.Group className="row">
-                            <Form.Control className="col-12 ml-4" as="input" id="Name"
+                            <Form.Control className="col-10 col-sm-12 ml-4" as="input" id="Name"
                                name="Name" autoComplete="pet-name"
                                onBlur={e=>{setPet({...pet, name: e.target.value})}}
                                placeholder="Name">
@@ -88,7 +88,7 @@ export default function Addpet() {
                         </Form.Group>
                         <Form.Group className="row">
                             
-                            <Form.Control className="col-12 ml-4" as="input"
+                            <Form.Control className="col-10 col-sm-12 ml-4" as="input"
                             id="animal"
                             placeholder="Animal"
                             name="animal"
@@ -96,7 +96,7 @@ export default function Addpet() {
                             onBlur={e=>{setPet({...pet, category: e.target.value})}}  />
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Control className="col-12 ml-4" as="input"
+                            <Form.Control className="col-10 col-sm-12 ml-4" as="input"
                              id="breed"
                              placeholder="Breed"
                              name="breed"
@@ -105,7 +105,7 @@ export default function Addpet() {
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Control className="col-12 ml-4" as="input"
+                            <Form.Control className="col-10 col-sm-12 ml-4" as="input"
                              id="age"
                              name="age"
                              placeholder="Age"
@@ -114,7 +114,7 @@ export default function Addpet() {
                              </Form.Control>
                         </Form.Group>
                         <Form.Group className="row">
-                            <Form.Control className="col-12 ml-4" as="input"
+                            <Form.Control className="col-10 col-sm-12 ml-4" as="input"
                              id="weight"
                              placeholder="Weight"
                              name="weight"
