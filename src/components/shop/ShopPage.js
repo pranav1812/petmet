@@ -95,7 +95,12 @@ const ShopPage = () => {
       .doc(productId)
       .get()
       .then((doc) => {
-        setInfo(doc.data().details);
+        if(doc.exists)
+          setInfo(doc.data().details);
+        else{
+          alert('Product not found, sorry for inconvenience')
+          window.history.back()
+        }
       });
   }, [qty]);
 

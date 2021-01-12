@@ -241,7 +241,7 @@ export default function Dashboard() {
       var found= false
       var foundProducts= []
       allProducts.forEach(pro=>{
-        if(pro.name.includes(name)){
+        if(pro.name.toLowerCase().includes(name.toLowerCase())){
           found= true
           foundProducts.push(pro)
         }  

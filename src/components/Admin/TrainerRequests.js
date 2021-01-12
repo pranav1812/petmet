@@ -11,10 +11,11 @@ const TrainerRequests = () => {
             var userPromises= []
             var packagePromises= []
             snap.forEach(doc=>{
-                if(doc.data().type=='trainerPackages')
+                if(doc.data().type=='trainerPackages' && doc.data().status!= 'done')
                 {
                     temp.push({
-                        ...doc.data()
+                        ...doc.data(),
+                        key: doc.id
                     })
                     var userRef= db.collection('user').doc(doc.data().uid).get()
                     var packageRef= db.collection(doc.data().type).doc(doc.data().doctorId).get()

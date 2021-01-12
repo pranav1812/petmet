@@ -1,8 +1,14 @@
 import React from 'react';
 import {Card,Badge} from 'react-bootstrap';
+import { db } from '../../firebase';
 
 const TrainerCard = (props) => {
     const {data}= props
+    const markDone= ()=>{
+        db.collection('AppointmentRecord').doc(props.data.key).update({
+            status: "done"
+        }).then(()=> window.location.reload())
+    }
     return ( 
         <div>
             <Card className="mb-2">
@@ -23,6 +29,11 @@ const TrainerCard = (props) => {
                                             </ul>
                                         </div>
                                     </div>
+                                    {/*-----------------*/}
+                                    <button onClick={markDone}>
+                                        Mark as done
+                                    </button>
+                                    {/*-----------------*/}
                             </Card.Body>
                 </Card>
         </div>

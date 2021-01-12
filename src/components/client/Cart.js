@@ -97,6 +97,7 @@ const addToWishlist = (props) => {
 };
 
   const retrieveOrder = async () => {
+    document.querySelector('#proceedToPayment').setAttribute('disabled', true)
     var endPoint = "https://petmet.co.in/payment/order";
 
     var products = [];
@@ -122,6 +123,7 @@ const addToWishlist = (props) => {
       paymentRazorpay(response);
     } catch (err) {
       console.error(err);
+      console.log(JSON.stringify(reqBody))
     }
   };
 
@@ -153,9 +155,13 @@ const addToWishlist = (props) => {
               }
             });
             setWish(temp);
+            
             setTotal(net);
             setInTotal(net);
-            discount(promo);
+            // alert(inTotal)
+            // alert(total)
+            // discount(promo);
+            // alert('after',total)
           });
 
         db.collection("user")
@@ -509,7 +515,7 @@ const addToWishlist = (props) => {
           <button className="cartModalButtons" onClick={handleCloseSummary}>
             Cancel
           </button>
-          <button className="cartModalButtons" onClick={retrieveOrder}>
+          <button className="cartModalButtons" id= 'proceedToPayment' onClick={retrieveOrder}>
             Proceed to Payment
           </button>
         </Modal.Footer>
