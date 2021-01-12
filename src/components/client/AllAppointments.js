@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './VetProfile.css';
 import { db, auth } from "../../firebase";
+import paymentRazorpay from "./payment";
+import axios from "axios";
 
 const AllAppointments = () => {
     const [uid, setUid]= useState(null)
@@ -20,6 +22,11 @@ const AllAppointments = () => {
                       docs.forEach(doc=>{
                         temp.push(doc.data())
                       })
+                      for(var i=0; i<temp.length/2; i++){
+                        let a= temp[i]
+                        temp[i]= temp[temp.length-1-i]
+                        temp[temp.length-1-i]= a
+                      }
                       setAppoint(temp)
                     }
                   })
@@ -28,6 +35,24 @@ const AllAppointments = () => {
         }
       })
     }, [])
+
+    const payment= async(vetId, appId)=>{
+      document.querySelector('#paymentButton').setAttribute('disabled', true)
+      var endpoint= "https://petmet.co.in/payment/servicePayment"
+      var reqBody= {
+        type: 'vet',
+        _id: vetId,
+        appId: appId
+      }
+      //console.log(reqBody)
+      try {
+        var response = await axios.post(endpoint, reqBody);
+        console.log(response)
+        paymentRazorpay(response);
+      } catch (err) {
+        console.error(err);
+      }
+    }
     return ( 
         <div>
             { appoint ? appoint.map( app=>(
@@ -51,8 +76,10 @@ const AllAppointments = () => {
                          <div className="col-12 col-md-8 sections mb-4">
                              <p className="card_text">{app.address}</p>
                              <div className="row justify-content-end">
-                               {app.status=="confirmed"||app.status=="accepted"?
+                               {app.status=="confirmed"?
                                <span className="badges_new conf">Booking Confirmed</span>:
+                               app.status=="accepted"?
+                               <button className="badges_new conf" id='paymentButton' onClick= {()=>{payment(app.doctorId, app.key)}}>Accepted, pay to confirm!</button>:
                                app.status=="declined"?<span className="badges_new track">Declined</span>:
                                <span className="badges_new confirm_pend">Confirmation Pending</span>} 
                              </div>

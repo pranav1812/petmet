@@ -11,14 +11,16 @@ const AdoptionRequests = () => {
     var petsPromise= []
     db.collection('adoptionRequests').get().then(async(docs)=>{
       docs.forEach(doc=>{
-        temp.push({...doc.data()})
+        if(doc.data().status!= 'done'){
+        temp.push({...doc.data(), key: doc.id})
         var ownerPromise= db.collection('user').doc(doc.data().ownerId).get()
         var buyerPromise= db.collection('user').doc(doc.data().buyerId).get()
         var petPromise= db.collection('user').doc(doc.data().ownerId).collection('adoptPets').doc(doc.data().petId).get()
         ownersPromise.push(ownerPromise)
         buyersPromise.push(buyerPromise)
         petsPromise.push(petPromise)
-      })
+      }
+    })
 
       var owners= await Promise.all(ownersPromise)
       var buyers= await Promise.all(buyersPromise)

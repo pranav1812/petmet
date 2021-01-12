@@ -17,13 +17,14 @@ const loadScript=(src)=> {
 }
 
 var initialOptions = {
-    "key_id": "rzp_test_HpdJifpKFyBE1U",
-    "key": "rzp_test_HpdJifpKFyBE1U",
+    "key_id": "rzp_test_WXBY1uT9ZE10OW",
+    "key": "rzp_test_WXBY1uT9ZE10OW",
     "name": "Petmet",
     "description": "Test Transaction",
     "image": "https://picsum.photos/200",
     
     "handler": function (response){
+        alert('Done')
         console.log(response.razorpay_payment_id);
         console.log(response.razorpay_order_id);
         console.log(response.razorpay_signature)
@@ -40,11 +41,11 @@ var initialOptions = {
 var paymentRazorpay= async(options)=>{
     try {
         var orderOptions= initialOptions
-    orderOptions.amount= options.data.amount
-    orderOptions.currency= options.data.currency
-    
-    orderOptions.order_id= options.data.id
-    console.log(orderOptions)
+        orderOptions.amount= options.data.amount
+        orderOptions.currency= options.data.currency
+        
+        orderOptions.order_id= options.data.id
+        console.log(orderOptions)
 
     const res = await loadScript('https://checkout.razorpay.com/v1/checkout.js')
         console.log('script lag gyi')
@@ -58,6 +59,7 @@ var paymentRazorpay= async(options)=>{
         console.log(response.error.reason);
         console.log(response.error.metadata.order_id);
         console.log(response.error.metadata.payment_id);
+        alert('payment failed!!')
     })
 
     rzp1.open();

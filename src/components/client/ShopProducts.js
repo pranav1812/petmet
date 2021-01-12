@@ -45,19 +45,20 @@ const ShopProducts = () => {
   }, []);
 
   const applyFilter = () => {
+    // alert('qwerty')
     if (products) {
       var temp = [];
       products.forEach((pro) => {
-        if (pro.filter) {
+        if (pro.filterInfo) {
           if (
-            Number(pro.filter.cost) < selectedCost &&
-            selectedBrands.includes(pro.filter.brand)
-          ) {
+            Number(pro.filterInfo.cost) < selectedCost && selectedBrands.includes(pro.filterInfo.brand)) {
             temp.push(pro);
           }
-          setProducts(temp);
+          
         }
       });
+      console.log(temp)
+      setProducts(temp);
     }
   };
 
@@ -144,7 +145,7 @@ const ShopProducts = () => {
                         value={cost}
                         type="radio"
                         onClick={() => {
-                          setSelectedCost(cost);
+                          setSelectedCost(Number(cost));
                         }}
                         style={{ marginRight: "14px" }}
                       />

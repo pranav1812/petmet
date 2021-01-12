@@ -54,8 +54,9 @@ const calculateTotal= async(orderSummary)=>{
         var resolvedPromises= await Promise.all(productPromises)
         console.log(resolvedPromises)
         resolvedPromises.forEach((doc, index)=>{
-            totalCost+=Number(doc.data().details.cost)*orderSummary.products[index].units
-            // orderSummary.products[index].costPerPc= doc.data().details.cost
+            if(doc.exists){
+                totalCost+=Number(doc.data().details.cost)*orderSummary.products[index].units
+            }// orderSummary.products[index].costPerPc= doc.data().details.cost
         })
         orderSummary.total= totalCost
         console.log("total cost= ---->>>>>>",totalCost)
