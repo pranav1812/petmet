@@ -25,7 +25,7 @@ class Product extends Component {
                 <Card className="verify_card">
                     <div className="row">
                         <div className="col-12 col-sm-4 align-self-center mt-3">
-                            <Card.Img className="card_img" src={this.props.data.url} />
+                            <img className="cards_img" src={this.props.data.url} />
                         </div>
                         <div className="col-12 col-sm-8 mb-4 mb-xl-2">
                             <Card.Body>
@@ -36,7 +36,7 @@ class Product extends Component {
                                         <li>{this.props.data.quantity}<br /></li>
                                         <li>{this.props.data.category}<br /></li>
                                     </ul>
-                                <button className="mr-1 btn-sm blue_btn btn-card-2-1" onClick={this.handleShow}>View</button>
+                                <button className="btn-sm blue_btn btn-card-2-1" onClick={this.handleShow}>View</button>
                                 {/*<button className="mr-1 btn-sm pink_btn btn-card-1-1" onClick={this.verify}>Edit</button>*/ }
                                 
                             </Card.Body>
