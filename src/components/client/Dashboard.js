@@ -317,7 +317,7 @@ export default function Dashboard() {
                       ? pets.map((pet) => (
                           <div>
                             <div className="row">
-                              <div className="col-2">
+                              <div className="col-3 col-sm-2">
                                 <img className="petimage" src={pet.url} />
                                 <p
                                   className="ml-4"
@@ -330,7 +330,7 @@ export default function Dashboard() {
                                   {pet.name}{" "}
                                 </p>
                               </div>
-                              <div className="col-8">
+                              <div className="col">
                                 <p className="petdetails">
                                   Category: {pet.category}
                                   <br />

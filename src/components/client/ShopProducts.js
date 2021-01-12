@@ -217,7 +217,7 @@ const ShopProducts = () => {
                 ) : null}
               </div>
 
-              <div className="start_rightflex_subcolumn">
+              {/* <div className="start_rightflex_subcolumn">
                 <button
                   className="ddropdown bigscreensort"
                   onClick={dropdowndata2}
@@ -232,7 +232,7 @@ const ShopProducts = () => {
                 </button>
 
                 {dropdownvar2 && <Dropdownfun2 />}
-              </div>
+              </div> */}
             </div>
             <div>
               <p className="showingresults">Showing 1-12 of 130 results</p>
