@@ -56,8 +56,6 @@ const TrainerRequests = () => {
                         <TrainerCard data={app} />
                     </div>
                 )): null}
-                
-                
             </div>
         </div>
      );
