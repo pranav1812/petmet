@@ -23,8 +23,7 @@ body {
   margin-bottom: 51.4px;
   max-width: 1500px;
   justify-content: center;
-  margin-top: 145.88px;
-  /* height: 486.98px; */
+  margin-top: 50.88px;
 }
 
 .productDetails_insideflex1 > img {
@@ -134,9 +133,18 @@ body {
   font-weight: normal;
   font-size: 20px;
   line-height: 23px;
-
+  margin-right: 8%;
   color: #000000;
+  padding-bottom: 4%;
 }
+
+@media only screen and (max-width: 748px)
+{
+  .productDetails_description_insideflex1 {
+    margin-right: 3%;
+  }
+}
+
 .productdescriptiontitle {
   font-family: Roboto;
   font-style: normal;

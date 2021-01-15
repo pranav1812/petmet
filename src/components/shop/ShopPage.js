@@ -4,33 +4,14 @@ import React, { useState, useEffect } from "react";
 import "../Admin/Admin.css";
 import "./shoppage.css";
 import { db, auth } from "../../firebase";
-import SquareCard from "../dashboardclient/SquareCard";
 import "../client/newProductDeatils.css";
-import Carousel from "react-elastic-carousel";
-import Product from "../pictures/image 15.png";
 import Productdescription from "../pictures/image 35.png";
 // import BestSellers from "../dashboardclient/BestSellers";
 import { useParams } from "react-router-dom";
-import { Modal, Form, Button } from "react-bootstrap";
-import { Link } from "react-router-dom";
 import emailjs from "emailjs-com";
 import { emailConfig } from "../../sendMail";
 import { init } from "emailjs-com";
 init(emailConfig.userId);
-
-const breakPoints = [
-  { width: 1, itemsToShow: 1 },
-  { width: 240, itemsToShow: 1 },
-  { width: 550, itemsToShow: 3 },
-  { width: 768, itemsToShow: 4 },
-  { width: 1200, itemsToShow: 4 },
-];
-
-const styles = {
-  carouselroot: {
-    padding: " 0px !important",
-  },
-};
 
 const ShopPage = () => {
   const [userInfo, setUserInfo] = useState(null);
@@ -45,8 +26,7 @@ const ShopPage = () => {
   const { productId, subComponent } = useParams();
   const [confirmShow, setConfirmShow] = useState(false);
 
-  // const handleClose = () => setShow(false);
-  // const handleShow = () => setShow(true);
+
   const [num, setNum] = useState(0);
 
   const decrease = () => {
@@ -165,10 +145,6 @@ const ShopPage = () => {
     }
   };
 
-  const handleConfirmClose = () => {
-    setConfirmShow(false);
-    // window.location= "demo"
-  };
 
   const confirmOrder = () => {
     setTotalPrice(
@@ -221,7 +197,6 @@ const ShopPage = () => {
       
       <div className="productDetails_title">
         <p>{info ? info.name : null}</p>
-        <p>Available in multiple colors</p>
       </div>
       <div className="productDetails_flex">
         <div className="productDetails_insideflex1">
@@ -266,7 +241,7 @@ const ShopPage = () => {
           </span>
         </div>
       </div>
-      <hr />
+      <hr style={{width:"100%"}}/>
       <div className="productDetails_description_flex">
         <div className="productDetails_description_insideflex1">
           <p className="productdescriptiontitle">PRODUCT DESCRIPTION</p>

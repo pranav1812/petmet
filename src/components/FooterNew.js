@@ -33,8 +33,8 @@ class Footer extends Component {
                             <h5 style={{color: "#000000",fontWeight: "bold"}}>Useful Links</h5>
                             <ul className="list-unstyled">
                                 <Link to ="/"><li>Home</li><br /></Link>
-                                <li>About Us</li><br />
-                                <li>Contact Us</li><br />
+                                {/* <li>About Us</li><br />
+                                <li>Contact Us</li><br /> */}
                                 <li style={{cursor:"pointer"}} onClick= {this.showUrl} >Privacy Policy</li><br />
                             </ul>
                         </div>
