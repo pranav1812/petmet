@@ -175,7 +175,7 @@ appRouter.post('/servicePayment', async(req, res)=>{
         var {noOfDays, noOfHours, hostelName, pickupDate, pickupTime, returnDate, returnTime}= req.body
         fee= Number(vet.data()['costPerDay'])* Number(noOfDays) + Number(vet.data()['costPerHour'])* Number(noOfHours)
         hostelInfo= {
-            name: hostelName,
+            name: vet.data().hostelName|| hostelName,
             pickupDate: pickupDate,
             pickupTime: pickupTime,
             returnDate: returnDate,
