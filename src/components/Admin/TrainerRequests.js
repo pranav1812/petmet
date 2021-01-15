@@ -11,7 +11,7 @@ const TrainerRequests = () => {
             var userPromises= []
             var packagePromises= []
             snap.forEach(doc=>{
-                if(doc.data().type=='trainerPackages' && doc.data().status!= 'done')
+                if(doc.data().type=='trainerPackages' && doc.data().status!= 'done' && doc.data().paymentVerified)
                 {
                     temp.push({
                         ...doc.data(),

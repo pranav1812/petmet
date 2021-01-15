@@ -5,13 +5,13 @@ import {db} from '../../firebase'
 const WalkerRequests = () => {
     const [arr, setArr]= useState([])
     useEffect(()=>{
-        console.log('qwerty')
+       
         db.collection('AppointmentRecord').get().then(async(snap)=>{
             var temp=[]
             var userPromises= []
             var packagePromises= []
             snap.forEach(doc=>{
-                if(doc.data().type=='dogWalkerPackages' && doc.data().status!= 'done')
+                if(doc.data().type=='dogWalkerPackages' && doc.data().status!= 'done' && doc.data().paymentVerified)
                 {
                     temp.push({
                         ...doc.data(),

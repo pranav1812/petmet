@@ -96,7 +96,7 @@ appRouter.post('/verifyPayment', async(req, res)=>{
             var doctorId= app.data().doctorId
             var appId= app.data().appId
 
-            if (coll== 'vet' || type== 'groomers' || type== 'hostels'){
+            if (coll== 'vet' || type== 'groomers'){
                 var ref= db.collection(coll).doc(doctorId).collection('appointments').doc(appId)
                 ref.update({
                     status: "confirmed"
