@@ -5,6 +5,7 @@ var crypto= require('crypto')
 const Razorpay= require('razorpay')
 const background= require('../background/index')
 const { request } = require('http')
+const { validate } = require('@material-ui/pickers')
 const appRouter= express.Router()
 
 
@@ -95,7 +96,7 @@ appRouter.post('/verifyPayment', async(req, res)=>{
             var doctorId= app.data().doctorId
             var appId= app.data().appId
 
-            if (coll== 'vet' || type== 'groomers'){
+            if (coll== 'vet' || type== 'groomers' || type== 'hostels'){
                 var ref= db.collection(coll).doc(doctorId).collection('appointments').doc(appId)
                 ref.update({
                     status: "confirmed"
@@ -171,7 +172,7 @@ appRouter.post('/servicePayment', async(req, res)=>{
         fee= Number(vet.data().cost)
     }
     else if(coll=='hostels'){
-        var {noOfDays, noOfHours, hostelName, pickupDate, pickupTime, returnDate}= req.body
+        var {noOfDays, noOfHours, hostelName, pickupDate, pickupTime, returnDate, returnTime}= req.body
         fee= Number(vet.data()['costPerDay'])* Number(noOfDays) + Number(vet.data()['costPerHour'])* Number(noOfHours)
         hostelInfo= {
             name: hostelName,
