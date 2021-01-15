@@ -13,11 +13,15 @@ var db= admin.firestore()
 appRouter.get('/order', (req, res)=>res.send("Testing route"))
 appRouter.post('/order', async(req, res)=>{
     var userPromise= db.collection('user').doc(req.body.uid).get()
-    var totalPromise= background.calculateTotal({products: req.body.products})
+    var productArray= req.body.products
+    var totalPromise= background.calculateTotal({products: productArray})
     var promoPromise= db.collection('promo').doc(req.body.promo).get()
     var resolve= await Promise.all([userPromise, totalPromise, promoPromise])
+    
+    
 
-    var [user, total, promoInfo]= resolve
+    var [user, totalAndProducts, promoInfo]= resolve
+    var total= totalAndProducts[0]
     var usedCode= null
     // can not reuse non-reusable promo-codes
     if(promoInfo.exists && !user.data().usedPromo.includes(promoInfo.id)){
@@ -62,7 +66,7 @@ appRouter.post('/order', async(req, res)=>{
             uid: req.body.uid,
             paymentVerified: false,
             order_id: order.id,
-            products: req.body.products,
+            products: totalAndProducts[1],
             total: total,
             mailId: req.body.mail,
             subFromWallet: subFromWallet,
@@ -162,15 +166,27 @@ appRouter.post('/servicePayment', async(req, res)=>{
     var [vet, appointment]= await Promise.all([vetPromise, appointmentPromise])
 
     var fee= 0
+    var hostelInfo= 'NA'
     if (coll=='vet' || coll=='dogWalkerPackages'){
-        fee= vet.data().cost
+        fee= Number(vet.data().cost)
+    }
+    else if(coll=='hostels'){
+        var {noOfDays, noOfHours, hostelName, pickupDate, pickupTime, returnDate}= req.body
+        fee= Number(vet.data()['costPerDay'])* Number(noOfDays) + Number(vet.data()['costPerHour'])* Number(noOfHours)
+        hostelInfo= {
+            name: hostelName,
+            pickupDate: pickupDate,
+            pickupTime: pickupTime,
+            returnDate: returnDate,
+            returnTime: returnTime
+        }
     }
     else if(coll=='trainerPackages'){
         //var pack= await db.collection('trainers').doc(docId).collection('packages').doc(req.body.packageId).get()
         // if(pack.exists){
         //     fee= pack.data()[req.body.mode]
         // }
-        fee= vet.data()[req.body.mode]
+        fee= Number(vet.data()[req.body.mode])
     }
     else{
         try {
@@ -208,7 +224,8 @@ appRouter.post('/servicePayment', async(req, res)=>{
             type: coll,
             doctorId: req.body._id,
             appId: req.body.appId,
-            uid: req.body.uid || 'NA'
+            uid: req.body.uid || 'NA',
+            hostelInfo: hostelInfo
         })
         res.json(order);
       })

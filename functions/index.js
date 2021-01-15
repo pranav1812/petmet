@@ -63,8 +63,8 @@ exports.fixAppointment= functions.firestore
 
 exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId}')
     .onUpdate(async(change, context)=>{
-        if(change.after.data().paid){
-            await sendMail.orderConfirmaion(change.after.data().orderDetails, change.after.data().mailId)
+        if(change.after.data().paymentVerified){
+            await sendMail.orderConfirmaion(change.after.data(), change.after.data().mailId)
         }
 })
 

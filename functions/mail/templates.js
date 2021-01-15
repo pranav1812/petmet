@@ -17,23 +17,23 @@ templates.orderConfirmation=(orderDetails, mailId)=>{
     // }
     var orderSummary=``
     orderDetails.products.forEach((product, index)=>{
-        orderSummary+=`${index}. ${product.productName} (*${product.units})\n`
+        orderSummary+=`${index +1}. ${product.productName} (*${product.units})\n`
     })
     orderSummary+=`Total: ${orderDetails.total}`
     return {
         to: mailId,
         message:{
-            subject: 'petmet-order placed',
+            subject: 'order placed',
             text: 'order confirmed...',
             html: `
                 <div>
                     <pre>
-                    Dear ${orderDetails.user},
-                        Your order has been placed. It will be delivered in 4-6 working days.
-                        Order details:
-                        ${orderSummary}
-                        Regards,
-                        Team petmet
+Dear user,
+    Your order has been placed. It will be delivered in 4-6 working days.
+Order details:
+${orderSummary}
+Regards,
+Team petmet
                     </pre>
                 </div>
             `
@@ -51,10 +51,10 @@ templates.appointmentConfirmation=(docData, mailId)=>{
             html: `
                 <div>
                 <pre>
-                Dear User,
-                    ${confirmString}\n
-                    Regards,
-                    Team petmet
+Dear User,
+    ${confirmString}\n
+Regards
+Team petmet
                 </pre>
                 </div>
             `
@@ -71,11 +71,11 @@ templates.offerPromotion=(offerDetails, mailIdArray)=>{
             html: `
                 <div>
                 <pre>
-                Dear User,
-                    ${offerDetails.description}\n
-                    For more info <a href=${offerDetails.link}>Click here</a>
-                    Regards,
-                    Team petmet
+Dear User,
+    ${offerDetails.description}\n
+For more info <a href=${offerDetails.link}>Click here</a>
+Regards,
+Team petmet
                 </pre>
                 </div>
             `
@@ -93,10 +93,10 @@ templates.orderDelivered= (mailId)=>{
             html: `
                 <div>
                 <pre>
-                Dear User,
-                    ${confirmString}\n
-                    Regards,
-                    Team petmet
+Dear User,
+    ${confirmString}\n
+Regards,
+Team petmet
                 </pre>
                 </div>
             `

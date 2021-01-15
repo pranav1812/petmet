@@ -40,10 +40,10 @@ background.setAppointentForAdmin=(user, docData, type)=>{
 
 const calculateTotal= async(orderSummary)=>{
     var totalCost=0
-
+    var productArrayToReturn= orderSummary.products
     productPromises= []
     console.log(orderSummary.products)
-    orderSummary.products.forEach(product=>{
+    productArrayToReturn.forEach(product=>{
         var detailsPromise= db.collection('items').doc(product.category).collection('products').doc(product.productId).get()
         productPromises.push(detailsPromise)
     })
@@ -56,11 +56,13 @@ const calculateTotal= async(orderSummary)=>{
         resolvedPromises.forEach((doc, index)=>{
             if(doc.exists){
                 totalCost+=Number(doc.data().details.cost)*orderSummary.products[index].units
+                productArrayToReturn[index]['productName']= doc.data().details.name || "name unknown"
             }// orderSummary.products[index].costPerPc= doc.data().details.cost
         })
         orderSummary.total= totalCost
         console.log("total cost= ---->>>>>>",totalCost)
-        return totalCost
+        var returnObj= [totalCost, productArrayToReturn]
+        return returnObj
     }
     catch(err){
         console.error("some error occurred")
