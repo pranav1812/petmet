@@ -24,12 +24,14 @@ background.setAppointentForVet=(user, docData, type)=>{
 background.setAppointentForAdmin=(user, docData, type)=>{
     // user parameter is an object that contains necessary info about the user
     return new Promise((resolve, reject)=>{
+        var time= new Date()
         var toAdd= {
             type: type,
             patientId: user.id,
             patientName: user.name,
             status: 'pending',
             cancelledByUser: false,
+            updateTime: time.toISOString(),
             ...docData
         }
         db.collection('Appointments').doc(docData.key).set(toAdd)

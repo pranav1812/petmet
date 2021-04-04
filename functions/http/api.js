@@ -6,7 +6,7 @@ const api= express.Router()
 var db= admin.firestore()
 
 const verifyAdmin= (req, res, next)=>{
-    if(req.headers.secret=='kasamse bhaimaiHiadminhu'){
+    if(req.headers.secret==='kasamse bhaimaiHiadminhu'){
         next()
     }else{
         console.log('hack attempt')
@@ -18,7 +18,7 @@ const verifyAdmin= (req, res, next)=>{
 }
 
 api.get('/groomers', verifyAdmin, async(req, res)=>{
-    
+    res.status(200).send('hello world')
 })
 
 api.get('/adoptions', verifyAdmin, async(req, res)=>{
