@@ -187,6 +187,7 @@ appRouter.post('/servicePayment', async(req, res)=>{
         //     fee= pack.data()[req.body.mode]
         // }
         fee= Number(vet.data()[req.body.mode])
+        console.log('fee database se gyi hai', fee)
     }
     else{
         try {
