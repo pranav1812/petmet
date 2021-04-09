@@ -63,8 +63,8 @@ exports.fixAppointment= functions.firestore
 
 exports.orderConfirmationMail= functions.firestore.document('All_Orders/{orderId}')
     .onUpdate(async(change, context)=>{
-        if(change.after.data().paid){
-            await sendMail.orderConfirmaion(change.after.data().orderDetails, change.after.data().mailId)
+        if(change.after.data().paymentVerified && change.after.data().deliveryStatus!== 'delivered'){
+            await sendMail.orderConfirmaion(change.after.data(), change.after.data().mailId)
         }
 })
 
@@ -92,9 +92,11 @@ exports.appointmentStatusChangeByVet= functions.firestore.document('/vet/{vid}/a
                 // send the appointment status to appointments collection for vet to see
 
                 let ref= db.collection('Appointments').doc(change.after.data().key)
+                var time= new Date()
                 var adminChangePromise= ref.update({
                     status: change.after.data().status,
-                    key: change.after.data().key
+                    key: change.after.data().key,
+                    updateTime: time.toISOString()
                 })
             }
 
@@ -133,9 +135,11 @@ exports.appointmentStatusChangeByGroomer= functions.firestore.document('/groomer
                 // send the appointment status to appointments collection for vet to see
 
                 let ref= db.collection('Appointments').doc(change.after.data().key)
+                var time= new Date()
                 var adminChangePromise= ref.update({
                     status: change.after.data().status,
-                    key: change.after.data().key
+                    key: change.after.data().key,
+                    updateTime: time.toISOString()
                 })
             }
 
@@ -175,9 +179,11 @@ exports.appointmentStatusChangeByTrainer= functions.firestore.document('trainers
                 // send the appointment status to appointments collection for vet to see
 
                 let ref= db.collection('Appointments').doc(change.after.data().key)
+                var time= new Date()
                 var adminChangePromise= ref.update({
                     status: change.after.data().status,
-                    key: change.after.data().key
+                    key: change.after.data().key,
+                    updateTime: time.toISOString()
                 })
             }
 
@@ -261,3 +267,50 @@ exports.orderDelivered= functions.firestore
 exports.paymentFunction= functions.https.onRequest(httpListner)
 
 exports.adminApi= functions.https.onRequest(httpListner)
+
+
+exports.cancelExpiredAppointments =
+functions.pubsub.schedule('* * * * *').onRun(async(context) => {
+    var pendingPromise= db.collection('Appointments').where('status', '==', 'pending').get()
+    var acceptedPromise= db.collection('Appointments').where('status', '==', 'accepted').get()
+
+    var [pending, accepted]= await Promise.all([pendingPromise, acceptedPromise])
+    var toCancel= []
+    pending.forEach(doc=>{
+        // change if condition to time difference
+        var currTime= new Date()
+        var lastUpdateTime= new Date(doc.data().updateTime)
+        // doc.data().updateTime Z wali form mai hoga
+        if(currTime-lastUpdateTime>1000*60*60){
+            var temp={
+                uid: doc.data().patientId,
+                appId: doc.id
+            }
+            toCancel.push(temp)
+        }
+    })
+    accepted.forEach(doc=>{
+        // change if condition to time difference
+        var currTime= new Date()
+        var lastUpdateTime= new Date(doc.data().updateTime)
+        // doc.data().updateTime Z wali form mai hoga
+        // 3 hours ka gap 
+        if(currTime-lastUpdateTime>1000*3*60*60){
+            var temp={
+                uid: doc.data().patientId,
+                appId: doc.id
+            }
+            toCancel.push(temp)
+        }
+    })
+    console.log(toCancel)
+    var cancelPromises= []
+    toCancel.forEach(doc=>{
+        var temp= db.collection('user').doc(doc['uid']).collection('appointments').doc(doc['appId']).update({
+            status: 'cancelled'
+        })
+        cancelPromises.push(temp)
+    })
+    return await Promise.all(cancelPromises)
+})
+

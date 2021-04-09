@@ -17,8 +17,9 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import {RiCheckboxCircleLine} from 'react-icons/ri';
-import {FaStethoscope,FaPlusCircle,FaClock} from 'react-icons/fa';
+import {FaStethoscope,FaPlusCircle,FaClock,FaHome,FaWalking,FaBath} from 'react-icons/fa';
 import {MdLocalGroceryStore} from 'react-icons/md';
+import {IoIosPaper} from 'react-icons/io'
 import AddProduct from './addProduct';
 import VerifyVet from './verify';
 import RecentProducts from './recentProducts';
@@ -37,6 +38,7 @@ import AdoptionRequests from './AdoptionRequests';
 import GroomerRequests from './GroomerRequests';
 import TrainerRequests from './TrainerRequests';
 import WalkerRequests from './walkerRequests';
+import Hostel from './Hostel';
 
 const drawerWidth = 250;
 
@@ -168,7 +170,7 @@ function ResponsiveDrawer(props) {
             <Link to={"/admin/adoptionRequests"}>
               <ListItem button>
                 <ListItemIcon>
-                  <FaClock className="menu_icons"/>
+                  <IoIosPaper className="menu_icons"/>
                 </ListItemIcon>
                 <ListItemText primary="Adoption Requests" />
               </ListItem>
@@ -178,7 +180,7 @@ function ResponsiveDrawer(props) {
             <Link to={"/admin/trainerRequests"}>
               <ListItem button>
                 <ListItemIcon>
-                  <FaClock className="menu_icons"/>
+                  <FaWalking className="menu_icons"/>
                 </ListItemIcon>
                 <ListItemText primary="Trainer Requests" />
               </ListItem>
@@ -188,7 +190,7 @@ function ResponsiveDrawer(props) {
             <Link to={"/admin/groomerRequests"}>
               <ListItem button>
                 <ListItemIcon>
-                  <FaClock className="menu_icons"/>
+                  <FaBath className="menu_icons"/>
                 </ListItemIcon>
                 <ListItemText primary="Groomer Requests" />
               </ListItem>
@@ -198,9 +200,19 @@ function ResponsiveDrawer(props) {
             <Link to={"/admin/walkerRequests"}>
               <ListItem button>
                 <ListItemIcon>
-                  <FaClock className="menu_icons"/>
+                  <FaWalking className="menu_icons"/>
                 </ListItemIcon>
                 <ListItemText primary="Walker Requests" />
+              </ListItem>
+            </Link>
+            <Divider style={{width:"100%"}} />
+            <h6>HOSTEL</h6>
+            <Link to={"/admin/hostel"}>
+              <ListItem button>
+                <ListItemIcon>
+                  <FaHome className="menu_icons"/>
+                </ListItemIcon>
+                <ListItemText primary="Hostels" />
               </ListItem>
             </Link>
           </div>
@@ -270,7 +282,7 @@ function ResponsiveDrawer(props) {
       <main className={classes.content}>
         <div className={classes.toolbar} />
         <div className="container">
-          {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />:component=='orders'?<Orders_List/>:component=='appointments'?<Appointments/>:component=='outofstock'?<OutOfStock/>:component=='addcategory'?<AddCategory/>:component=='pastappointments'?<PastAppointments/>: component=='adoptionRequests'? <AdoptionRequests />: component=='trainerRequests'? <TrainerRequests />: component=='walkerRequests'? <WalkerRequests />: component=='groomerRequests'? <GroomerRequests />: null}
+          {component=='verifyVet'? <VerifyVet />: component=='addProduct'? <AddProduct />:component=='recentProducts'? <RecentProducts />:component=='orders'?<Orders_List/>:component=='appointments'?<Appointments/>:component=='outofstock'?<OutOfStock/>:component=='addcategory'?<AddCategory/>:component=='pastappointments'?<PastAppointments/>: component=='adoptionRequests'? <AdoptionRequests />: component=='trainerRequests'? <TrainerRequests />: component=='walkerRequests'? <WalkerRequests />: component=='groomerRequests'? <GroomerRequests />: component=='hostel'? <Hostel />: null}
         </div>
         <Footer />    
       </main>
