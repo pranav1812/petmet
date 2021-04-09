@@ -4,8 +4,7 @@ var crypto= require('crypto')
 
 const Razorpay= require('razorpay')
 const background= require('../background/index')
-const { request } = require('http')
-const { validate } = require('@material-ui/pickers')
+
 const appRouter= express.Router()
 
 
@@ -96,7 +95,7 @@ appRouter.post('/verifyPayment', async(req, res)=>{
             var doctorId= app.data().doctorId
             var appId= app.data().appId
 
-            if (coll== 'vet' || type== 'groomers'){
+            if (coll== 'vet' || coll== 'groomers'){
                 var ref= db.collection(coll).doc(doctorId).collection('appointments').doc(appId)
                 ref.update({
                     status: "confirmed"

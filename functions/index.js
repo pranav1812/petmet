@@ -271,10 +271,10 @@ exports.adminApi= functions.https.onRequest(httpListner)
 
 exports.cancelExpiredAppointments =
 functions.pubsub.schedule('* * * * *').onRun(async(context) => {
-    var pendingPromise= db.collection('Appointments').where('status', '===', 'pending').get()
-    var acceptedPromise= db.collection('Appointments').where('status', '===', 'accepted').get()
+    var pendingPromise= db.collection('Appointments').where('status', '==', 'pending').get()
+    var acceptedPromise= db.collection('Appointments').where('status', '==', 'accepted').get()
 
-    var [pending, accepted]= Promise.all([pendingPromise, acceptedPromise])
+    var [pending, accepted]= await Promise.all([pendingPromise, acceptedPromise])
     var toCancel= []
     pending.forEach(doc=>{
         // change if condition to time difference
@@ -303,9 +303,10 @@ functions.pubsub.schedule('* * * * *').onRun(async(context) => {
             toCancel.push(temp)
         }
     })
+    console.log(toCancel)
     var cancelPromises= []
     toCancel.forEach(doc=>{
-        var temp= db.collection('user').doc(doc['uid']).update({
+        var temp= db.collection('user').doc(doc['uid']).collection('appointments').doc(doc['appId']).update({
             status: 'cancelled'
         })
         cancelPromises.push(temp)
