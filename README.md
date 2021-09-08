@@ -1,3 +1,16 @@
+# Stack used:
+1. React JS for frontend 
+2. Firebase (Backend as a service)
+3. Firebase Cloud Functions in Node JS for implementing serverside logic (Functions folder)
+4. Third Party services (Razorpay Payment Gateway and mailgun integration)
+
+## Contributors:
+1. Pranav Vohra (me) : Backend Function in NodeJS, 3rd party integrations, React Component state management
+2. Ikshul Dureja: Frontend
+3. Sartajbir Singh: Frontend and design
+4. Arshiya Aggarwal: Design
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
