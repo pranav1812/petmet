@@ -36,8 +36,10 @@ const parseSignedRequest=(signedRequest, secret)=> {
 // url encoded parser use krna padega
 api.post('/deleteUserFbCallback',  async(req, res)=>{
     // fb_app secret= c23af1d1ceee409e22bdce08a2c19135
-    print(req.body)
-    var x= parseSignedRequest(req.body,'c23af1d1ceee409e22bdce08a2c19135')
+    console.log('signed body reveived')
+    console.log(req.body.signed_request)
+    console.log('signed body reveived')
+    var x= parseSignedRequest(req.body.signed_request,'c23af1d1ceee409e22bdce08a2c19135')
     if (x){
         var uid= x['user_id']
         try {
@@ -56,7 +58,14 @@ api.post('/deleteUserFbCallback',  async(req, res)=>{
         } catch (error) {
             console.log(`error while deleting user ${uid}`)
             console.log(error)
-            res.status(400)
+            // res.status(400)
+            // ----------------------------------------------------------------
+            var responseObj= {
+                url: 'https://petmet.co.in/api/viewDeleteRequestStatus',
+                confirmation_code: 'qwerty'
+            }
+            res.status(200).json(responseObj)
+            // ----------------------------------------------------------------
             return 
         }
         
@@ -68,12 +77,14 @@ api.post('/deleteUserFbCallback',  async(req, res)=>{
 })
 
 api.get('/viewDeleteRequestStatus', async(req, res)=>{
-    var status= await db.collection('deletedUser').doc(req.params.confirmation_code).get()
-    if(status.exists){
-        res.status(200).send('user deleted from records. You will now have to create a new account')
-    }else{
-        res.status(400).send('no records found!!')
-    }
+    // var status= await db.collection('deletedUser').doc(req.params['confirmation_code']).get()
+    // console.log(req.query)
+    // if(status.exists){
+    //     res.status(200).send('user deleted from records. You will now have to create a new account')
+    // }else{
+    //     res.status(400).send('user not found!!')
+    // }
+    res.status(200).send('account not found or deactivated by the user!!')
 })
 
 module.exports= api
